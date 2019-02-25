@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>王坤的微网</title>
+  <title>{get_nickname($userid,'username')}的微网</title>
   <meta name="keywords" content="{$SEO['keyword']}">
   <meta name="description" content="{$SEO['description']}">
   <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
@@ -47,8 +47,8 @@
 
 <body>
 <div class="contain hd_member">
-  <span>欢迎光临王坤的微网！</span><a href="#">我的控制台</a>
-  <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=56" target="_self">返回[商脉]</a>
+  <span>欢迎光临{get_nickname($userid,'username')}的微网！</span><a href="index.php?m=member">我的控制台</a>
+  <a href="index.php?m=content&c=index&a=lists&catid={$catid}" target="_self">返回[商脉]</a>
 </div>
 <div class="container">
 
@@ -58,20 +58,21 @@
   </div><!--/mySlide-->
   
   <div class="col xs-12 md-6 myInfo">
+    {pc:get sql="SELECT * FROM v9_member_detail where userid=$userid" cache="6" num="1" return="memberinfo"}
     <div class="info1">
-      <img src="http://www.sztnet.com/uploadfile/poster/dbzq/member.jpg" />
+      <img src="{get_memberavatar($userid,1,90)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'">
       <div>
-        <span><strong>王坤</strong>&nbsp;&nbsp;机构业务总监</span><span>广东-深圳</span>    
-        <span>东北证券股份有限公司深圳分公司</span>
-        <p>东北证券股份有限公司前身为吉林省证券有限责任公司。2000 年6月经中国证监会批准，经过增资扩股成立东北证券有限责任公司。2007 年8月，锦州经济技术开发区六陆实业股份有限公司定向回购股份，以新增股份换股吸收合并东北证券有限责任公司，并更名为“东北证券股份有限公司”。2007 年8月27日，公司在深圳证券交易所挂牌上市。</p>
+        <span><strong>{get_memberinfo($userid, $field='username')}</strong>&nbsp;&nbsp;{$memberinfo[0][position]}</span><span>{get_linkage($memberinfo[0][area],1,'-',1)}</span>
+        <span>{$memberinfo[0][unit_name]}</span>
+        <p>{$memberinfo[0][self_introduction]}</p>
       </div>
     </div>
     
     <ul class="row5px info2">
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">一键拨号</a></li>
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">加我微信</a></li>
+      <li class="col5px xs-4 md-3"><a href="tel://13760322795" target="_blank">一键拨号</a></li>
+      <li class="col5px xs-4 md-3"><a href="{$memberinfo[0][wechat_img]}" target="_blank">加我微信</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">导入通讯录</a></li>
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">一键导航</a></li>
+      <li class="col5px xs-4 md-3"><a href="geopoint:116.281469,39.866035" target="_blank">一键导航</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">个人资料</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">加入名片夹</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">一键加我</a></li>
@@ -80,7 +81,8 @@
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">待定待定</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">关注我</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">待定待定</a></li>
-    </ul>  
+    </ul>
+    {/pc}
   </div><!--/myInfo-->
 
 </div><!--/row-->

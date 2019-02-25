@@ -21,12 +21,12 @@ return array(
 
 //附件相关配置
 'upload_path' => PHPCMS_PATH.'uploadfile/',
-'upload_url' => 'http://www.sztnet.com/uploadfile/', //附件路径
+'upload_url' => 'http://www.mylocalsztnet.com/uploadfile/', //附件路径
 'attachment_stat' => '1',//是否记录附件使用状态 0 统计 1 统计， 注意: 本功能会加重服务器负担
 
-'js_path' => 'http://www.sztnet.com/statics/js/', //CDN JS
-'css_path' => 'http://www.sztnet.com/statics/css/', //CDN CSS
-'img_path' => 'http://www.sztnet.com/statics/images/', //CDN img
+'js_path' => 'http://www.mylocalsztnet.com/statics/js/', //CDN JS
+'css_path' => 'http://www.mylocalsztnet.com/statics/css/', //CDN CSS
+'img_path' => 'http://www.mylocalsztnet.com/statics/images/', //CDN img
 'app_path' => 'http://www.mylocalsztnet.com/',//动态域名配置地址
 
 'charset' => 'utf-8', //网站字符集

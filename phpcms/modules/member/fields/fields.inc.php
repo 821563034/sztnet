@@ -10,5 +10,6 @@ $fields = array('text'=>'单行文本',
 				'linkage'=>'联动菜单',
 				'omnipotent'=>'万能字段',
 				'checkmobile'=>'短信验证',
+                'map'=>'地图字段',
  				);
 ?>
