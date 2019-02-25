@@ -1,0 +1,35 @@
+@charset "utf-8";/* Blue theme */
+/*浅色系-深到浅：006699 408DB3 80B3CD BFD9E5 E6F0F5; 深色系-浅到深：005782 004D73 00334D 001A26 000A0F*/
+
+/*头部*/
+.head{background:#E6F0F5;}
+.logo{background:url(../../../images/myimg/szt/logo.png) 0 0 no-repeat;}
+
+/*主导航*/
+.mainNav > ul > li{background-color:#006699;}
+.mainNav > ul > li > ul li a{background-color:#408DB3;}
+
+.mainNav > ul > li.cur{background-color:#004D73;}
+.mainNav > ul > li > a:hover{background-color:#408DB3;}
+.mainNav > ul > li > ul > li a:hover{background-color:#006699;}
+
+.mainNav > ul > li:hover ul li a{border-top:1px solid #80B3CD;}
+
+@media (min-width:768px){
+	.mainNav > ul > li{border-right:1px solid #005782;}
+	.cateNum-12 > ul > li:nth-child(6){border-right:1px solid #005782;}
+}
+
+/*二级导航*/
+.subNav ul{background-color:#BFD9E5;}
+
+/*推荐区背景*/
+.recommend{background-color:#eee;}
+
+/*标题*/
+.h2-a{border-top:2px solid #80B3CD;}
+.h2-a span{background-color:#80B3CD; color:#FFF;}
+.h2-b{border-top:2px solid #80B3CD;}
+.h2-b span{border-left:10px solid #80B3CD; color:#0099CC;}
+
+.h3-1, .h3-2 span{color:#006699;}

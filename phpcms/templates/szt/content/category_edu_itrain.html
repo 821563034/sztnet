@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">  
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" /> 
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script>$(document).ready(function(){$(".menu3 h1").click(function(){$(".menu3 > ul").toggle(100);});});</script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+<div class="row">
+
+<div class="col xs-12 md-7">
+  <h3 class="h3-1 bts">最新信息</h3>
+  <ul class="infoBox2">
+    {pc:content action="lists" catid="$catid" num="20" order="inputtime DESC"}
+    {loop $data $v}  
+    <li>
+      <img src="{$v[thumb]}" />
+      <div>
+        <a href="{$v[url]}" target="_blank">{$v[title]}</a>
+        <span>讲师：{$v[trainer]}</span>
+        <span>驻地：{get_linkage($v['place'],1,'-',1)}</span>
+        <span>费用：{$v[fee]}</span>
+        <span>更新：{date('Y-m-d',$v[inputtime])}</span>
+      </div>
+    </li>
+    {/loop}
+    {/pc}
+  </ul>
+</div><!--/左-->
+
+<div class="col xs-12 md-5">
+  <a class="publishBtn" href="#" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;免费发布相关内训信息</a>
+</div><!--/右-->
+
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

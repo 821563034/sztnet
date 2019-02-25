@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/edu.css" rel="stylesheet" /> 
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script> 
+  <script>
+    $(function(){
+      $("ul.menu1 li").each(function(i){
+        $(this).click(function(){
+          $(this).addClass("active").siblings().removeClass("active");
+          $(".ul3-train:eq("+i+")").show().siblings(".ul3-train").hide();
+        })
+      })
+    })
+	$(document).ready(function(){$(".menu1 h1").click(function(){$(".menu1 > ul").toggle(100);});});
+  </script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row">
+<div class="col xs-12 md-9">
+  <h3 class="h3-1 bts">{$CATEGORYS[316]['catname']}</h3>
+  {pc:content action="lists" catid="316" num="10" order="inputtime DESC"}
+  <ul class="inform ltd">  
+    {loop $data $v}
+    <li>
+      <div><span>{date('Y-m-d',$v[inputtime])}</span><a href="{$v[url]}" target="_blank">{$v[title]}</a></div>
+      <span class="iconfont icon-location">&nbsp;{get_linkage($v['place'], 1, '-',1)}</span>
+      <span class="iconfont icon-time">&nbsp;{$v[holdtime]}</span>
+      <span class="iconfont icon-recharge">&nbsp;{$v[fee]}</span>
+    </li>
+    {/loop}
+  </ul>
+  {/pc}
+  <h3 class="h3-1 bts">{$CATEGORYS[317]['catname']}</h3> 
+  {pc:content action="lists" catid="317" num="10" order="inputtime DESC"}
+  <ul class="ul2-ymd">  
+    {loop $data $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+  </ul>
+  {/pc}
+  <h3 class="h3-1 bts">{$CATEGORYS[318]['catname']}</h3>  
+  {pc:content action="lists" catid="318" num="10" order="inputtime DESC"}
+  <ul class="ul1">  
+    {loop $data $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a></li>
+    {/loop}
+  </ul>
+  {/pc}
+</div><!--/左侧栏结束-->
+
+<div class="col xs-12 md-3">
+  <a class="linkBtn mb10" href="https://www.homeforsmes.com.cn/trainingtype.do?pageNo=1&actType=3&trainTypeId=0" target="_blank">培训预报名系统</a>
+  <a class="linkBtn mb10" href="https://www.homeforsmes.com.cn/trainingtype.do?pageNo=1&actType=0&trainTypeId=0" target="_blank">各课程往期培训信息</a>
+  <div class="course">
+    <h3>培训课程分类</h3>
+    <ul>
+      <li>改制上市班</li>
+      <li>拟上市公司CFO班</li>
+      <li>拟上市公司董秘班</li>
+      <li>独董首次培训</li>
+      <li>独董后续培训</li>
+      <li>并购研讨班</li>
+      <li>海外并购班</li>
+      <li>公司债业务班</li>
+      <li>资产证券化班</li>
+      <li>股权激励班</li>
+      <li>沙龙活动</li>
+    </ul>
+    <p class="note">注：无上市公司董秘班、上市公司财务总监班级，此类培训由资本市场学院主办。</p>
+  </div>
+</div><!--/右侧栏结束-->
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

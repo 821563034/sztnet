@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+<meta name="keywords" content="{$SEO['keyword']}">
+<meta name="description" content="{$SEO['description']}">
+
+<link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+<link href="{CSS_PATH}mycss/law/law.css" rel="stylesheet" />
+<link href="{CSS_PATH}mycss/law/index.css" rel="stylesheet" />
+
+<script src="{JS_PATH}jquery.min.js"></script>
+<script src="{JS_PATH}jquery.sgallery.js"></script>
+<script src="{JS_PATH}search_common.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("h2.cate1").click(function(){$(this).next("div.cate2").slideToggle(200).siblings("div.cate2").hide();});
+});
+</script>
+<script>
+  $(function(){
+	$("ul#lawMenu li").each(function(i){
+	  $(this).click(function(){
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".listbox:eq("+i+")").show().siblings(".listbox").hide();
+	  })
+	})
+  })
+</script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+{template "content_inc","head"}
+<div id="lawPos2"><div class="lawPos2_lt">解读 &raquo; {$CATEGORYS[$catid][catname]} &raquo; 列表</div><div class="lawPos2_rt"></div></div>
+
+<div class="row">
+
+<div id="left3">
+  {pc:content action="lists" catid="$catid" num="25" order="id DESC" page="$page"}
+  <ul id="list">
+    {loop $data $r}
+    <li>
+      <a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a>
+      <span>{date('Y-m-d',$r[inputtime])}</span>
+    </li>
+    {/loop}
+  </ul>
+  <div id="pages" class="text-c">{$pages}</div>
+  {/pc}
+</div><!--/left3-->
+
+<div class="right3">
+</div>
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+<!--设置右侧栏高度-->
+<script>document.getElementById('right').style.height = document.getElementById('left').scrollHeight -11 + "px";</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row tool">
+  <div class="col xs-12"><h3 class="line1"><span>机构研究报告</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://data.eastmoney.com/report/" target="_blank">东财网-研报</a></div>
+  <div class="col xs-12 md-2"><a href="http://finance.sina.com.cn/stock/report/" target="_blank">新浪网-研报</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.hibor.com.cn/" target="_blank">汇博投研资讯</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.jztzw.net/" target="_blank">中国价值投资网（收费）</a></div>
+  <div class="col xs-12 md-2"><a href="https://www.valuelist.cn/" target="_blank">价值目录</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.nxny.com/" target="_blank">股票报告网</a></div>
+  
+  <div class="col xs-12"><h3 class="line1"><span>证券市场数据</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://finance.sina.com.cn/data/" target="_blank">新浪网-数据中心</a></div>
+  <div class="col xs-12 md-2"><a href="http://data.eastmoney.com/center/" target="_blank">东财网-数据中心</a></div>
+  <div class="col xs-12 md-2"><a href="http://quotes.money.163.com/stock" target="_blank">网易-行情中心</a></div>
+  <div class="col xs-12 md-2"><a href="http://data.10jqka.com.cn/" target="_blank">同花顺-数据中心</a></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>宏观经济数据</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.stats.gov.cn/tjsj/" target="_blank">国家统计局</a></div>
+  <div class="col xs-12 md-2"><a href="http://dc.xinhua08.com/" target="_blank">中国金融信息网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cei.gov.cn/" target="_blank">中国经济信息网</a></div>
+  <div class="col xs-12 md-2"><a href="http://mac.hexun.com/" target="_blank">和讯网宏观数据</a></div>
+  <div class="col xs-12 md-2"><a href="https://d.qianzhan.com/" target="_blank">前瞻数据库</a></div>
+  
+  <div class="col xs-12 advise"><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">热烈欢迎网友提供建议</a></div>
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

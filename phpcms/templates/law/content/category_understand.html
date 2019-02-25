@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/law/law.css" rel="stylesheet" />
+  
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script>
+  $(document).ready(function(){
+      $("h2.mhead").click(function(){$(this).next("div.mbody").slideToggle(200).siblings("div.mbody").hide();});
+  });
+  </script>
+  <script>
+    $(function(){
+      $("ul#ltMenu li").each(function(i){
+        $(this).click(function(){
+          $(this).addClass("active").siblings().removeClass("active");
+          $(".listbox:eq("+i+")").show().siblings(".listbox").hide();
+        })
+      })
+    })
+  </script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+{template "content_inc","head"}
+{template "content_inc","nav"}
+{template "content_inc","position"}
+
+<div class="row">
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

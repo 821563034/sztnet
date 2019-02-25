@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于防范比特币风险的通知[当前有效201812]</title>
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/law.css" rel="stylesheet" />
+  <style type="text/css">
+  .container{position:relative;}
+  .scroll{margin:0 auto; text-align:right; position:fixed; bottom:65px;}
+  .scroll span{
+	  display:inline-block; width:30px; height:30px; line-height:15px; background-color:#f58220; cursor:pointer;
+	  font-size:12px; color:#fff; text-align:center;
+	  }
+  .scroll span:hover{background-color:#f26522;}
+  </style>
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+      w = $(".container").width(); $(".scroll").css("width", w);
+     /* h = $(".container").height(); $(".scroll").css("bottom", h);*/
+      showScroll();
+      function showScroll(){
+          $(window).scroll( function() { 
+              var scrollValue=$(window).scrollTop();
+              scrollValue > 300 ? $(".scroll").fadeIn():$(".scroll").fadeOut();
+          } );	
+          $('#scroll').click(function(){
+              $("html,body").animate({scrollTop:0},200);	
+          });	
+      }
+  })
+  </script>
+  
+
+  <script>
+  $(document).ready(function(){$('#placeholder').height($('.beReplaced').height());});  
+
+  $(function(){
+      if ($(".catalog-cont").length > 0){
+		  var offsetTop= $(".content").offset().top;
+          $(window).scroll(function () {
+              var scrollTop = $(window).scrollTop();
+              if (offsetTop < scrollTop){  
+				  w = $(".content").width(); $(".beReplaced").css("width", w);
+				  $(".beReplaced").addClass("fixed"); $(".catalog-cont").hide();
+				  $(".catalog-bar").addClass("catalog-bar-fixed");
+				  }
+              else {
+				  $(".beReplaced").css("width", '100%');<!--防止占位框不复位-->
+				  $(".beReplaced").removeClass("fixed");
+				  $(".catalog-cont").show();
+				  $(".catalog-bar").removeClass("catalog-bar-fixed")  
+				  }
+          });
+      }
+	  else $(".catalogBtn").hide();
+  });
+
+  $(document).ready(function(){$(".catalogBtn").click(function(){$(".catalog-cont").toggle();});});
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>
+<div class="container">
+<nav class="mainNav cateNum-10 clear">
+<ul class="inverse">
+  <li><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/law/" target="_self">法规</a></li>
+  <li>
+    <a href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="javascript:void(0)" target="_self">商城</a></li>
+</ul>
+</nav><div class="position">
+  <div class="pos-lt"><i class="iconfont icon-locationfill"></i>法规&nbsp;&gt;&nbsp;<a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=134">证监会</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=347">规范性文件</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=156">综合类</a> > <a href="http://www.sztnet.com/law/csrc/normativeDocs/general/fxq/">反洗钱</a></div>
+  <div class="pos-rt"></div>
+</div>
+<div class="row">
+<article class="col xs-12 md-9">
+  
+  <div class="lawInfo mb10">
+    <div class="div1">
+      <span>制定部门：人民银行、工信部、银监会、证监会、保监会</span>
+            <span>当前效力：<font color="red">有效</font></span>
+        
+    </div>
+    <div class="div2"><span>法律位阶：</span><span>文件编号：银发〔2013〕289号</span></div>
+    <div class="div3"><span>发布日期：2013-12-03</span><span>生效日期：2013-12-03</span></div>
+  </div>
+
+    <h1 class="h1-a">关于防范比特币风险的通知</h1>  
+  
+  <div class="underTit clear mb20" id="underTit">
+    <div class="beReplaced">
+      <div class="catalog-bar clear">
+        <a class="errorBtn">反馈</a>
+        <a class="goBottom" href="#bottom">到达底部</a><span class="clickBtn">阅读<strong id="hits"></strong>次</span>
+      </div>
+          </div><!--/beReplaced-->
+    <div id="placeholder"></div>
+  </div><!--/underTit-->
+  
+  <div class="content">
+    <p>近期，一种通过特定计算机程序计算出来的所谓&ldquo;比特币&rdquo;（Bitcoin）在国际上引起了广泛关注，国内也有一些机构和个人借机炒作比特币及与比特币相关的产品。为保护社会公众的财产权益，保障人民币的法定货币地位，防范洗钱风险，维护金融稳定，依据《中华人民共和国中国人民银行法》、《中华人民共和国反洗钱法》、《中华人民共和国商业银行法》、《中华人民共和国电信条例》等有关法律法规，现将有关事项通知如下：<o:p></o:p></p>
+<p><strong>一、正确认识比特币的属性</strong><o:p></o:p></p>
+<p>比特币具有没有集中发行方、总量有限、使用不受地域限制和匿名性等四个主要特点。虽然比特币被称为&ldquo;货币&rdquo;，但由于其不是由货币当局发行，不具有法偿性与强制性等货币属性，并不是真正意义的货币。从性质上看，比特币应当是一种特定的虚拟商品，不具有与货币等同的法律地位，不能且不应作为货币在市场上流通使用。<o:p></o:p></p>
+<p>二、各金融机构和支付机构不得开展与比特币相关的业务<o:p></o:p></p>
+<p>现阶段，各金融机构和支付机构不得以比特币为产品或服务定价，不得买卖或作为中央对手买卖比特币，不得承保与比特币相关的保险业务或将比特币纳入保险责任范围，不得直接或间接为客户提供其他与比特币相关的服务，包括：为客户提供比特币登记、交易、清算、结算等服务；接受比特币或以比特币作为支付结算工具；开展比特币与人民币及外币的兑换服务；开展比特币的储存、托管、抵押等业务；发行与比特币相关的金融产品；将比特币作为信托、基金等投资的投资标的等。<o:p></o:p></p>
+<p><strong>三、加强对比特币互联网站的管理</strong><o:p></o:p></p>
+<p>依据《中华人民共和国电信条例》和《互联网信息服务管理办法》，提供比特币登记、交易等服务的互联网站应当在电信管理机构备案。<o:p></o:p></p>
+<p>电信管理机构根据相关管理部门的认定和处罚意见，依法对违法比特币互联网站予以关闭。<o:p></o:p></p>
+<p><strong>四、防范比特币可能产生的洗钱风险</strong><o:p></o:p></p>
+<p>中国人民银行各分支机构应当密切关注比特币及其他类似的具有匿名、跨境流通便利等特征的虚拟商品的动向及态势，认真研判洗钱风险，研究制定有针对性的防范措施。各分支机构应当将在辖区内依法设立并提供比特币登记、交易等服务的机构纳入反洗钱监管，督促其加强反洗钱监测。<o:p></o:p></p>
+<p>提供比特币登记、交易等服务的互联网站应切实履行反洗钱义务，对用户身份进行识别，要求用户使用实名注册，登记姓名、身份证号码等信息。各金融机构、支付机构以及提供比特币登记、交易等服务的互联网站如发现与比特币及其他虚拟商品相关的可疑交易，应当立即向中国反洗钱监测分析中心报告，并配合中国人民银行的反洗钱调查活动；对于发现使用比特币进行诈骗、赌博、洗钱等犯罪活动线索的，应及时向公安机关报案。<o:p></o:p></p>
+<p><strong>五、加强对社会公众货币知识的教育及投资风险提示</strong><o:p></o:p></p>
+<p>各部门和金融机构、支付机构在日常工作中应当正确使用货币概念，注重加强对社会公众货币知识的教育，将正确认识货币、正确看待虚拟商品和虚拟货币、理性投资、合理控制投资风险、维护自身财产安全等观念纳入金融知识普及活动的内容，引导社会公众树立正确的货币观念和投资理念。<o:p></o:p></p>
+<p>各金融监管机构可以根据本通知制定相关实施细则。<o:p></o:p></p>
+<p>请中国人民银行上海总部，各分行、营业管理部、省会（首府）城市中心支行将本通知转发至辖区内各地方性金融机构和支付机构。本通知执行过程中发现的新情况、新问题，请及时向中国人民银行报告。<o:p></o:p></p>
+<p><o:p></o:p></p>
+<p><o:p></o:p></p>
+<p>联系人：张念念，联系电话：010-66194489</p>
+  </div><!--/content-->
+  
+  <div class="shareBar">
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+    <a class="shareBar-rt" href="http://www.csrc.gov.cn/pub/newsite/flb/flfg/bmgf/zh/gfxwjfxq/201401/t20140122_242972.html" target="_blank">阅读原文</a><a name="bottom" id="bottom">&nbsp;</a>
+  </div><!--/shareBar-->
+</article>
+
+<aside class="col xs-12 md-3">
+</aside>
+ 
+</div><!--/row-->
+<div class="scroll" id="scroll" style="display:none;"><span>回到<br/>顶部</span></div>   
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/links/" target="_blank">友情链接</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2018&nbsp;上证通网&nbsp;版权所有</span>
+</footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><script src="http://www.sztnet.com/api.php?op=count&id=1477&modelid=17"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+@charset "utf-8";
+@import url("theme/blue-light.css");
+/*--------------------------------------学院+活动*/
+
+/*搜索引擎*/
+.infoSearch table{border-collapse:collapse; border:1px solid #EEEED1; background-color:#F5F5DC; width:100%; margin-bottom:10px; font-size:0.8em;}
+.infoSearch table tr th, .jobSearch table tr td{border:none; padding:5px;}
+.infoSearch table tr th{width:5em; color:#A66300;}
+
+.infoSearch table tr td label{display:inline-block; width:7em;}
+.infoSearch table tr:last-child td{text-align:center; padding:10px;}
+.infoSearch table tr:last-child td button{
+	display:block; width:5em; height:2em; line-height:2em; margin:0 auto;
+	border:1px solid #ddd; border-radius:1em; background-color:#eee; color:#000;
+	}
+.infoSearch table tr:last-child td button:hover{background-color:#ddd;}
+
+/*公共样式*/
+.listbox li{overflow:hidden; margin-bottom:10px;}
+.div-cont{border:1px solid #F2BFBF; padding:3px;}
+.div-cont a{display:block; white-space:nowrap; overflow:hidden;}
+.div-cont span{display:inline-block; margin-right:1em; font-size:0.7em; color:#aaa;}
+/**/
+.div-tab-s{overflow:hidden;}
+.div-tab-s span:first-child{float:left; padding:0 3px; border-radius:5px 5px 0 0; background-color:#F2BFBF; font-size:0.8em; color:#fff;}
+.div-tab-s span:last-child{float:right; font-size:0.8em; color:#aaa;}
+/**/
+.div-tab-l{overflow:hidden; border-radius:5px 5px 0 0; padding:0 3px; background-color:#F2BFBF; font-size:0.8em; color:#fff;}
+.div-tab-l span:first-child{float:left;}
+.div-tab-l span:last-child{float:right;}
+
+
+/*内训*/
+.itrain li div{padding:3px; border:1px solid #F2BFBF;}
+.itrain li a{display:block; white-space:nowrap; overflow:hidden;}
+.itrain li span{font-size:0.7em; color:#aaa;}
+ 
+/*左图右文，如学院-企业内训栏目*/
+
+.infoBox2 li{padding:5px 0; border-bottom:1px solid #ddd; overflow:hidden;}
+.infoBox2 li:first-child{border-top:none;}
+.infoBox2 li img{float:left; width:90px; max-width:18%;}
+.infoBox2 li div{float:right; width:80%;}
+
+.infoBox2 li div a{display:block;}
+.infoBox2 li div span{display:block; font-size:0.7em; color:#bbb;}
+
+@media (min-width:992px){
+	.infoBox2 li div{}
+	.infoBox2 li{float:left; width:49%;}
+	.infoBox2 li:nth-child(odd){margin-right:2%;}
+}
+
+
+/*官方培训*/
+.infoBox li{margin-bottom:10px;}
+.infoBox li > div{border:1px solid #ddd;}
+.infoBox li > div div.info1{padding:5px; border-bottom:1px solid #eee; background-color:#eee;}
+.infoBox li > div div.info1 span{display:block; font-size:0.9em;}
+.infoBox li > div div.info2{padding:5px;}
+.infoBox li > div div.info2 a{display:block; height:4.5em; line-height:1.5em; overflow:hidden;}
+.infoBox li > div div.info2 span{display:block; font-size:0.6em; color:#aaa;}
+
+/*图文*/
+.picTxt li{margin-bottom:10px; overflow:hidden;}
+.picTxt li img{display:block; width:100%; height:120px;}
+.picTxt li div{border-bottom:1px solid #ddd; border-left:1px solid #ddd; border-right:1px solid #ddd;}
+.picTxt li div.txt1{padding:5px; background-color:#f8f8f8;}
+.picTxt li div.txt2{padding:5px;}
+
+.picTxt li div.txt1 span{display:block; font-size:0.8em; color:#000; white-space:nowrap; overflow:hidden;}
+.picTxt li div.txt2 a{display:block; line-height:1.5em; height:3em; overflow:hidden;}
+.picTxt li div.txt2 span{display:block; font-size:0.5em; color:#aaa; white-space:nowrap; overflow:hidden;}
+
+
+/*公开培训二级栏目
+.inform li{padding:5px 0;}
+.inform li div span{display:block; font-size:0.5em; font-weight:bold; color:#444;}
+.inform li div a{display:block; color:#000;}
+.inform li > span{display:inline-block; margin-right:1em; font-size:0.8em; color:#aaa; overflow:hidden;}
+.inform li > span i{float:left;}
+*/
+
+@media (min-width:768px){
+	.inform li{overflow:hidden;}
+	.inform li > div{float:left; width:100%;}
+	.inform li > div span{float:right; width:15%; text-align:right; color:#bbb; font-size:1em; font-weight:normal;}
+	.inform li > div a{float:left; width:85%;}
+	.inform li div > span{float:left; margin-right:1em;}
+}
+
+.course{padding:5px; border:1px solid #ddd;}
+.course h3{border-bottom:1px solid #ddd; text-align:center;}
+.course ul li{height:2em; line-height:2em;}
+
+/*--------------------------------------------招聘栏目*/
+
+/*首页*/
+.jobList li{padding:0.5em 0; border-bottom:1px dotted #E8E8E8; overflow:hidden;}
+.jobList li:last-child{border-bottom:none;}
+
+.job1{float:left; width:100%; overflow:hidden;}
+.job1 a{float:left; width:60%; white-space:nowrap; overflow:hidden;}
+.job1 span{float:left; width:40%; text-align:right; color:red; white-space:nowrap; overflow:hidden;}
+
+.job2{float:left; width:100%; color:#444; font-size:0.5em; white-space:nowrap; overflow:hidden;}
+.job2 span{display:inline-block; color:#ddd; padding:0 0.5em;}
+
+.job3{float:left; width:100%; color:#444; font-size:0.5em;}
+
+@media (min-width:992px){
+.job1{width:40%; height:1.5em; line-height:1.5em;}
+.job1 a{float:none; width:auto; margin-right:0.5em;}
+.job1 span{float:none; width:auto;}
+.job2{width:60%; height:1.5em; line-height:1.5em; text-align:right; font-size:1em;}
+.job3{color:#aaa;}
+}
+
+/*搜索引擎*/
+.jobSearch table{border-collapse:collapse; border:1px solid #EEEED1; background-color:#F5F5DC; width:100%; margin-bottom:10px; font-size:0.8em;}
+.jobSearch table tr th, .jobSearch table tr td{border:none; padding:5px; height:2em; line-height:2em;}
+.jobSearch table tr th{width:6em; text-align:left; color:#A66300;}
+.jobSearch table tr:last-child td{text-align:center;}
+.jobSearch table tr:last-child button{
+	display:block; width:5em; height:2em; line-height:2em; margin:0 auto;
+	border:1px solid #ddd; border-radius:1em; background-color:#eee; color:#000;
+	}
+.jobSearch table tr:last-child button:hover{background-color:#ddd;}
+@media (min-width:992px){
+	.jobSearch table tr th{width:25%; text-align:right;}	
+	}
+
+/*正文页*/
+.jobHd-1{padding:10px 0; background-color:#FFF8DC; text-align:center;}
+.jobHd-1 a, .jobHd-1 span{display:inline-block; font-size:0.9em; color:#aaa;}
+.jobHd-1 span:nth-child(3){padding:0 1em;}
+
+.jobHd-2{border-bottom:1px solid #ddd; overflow:hidden;}
+.jobHd-2 span{float:left; padding:0.5em 0; white-space:nowrap; overflow:hidden; font-size:0.9em;}
+.jobHd-2 span:nth-child(odd){width:60%;}
+.jobHd-2 span:nth-child(even){width:40%;}
+
+@media (min-width:992px){
+	.jobHd-2 span:nth-child(odd){width:33.33333%;}
+	.jobHd-2 span:nth-child(even){width:33.33333%;}
+}
+
+h2{background-color:#F8F8F8; font-size:1em;}
+
+/*-----------------------------------------服务商库*/
+
+.servSearch table{
+	width:100%; border-collapse:collapse; border:1px solid #EEEED1; background-color:#F5F5DC;
+	margin-bottom:10px; font-size:0.9em;
+}
+.servSearch table tr td, .servSearch table tr th{border:none; padding:5px;}
+.servSearch table tr th{width:10%; color:#AA7D39; text-align:left;}
+.servSearch table tr td{width:90%;}
+
+.servItems div{overflow:hidden;}
+.servItems div label{float:left; width:50%; padding:2px 0; white-space:nowrap; overflow:hidden;}
+
+@media (min-width:768px){.servItems div label{width:25%;} .province div label{width:10%;}}
+@media (min-width:992px){.servItems div label{width:20%;}}
+
+.placeNote{color:#aaa; letter-spacing:-2px;}
+.firmName{padding:5px;}
+.firmName input{display:block; width:100%; border:none;}
+
+.servSearch table tr:last-child td{text-align:center;}
+.servSearch table tr td button{
+	display:block; width:6em; height:2em; margin:0 auto;
+	border:1px solid #ddd; border-radius:1em; background-color:#eee; color:#000;
+}
+
+/*搜索结果页*/
+.firmList li{padding-bottom:5px;}
+.firmList li a{display:block; width:100%; padding-top:5px; border-top:1px solid #eee; white-space:nowrap; overflow:hidden;}
+.firmList li span{display:block; font-size:0.6em; color:#bbb;}
+
+@media (min-width:768px){
+}
+
+/*---------------------------------------------工具栏目*/
+
+.tool > div{margin-bottom:10px;}
+.tool div.md-2 > a{display:block; padding:5px; background-color:#eee; border:1px solid #ddd; text-align:center;}
+.tool div.md-2 > a:hover{background-color:#ddd;}
+.tool div > span{display:block; padding:3px; border:1px solid #ddd; border-top:none; font-size:0.7em; color:#aaa; text-align:center;}
+@media (min-width:992px){
+  .tool div.md-2 > a{font-size:0.8em;}
+  .tool div > span{padding:0 3px; height:3em; line-height:1.5em;}
+}
+
+.advise{padding:20px 0;}
+.advise a{display:block; width:12em; text-align:center; margin:0 auto; height:20px; line-height:20px; border-radius:10px; background-color:#333; font-size:8px; color:#fff;}
+.advise a:hover{background-color:#111;}
+
+.poetry{border:1px solid #F0E68C; margin-bottom:10px; margin-top:20px; background-color:#EEE8AA;}
+.poetry p{text-align:center;}
+.wxg div img{width:100%; border:none;}
+.wxg > div > span{display:block; padding:0.5em 0; font-size:0.8em;}
+
+
+/*----------------------------------------上市:一级市场*/
+/*图片区*/
+.picBox li{overflow:hidden;}
+.picBox li img{display:block; width:100%; height:90px;}
+.picBox li a{display:table; width:100%; height:2.4em; overflow:hidden;}
+.picBox li a span{display:table-cell; vertical-align:middle; padding:0 2px; background-color:#eee; font-size:0.9em; color:#111; line-height:1.2em;}
+@media (min-width:992px){.picBox li img{height:100px;}}
+@media (min-width:1100px){.picBox li img{height:110px;}}
+@media (min-width:1200px){.picBox li img{height:120px;}}
+/**/
+#sohu{display:block; margin-left:auto; margin-right:auto;}
+@media (min-width:992px){#sohu{margin-left:-10px;}}
+/**/
+.calendar iframe{display:block; width:80%; height:250px; margin:0 auto; font-size:0.8em;}
+@media (min-width:992px){.calendar iframe{height:300px; margin-left:-10px; width:110%;}}
+/*发行上市数据*/
+.frameBox1{position:relative; width:100%; height:550px; overflow:hidden;}
+.frameBox1 iframe{width:100%; height:830px; border:none; position:relative; top:-280px;}
+/*新股行情数据*/
+.frameBox2{position:relative; width:100%; height:2135px; overflow:hidden;}
+.frameBox2 iframe{position:relative; top:-270px; left:-30px; width:960px; height:2390px; border:none;}
+@media (min-width:992px){.frameBox2 iframe{left:90px;}}
+/*更多数据*/
+.moreData{font-size:0.8em; background-color:#F7F7F8;}
+.moreData span{color:grey;}
+@media (min-width:768px){.moreData{text-align:center;}}
+
+/*----------------------------并购平台*/
+
+.h3-tab{overflow:hidden; height:2em; line-height:2em;}
+.h3-tab span{float:left; margin-right:1em;}
+.tabs{font-size:0.8em; font-weight:normal;}
+.showTab{color:tomato;}
+.h3-tab a{float:right; font-size:0.8em; font-weight:normal;}
+
+.lists li{overflow:hidden;}
+.lists li a{float:left; width:100%;}
+.lists li span{float:left; margin-right:1em; font-size:0.8em; color:#ccc;}
+
+@media (min-width:768px){
+	.lists li{height:2em; line-height:2em;}
+	.lists li a{width:60%;}
+	.lists li span{font-size:1em; margin-right:0;}
+	.lists li span:nth-child(2), .lists li span:nth-child(3){width:15%; color:#111;}
+	.lists li span:nth-child(4){width:10%; text-align:right;}
+}

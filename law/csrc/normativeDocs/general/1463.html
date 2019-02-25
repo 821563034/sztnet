@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于做好下放派出机构行政许可项目实施工作的通知[当前有效201812]</title>
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/law.css" rel="stylesheet" />
+  <style type="text/css">
+  .container{position:relative;}
+  .scroll{margin:0 auto; text-align:right; position:fixed; bottom:65px;}
+  .scroll span{
+	  display:inline-block; width:30px; height:30px; line-height:15px; background-color:#f58220; cursor:pointer;
+	  font-size:12px; color:#fff; text-align:center;
+	  }
+  .scroll span:hover{background-color:#f26522;}
+  </style>
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+      w = $(".container").width(); $(".scroll").css("width", w);
+     /* h = $(".container").height(); $(".scroll").css("bottom", h);*/
+      showScroll();
+      function showScroll(){
+          $(window).scroll( function() { 
+              var scrollValue=$(window).scrollTop();
+              scrollValue > 300 ? $(".scroll").fadeIn():$(".scroll").fadeOut();
+          } );	
+          $('#scroll').click(function(){
+              $("html,body").animate({scrollTop:0},200);	
+          });	
+      }
+  })
+  </script>
+  
+
+  <script>
+  $(document).ready(function(){$('#placeholder').height($('.beReplaced').height());});  
+
+  $(function(){
+      if ($(".catalog-cont").length > 0){
+		  var offsetTop= $(".content").offset().top;
+          $(window).scroll(function () {
+              var scrollTop = $(window).scrollTop();
+              if (offsetTop < scrollTop){  
+				  w = $(".content").width(); $(".beReplaced").css("width", w);
+				  $(".beReplaced").addClass("fixed"); $(".catalog-cont").hide();
+				  $(".catalog-bar").addClass("catalog-bar-fixed");
+				  }
+              else {
+				  $(".beReplaced").css("width", '100%');<!--防止占位框不复位-->
+				  $(".beReplaced").removeClass("fixed");
+				  $(".catalog-cont").show();
+				  $(".catalog-bar").removeClass("catalog-bar-fixed")  
+				  }
+          });
+      }
+	  else $(".catalogBtn").hide();
+  });
+
+  $(document).ready(function(){$(".catalogBtn").click(function(){$(".catalog-cont").toggle();});});
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>
+<div class="container">
+<nav class="mainNav cateNum-10 clear">
+<ul class="inverse">
+  <li><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/law/" target="_self">法规</a></li>
+  <li>
+    <a href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="javascript:void(0)" target="_self">商城</a></li>
+</ul>
+</nav><div class="position">
+  <div class="pos-lt"><i class="iconfont icon-locationfill"></i>法规&nbsp;&gt;&nbsp;<a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=134">证监会</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=347">规范性文件</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=156">综合类</a> > <a href="http://www.sztnet.com/law/csrc/normativeDocs/general/xzxk/">行政许可</a></div>
+  <div class="pos-rt"></div>
+</div>
+<div class="row">
+<article class="col xs-12 md-9">
+  
+  <div class="lawInfo mb10">
+    <div class="div1">
+      <span>制定部门：<a href='http://www.csrc.gov.cn/pub/newsite/' target='_blank'>中国证监会</a></span>
+            <span>当前效力：<font color="red">有效</font></span>
+        
+    </div>
+    <div class="div2"><span>法律位阶：</span><span>文件编号：证监法律字[2004]8号</span></div>
+    <div class="div3"><span>发布日期：2004-07-15</span><span>生效日期：2004-07-15</span></div>
+  </div>
+
+    <h1 class="h1-a">关于做好下放派出机构行政许可项目实施工作的通知</h1>  
+  
+  <div class="underTit clear mb20" id="underTit">
+    <div class="beReplaced">
+      <div class="catalog-bar clear">
+        <a class="errorBtn">反馈</a>
+        <a class="goBottom" href="#bottom">到达底部</a><span class="clickBtn">阅读<strong id="hits"></strong>次</span>
+      </div>
+          </div><!--/beReplaced-->
+    <div id="placeholder"></div>
+  </div><!--/underTit-->
+  
+  <div class="content">
+    <p style="text-align: center;"><strong>证监法律字[2004]8号</strong></p>
+<p>2004年5月19日，国务院发布了《关于第三批取消和调整行政审批项目的决定》（国发〔2004〕16号），决定我会下放派出机构实施的5项行政许可项目，分别为&ldquo;期货经纪公司营业部的设立、变更和终止核准&rdquo;、&ldquo;证券公司分支机构迁址核准&rdquo;、&ldquo;证券公司转让、互换营业部审批&rdquo;、&ldquo;证券公司分支机构负责人任职资格核准&rdquo;和&ldquo;外国证券类机构驻华代表处地址变更核准&rdquo;。为做好这5项行政许可项目的实施工作，现将有关事项通知如下：</p>
+<p>一、从即日起，上述5项行政许可项目下放各派出机构实施。各派出机构应当按照行政许可法及我会的相关规定，依照法定的条件、标准和程序进行审核。</p>
+<p>二、各派出机构应当严格遵守行政许可法的有关规定，不得自行设定行政许可，不得自行增设行政许可条件。对确需进行监督管理、但本单位又无权实施行政许可的事项，各派出机构应当注意创新监管方式，通过完善监管手段，加大事中检查、事后稽查处罚力度等措施，加强监管，不留漏洞。</p>
+<p>三、各派出机构独立实施行政许可后，应当建立并完善内部工作流程和监督制约机制，按规定及时更新有关行政许可公示信息。对于在实施过程中遇到的重大问题，请及时报告。</p>
+<p style="text-align: right;">中国证券监督管理委员会</p>
+<p style="text-align: right;">二〇〇四年七月十五日</p>
+  </div><!--/content-->
+  
+  <div class="shareBar">
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+    <a class="shareBar-rt" href="http://www.csrc.gov.cn/pub/newsite/flb/flfg/bmgf/zh/xzxk/201012/t20101231_189594.html" target="_blank">阅读原文</a><a name="bottom" id="bottom">&nbsp;</a>
+  </div><!--/shareBar-->
+</article>
+
+<aside class="col xs-12 md-3">
+</aside>
+ 
+</div><!--/row-->
+<div class="scroll" id="scroll" style="display:none;"><span>回到<br/>顶部</span></div>   
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/links/" target="_blank">友情链接</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2018&nbsp;上证通网&nbsp;版权所有</span>
+</footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><script src="http://www.sztnet.com/api.php?op=count&id=1463&modelid=17"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

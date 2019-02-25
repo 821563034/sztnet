@@ -1,0 +1,91 @@
+@charset "utf-8";/*初始化，元素基本样式*/
+
+/*----------------------------------------初始化*/
+
+*{-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+*:before,*:after{-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+
+html{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+body{margin:0px; padding:0px; background-color:#000; font-family:"微软雅黑"; font-size:16px;}
+
+a{background-color:transparent; text-decoration:none; color:#337ab7; padding:0px; margin:0px;}
+a:hover, a:focus{color: #23527c;}
+
+ul{list-style-type:none; margin:0px; padding:0px;}
+dl, dd{margin:0px;}
+img{border:none;}
+p{line-height:1.5em;}
+hr{border-top-width:1px; border-top-style:dotted; border-bottom:none; margin:5px 0px;}
+
+/*------------------------------------------锚*/
+
+.fff a:link{color:#FFF;}
+.fff a:visited{color:#FFF;}
+a.fff:link{color:#FFF;}
+a.fff:visited{color:#FFF;}
+
+/*------------------------------------------表格*/
+
+/*单线表格*/
+.tb-col-v1{width:100%; border-collapse:collapse; border:1px solid #ddd;}
+.tb-col-v1 th, .tb-col-v1 td{border:1px solid #ddd;}
+
+/*双线表格，消除外边距*/
+.tb-offset{margin:0 -5px;}
+
+/*双线表格,实例1，无:边框,底色,对齐,高度,字号*/
+.tb-sep-v1{width:100%; border-collapse:separate; border-spacing:5px;}
+.tb-sep-v1 caption{margin:0 5px; font-weight:bold;}
+
+/*双线表格,实例2，有:边框,底色,对齐; 需结合单独高度、字号样式*/
+.tb-sep-v2{width:100%; border-collapse:separate; border-spacing:5px;}
+.tb-sep-v2 caption{margin:0 5px; font-weight:bold;}
+.tb-sep-v2 tr td, .tb-sep-v2 tr th{border:1px solid #ddd; background-color:#F8F8F8; text-align:center;}
+.tb-sep-v2 tr td:hover, .tb-sep-v2 tr th:hover{background-color:#ddd;}
+
+/*正文表格*/
+.tb4{width:100%; border-collapse:collapse; border:1px solid #ddd; font-size:0.9em;}
+.tb4 caption{height:1.5em; line-height:1.5em; font-weight:bold;}
+.tb4 th, .tb4 td{height:1.5em; padding:0 10px; border:1px solid #ddd;}
+.tb4 th{font-weight:normal; background-color:#eee;}
+
+.col1 tr td:first-child{text-align:center;}
+
+/*------------------------------------------标题/栏目名*/
+
+h1{font-size: 22px; margin-top:0; margin-bottom:0;}
+h2{font-size: 20px; margin-top:0; margin-bottom:0;}
+h3{font-size: 18px; margin-top:0; margin-bottom:0;}
+h4{font-size: 16px; margin-top:0; margin-bottom:0;}
+h5{font-size: 14px; margin-top:0; margin-bottom:0;}
+/*正文标题-普通*/
+.h1-a{display:block; padding:1em 0; text-align:center;}
+
+/*小节标题分割线-居中*/
+.h2-a{display:block; height:0px; margin:50px 0; text-align:center;}
+.h2-a span{padding:0 10px 2px; border-radius:0 0 10px 10px; font-weight:normal;}
+/*小节标题分割线-居左*/
+.h2-b{display:block; height:1px;margin:1.5em 0;}
+.h2-b span{
+	position:relative; top:-0.6em; padding:0 5px; display:inline-block; height:1em; line-height:1em;
+	background-color:#fff; font-weight:normal;
+}
+/*业务指南类小标题*/
+.h2-c{display:block; border-top:3px solid #ddd; border-bottom:2px solid #ddd; margin-bottom:20px;}
+
+/*折行的标题*/
+.h3-0{padding:0.5em 0; line-height:1.1em;}
+/*不带“更多”*/
+.h3-1{display:block; height:2em; line-height:2em;}
+/*带“更多”*/
+.h3-2{display:block; line-height:2em; overflow:hidden;}
+.h3-2 span{float:left;}
+.h3-2 a{float:right; font-size:0.8em; font-weight:normal;}
+
+/*四级标题*/
+.h4-1{height:2em; line-height:2em;}
+/**/
+.h4-2{height:2em; line-height:2em; overflow:hidden;}
+.h4-2 span{float:left; font-weight:bold;}
+.h4-2 a{float:right; font-size:0.8em; font-weight:normal;}
+        

@@ -1,0 +1,137 @@
+@charset "utf-8";
+@import url("theme/blue-dark.css");
+/* -----------------------------------------------------公共部分*/
+.listHd{
+	display:block; height:1.5em; line-height:1.5em; margin:0px;
+	border-top:1px solid #ddd;
+	font-size:1.2em;
+}
+
+/* -----------------------------------------------------法规站首页INDEX*/
+
+.leftNav_index{background-color:#40668D;}
+.leftNav_index div{height:2.5em; line-height:2.5em; text-align:center; background-color:#003366; color:#809AB3;}
+.leftNav_index div i{font-size:0.9em;}
+
+.leftNav_index ul{overflow:hidden;}
+.leftNav_index ul li{float:left; width:50%; height:2em; line-height:2em; padding-left:1em; border-bottom:1px solid #809AB3;}
+.leftNav_index ul li:hover{background-color:#809AB3;}
+.leftNav_index ul li:nth-child(11), .leftNav_index ul li:last-child{border-bottom:none;}
+.leftNav_index ul li:nth-child(odd){border-right:1px solid #809AB3;}
+.leftNav_index ul li a{display:block; color:#fff;}
+@media (min-width:992px){
+  .leftNav_index ul li{float:none; width:100%;}
+  .leftNav_index ul li:nth-child(odd){border-right:none;}
+}
+
+.lawSearch{margin-bottom:20px; overflow:hidden;}
+.lawSearch *{height:3em; margin:0; border:1px solid #3399CC;}
+.lawSearch input{float:left; width:65%; padding-left:3px; border-right:none; border-radius:5px 0 0 5px; background-color:#F0F8FF;}
+.lawSearch select{float:left; width:20%; margin-left:0; border-radius:0 5px 5px 0; background-color:#F0F8FF;}
+.lawSearch button{float:right; width:13%; border-radius:5px; background-color:#3399CC; color:#fff;}
+.lawSearch button:hover{background-color:#336699;}
+@media (min-width:992px){
+	.lawSearch input{width:70%;}
+	.lawSearch select{width:15%;}
+	.lawSearch button{width:13%;}
+	}
+
+/*----------------------------------------------------------法规库列表页*/
+
+.leftNav{margin-bottom:5px; overflow:hidden;}
+.leftNav > div {padding:10px 0; text-align:center; background-color:#003366; color:#809AB3; cursor:pointer;}
+.leftNav > div i{font-size:0.9em;}
+
+/*一级栏目*/
+.leftNav ul li > a{display:block; padding:10px 5px; border-top:1px solid #809AB3; background-color:#40668D; color:#fff; font-size:0.9em;}
+/**/
+.leftNav h1{
+	margin:0; font-weight:normal;
+	padding:10px 5px; border-top:1px solid #809AB3; background-color:#40668D; color:#fff; font-size:0.9em;
+	}	
+/*二级栏目,一直展开*/
+.leftNav h2{
+	margin:0; font-weight:normal;
+	padding:5px 5px 5px 1em; background-color:#809AB3; color:#fff; font-size:0.8em; cursor:pointer; overflow:hidden;
+	}
+.leftNav h2 span:first-child{float:left; line-height:1em;}
+.leftNav h2 span.fh {
+	float:right; width:1em; line-height:1em; text-align:center; color:#fff;/*定义line-height才是圆形*/
+	border-radius:0.5em; background-color:#BFCCD9; color:#fff;
+	}
+/**/
+div.er > a{display:block; padding:5px 5px 5px 1em; background-color:#809AB3; color:#fff; font-size:0.8em;}
+/*三级栏目*/
+div.san a{display:block; padding:5px 5px 5px 2em; background-color:#F0F8FF; font-size:0.8em;}
+/*其它*/
+div.san > a.active, div.er > a.active, .leftNav ul li > a.active{color:#FF8C00; font-weight:bold;}
+.unfold{display:block;}
+.fold{display:none;}
+
+/*----------------------------------------------------------法规库正文页*/
+/*头部表格*/
+.lawInfo{overflow:hidden; border:1px solid #ddd; padding:2px 5px;}
+.lawInfo div span{display:block; margin:0; height:30px; line-height:30px; font-size:0.7em;}
+
+.div1{float:left; width:100%; overflow:hidden;}
+.div2{float:left; width:60%;}
+.div3{float:right; width:40%;}
+
+.div1 span:first-child{float:left; width:60%;}
+.div1 span:last-child{float:left; width:40%;}
+
+@media (min-width:768px){
+	.lawInfo div span{font-size:0.9em;}
+	.div1{width:75%; height:30px;}
+	.div2{width:75%; height:30px; overflow:hidden;}
+	.div3{float:none; width:25%; margin-left:75%; height:60px; text-align:right;}
+	
+	.div1 span:first-child{float:left; width:60%;}
+	.div1 span:last-child{float:left; width:40%;}
+	
+	.div2 span:first-child{float:left; width:60%;}
+	.div2 span:last-child{float:left; width:40%;}
+}
+/*法规通告*/
+.intro{
+	padding:5px;
+	background-color:#FFFFE6; border:1px solid #ddd;
+	font-size:0.9em;
+}
+.intro p{text-indent:2em;}
+.intro h4{text-align:center; margin-top:1em;}
+
+/*标题下方*/
+.underTit{font-size:0.8em;}
+.beReplaced{float:left; width:100%;}
+#placeholder{float:left; width:0;}/*在.beReplaced浮动后，占位*/
+.fixed{position:fixed; top:0; z-index:3;}/*对视口绝对定位，脱离文档流*/
+ 
+.catalog-hd{display:none;}
+.catalog-hd-fixed{padding:2px 0; text-align:center; background-color:#003366; color:#fff;}
+
+.catalog-cont{background-color:#F0F8FF;}
+.catalog-cont p{padding:5px 0; margin:0; white-space:nowrap; overflow:hidden;}
+.lawCont h2 a:target{padding-top:1.3em;}/*防止被浮动条遮住*/
+
+@media (min-width:768px){.catalog-cont p{float:left; width:50%;}}
+@media (min-width:1200px){.catalog-cont p{float:left; width:33.33333%;}}
+/*正文部分*/
+.lawCont{font-size:1em; background-color:#fff;}
+.lawCont h2{display:block; margin:1em 0; padding:0.5em 0; background-color:#ddd; text-align:center;}
+.lawCont h2 a{display:block; line-height:1.2em;}
+.lawCont h3{display:block; padding:0.5em 0; line-height:1.2em; border:1px solid #ddd; text-align:center;}
+.lawCont hr{border-top:1px solid #ddd; border-bottom:none;}
+
+.shareBox{margin-bottom:1em; background-color:#eee; overflow:hidden;}
+.bdsharebuttonbox{float:left; height:35px;}
+.shareBoxRt{float:right; height:35px; line-height:35px; text-align:right;}
+.shareBoxRt a{margin-left:1em;}
+
+.container{position:relative;}
+.scroll{position:fixed; bottom:107px; margin:0 auto; text-align:right;}
+.scroll span{
+	display:inline-block; width:30px; height:30px; line-height:15px; background-color:#f58220; cursor:pointer;
+	font-size:12px; color:#fff; text-align:center;
+	}
+.scroll span:hover{background-color:#f26522;}

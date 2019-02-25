@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于办理证券期货违法犯罪案件工作若干问题的意见[当前有效201812]</title>
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/law.css" rel="stylesheet" />
+  <style type="text/css">
+  .container{position:relative;}
+  .scroll{margin:0 auto; text-align:right; position:fixed; bottom:65px;}
+  .scroll span{
+	  display:inline-block; width:30px; height:30px; line-height:15px; background-color:#f58220; cursor:pointer;
+	  font-size:12px; color:#fff; text-align:center;
+	  }
+  .scroll span:hover{background-color:#f26522;}
+  </style>
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+      w = $(".container").width(); $(".scroll").css("width", w);
+     /* h = $(".container").height(); $(".scroll").css("bottom", h);*/
+      showScroll();
+      function showScroll(){
+          $(window).scroll( function() { 
+              var scrollValue=$(window).scrollTop();
+              scrollValue > 300 ? $(".scroll").fadeIn():$(".scroll").fadeOut();
+          } );	
+          $('#scroll').click(function(){
+              $("html,body").animate({scrollTop:0},200);	
+          });	
+      }
+  })
+  </script>
+  
+
+  <script>
+  $(document).ready(function(){$('#placeholder').height($('.beReplaced').height());});  
+
+  $(function(){
+      if ($(".catalog-cont").length > 0){
+		  var offsetTop= $(".content").offset().top;
+          $(window).scroll(function () {
+              var scrollTop = $(window).scrollTop();
+              if (offsetTop < scrollTop){  
+				  w = $(".content").width(); $(".beReplaced").css("width", w);
+				  $(".beReplaced").addClass("fixed"); $(".catalog-cont").hide();
+				  $(".catalog-bar").addClass("catalog-bar-fixed");
+				  }
+              else {
+				  $(".beReplaced").css("width", '100%');<!--防止占位框不复位-->
+				  $(".beReplaced").removeClass("fixed");
+				  $(".catalog-cont").show();
+				  $(".catalog-bar").removeClass("catalog-bar-fixed")  
+				  }
+          });
+      }
+	  else $(".catalogBtn").hide();
+  });
+
+  $(document).ready(function(){$(".catalogBtn").click(function(){$(".catalog-cont").toggle();});});
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>
+<div class="container">
+<nav class="mainNav cateNum-10 clear">
+<ul class="inverse">
+  <li><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/law/" target="_self">法规</a></li>
+  <li>
+    <a href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="javascript:void(0)" target="_self">商城</a></li>
+</ul>
+</nav><div class="position">
+  <div class="pos-lt"><i class="iconfont icon-locationfill"></i>法规&nbsp;&gt;&nbsp;<a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=134">证监会</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=347">规范性文件</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=156">综合类</a> > <a href="http://www.sztnet.com/law/csrc/normativeDocs/general/dccf/">调查和处罚</a></div>
+  <div class="pos-rt"></div>
+</div>
+<div class="row">
+<article class="col xs-12 md-9">
+  
+  <div class="lawInfo mb10">
+    <div class="div1">
+      <span>制定部门：最高法、最高检、公安部、中国证监会</span>
+            <span>当前效力：<font color="red">有效</font></span>
+        
+    </div>
+    <div class="div2"><span>法律位阶：</span><span>文件编号：证监发[2011]30号</span></div>
+    <div class="div3"><span>发布日期：2011-04-27</span><span>生效日期：2011-04-27</span></div>
+  </div>
+
+    <h1 class="h1-a">关于办理证券期货违法犯罪案件工作若干问题的意见</h1>  
+  
+  <div class="underTit clear mb20" id="underTit">
+    <div class="beReplaced">
+      <div class="catalog-bar clear">
+        <a class="errorBtn">反馈</a>
+        <a class="goBottom" href="#bottom">到达底部</a><span class="clickBtn">阅读<strong id="hits"></strong>次</span>
+      </div>
+          </div><!--/beReplaced-->
+    <div id="placeholder"></div>
+  </div><!--/underTit-->
+  
+  <div class="content">
+    <p>为加强办理证券期货违法犯罪案件工作，完善行政执法与刑事司法的衔接机制，进一步依法有效惩治证券期货违法犯罪，提出如下意见：</p>
+<p>一、证券监管机构依据行政机关移送涉嫌犯罪案件的有关规定，在办理可能移送公安机关查处的证券期货违法案件过程中，经履行批准程序，可商请公安机关协助查询、复制被调查对象的户籍、出入境信息等资料，对有关涉案人员按照相关规定采取边控、报备措施。证券监管机构向公安机关提出请求时，应当明确协助办理的具体事项，提供案件情况及相关材料。</p>
+<p>二、证券监管机构办理证券期货违法案件，案情重大、复杂、疑难的，可商请公安机关就案件性质、证据等问题提出参考意见；对有证据表明可能涉嫌犯罪的行为人可能逃匿或者销毁证据的，证券监管机构应当及时通知公安机关；涉嫌犯罪的，公安机关应当及时立案侦查。</p>
+<p>三、证券监管机构与公安机关建立和完善协调会商机制。证券监管机构依据行政机关移送涉嫌犯罪案件的有关规定，在向公安机关移送重大、复杂、疑难的涉嫌证券期货犯罪案件前，应当启动协调会商机制，就行为性质认定、案件罪名适用、案件管辖等问题进行会商。</p>
+<p>四、公安机关、人民检察院和人民法院在办理涉嫌证券期货犯罪案件过程中，可商请证券监管机构指派专业人员配合开展工作，协助查阅、复制有关专业资料。证券监管机构可以根据司法机关办案需要，依法就案件涉及的证券期货专业问题向司法机关出具认定意见。</p>
+<p>五、司法机关对证券监管机构随案移送的物证、书证、鉴定结论、视听资料、现场笔录等证据要及时审查，作出是否立案的决定；随案移送的证据，经法定程序查证属实的，可作为定案的根据。</p>
+<p>六、证券监管机构依据行政机关移送涉嫌犯罪案件的有关规定向公安机关移交证据，应当制作证据移交清单，双方经办人员应当签字确认，加盖公章，相关证据随证据移交清单一并移交。</p>
+<p>七、对涉众型证券期货犯罪案件，在已收集的证据能够充分证明基本犯罪事实的前提下，公安机关可在被调查对象范围内按一定比例收集和调取书证、被害人陈述、证人证言等相关证据。</p>
+<p>八、以证券交易所、期货交易所、证券登记结算机构、期货保证金监控机构以及证券公司、期货公司留存的证券期货委托记录和交易记录、登记存管结算资料等电子数据作为证据的，数据提供单位应以电子光盘或者其他载体记录相关原始数据，并说明制作方法、制作时间及制作人等信息，并由复制件制作人和原始电子数据持有人签名或盖章。</p>
+<p>九、发行人、上市公司或者其他信息披露义务人在证券监管机构指定的信息披露媒体、信息披露义务人或证券交易所网站发布的信息披露公告，其打印件或据此制作的电子光盘，经核对无误后，说明其来源、制作人、制作时间、制作地点等的，可作为刑事证据使用，但有其他证据证明打印件或光盘内容与公告信息不一致的除外。</p>
+<p>十、涉嫌证券期货犯罪的第一审案件，由中级人民法院管辖，同级人民检察院负责提起公诉，地(市)级以上公安机关负责立案侦查。</p>
+  </div><!--/content-->
+  
+  <div class="shareBar">
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+    <a class="shareBar-rt" href="http://www.csrc.gov.cn/pub/newsite/flb/flfg/bmgf/zh/dcycf/201402/t20140211_243675.html" target="_blank">阅读原文</a><a name="bottom" id="bottom">&nbsp;</a>
+  </div><!--/shareBar-->
+</article>
+
+<aside class="col xs-12 md-3">
+</aside>
+ 
+</div><!--/row-->
+<div class="scroll" id="scroll" style="display:none;"><span>回到<br/>顶部</span></div>   
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/links/" target="_blank">友情链接</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2018&nbsp;上证通网&nbsp;版权所有</span>
+</footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><script src="http://www.sztnet.com/api.php?op=count&id=1474&modelid=17"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

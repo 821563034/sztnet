@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于审计机关查询被审计单位在金融机构账户和存款有关问题的通知[当前有效201812]</title>
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/law.css" rel="stylesheet" />
+  <style type="text/css">
+  .container{position:relative;}
+  .scroll{margin:0 auto; text-align:right; position:fixed; bottom:65px;}
+  .scroll span{
+	  display:inline-block; width:30px; height:30px; line-height:15px; background-color:#f58220; cursor:pointer;
+	  font-size:12px; color:#fff; text-align:center;
+	  }
+  .scroll span:hover{background-color:#f26522;}
+  </style>
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+      w = $(".container").width(); $(".scroll").css("width", w);
+     /* h = $(".container").height(); $(".scroll").css("bottom", h);*/
+      showScroll();
+      function showScroll(){
+          $(window).scroll( function() { 
+              var scrollValue=$(window).scrollTop();
+              scrollValue > 300 ? $(".scroll").fadeIn():$(".scroll").fadeOut();
+          } );	
+          $('#scroll').click(function(){
+              $("html,body").animate({scrollTop:0},200);	
+          });	
+      }
+  })
+  </script>
+  
+
+  <script>
+  $(document).ready(function(){$('#placeholder').height($('.beReplaced').height());});  
+
+  $(function(){
+      if ($(".catalog-cont").length > 0){
+		  var offsetTop= $(".content").offset().top;
+          $(window).scroll(function () {
+              var scrollTop = $(window).scrollTop();
+              if (offsetTop < scrollTop){  
+				  w = $(".content").width(); $(".beReplaced").css("width", w);
+				  $(".beReplaced").addClass("fixed"); $(".catalog-cont").hide();
+				  $(".catalog-bar").addClass("catalog-bar-fixed");
+				  }
+              else {
+				  $(".beReplaced").css("width", '100%');<!--防止占位框不复位-->
+				  $(".beReplaced").removeClass("fixed");
+				  $(".catalog-cont").show();
+				  $(".catalog-bar").removeClass("catalog-bar-fixed")  
+				  }
+          });
+      }
+	  else $(".catalogBtn").hide();
+  });
+
+  $(document).ready(function(){$(".catalogBtn").click(function(){$(".catalog-cont").toggle();});});
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>
+<div class="container">
+<nav class="mainNav cateNum-10 clear">
+<ul class="inverse">
+  <li><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/law/" target="_self">法规</a></li>
+  <li>
+    <a href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="javascript:void(0)" target="_self">商城</a></li>
+</ul>
+</nav><div class="position">
+  <div class="pos-lt"><i class="iconfont icon-locationfill"></i>法规&nbsp;&gt;&nbsp;<a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=134">证监会</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=347">规范性文件</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=156">综合类</a> > <a href="http://www.sztnet.com/law/csrc/normativeDocs/general/dccf/">调查和处罚</a></div>
+  <div class="pos-rt"></div>
+</div>
+<div class="row">
+<article class="col xs-12 md-9">
+  
+  <div class="lawInfo mb10">
+    <div class="div1">
+      <span>制定部门：国家审计署、人民银行、银监会、证监会</span>
+            <span>当前效力：<font color="red">有效</font></span>
+        
+    </div>
+    <div class="div2"><span>法律位阶：</span><span>文件编号：审法发[2006]67号</span></div>
+    <div class="div3"><span>发布日期：2006-11-22</span><span>生效日期：2006-11-22</span></div>
+  </div>
+
+    <h1 class="h1-a">关于审计机关查询被审计单位在金融机构账户和存款有关问题的通知</h1>  
+  
+  <div class="underTit clear mb20" id="underTit">
+    <div class="beReplaced">
+      <div class="catalog-bar clear">
+        <a class="errorBtn">反馈</a>
+        <a class="goBottom" href="#bottom">到达底部</a><span class="clickBtn">阅读<strong id="hits"></strong>次</span>
+      </div>
+          </div><!--/beReplaced-->
+    <div id="placeholder"></div>
+  </div><!--/underTit-->
+  
+  <div class="content">
+    <p style="text-align: center;"><strong>审法发[2006]67号</strong></p>
+<p>2006年2月28日，十届全国人大常委会第二十次会议审议通过了关于修改审计法的决定。修改后的审计法第三十三条第二、三款规定：&ldquo;审计机关经县级以上人民政府审计机关负责人批准，有权查询被审计单位在金融机构的账户。&rdquo;&ldquo;审计机关有证据证明被审计单位以个人名义存储公款的，经县级以上人民政府审计机关主要负责人批准，有权查询被审计单位以个人名义在金融机构的存款。&rdquo;为进一步落实上述规定，规范审计机关查询被审计单位在金融机构的账户（以下简称查询单位账户）和被审计单位以个人名义在金融机构的存款（以下简称查询个人存款）工作，经审计署、人民银行、银监会、证监会研究，现就有关事项通知如下：</p>
+<p>一、审计机关在审计（含专项审计调查，下同）过程中，有权依法向有关金融机构查询单位账户和个人存款，并取得证明材料，有关金融机构应当予以协助。审计机关查询的单位账户，包括被审计单位在政策性银行、商业银行、城市信用合作社、农村信用合作社、信托投资公司、财务公司、金融租赁公司、中央国债登记结算公司、证券公司、证券投资基金管理公司、期货经纪公司以及经国务院金融监督管理机构批准设立的其他金融机构（以下统称金融机构）开立的银行、资金、证券、基金、信托等各类账户。审计机关查询的个人存款，包括被审计单位以个人名义在金融机构办理的储蓄账户、结算账户以及买卖证券、基金等的资金账户的资金。</p>
+<p>二、审计机关查询单位账户或者个人存款应当严格履行审批程序。查询单位账户应当经县级以上人民政府审计机关（含省级以上人民政府审计机关派出机构，下同）负责人批准，签发《协助查询单位账户通知书》；查询个人存款应当取得相关的证明材料（主要涉及个人与被审计单位之间的关系、款项的来源、款项使用情况、相关当事人确认的以个人名义存储公款的调查记录等），以此认定被审计单位以个人名义存储公款，并经县级以上人民政府审计机关主要负责人批准，签发《协助查询个人存款通知书》。</p>
+<p>三、审计机关查询单位账户或者个人存款时，应当向有关金融机构送达《协助查询单位账户通知书》或者《协助查询个人存款通知书》。审计人员具体执行查询任务时，应当由两名以上审计人员参加，并出示审计人员的工作证件和审计通知书。</p>
+<p>四、审计机关查询单位账户，应当向有关金融机构提供被审计单位的账户名称及账号。对因群众举报等原因，审计机关无法提供被审计单位准确的账户名称或者账号的，应当向有关金融机构做出说明，由金融机构协助查询。查询个人存款应当向有关金融机构提供存款人的姓名、账号或者身份证件号码。</p>
+<p>五、审计机关查询单位账户或者个人存款的内容，主要包括其开户销户情况、交易日期、内容、金额和账户余额情况，以及交易资金流向等记录。</p>
+<p>六、审计机关查询单位账户或者个人存款时，可以对相关资料进行抄录、复印、照相，但不得带走原件。取得有关证明材料后，应当注明来源，并由提供证明材料的金融机构盖章。对金融机构提供的有关资料，审计机关及其审计人员应当保密。</p>
+<p>七、金融机构应当依法协助审计机关办理查询工作，如实提供相关资料，不得隐匿。金融机构协助复制存款资料等支付了成本费用的，可以按照相关规定向审计机关收取工本费。对审计机关查询单位账户或者个人存款的情况和内容，有关金融机构及其有关工作人员应当保密，不得告知被审计单位或者存款人。</p>
+<p>八、审计机关需要到异地查询单位账户或者个人存款的，可以直接到异地金融机构进行查询，也可以委托当地审计机关查询。</p>
+<p>九、审计机关和审计人员违反本通知的规定进行查询，由上级审计机关依法追究有关人员的责任；金融机构和有关工作人员未按本通知的规定协助查询，由有关金融监管机构依法追究有关人员的责任。</p>
+<p>以上各项规定请各级审计机关、各金融机构认真贯彻执行。对执行中遇到的问题，请及时报告上级审计机关和相应的金融监管机构。1998年审计署、中国人民银行联合下发的《关于审计机关在审计执法过程中查询被审计单位存款问题的通知》（审发〔1998〕308号）同时废止。</p>
+<p>附件：</p>
+<p>1．协助查询单位账户通知书（略）</p>
+<p>2．协助查询个人存款通知书（略）</p>
+<p style="text-align: right;">国家审计署 人民银行 银监会 证监会</p>
+<p style="text-align: right;">二〇〇六年十一月二十二日</p>
+<p>&nbsp;</p>
+  </div><!--/content-->
+  
+  <div class="shareBar">
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+    <a class="shareBar-rt" href="http://www.csrc.gov.cn/pub/newsite/flb/flfg/bmgf/zh/dcycf/201012/t20101231_189606.html" target="_blank">阅读原文</a><a name="bottom" id="bottom">&nbsp;</a>
+  </div><!--/shareBar-->
+</article>
+
+<aside class="col xs-12 md-3">
+</aside>
+ 
+</div><!--/row-->
+<div class="scroll" id="scroll" style="display:none;"><span>回到<br/>顶部</span></div>   
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/links/" target="_blank">友情链接</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2018&nbsp;上证通网&nbsp;版权所有</span>
+</footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><script src="http://www.sztnet.com/api.php?op=count&id=1473&modelid=17"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

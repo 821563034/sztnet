@@ -1,0 +1,36 @@
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>

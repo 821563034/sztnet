@@ -1,0 +1,43 @@
+@charset "utf-8";/* 浅绿 */
+/*
+深到浅
+009966
+40B38D
+80CDB3
+BFE5D9
+E6F5F0
+浅到深
+008257
+00734D
+004D33
+00261A
+000F0A
+*/
+
+/*头部*/
+.head{background:#E6F5F0;}
+.logo{background:url(../../../images/myimg/szt/logo.png) 0 0 no-repeat;}
+
+/*主导航*/
+.mainNav > ul li{background-color:#009966;}
+.mainNav > ul > li.cur{background-color:#00734D;}
+.mainNav > ul > li a:hover{background-color:#40B38D;}
+.mainNav > ul > li:hover ul li a{border-top:1px solid #eee;}
+@media (min-width:992px){
+	.mainNav > ul > li{border-right:1px solid #008257;}
+	.cateNum-18 > ul li:nth-child(-n+9){border-bottom:1px solid #008257;} 
+}
+
+/*二级导航*/
+.subNav ul{background-color:#BFE5D9;}
+
+/*推荐区背景*/
+.recommend{background-color:#eee;}
+
+/*标题*/
+.h2-a{border-top:2px solid #80B3CD;}
+.h2-a span{background-color:#80B3CD; color:#FFF;}
+.h2-b{border-top:2px solid #80B3CD;}
+.h2-b span{border-left:10px solid #80B3CD; color:#0099CC;}
+
+.h3-1, .h3-2 span{color:#006699;}

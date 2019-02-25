@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于整治非法证券活动有关问题的通知[当前有效201812]</title>
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/law.css" rel="stylesheet" />
+  <style type="text/css">
+  .container{position:relative;}
+  .scroll{margin:0 auto; text-align:right; position:fixed; bottom:65px;}
+  .scroll span{
+	  display:inline-block; width:30px; height:30px; line-height:15px; background-color:#f58220; cursor:pointer;
+	  font-size:12px; color:#fff; text-align:center;
+	  }
+  .scroll span:hover{background-color:#f26522;}
+  </style>
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+      w = $(".container").width(); $(".scroll").css("width", w);
+     /* h = $(".container").height(); $(".scroll").css("bottom", h);*/
+      showScroll();
+      function showScroll(){
+          $(window).scroll( function() { 
+              var scrollValue=$(window).scrollTop();
+              scrollValue > 300 ? $(".scroll").fadeIn():$(".scroll").fadeOut();
+          } );	
+          $('#scroll').click(function(){
+              $("html,body").animate({scrollTop:0},200);	
+          });	
+      }
+  })
+  </script>
+  
+
+  <script>
+  $(document).ready(function(){$('#placeholder').height($('.beReplaced').height());});  
+
+  $(function(){
+      if ($(".catalog-cont").length > 0){
+		  var offsetTop= $(".content").offset().top;
+          $(window).scroll(function () {
+              var scrollTop = $(window).scrollTop();
+              if (offsetTop < scrollTop){  
+				  w = $(".content").width(); $(".beReplaced").css("width", w);
+				  $(".beReplaced").addClass("fixed"); $(".catalog-cont").hide();
+				  $(".catalog-bar").addClass("catalog-bar-fixed");
+				  }
+              else {
+				  $(".beReplaced").css("width", '100%');<!--防止占位框不复位-->
+				  $(".beReplaced").removeClass("fixed");
+				  $(".catalog-cont").show();
+				  $(".catalog-bar").removeClass("catalog-bar-fixed")  
+				  }
+          });
+      }
+	  else $(".catalogBtn").hide();
+  });
+
+  $(document).ready(function(){$(".catalogBtn").click(function(){$(".catalog-cont").toggle();});});
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>
+<div class="container">
+<nav class="mainNav cateNum-10 clear">
+<ul class="inverse">
+  <li><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/law/" target="_self">法规</a></li>
+  <li>
+    <a href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="javascript:void(0)" target="_self">商城</a></li>
+</ul>
+</nav><div class="position">
+  <div class="pos-lt"><i class="iconfont icon-locationfill"></i>法规&nbsp;&gt;&nbsp;<a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=134">证监会</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=347">规范性文件</a> > <a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=156">综合类</a> > <a href="http://www.sztnet.com/law/csrc/normativeDocs/general/dccf/">调查和处罚</a></div>
+  <div class="pos-rt"></div>
+</div>
+<div class="row">
+<article class="col xs-12 md-9">
+  
+  <div class="lawInfo mb10">
+    <div class="div1">
+      <span>制定部门：最高法、最高检 、公安部、中国证监会</span>
+            <span>当前效力：<font color="red">有效</font></span>
+        
+    </div>
+    <div class="div2"><span>法律位阶：</span><span>文件编号：证监发[2008]1号</span></div>
+    <div class="div3"><span>发布日期：2008-01-02</span><span>生效日期：2008-01-02</span></div>
+  </div>
+
+    <h1 class="h1-a">关于整治非法证券活动有关问题的通知</h1>  
+  
+  <div class="underTit clear mb20" id="underTit">
+    <div class="beReplaced">
+      <div class="catalog-bar clear">
+        <a class="errorBtn">反馈</a>
+        <a class="goBottom" href="#bottom">到达底部</a><span class="clickBtn">阅读<strong id="hits"></strong>次</span>
+      </div>
+          </div><!--/beReplaced-->
+    <div id="placeholder"></div>
+  </div><!--/underTit-->
+  
+  <div class="content">
+    <div>各省、自治区、直辖市高级人民法院、人民检察院、公安厅（局），解放军军事法院、军事检察院，新疆维吾尔自治区高级人民法院生产建设兵团分院，新疆生产建设兵团人民检察院、公安局，中国证监会各省、自治区、直辖市、计划单列市监管局：</div>
+<p>国务院办公厅《关于严厉打击非法发行股票和非法经营证券业务有关问题的通知》（国办发[2006]99号，以下简称&ldquo;国办发99号文&rdquo;）和国务院《关于同意建立整治非法证券活动协调小组工作制度的批复》（国函[2007]14号）下发后，整治非法证券活动协调小组（以下简称&ldquo;协调小组&rdquo;）各成员单位和地方人民政府高度重视，周密部署，重点查处了一批大案要案，初步遏制了非法证券活动的蔓延势头，各类非法证券活动新发量明显减少，打击非法证券活动工作取得了明显成效，相当一部分案件已进入司法程序。但在案件办理过程中，相关单位也遇到了一些分工协作、政策法律界限不够明确等问题。为此，协调小组专门召开会议对这些问题进行了研究。根据协调小组会议精神，现就打击非法证券活动工作中的有关问题通知如下：</p>
+<p><strong>一、统一思想，高度重视非法证券类案件办理工作</strong></p>
+<p>非法证券活动是一种典型的涉众型的违法犯罪活动，严重干扰正常的经济金融秩序，破坏社会和谐与稳定。从近期办理的一些案件看，非法证券活动具有以下特征：一是按照最高人民检察院、公安部《关于经济犯罪案件追诉标准的规定》（公发[2001]11号），绝大多数非法证券活动都涉嫌犯罪。二是花样不断翻新，隐蔽性强，欺骗性大，仿效性高。三是案件涉及地域广，涉案金额大，涉及人员多，同时资产易被转移，证据易被销毁，人员易潜逃，案件办理难度大。四是不少案件涉及到境外资本市场，办理该类案件政策性强，专业水平要求高。五是投资者多为离退休人员、下岗职工等困难群众，承受能力差，极易引发群体事件。各有关部门要进一步统一思想，高度重视，充分认识此类违法犯罪活动的严重性、危害性，增强政治责任感，密切分工协作，提高工作效率，及时查处一批大案要案，维护法律法规权威，维护社会公平正义，维护投资者的合法权益。</p>
+<p><strong>二、明确法律政策界限，依法打击非法证券活动</strong></p>
+<p>（一）关于公司及其股东向社会公众擅自转让股票行为的性质认定。《证券法》第十条第三款规定：&ldquo;非公开发行证券，不得采用广告、公开劝诱和变相公开方式。&rdquo;国办发99号文规定：&ldquo;严禁任何公司股东自行或委托他人以公开方式向社会公众转让股票。向特定对象转让股票，未依法报经证监会核准的，转让后，公司股东累计不得超过200人。&rdquo;公司、公司股东违反上述规定，擅自向社会公众转让股票，应当追究其擅自发行股票的责任。公司与其股东合谋，实施上述行为的，公司与其股东共同承担责任。</p>
+<p>（二）关于擅自发行证券的责任追究。未经依法核准，擅自发行证券，涉嫌犯罪的，依照《刑法》第一百七十九条之规定，以擅自发行股票、公司、企业债券罪追究刑事责任。未经依法核准，以发行证券为幌子，实施非法证券活动，涉嫌犯罪的，依照《刑法》第一百七十六条、第一百九十二条等规定，以非法吸收公众存款罪、集资诈骗罪等罪名追究刑事责任。未构成犯罪的，依照《证券法》和有关法律的规定给予行政处罚。<o:p></o:p></p>
+<p>（三）关于非法经营证券业务的责任追究。任何单位和个人经营证券业务，必须经证监会批准。未经批准的，属于非法经营证券业务，应予以取缔；涉嫌犯罪的，依照《刑法》第二百二十五条之规定，以非法经营罪追究刑事责任。对于中介机构非法代理买卖非上市公司股票，涉嫌犯罪的，应当依照《刑法》第二百二十五条之规定，以非法经营罪追究刑事责任；所代理的非上市公司涉嫌擅自发行股票，构成犯罪的，应当依照《刑法》第一百七十九条之规定，以擅自发行股票罪追究刑事责任。非上市公司和中介机构共谋擅自发行股票，构成犯罪的，以擅自发行股票罪的共犯论处。未构成犯罪的，依照《证券法》和有关法律的规定给予行政处罚。</p>
+<p>（四）关于非法证券活动性质的认定。非法证券活动是否涉嫌犯罪，由公安机关、司法机关认定。公安机关、司法机关认为需要有关行政主管机关进行性质认定的，行政主管机关应当出具认定意见。对因案情复杂、意见分歧，需要进行协调的，协调小组应当根据办案部门的要求，组织有关单位进行研究解决。</p>
+<p>（五）关于修订后的《证券法》与修订前的《证券法》中针对擅自发行股票和非法经营证券业务规定的衔接。修订后的《证券法》与修订前的《证券法》针对擅自发行股票和非法经营证券业务的规定是一致的，是相互衔接的，因此在修订后的《证券法》实施之前发生的擅自发行股票和非法经营证券业务行为，也应予以追究。</p>
+<p>（六）关于非法证券活动受害人的救济途径。根据1998年3月25日《国务院办公厅转发证监会关于清理整顿场外非法股票交易方案的通知》（国办发[1998]10号）的规定，最高人民法院于1998年12月4日发布了《关于中止审理、中止执行涉及场外非法股票交易经济纠纷案件的通知》（法[1998]145号），目的是为配合国家当时解决STAQ、NET交易系统发生的问题，而非针对目前非法证券活动所产生的纠纷。如果非法证券活动构成犯罪，被害人应当通过公安、司法机关刑事追赃程序追偿；如果非法证券活动仅是一般违法行为而没有构成犯罪，当事人符合民事诉讼法规定的起诉条件的，可以通过民事诉讼程序请求赔偿。</p>
+<p><strong>三、加强协作配合，提高办案效率</strong></p>
+<p>涉嫌犯罪的非法证券类案件从调查取证到审理终结，主要涉及证监、公安、检察、法院四个部门。从工作实践看，大部分地区的上述四个部门能够做到既有分工，也有协作，案件办理进展顺利，但也有部分地区的一些案件久拖不决，有的甚至出现&ldquo;踢皮球&rdquo;的现象，案件办理周期过长。究其原因，有的是工作不扎实，有的是认识上存在差距，有的是协调沟通不畅。协调小组工作会议高度重视存在的问题，并对各相关部门的工作分工及协调配合做了总体部署。</p>
+<p>证监系统要督促、协调、指导各地落实已出台的贯彻国办发99号文实施意见，将打击非法证券活动长效机制落到实处；根据司法机关需要，对非法证券类案件及时出具性质认定意见；创新办案模式，在当地政府的领导下，密切与其他行政执法机关的联合执法，提高快速反应能力；根据工作需要，可组织当地公、检、法等部门相关人员进行业务培训或案情会商；加强对境外资本市场的跟踪研究。</p>
+<p>公安机关对涉嫌犯罪的非法证券类案件要及时进行立案侦查，并做好与证监、工商等部门的工作衔接；上级公安机关要加强案件的协调、指导、督办工作，提高办案效率；密切与检察院、法院的协调配合，及时交流信息，通报情况，加大对大要案的侦办力度。</p>
+<p>检察机关要及时做好此类案件的批捕、起诉和诉讼监督工作；加强与相关部门的沟通联系，及时处理需要协调的事项。</p>
+<p>人民法院要加强与相关部门的沟通协调，及时受理、审理各类涉及非法证券活动的民事、刑事案件，对性质恶劣、社会危害大的案件依法予以严惩。</p>
+<p>各相关部门在办理非法证券类案件过程中遇到重大问题的，可提请协调小组协助解决。</p>
+<p style="text-align: right;">最高人民法院 最高人民检察院 公安部 中国证监会<br />
+二〇〇八年一月二日</p>
+  </div><!--/content-->
+  
+  <div class="shareBar">
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+    <a class="shareBar-rt" href="http://www.csrc.gov.cn/pub/newsite/flb/flfg/bmgf/zh/dcycf/201012/t20101231_189598.html" target="_blank">阅读原文</a><a name="bottom" id="bottom">&nbsp;</a>
+  </div><!--/shareBar-->
+</article>
+
+<aside class="col xs-12 md-3">
+</aside>
+ 
+</div><!--/row-->
+<div class="scroll" id="scroll" style="display:none;"><span>回到<br/>顶部</span></div>   
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/links/" target="_blank">友情链接</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2018&nbsp;上证通网&nbsp;版权所有</span>
+</footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><script src="http://www.sztnet.com/api.php?op=count&id=1471&modelid=17"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

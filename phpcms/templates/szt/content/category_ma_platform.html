@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">  
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script>
+	$(function(){
+          $(".tabs-sale").each(function(i){
+	    $(this).click(function(){
+	      $(this).addClass("showTab").siblings().removeClass("showTab");
+              $(".lists-sale:eq("+i+")").show().siblings(".lists-sale").hide();
+	    })
+	  })
+	  $(".tabs-buy").each(function(i){
+	    $(this).click(function(){
+	      $(this).addClass("showTab").siblings().removeClass("showTab");
+              $(".lists-buy:eq("+i+")").show().siblings(".lists-buy").hide();
+	    })
+	  })
+	})
+  </script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+<div class="row">
+<div class="col xs-12 md-9">
+  <h3 class="h3-tab bbs"><span>出售信息</span><span class="tabs tabs-sale showTab">最新&darr;</span><span class="tabs tabs-sale">热门&darr;</span><a href="{$CATEGORYS[88][url]}" target="_blank">更多+</a></h3>
+  <ul class="lists lists-sale lbd">
+    {pc:content action="lists" catid="88" order="inputtime DESC" num="10"}
+    {loop $data $k $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{box('industry',$v[industry],26)}</span><span>{box('price',$v[price],26)}</span><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+    {/pc}
+  </ul>
+  <ul class="hide lists lists-sale lbd">
+    {pc:content action="hits" catid="88" order="weekviews DESC" num="10"}
+    {loop $data $k $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{box('industry',$v[industry],26)}</span><span>{box('price',$v[price],26)}</span><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+    {/pc}
+  </ul>
+
+  <h3 class="h3-tab bbs"><span>购买信息</span><span class="tabs tabs-buy showTab">最新&darr;</span><span class="tabs tabs-buy">热门&darr;</span><a href="{$CATEGORYS[89][url]}" target="_blank">更多+</a></h3>
+  <ul class="lists lists-buy lbd">
+    {pc:content action="lists" catid="89" order="inputtime DESC" num="10"}
+    {loop $data $k $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{box('industry',$v[industry],26)}</span><span>{box('price',$v[price],26)}</span><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+    {/pc}
+  </ul>
+  <ul class="hide lists lists-buy lbd">
+    {pc:content action="hits" catid="89" order="weekviews DESC" num="10"}
+    {loop $data $k $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{box('industry',$v[industry],26)}</span><span>{box('price',$v[price],26)}</span><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+    {/pc}
+  </ul>
+</div>
+
+<div class="col xs-12 md-3">
+  <a class="publishBtn mb10" href="#" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;免费发布并购交易信息</a>
+</div>
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

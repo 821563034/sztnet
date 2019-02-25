@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row">
+ 
+<div class="col xs-12 md-7">
+  {template "content_inc","part_exam_tutoring"}
+  <h3 class="h3-1">审核情况公开及上市公告</h3>
+  <div class="tb-offset">
+  <table class="tb-sep-v2 small td-higher">
+    <tr>
+      <td><a href="http://ipo.csrc.gov.cn/" target="_blank">预披露的招股书（含更新）</a></td>
+      <td><a href="http://www.csrc.gov.cn/pub/newsite/fxjgb/scgkfxfkyj/" target="_blank">证监会反馈意见</a></td>
+    </tr>
+    <tr>
+      <td><a href="http://www.csrc.gov.cn/pub/newsite/fxjgb/fswshyj/" target="_blank">发审委审核意见</a></td>
+      <td><a href="http://www.csrc.gov.cn/pub/newsite/fxjgb/fshgg/" target="_blank">发审结果公告</a></td>
+    </tr>
+    <tr>
+      <td><a href="http://www.csrc.gov.cn/pub/newsite/fxjgb/xzxk/jggs/" target="_blank">证监会首发批文</a></td>
+      <td><a href="http://www.cninfo.com.cn/eipo/announcement_ipo.jsp" target="_blank">股票发行及上市公告</a></td>  
+    </tr>
+  </table>
+  </div>
+
+  <h3 class="h3-2 bbs"><span>IPO申请企业情况表</span><a href="{$CATEGORYS[45][url]}">更多+</a></h3>   
+  <ul class="ul2-l-ymd lbd">
+    {pc:content action="lists" catid="45" num="5" order="inputtime DESC"}
+    {loop $data $v}   
+    <li><a href="{$v[url]}" target="_blank"><i class="iconfont icon-fileexcel"></i>&nbsp;{$v[title2]}</a><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+    {/pc}
+  </ul>
+  <span class="note" onclick="javaScript:alert('1、公司被中/终止审核，或取得发行批文情况下，会从&ldquo;正常审核状态企业&rdquo;表格中移除，后面排队公司序号随之前移。&nbsp;2、根据前方公司获得证监会反馈的时间和本公司排队位置，可预计本项目获得证监会反馈的时间。&nbsp;3、通过搜索某项目各中介签字人员姓名，可了解其同时负责的其它项目。');"><i class="iconfont icon-notices"></i>提示</span>    
+</div><!--/左侧-->
+
+<div class="col xs-12 md-5">
+</div><!--/右侧-->
+</div><!--/row-->
+
+<a class="iconfont icon-dingbu" href="javascript:scroll(0, 0)"></a>
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

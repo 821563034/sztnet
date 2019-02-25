@@ -1,0 +1,41 @@
+<div class="leftNav">
+  <div><i class="iconfont icon-fenlei"></i>&nbsp;<span>{$CATEGORYS[$top_parentid][catname]}目录</span></div>
+  <ul>
+    {pc:content action="category" catid="$catid" num="25" siteid="$siteid" order="listorder ASC" return="data1"}
+    {loop $data1 $v1}
+    <li>
+      {if $v1[child]}
+          <h1>{$v1[catname]}</h1>
+          <div class="er">
+              {pc:content action="category" catid="$v1[catid]" num="25" siteid="$siteid" order="listorder ASC" return="data2"}
+              {loop $data2 $v2}
+                  {if $v2[child]}
+                      <h2><span>{$v2[catname]}</span><span class="fh">+</span></h2>
+                      <div class="san {if $v2[catid]==$parentid}unfold{else}fold{/if}">
+                          {pc:content action="category" catid="$v2[catid]" num="25" siteid="$siteid" order="listorder ASC" return="data3"}
+                          {loop $data3 $v3}             
+                          <a href="{$v3[url]}">{$v3[catname]}</a>
+                          {/loop}
+                          {/pc}
+                      </div><!--/san-->
+                  {else}
+                      <a href="{$v2[url]}">{$v2[catname]}</a>
+                  {/if}
+              {/loop}
+              {/pc}            
+          </div><!--/er-->
+      {else}
+          <a {if $v1[catid]==$catid} class="active"{/if} href="{$v1[url]}">{$v1[catname]}</a>
+      {/if}
+    </li>
+    {/loop}
+    {/pc}
+  <ul>
+</div>
+
+
+
+
+
+
+

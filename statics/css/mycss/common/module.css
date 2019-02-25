@@ -1,0 +1,155 @@
+@charset "utf-8";/* 模块：页眉、页脚、头部、其他模块 */
+
+/*---------------------------------------页眉*/
+header{border-bottom:1px solid #f0f0f0;}
+.showBox{height:40px; line-height:40px;}
+
+.sb1{float:left; width:30%;}
+.sb2{float:left; width:40%; text-align:center;}
+.sb3{float:right; width:30%; text-align:right;}
+
+.sb1 span{display:none;}
+.sb2 img{margin-bottom:-3px;}
+.sb2 img:last-child{display:none;}
+
+.searchBox, .shortcut{display:none;}
+.sb3 a{margin-left:1em; margin-top:1px; color:#000;}
+
+.shortcut{border-top:1px solid #aaa; text-align:center; font-size:0.8em;}
+.shortcut *{display:inline-block; padding:1em 0.5em;}
+
+.searchBox{border-top:1px solid #aaa; text-align:right;}
+.searchForm{padding:10px 0; overflow:hidden;}
+.searchForm > input{float:left; height:30px; width:80%; margin:0; border:none; border-radius:0; background-color:#ddd;}
+.searchForm button{float:left; height:30px; width:20%; margin:0; padding:0; border:none; background-color:#606060; color:#fff;}
+.searchForm label{float:left; width:6em; text-align:left; font-size:12px;}
+.searchForm label input{height:12px; vertical-align:middle; margin:2px;}
+
+@media (min-width:768px){
+	}
+@media (min-width:992px){
+	.sb1 span{display:inline-block;}
+	.sb2 img:last-child{display:inline-block; margin-bottom:-4px;}
+	.showBox{font-size:0.9em;}
+	.searchForm{width:50%; margin-left:50%;}
+	}
+	
+/*--------------------------------------页脚*/
+
+footer{font-size:0.8em; border-top:1px solid #ddd;}
+footer ul{width:100%; padding:5px 0; overflow:hidden;}
+footer ul li{float:left; width:20%; padding:5px 0; text-align:center;}
+footer span{display:block; text-align:center; padding:10px 0; color:#aaa;}
+
+@media (min-width:768px){
+	footer ul li{width:10%;}
+	}
+	
+@media (min-width:992px){
+	footer{overflow:hidden;}
+	footer ul{float:left; width:auto;}
+	footer ul li{width:4em; margin-right:1em;}
+	footer span{float:right; color:#000;}
+	}
+
+/* -----------------政策监管栏目（总站及分站）*/
+/*更多按钮*/
+.moreBar{
+	display:block; width:10em; margin:10px auto; border-radius:0.5em; background-color:#eee;
+	text-align:center; font-size:0.8em; color:grey;
+}
+.moreBar:hover{background-color:#ddd;}
+.moreBar a:link, .moreBar a:visited{color:grey;}
+
+/*机构导航*/
+#csrcDept caption, #csrcBranch caption{cursor:pointer;}
+#csrcDept tr, #csrcBranch tr{display:none;}
+@media (min-width:992px){
+	#csrcDept tr, #csrcBranch tr{display:table-row;}
+	}
+#bright{background-color:#FFEC8B;}
+
+/*---------------------------------------小部件*/
+/*不分行*/
+.linkBtn{display:block; width:100%; height:2em; line-height:2em; background-color:#cc6666; text-align:center; font-size:1.2em;}
+.linkBtn i{font-size:1.1em;}
+a.linkBtn{color:#fff;}
+a.linkBtn:hover{background-color:#CC3333;}
+
+/*服务商链接，分两行*/
+.serLink{width:100%; height:95px; padding-left:10px; font-family:"楷体","宋体"; background:#D9DADC url(../../images/myimg/pub/service.jpg) no-repeat top right;}
+.serLink span{display:block; padding-top:20px; font-size:1.2em; color:#444;}
+.serLink a{display:block; padding-left:3px; margin-top:10px; font-size:0.8em;}
+
+/*分割线*/
+h3.line1{height:1px; margin:2em 0; border-top:1px solid tomato; text-align:center;}
+h3.line1 span{position:relative; height:1em; top:-0.7em; background:#fff; padding:0 20px; color:crimson;}
+
+/*返回顶部*/
+a.icon-dingbu{
+	display:block; width:2em; margin:0 auto;
+	text-align:center; font-size:2em;
+}
+a.icon-dingbu:link, a.icon-dingbu:visited{color:#aaa;}
+a.icon-dingbu:hover{border-color:#000; color:#000;}
+
+/*最新、最热标签*/
+.tabs{font-weight:normal; margin-right:1em;}
+.showTab{color:tomato;}
+
+/*.backtotop a{
+	display:block; width:2em; margin:0 auto;
+	text-align:center; font-size:2em;
+	}
+.backtotop a:link, .backtotop a:visited{color:#aaa;}
+.backtotop a:hover{border-color:#000; color:#000;}
+@media (min-width:992px){
+	}*/
+
+.publishBtn{display:block; height:2em; line-height:2em; text-align:center; background-color:#FFB90F; color:#fff;}
+
+/*-----------------------副导航栏目,如IPO实务指南*/
+/*右侧主体*/
+.overview h1{margin:0; font-size:1.5em;}
+.overview h2{font-size:1.2em;}
+/*栏目头*/
+.section{width:830px;}
+.secTitle{
+	display:block; margin:0 0 10px;
+	height:2em; line-height:2em;
+	background-color:#EEEEEE; border-bottom:1px solid #E0E0E0;
+	font-size:1.2em;
+}
+/*顶部介绍(或有)*/
+.topIntro{
+	margin-bottom:10px;
+	overflow:hidden;
+}
+.topIntro img{float:left; margin:0;}
+.topIntro div{float:left;}
+
+
+div.selected .block:nth-child(odd){margin-right:20px;}
+
+
+/*-------------------------------通用正文页*/
+
+.headInfo{margin-bottom:2em; border-top:1px dotted #ddd; border-bottom:1px dotted #ddd; font-size:0.8em; color:#aaa; overflow:hidden;}
+.headInfoLt{float:left; width:60%;}
+.headInfoRt{float:right; width:40%; text-align:right;}
+
+.content{margin-bottom:2em;}
+.content p{text-indent:2em;}
+.content img{max-width:100%;}
+
+.tailInfo{font-size:0.9em; color:#aaa; overflow:hidden;}
+.keyword{float:left;}
+.keyword a{margin-right:1em;}
+.editor{float:right;}
+
+.shareBar{margin-bottom:1em; background-color:#eee; overflow:hidden;}
+.bdsharebuttonbox{float:left; height:35px;}
+.icon-top{float:right; height:35px; line-height:35px;}
+
+.source{padding:10px; margin-bottom:10px; border:1px solid #ddd; text-align:center; color:#aaa;}
+.source img{border:none;}

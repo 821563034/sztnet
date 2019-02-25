@@ -1,0 +1,246 @@
+@charset "utf-8";/*列表、幻灯片、标签页及翻页*/
+
+/*仅标题，不折行*/
+.ul1{overflow:hidden;}
+.ul1 li a{display:block;/*防溢出*/ width:100%;/*不因有外框而不会溢出*/ height:2em; line-height:2em; color:#111; white-space:nowrap; overflow:hidden;}
+.ul1 li a:hover, .ul1 li a:focus{color: #23527c;}
+
+/*标题+月日*/
+.ul2-md li{overflow:hidden;}
+.ul2-md li a{float:left; width:100%; white-space:nowrap; overflow:hidden;}
+.ul2-md li span{float:left; text-align:right; color:#bbb; font-size:0.7em;}
+.ul2-md li a{color:#111;}
+.ul2-md li a:hover, .ul2-md li a:focus{color:#23527c;}
+
+@media (min-width:768px){
+	.ul2-md li{height:2em; line-height:2em;}
+	.ul2-md li a{width:91%;} .ul2-md li span{width:9%; font-size:1em;}
+	}
+@media (min-width:992px){
+	}
+@media (min-width:1200px){
+	}
+
+/*标题+年月日*/
+.ul2-ymd li{height:2em; line-height:2em; overflow:hidden;}
+.ul2-ymd li a{float:left; white-space:nowrap; overflow:hidden;}
+.ul2-ymd li span{float:left; text-align:right; color:silver; font-size:1em;}
+.ul2-ymd li a{color:#111;} .ul2-ymd li a:hover, .ul2-ymd li a:focus{color:#23527c;}
+
+.ul2-ymd li a{width:80%; font-size:0.9em;}
+.ul2-ymd li span{width:20%; font-size:0.8em;}
+@media (min-width:768px){
+	.ul2-ymd li a{width:83%; font-size:1em;}
+	.ul2-ymd li span{width:17%; font-size:1em;}
+}
+@media (min-width:992px){
+	}
+@media (min-width:1200px){
+	}
+
+/*长标题+月日*/
+.ul2-l-md li{line-height:1.5em; padding:5px 0; overflow:hidden;}
+.ul2-l-md li:not(:last-child){border-bottom:1px dotted #ddd;}
+.ul2-l-md li span{float:left; color:#aaa; text-align:left;}
+.ul2-l-md li a{float:right; color:#111;}
+.ul2-1-md li a:hover, .ul2-1-md li a:focus{color:#23527c;}
+
+.ul2-l-md li span{width:15%;}
+.ul2-l-md li a{width:85%;}
+@media (min-width:768px){
+	.ul2-l-md li span{width:7%;}
+	.ul2-l-md li a{width:93%;}
+	}
+@media (min-width:992px){/*不再折行*/
+	.ul2-l-md li span{float:right; width:6%; text-align:right;}
+	.ul2-l-md li a{float:left; width:94%; white-space:nowrap; overflow:hidden;}
+	.ul2-l-md li{border-bottom:none;}
+	}
+@media (min-width:1200px){
+	}
+/*长标题+年月日*/
+.ul2-l-ymd li{line-height:1.5em; padding:5px 0; overflow:hidden;}
+.ul2-l-ymd li:not(:last-child){border-bottom:1px dotted #ddd;}
+.ul2-l-ymd li span{float:left; color:#aaa; text-align:left;}
+.ul2-l-ymd li a{float:right; color:#111;}
+.ul2-1-ymd li a:hover, .ul2-1-ymd li a:focus{color:#23527c;}
+
+.ul2-l-ymd li span{width:25%;}
+.ul2-l-ymd li a{width:75%;}
+@media (min-width:768px){
+	.ul2-l-ymd li span{width:17%;}
+	.ul2-l-ymd li a{width:83%;}
+	}
+@media (min-width:992px){/*不再折行*/
+	.ul2-l-ymd li:not(:last-child){border-bottom:none;}
+	.ul2-l-ymd li span{float:right; width:15%; text-align:right;}
+	.ul2-l-ymd li a{float:left; width:85%; white-space:nowrap; overflow:hidden;}
+	}
+@media (min-width:1200px){
+	}
+
+/*标题+来源+日期,两行显示*/
+.ul3 li a{display:block; height:2em; line-height:2em; white-space:nowrap; overflow:hidden;}
+.ul3 li span{
+	margin-right:5px;
+	font-size:0.8em; color:silver;
+}
+
+/*标题+日期+摘要*/
+.ul3-abst li a{display:block;}
+.ul3-abst li span{display:block; font-size:0.7em; color:#aaa;}
+.ul3-abst li p{margin:0px; font-size:0.7em; color:#aaa;}
+@media (min-width:768px){
+	.ul3-abst li{overflow:hidden;}
+	.ul3-abst li a{float:left; line-height:2.5em; white-space:nowrap; overflow:hidden;}
+	.ul3-abst li span{float:left; line-height:2.5em; font-size:1em; text-align:right;}
+	.ul3-abst li p{float:left; width:100%;}/*宽度用于上证通站监管栏目*/
+	/*宽度*/
+	.ul3-abst li a{width:92%;}
+	.ul3-abst li span{width:8%;}
+	}
+
+/*---------------------------------------普通型幻灯片,高度：240,247,320,380*/
+
+#slide{float:left; width:100%; height:240px; margin-bottom:5px; overflow:hidden;}
+/*图片区域*/
+.fi02{width:100%; height:240px;}
+.fi02_1{position:relative; width:100%; height:240px;}
+.fi02_1 .fi_player{display:block; width:100%; height:240px;}
+.fi02_1 .fi_ovl{display:none}
+/*标题文字*/
+.fi02_1 .fi_tt{
+	position:absolute; left:0; top:0; z-index:10; width:100%; height:28px;
+	font:16px/28px "微软雅黑"; color:#fff; text-align:center; white-space:nowrap; overflow:hidden;
+	}
+/*标题背景*/
+.fi02_1 .fi_bg{position:absolute; top:0; left:0; width:100%; height:28px; background:#000; filter:alpha(opacity=50); opacity: 0.50;}
+/*链接区域*/
+.fi02_1 .fi_link{position:absolute; top:0; left:0; z-index:20; width:100%; height:240px; cursor:pointer;}
+/*小圆点*/
+.fi02_1 .fi_tab{position:absolute; bottom:0; left:0; z-index:50; width:100%; height:20px; text-align:center;}
+.fi02_1 .fi_tab span{
+	display:inline-block; cursor:pointer; margin-left:5px; height:10px; width:10px; line-height:100px;/*隐藏数字*/
+	border:1px solid #aaa; border-radius:5px;
+}
+.fi02_1 .fi_tab span.now{background-color:#eee;}
+
+@media (min-width:768px){
+	#slide, .fi02, .fi02_1, .fi02_1 .fi_player, .fi02_1 .fi_link{height:247px;}
+	}
+@media (min-width:992px){
+	#slide{margin-bottom:0;}
+	#slide, .fi02, .fi02_1, .fi02_1 .fi_player, .fi02_1 .fi_link{height:320px;}
+	.fi02_1 .fi_tt{height:32px; font:16px/32px "微软雅黑";}
+	.fi02_1 .fi_bg{height:32px;}
+	}
+@media (min-width:1200px){
+	#slide, .fi02, .fi02_1, .fi02_1 .fi_player, .fi02_1 .fi_link{height:200px;}
+	}
+	
+/*---------------------------------推荐文章列表*/ 
+ 
+.recommend li{padding:10px 5px; display:flex; display:-webkit-flex; align-items:center; justify-content:center;}
+.recommend li:nth-child(1), .recommend li:nth-child(2){border-bottom:1px solid #fff;}
+.recommend li a{line-height:1.5em; text-align:center; font-size:1.1em;}
+
+@media (min-width:992px){
+	.recommend li{overflow:hidden;}
+	}
+	
+@media (min-width:1200px){
+	.recommend{height:200px;}
+	.recommend li{height:33.33333%;}	
+	}
+	
+/*--------------------------------最新文章列表*/
+
+.newest li{padding:5px 0; overflow:hidden;}
+.newest li a{font-size:1.1em;}
+.newest li a:link, .newest li a:visited{color:#000;}
+.newest li span{font-size:0.8em; color:#aaa;}
+
+li.noPic a{display:block; width:100%;}
+li.nopic span{display:block;}
+
+li.pic a{float:left; width:70%;}
+li.pic img{float:right; width:28% display:block; clear:left;}
+li.pic span{float:left; width:70%;}
+
+@media (min-width:992px){
+
+	}
+
+/*----------------------------------------标签页（如新闻栏目）*/
+
+/*不带标题*/
+.tabBox{background-color:#BFCCD9; overflow:hidden;}
+.tabBox span{float:left; height:2em; line-height:2em; text-align:center;}
+.tabBox span.activeTab{background-color:#809AB3; font-weight:bold;}
+
+/*带标题*/
+.tabBox-plus{background-color:#eee; overflow:hidden;}
+.tabBox-plus span{float:left;}
+.tabBox-plus a{float:left; text-align:center; font-weight:normal;}
+.tabBox-plus a.activeTab{background-color:#ddd;}
+
+/*标签宽*/
+.tab2 span{width:50%}
+.tab3 span{width:33.33333333%}
+.tab4 span{width:25%}
+.tab5 span{width:20%;}
+.tab6 span{width:33.333333%}
+@media (min-width:768px){.tab6 span{width:16.6666667%}}
+.tab8 span{width:25%;}
+@media (min-width:768px){.tab8 span{width:12.5%;}}
+
+.tab9 span{width:20%;}
+@media (min-width:768px){.tab9 span{width:10%;}}
+
+.tab10 span{width:20%;}
+@media (min-width:768px){.tab10 span{width:10%;}}
+
+/*-------------------------------------点击排行*/
+/*列表式*/
+.hit li{overflow:hidden; width:100%;}
+.hit li span{
+	float:left; width:4%; height:1em; line-height:1em; margin-top:0.5em; border-radius:3px; background-color:#aaa;
+	text-align:center; color:#fff;
+} 
+.hit li a{float:left; width:96%; padding-left:5px; height:2em; line-height:2em; white-space:nowrap; overflow:hidden;}
+.hit li a{color:#111;}
+.hit li a:hover, .hit li a:focus{color: #23527c;}
+
+/*表格式，如投关站资讯首页*/
+.hotbox{float:left; overflow:hidden;}/*或有*/
+.hot{width:100%;}
+.hot tr{height:2.5em; /*font-size:0.8em;*/}
+.hot tr th{width:20px; color:#fff; text-align:center; font-family:Arial, Helvetica, sans-serif;/*background-color:#ccc;*/}
+.hot tr td{padding-left:5px;/*background-color:#ccc;*/} 
+
+.cueLine{text-align:center; font-size:0.7em; color:#bbb; margin-bottom:5px;}
+.cueLine span:nth-child(1), .cueLine span:nth-child(3){font-size:larger;}
+	
+/*------------------------------------------翻页*/
+.pages{
+	padding:7px 0; text-align:center; font-size:0.8em;
+	overflow:hidden;
+}
+.pages li{display:inline-block;/*不能左浮动，否则无法居中*/}
+.pages li a{
+	display:block; padding:1px 5px; margin-right:5px;
+	border:1px solid silver;
+}
+.pages a:hover{background-color:silver;}
+.pages li.thisclass{
+	display:inline-block; padding:1px 5px; margin-right:5px;
+	color:red; font-weight:bold;
+}
+.pages ul li select{
+	display:block; margin-right:5px;
+	border:1px solid silver;
+}
+.pages li span.pageinfo{
+	display:block; padding:1px 5px;
+	border:1px solid silver;
+}

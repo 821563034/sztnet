@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row tool">
+  <div class="col xs-12"><h3 class="line1"><span>证监会官网</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://neris.csrc.gov.cn/shixinchaxun/" target="_blank">上市公司失信记录查询</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.csrc.gov.cn/pub/newsite/pcjgssgsml/bjzxgx/" target="_blank">各辖区上市公司名录</a></div>
+  <div class="col xs-12 md-2"><a href="http://ipo.csrc.gov.cn/" target="_blank">IPO公司预披露查询</a></div>
+  <div class="col xs-12 md-2"><a href="http://neris.csrc.gov.cn/jubaozhongxin/" target="_blank">证监会网上举报中心</a></div>
+  <div class="col xs-12 md-2"><a href="http://neris.csrc.gov.cn/lianzhengpingyi/" target="_blank">证监会廉政评议系统</a></div>
+  
+  <div class="col xs-12"><h3 class="line1"><span>深交所官网</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/market/companys/company/index.html" target="_blank">深市上市公司列表</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/market/companys/suspend/index.html" target="_blank">暂停/终止上市公司</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/market/overview/index.html" target="_blank">深市市场总貌</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/market/stock/earning/index.html" target="_blank">深市行业市盈率</a></div>
+
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/szhk/index.html" target="_blank">深港通</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/listed/delist/index.html" target="_blank">退市整理期公司公告</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cninfo.com.cn/disclosure/prbookinfo.jsp" target="_blank">定期报告预约披露时间表</a></div>  
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/listed/director/index.html" target="_blank">独立董事信息库</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/listed/secretary/index.html" target="_blank">董秘资格信息库</a></div>  
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/supervision/check/index.html" target="_blank">信息披露考评</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/supervision/measure/index.html" target="_blank">上市公司监管措施</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/supervision/inquire/index.html" target="_blank">上市公司问询函件</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/supervision/short/index.html" target="_blank">董监高短线交易情况</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/supervision/change/index.html" target="_blank">董监高等股份变动</a></div>    
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/listed/reduction/index.html" target="_blank">限售股份解限与减持</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/listed/credit/record/index.html" target="_blank">上市公司处罚处分记录</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/disclosure/listed/suggestion/sponsor/index.html" target="_blank">中介机构持续督导意见</a></div>
+  
+  <div class="col xs-12"><h3 class="line1"><span>上交所官网</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/credibility/supervision/measures/" target="_blank">上市公司监管措施</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/credibility/supervision/inquiries/" target="_blank">交易所监管问询</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/credibility/supervision/secretaries/" target="_blank">董秘考核结果</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/credibility/supervision/promisho/" target="_blank">上市公司承诺履行情况</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/credibility/supervision/change/" target="_blank">董监高持股变动情况</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/listedinfo/periodic/" target="_blank">定期报告预约披露情况</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/listedinfo/riskplate/" target="_blank">ST风险警示板</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/market/stockdata/statistic/" target="_blank">沪市股票数据</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/assortment/stock/list/delisting/" target="_blank">暂停/终止上市公司</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/services/hkexsc/home/" target="_blank">沪港通</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/assortment/stock/innovative/home/" target="_blank">创新企业证券</a></div>
+    
+  <div class="col xs-12"><h3 class="line1"><span>法定信披媒体</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.cninfo.com.cn/new/index" target="_blank">巨潮资讯网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/disclosure/listedinfo/announcement/" target="_blank">上交所官网</a></div>
+  <div class="col xs-12 md-2"><a href="http://xinpi.cs.com.cn/page/xp/index.html" target="_blank">中国证券报(中证网)</a></div>
+  <div class="col xs-12 md-2"><a href="http://xinpi.cnstock.com/" target="_blank">上海证券报(中国证券网)</a></div>
+  <div class="col xs-12 md-2"><a href="http://xinpi.stcn.com/index.shtml" target="_blank">证券时报(证券时报网)</a></div>
+  <div class="col xs-12 md-2"><a href="http://shhk.zqrb.cn/" target="_blank">证券日报(证券日报网)</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.crd.net.cn/" target="_blank">中国改革报(中国改革报网)</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.financialnews.com.cn/" target="_blank">金融时报(金融新闻网)</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.capitalweek.com.cn/" target="_blank">证券市场周刊</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.hongzhoukan.com/" target="_blank">证券市场红周刊</a></div>
+      
+  <div class="col xs-12 advise"><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">热烈欢迎网友提供建议</a></div>
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

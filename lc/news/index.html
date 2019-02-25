@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻聚焦 - 上证通网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/szt.css" rel="stylesheet" />
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script src="http://www.sztnet.com/statics/js/search_common.js"></script>
+  <script src="http://www.sztnet.com/statics/js/myjs/slide.js"></script>
+  <script>
+  $(function(){
+      $(".tabBox span").each(function(i){
+          $(this).hover(function(){
+              $(this).addClass("activeTab").siblings().removeClass("activeTab");
+              $(".tabCont:eq("+i+")").show().siblings(".tabCont").hide();
+          })
+      })
+  })
+  </script>
+</head>
+
+<body>
+<header class="inverse clear">
+  <div class="midBox" id="midBox">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <span>泛证券业务平台</span>
+      </div>
+      <div class="sb2"><img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />上证通网</div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" role="search">
+        <input type="text" id="bdcsMain" />
+        <button type="submit">提交</button>
+      </form>
+    </div>     
+  </div><!--/midBox-->
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script><div class="container">
+
+<nav class="mainNav cateNum-10 clear">
+<ul class="inverse">
+  <li ><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li ><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li ><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li><a href="http://www.sztnet.com/law/codification/" target="_blank">法规</a></li>
+  <li >
+    <a href="javascript:void(0)" target="_self">公司</a>
+    <ul>
+      <li ><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li ><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li ><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li ><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li ><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=436" target="_self">激励</a></li>
+      <li class="cur"><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li ><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li ><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li ><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li ><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li ><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li ><a href="http://www.sztnet.com/edu/" target="_blank">学院</a></li>
+  <li ><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li ><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li ><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="javascript:void(0)" target="_self">商城</a></li>
+</ul>
+</nav><div class="row">
+  <nav class="col xs-12 subNav">
+    <ul>
+                  <li class="current"><a href="http://www.sztnet.com/lc/news//">新闻聚焦</a></li>
+            <li ><a href="http://www.sztnet.com/lc/supervise//">公司监管</a></li>
+                </ul>
+  </nav>
+</div>
+<div class="row mb10">
+  <div class="col xs-12 md-7 mb10">
+    <section class="row5px mb10">
+      <div class="col5px xs-12 md-6">
+        <div id="slide"></div>
+        <script>
+          jQuery("#slide").focusImg({"speed":"5000","type":"1","flag":"fi02","hoverStop":true},[
+                                    {    
+              "p":"http://www.sztnet.com/uploadfile/2018/0430/20180430071853258.jpg",
+              "l":"http://finance.sina.com.cn/roll/2018-04-28/doc-ifztkpip5697145.shtml",
+              "t":"证监会：IPO企业年报更正可不进行全面审计" 
+            },
+                                  ]);
+        </script>
+      </div><!--左-->
+      <div class="col5px xs-12 md-6">
+        <ul class="recommend">
+                              <li><a href="http://finance.sina.com.cn/roll/2018-04-28/doc-ifztkpip5697145.shtml" target="_blank">证监会：IPO企业年报更正可不进行全面审计</a></li>
+                            </ul>
+      </div><!--/右-->
+    </section><!--/推荐-->
+   
+    <section>
+      <nav class="tabBox tab6 mb10">
+        <span class="activeTab">最新</span><span>业务动态</span><span>公司观察</span>
+        <span>信息披露</span><span>投资者关系</span><span>市值管理</span>
+      </nav>
+     
+      <ul class="newest tabCont lts bbs">
+                              </ul>
+  
+                  <ul class="newest tabCont lts bbs hide">
+                              </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                              </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                              </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                              </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                              </ul>
+          </section>
+  </div><!--/左侧-->
+  
+  <div class="col xs-12 md-5">
+    <h3 class="h3-1 bts bbs">新闻点击排行&nbsp;<i class="iconfont icon-hot"></i></h3>
+    <ul class="hit small">    
+                      
+          </ul>
+  </div><!--/右侧-->
+</div><!--/row-->
+
+<a class="iconfont icon-dingbu" href="javascript:scroll(0, 0)"></a>
+</div><!--/container-->
+<footer class="inverse">
+  <div class="midBox">
+      <ul>
+        <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/report/" target="_blank">报道发稿</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/business/" target="_blank">商务合作</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/links/" target="_blank">友情链接</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">投资合伙</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+        <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+      </ul>
+      <span>© 2010&ndash;2018&nbsp;上证通网&nbsp;版权所有</span>
+  </div>
+<footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script></body>
+</html>
+
+        
+        
+        
+        
+        
+        
+        

@@ -1,0 +1,42 @@
+@charset "utf-8";
+/*----------------------------------------------栏目首页*/
+
+/*左侧栏*/
+.shopMenu{width:100%; padding:0 2px; border:1px solid #FFE6BF;}
+.shopMenu ul li{border-bottom:1px solid #E0E0E0;}
+.shopMenu ul li:last-child{border:none;}
+
+.shopMenu ul li a{
+	display:block;
+	height:3em; line-height:3em;
+	background-color:transparent;
+}
+.shopMenu ul li a span{
+	margin-left:30px;
+}
+/***/
+.guide{padding:2px; margin:0px; border:1px solid #FFE6BF; font-size:0.8em;}
+
+/*右侧栏*/
+.listbox h3{
+	margin:0 0 5px 0;
+	color:crimson;
+}
+.listbox ul{
+	border-top:1px solid #DDDDDD; border-left:1px solid #DDDDDD;
+	overflow:hidden;
+}
+.listbox ul li{
+	float:left; width:200px; padding:5px; height:246px;	
+	border-right:1px solid #DDDDDD; border-bottom:1px solid #DDDDDD;
+	font-size:0.8em;
+	overflow:hidden;
+}
+.litpic{
+	float:left; width:200px; height:200px;
+}
+.listbox ul li span{
+	float:left; width:100%;
+	color:crimson; font-family:'Arial','微软雅黑'; font-weight:bold;
+}
+.title{float:left;}

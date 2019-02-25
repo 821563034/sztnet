@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>资讯 - 上证通网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/szt.css" rel="stylesheet" />
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script src="http://www.sztnet.com/statics/js/search_common.js"></script>
+  <script src="http://www.sztnet.com/statics/js/myjs/slide.js"></script>
+  <script>
+  $(function(){
+      $(".tabBox span").each(function(i){
+          $(this).click(function(){
+              $(this).addClass("activeTab").siblings().removeClass("activeTab");
+              $(".tabCont:eq("+i+")").show().siblings(".tabCont").hide();
+          })
+      })
+  })
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script><div class="container">
+<nav class="mainNav cateNum-12 clear">
+<ul>
+  <li class="cur"><a href="http://www.sztnet.com/news/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li><a href="http://www.sztnet.com/law/" target="_blank">法规</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=55" target="_self">产业</a></li>
+  <li>
+    <a id="biz" href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=499" target="_self">微群</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=56" target="_self">商脉</a></li>
+</ul>
+</nav>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#biz").click(function(){$("#biz").siblings().toggle(100);});
+  });
+</script>
+<div class="row mb10 mt10">
+  <div class="col xs-12 md-7 mb10">
+    <section class="row5px mb10">
+      <div class="col5px xs-12 md-6">
+        <div id="slide"></div>
+        <script>
+          jQuery("#slide").focusImg({"speed":"5000","type":"1","flag":"fi02","hoverStop":true},[
+                                    {    
+              "p":"http://www.sztnet.com/uploadfile/2019/0218/20190218085906920.jpg",
+              "l":"http://www.sztnet.com/news/109.html",
+              "t":"工商银行获批设立理财子公司 五大行聚齐了" 
+            },
+                        {    
+              "p":"http://www.sztnet.com/uploadfile/2018/1205/20181205091013324.jpeg",
+              "l":"http://www.sztnet.com/news/74.html",
+              "t":"董明珠稳赢雷军？" 
+            },
+                        {    
+              "p":"http://www.sztnet.com/uploadfile/2018/1129/20181129090344636.jpg",
+              "l":"http://www.sztnet.com/news/51.html",
+              "t":"央行有关负责人就《关于完善系统重要性金融机构监管的指导意见》答记者问" 
+            },
+                                  ]);
+        </script>
+      </div><!--左-->
+      <div class="col5px xs-12 md-6">
+        <ul class="recommend">
+                                                            <li><a href="http://www.sztnet.com/news/82.html" target="_blank">为保壳虚增钢贸收入 ST仰帆被证监会顶格处罚</a></li>
+                                        <li><a href="http://www.sztnet.com/news/77.html" target="_blank">美股重启恐慌性抛售 道指暴跌近800点三大股指均跌逾3%</a></li>
+                                      </ul>
+      </div><!--/右-->
+    </section><!--/推荐-->
+   
+    <section>
+      <nav class="tabBox tab10 mb10">
+        <span class="activeTab">财经</span><span>上市</span><span>融资</span><span>并购</span><span>理财</span><span>激励</span>
+        <span>股转</span><span>公司</span><span>科创</span><span>业界</span>
+      </nav>
+      <ul class="newest tabCont lts">
+                                <li class="noPic">
+                    <a href="https://new.qq.com/omn/20190221/20190221G05L3P.html" target="_blank">一图看懂粤港澳大湾区的投资机遇</a>
+          <span>02-21&nbsp;&nbsp;中信建投证券</span>
+        </li>
+                        <li class="noPic">
+                    <a href="https://finance.sina.com.cn/stock/y/2019-02-20/doc-ihrfqzka7559131.shtml" target="_blank">证券日报董少鹏因"辟谣易会满或执掌证监会"错误报道被停职</a>
+          <span>02-21&nbsp;&nbsp;深蓝财经</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220103458551.jpg" />          <a href="http://www.sztnet.com/news/130.html" target="_blank">中央一号文件：农村土改将全面推开，不搞私有化</a>
+          <span>02-20&nbsp;&nbsp;第一财经</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/120.html" target="_blank">大湾区凭何比肩国际一流？探三大世界级湾区内生逻辑</a>
+          <span>02-19&nbsp;&nbsp;每日经济新闻</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/129.html" target="_blank">粤港澳大湾区概念股爆发 券商解读投资主线</a>
+          <span>02-19&nbsp;&nbsp;国际金融报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/119.html" target="_blank">一图看懂《粤港澳大湾区发展规划纲要》</a>
+          <span>02-19&nbsp;&nbsp;第一财经</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.gov.cn/zhengce/2019-02/18/content_5366593.htm" target="_blank">中共中央 国务院印发《粤港澳大湾区发展规划纲要》(官方全文)</a>
+          <span>02-19&nbsp;&nbsp;中国政府网</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/117.html" target="_blank">央行或继续“扩表”支撑信用创造稳增长</a>
+          <span>02-18&nbsp;&nbsp;证券时报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0110/thumb_90_60_20190110095010273.jpg" />          <a href="http://www.sztnet.com/news/98.html" target="_blank">央行副行长范一飞：企业银行账户许可年内全面取消</a>
+          <span>01-10&nbsp;&nbsp;人民日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/92.html" target="_blank">理性看待变和忧 2019年我国经济仍将保持稳健运行</a>
+          <span>01-09&nbsp;&nbsp;金融时报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/87.html" target="_blank"> 国家医保局回应药品集采：对企业“长期是利好” 药品招标平均降幅52%</a>
+          <span>12-10&nbsp;&nbsp;中国网</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/86.html" target="_blank">专家把脉2019经济走势：增速或小幅回调</a>
+          <span>12-10&nbsp;&nbsp;经济参考网</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/77.html" target="_blank">美股重启恐慌性抛售 道指暴跌近800点三大股指均跌逾3%</a>
+          <span>12-05&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/67.html" target="_blank">美联储放出鸽声 加息真要踩刹车？</a>
+          <span>11-30&nbsp;&nbsp;证券时报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/1129/thumb_90_60_20181129090344636.jpg" />          <a href="http://www.sztnet.com/news/51.html" target="_blank">央行有关负责人就《关于完善系统重要性金融机构监管的指导意见》答记者问</a>
+          <span>11-29&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/24.html" target="_blank">中纪委将有反腐大动作 涉中农工建等四大银行</a>
+          <span>11-04&nbsp;&nbsp;北京青年报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/23.html" target="_blank">从“离场论”到“自己人” 民营经济惊心动魄的50天</a>
+          <span>11-03&nbsp;&nbsp;经济观察网</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/22.html" target="_blank">商务部：愿通过平等诚信相互尊重的磋商与美解决分歧</a>
+          <span>11-03&nbsp;&nbsp;中国新闻网</span>
+        </li>
+                      </ul>
+                                    <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="https://finance.sina.com.cn/roll/2019-02-20/doc-ihrfqzka7336012.shtml" target="_blank">2019IPO第一单陷专利之争 博通集成上市路再起风波</a>
+          <span>02-21&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220104724632.jpg" />          <a href="http://www.sztnet.com/news/131.html" target="_blank">2018年IPO地图：5省市上市企业数量占近七成 江苏省位列第一</a>
+          <span>02-20&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/113.html" target="_blank">给六个核桃打工的嘉美包装：IPO路上证监会一口气问了67个问题 保荐券商尴尬了</a>
+          <span>02-18&nbsp;&nbsp;飞鱼财经</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/114.html" target="_blank">方星海:新股发行制度使投资者盲目追涨 放大价格扭曲</a>
+          <span>02-16&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/95.html" target="_blank">2019年A股IPO十大预测：过会率稳中有升 发行节奏趋缓</a>
+          <span>01-09&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/76.html" target="_blank">证监会：将失信作为股票发行审核参考</a>
+          <span>12-05&nbsp;&nbsp;证券时报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/64.html" target="_blank">A股IPO鸟瞰：过会率创近年新低 堰塞湖不再堰塞？</a>
+          <span>11-30&nbsp;&nbsp;面包财经</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/52.html" target="_blank">科创板潜在标的寻踪：监管层密集调研 上市公司主动示好</a>
+          <span>11-29&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/1104/thumb_90_60_20181104060428375.jpg" />          <a href="http://www.sztnet.com/news/37.html" target="_blank">月赚上亿的公牛上市前突击分红32亿 “圈钱”意图明显</a>
+          <span>11-04&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/26.html" target="_blank">上市破发潮背后：盛世兴收藏 乱世买黄金</a>
+          <span>11-04&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/25.html" target="_blank">IPO批文本周未下发 新股发审会下周正常进行</a>
+          <span>11-03&nbsp;&nbsp;一财网</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="https://finance.ifeng.com/c/7kS5s8KiR3Y" target="_blank">永续债新规利剑出鞘：73家上市公司面临大考（附名单）</a>
+          <span>02-21&nbsp;&nbsp;面包财经</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://epaper.21jingji.com/html/2019-02/20/content_101189.htm" target="_blank">央行：探索发行转股型永续债，CBS操作规模没有数量目标</a>
+          <span>02-20&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/97.html" target="_blank">股票风险溢价接近历史高位 转债迎来重要配置机遇</a>
+          <span>01-09&nbsp;&nbsp;中证网</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/89.html" target="_blank">两公司拟发转债回购股份 正股表现“为之一振”</a>
+          <span>12-11&nbsp;&nbsp;上海证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/70.html" target="_blank">债市逐步告别“九龙治水” 证监会将统一执法权</a>
+          <span>12-05&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/53.html" target="_blank">千余份定增逾一成变更募资用途 补流偿债成主要去向</a>
+          <span>11-29&nbsp;&nbsp;上海证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/33.html" target="_blank">天茂集团“破发” 定增股东浮亏逾7亿</a>
+          <span>11-03&nbsp;&nbsp;大众证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/34.html" target="_blank">可转债迎布局好时机</a>
+          <span>11-02&nbsp;&nbsp;北京商报</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="http://www.zqrb.cn/gscy/gongsi/2019-02-21/A1550682604654.html" target="_blank">永安林业重组“有毒资产”商誉计提8.5亿元 商誉成部分公司套取资金“黑洞”？</a>
+          <span>02-21&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/71.html" target="_blank">逾211亿元资产重组获有条件通过 中粮资本借壳收官</a>
+          <span>12-05&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/29.html" target="_blank">退市长油携200亿市值归来！徐翔或已浮盈426%</a>
+          <span>11-04&nbsp;&nbsp;新京报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/27.html" target="_blank">金科股份股权之争：A股首个竞争要约收购一触即发</a>
+          <span>11-04&nbsp;&nbsp;经济观察报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/35.html" target="_blank">并购重组支持政策“第三弹” 证监会宣布试点定向可转债</a>
+          <span>11-02&nbsp;&nbsp;第一财经</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="http://ifnews.com/19/detail-37353.html" target="_blank">这家私募玩猫腻，国泰君安被指“托管失职”</a>
+          <span>02-21&nbsp;&nbsp;国际金融报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="https://finance.ifeng.com/c/7kSIlJHi20l" target="_blank">又见超10亿股权质押出事！天风证券踩雷这3大股票</a>
+          <span>02-21&nbsp;&nbsp;中国基金报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220091230206.jpg" />          <a href="http://www.sztnet.com/news/127.html" target="_blank">南京银行资管部总经理戴娟失联？ 电话暂时无法接通</a>
+          <span>02-20&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/124.html" target="_blank">平安银行私人银行发布《2018年高净值人群财富安全感报告》</a>
+          <span>02-19&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/110.html" target="_blank">银保监“下令尽快开业”！五大行理财子公司全获批 万亿级新增资金要来</a>
+          <span>02-18&nbsp;&nbsp;中国基金报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0218/thumb_90_60_20190218085906920.jpg" />          <a href="http://www.sztnet.com/news/109.html" target="_blank">工商银行获批设立理财子公司 五大行聚齐了</a>
+          <span>02-17&nbsp;&nbsp;上海证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/96.html" target="_blank">“证监系”资管三月蒸发近2万亿 机构类私募业务退潮加速</a>
+          <span>01-09&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/88.html" target="_blank">数据撑起投资逻辑 券商资管试水智能FOF</a>
+          <span>12-11&nbsp;&nbsp;上海证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/73.html" target="_blank">大变局！银行理财子公司落地 对资管市场影响几何？</a>
+          <span>12-05&nbsp;&nbsp;国际金融报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/72.html" target="_blank">仅一个月420家上市公司购买超800亿元理财产品</a>
+          <span>12-05&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/56.html" target="_blank">共享单车破产第一案：收8亿押金账户只剩35万 单车12元一辆被卖</a>
+          <span>11-29&nbsp;&nbsp;财经天下周刊</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/1104/thumb_90_60_20181104054955814.jpg" />          <a href="http://www.sztnet.com/news/28.html" target="_blank">收藏酒还是买茅台股票?化身符号的茅台究竟是什么?</a>
+          <span>11-04&nbsp;&nbsp;经济观察报</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="http://www.zqrb.cn/review/gushireping/2019-02-21/A1550679655816.html" target="_blank">股权激励政策组合有利于稳定市场</a>
+          <span>02-21&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.cs.com.cn/ssgs/gsxw/201902/t20190220_5924745.html" target="_blank">2018年上市公司发布409个股权激励计划</a>
+          <span>02-21&nbsp;&nbsp;中国证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/55.html" target="_blank">员工持股计划巨亏被强平 金龙机电遭长城证券起诉</a>
+          <span>11-29&nbsp;&nbsp;中国证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/32.html" target="_blank">美年健康：拟回购3亿至5亿元股份，用于员工持股或股权激励</a>
+          <span>10-29&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/31.html" target="_blank">深交所：创业板约六成上市公司推出股权激励计划</a>
+          <span>10-29&nbsp;&nbsp;证券时报网</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="http://www.sztnet.com/news/75.html" target="_blank">新三板发行审核效率获点赞</a>
+          <span>12-05&nbsp;&nbsp;中国证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/65.html" target="_blank">"中国纳斯达克"已死？ 新三板企业逃离资本暴富梦醒</a>
+          <span>11-30&nbsp;&nbsp;财报局</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/54.html" target="_blank">淘宝网拍卖新三板股权 天星资本“窘境”引围观</a>
+          <span>11-29&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/30.html" target="_blank">今年以来1187家新三板公司累计发行股票融资517亿元</a>
+          <span>11-03&nbsp;&nbsp;证券时报网</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/36.html" target="_blank">新三板今年股权质押融资额仅为定增额七成 企业质押融资难度日渐提高</a>
+          <span>10-29&nbsp;&nbsp;犀牛之星</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="http://stock.hexun.com/2019-02-21/196212024.html" target="_blank">祥源文化再遭上交所公开谴责 孔德永终身禁入董监高</a>
+          <span>02-21&nbsp;&nbsp;金陵晚报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220112454344.gif" />          <a href="http://www.sztnet.com/news/134.html" target="_blank">*ST毅达B：独立董事关于公司风险提示的公告</a>
+          <span>02-20&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220092034869.jpg" />          <a href="http://www.sztnet.com/news/128.html" target="_blank">利源精制被证监会调查 或引发投资者索赔诉讼</a>
+          <span>02-20&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/121.html" target="_blank">拜刘姝威所赐 美的集团董事长方洪波也被“关注”了</a>
+          <span>02-19&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/94.html" target="_blank">股东增持“计划赶不上变化” 承诺难兑现引发监管关注</a>
+          <span>01-09&nbsp;&nbsp;中国证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/93.html" target="_blank">西藏发展“投票门”迷雾迭起 10小时股东大会上演精彩“斗剧”</a>
+          <span>01-09&nbsp;&nbsp;华夏时报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/91.html" target="_blank">安信证券：央行全面降准释放1.5万亿 估值修复可期</a>
+          <span>01-08&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/90.html" target="_blank">格力电器宣布加薪：总薪酬增加10亿 只针对普通员工</a>
+          <span>01-08&nbsp;&nbsp;每日经济新闻</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/82.html" target="_blank">为保壳虚增钢贸收入 ST仰帆被证监会顶格处罚</a>
+          <span>12-11&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/85.html" target="_blank">带量采购受关注 800余机构调研乐普医疗 但这次是公司连续跌停！</a>
+          <span>12-10&nbsp;&nbsp;证券时报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/1205/thumb_90_60_20181205091013324.jpeg" />          <a href="http://www.sztnet.com/news/74.html" target="_blank">董明珠稳赢雷军？</a>
+          <span>12-05&nbsp;&nbsp;德林社</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/66.html" target="_blank">18家公司商誉超公司净资产 年末警惕减值风险</a>
+          <span>11-30&nbsp;&nbsp;证券时报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/18.html" target="_blank">工农中建净利均超千亿 13家净利同比增幅逾10%</a>
+          <span>11-04&nbsp;&nbsp;大众证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/17.html" target="_blank">豫能控股3名高管集体请辞 前三季度巨亏超3亿</a>
+          <span>11-04&nbsp;&nbsp;大众证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/16.html" target="_blank">公募基金三季度亏60亿 后市该如何布局？</a>
+          <span>11-03&nbsp;&nbsp;华夏时报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/15.html" target="_blank">2018三季报上市公司“八宗最” 青松建化净利增185倍</a>
+          <span>11-03&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="https://finance.sina.com.cn/stock/marketresearch/2018-11-03/doc-ihnfikvf0487998.shtml" target="_blank">五因素确认市场底 A股将迎渐进式反弹</a>
+          <span>11-03&nbsp;&nbsp;中国证券报</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="https://finance.sina.com.cn/stock/newstock/zxdt/2019-02-19/doc-ihrfqzka7167305.shtml" target="_blank">虎嗅科技挥别新三板 摘牌原因一言难尽</a>
+          <span>02-21&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.bjnews.com.cn/finance/2019/02/21/548914.html" target="_blank">券商加班备战科创板，每天工作十余小时，已有项目推进</a>
+          <span>02-21&nbsp;&nbsp;新京报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220111402662.jpg" />          <a href="http://www.sztnet.com/news/133.html" target="_blank">约八成挂牌企业业绩预喜 商誉减值影响进一步释放</a>
+          <span>02-20&nbsp;&nbsp;投资快报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0219/thumb_90_60_20190219100556499.jpg" />          <a href="http://www.sztnet.com/news/122.html" target="_blank">科创板意见征求收官在即：发行定价改革的具体安排如何？</a>
+          <span>02-19&nbsp;&nbsp;21世纪经济报道</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/112.html" target="_blank">3天9场 上交所面对面听取各方关于科创板的意见建议</a>
+          <span>02-18&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/62.html" target="_blank">证券日报驳"撤掉创业板"说法：科创板改革不冲击存量</a>
+          <span>11-30&nbsp;&nbsp;证券日报</span>
+        </li>
+                      </ul>
+                        <ul class="newest tabCont lts hide">       
+                                <li class="noPic">
+                    <a href="http://www.zqrb.cn/jrjg/quanshang/2019-02-21/A1550681051884.html" target="_blank">又到券商“招兵买马”季 选对岗位年薪百万元不是梦</a>
+          <span>02-21&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://money.163.com/19/0220/07/E8ENBKRM00258152.html" target="_blank">百家券商入驻粤港澳大湾区 广发证券设84分支机构</a>
+          <span>02-20&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0219/thumb_90_60_20190219111617741.jpg" />          <a href="http://www.sztnet.com/news/125.html" target="_blank">阿里巴巴成为中金公司的第三大股东 意欲何为？</a>
+          <span>02-19&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2019/0220/thumb_90_60_20190220113331838.jpg" />          <a href="http://www.sztnet.com/news/135.html" target="_blank">为3500名客户处理50亿元存款，国信证券违反打击洗钱规定被罚1520万</a>
+          <span>02-18&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/115.html" target="_blank">中信建投净利16亿大降六成 拟募资130亿逆势扩张</a>
+          <span>02-18&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/63.html" target="_blank">华融证券和方正证券两高管代客买卖股票亏损83万余元 被市场禁入</a>
+          <span>11-30&nbsp;&nbsp;上证通网SZTNET</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/57.html" target="_blank">“破净”金融股有望成回购大户 4家券商已开始行动</a>
+          <span>11-29&nbsp;&nbsp;证券日报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/40.html" target="_blank">券商支持民企发展：国泰君安出资25亿设立"证券行业支持民营企业发展资产管理计划”</a>
+          <span>11-05&nbsp;&nbsp;澎湃新闻</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/19.html" target="_blank">证监会刘健钧：创投行业必须尽快实现基金运作规范化</a>
+          <span>11-04&nbsp;&nbsp;界面</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/20.html" target="_blank">迎来新机遇 投行"锁定"IPO被否企业</a>
+          <span>10-31&nbsp;&nbsp;中国证券报</span>
+        </li>
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/news/21.html" target="_blank">ABS业务费率跌跌不休 信托公司考核标准不一是主因</a>
+          <span>08-06&nbsp;&nbsp;</span>
+        </li>
+                      </ul>
+            
+    </section>
+  </div><!--/左侧-->
+  
+  <div class="col xs-12 md-5">
+    <h3 class="h3-1 bts bbs">新闻点击排行&nbsp;<i class="iconfont icon-hot"></i></h3>
+    <ul class="hit small">    
+                        <li><span>1</span><a href="http://www.sztnet.com/news/117.html" target="_blank">央行或继续“扩表”支撑信用创造稳增长</a></li>
+                  <li><span>2</span><a href="http://www.sztnet.com/news/125.html" target="_blank">阿里巴巴成为中金公司的第三大股东 意欲何为？</a></li>
+                  <li><span>3</span><a href="http://www.sztnet.com/news/124.html" target="_blank">平安银行私人银行发布《2018年高净值人群财富安全感报告》</a></li>
+                  <li><span>4</span><a href="http://www.sztnet.com/news/23.html" target="_blank">从“离场论”到“自己人” 民营经济惊心动魄的50天</a></li>
+                  <li><span>5</span><a href="http://www.sztnet.com/news/90.html" target="_blank">格力电器宣布加薪：总薪酬增加10亿 只针对普通员工</a></li>
+                
+          </ul>
+    <img src="http://www.sztnet.com/uploadfile/poster/zx-fm-1.jpg" alt="万弘资产" width="100%" />
+  </div><!--/右侧-->
+</div><!--/row-->
+
+<a class="iconfont icon-dingbu" href="javascript:scroll(0, 0)"></a>
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/we-media/" target="_blank">自媒入驻</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2019&nbsp;上证通网&nbsp;版权所有</span>
+  <span style="display:none;"><script type="text/javascript" src="https://s5.cnzz.com/z_stat.php?id=1276112486&web_id=1276112486"></script></span>
+  <script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+</footer></body>
+</html>

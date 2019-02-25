@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--<script>var pvinsight_page_ancestors = '200057137';</script>-->
+<html lang="cmn-Hans">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=gb2312" />
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+<!--<script src="http://www.sohu.com/sohuflash_1.js"></script>-->
+<!--<link rel="stylesheet" href="http://css.sohu.com/upload/global1.4.1.css" /> 里面是初始化的公共CSS-->
+<script src="{JS_PATH}jquery.min.js"></script><!--必需-->
+<style>
+ul{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+.boxRA{
+	width:288px;
+	padding-top:5px;
+}
+.boxRA .pic{
+	height:170px;
+	margin:10px auto 0;
+	text-align:center;
+}
+.market-menu{
+	margin:10px 10px 0 auto;
+	width:288px;
+}
+.market-menu li{
+	cursor:pointer;
+	float:left;
+	height:26px;
+	border-bottom:1px #ddd solid;
+	font:12px/26px "\5B8B\4F53";
+	color:#333;
+}
+.market-menu li span{
+	width:66px;
+	float:left;
+	display:inline-block;
+}
+.market-menu li .wa{
+	width:110px;
+	text-indent:3px;
+}
+.market-menu li .wd{width:46px}
+.market-menu li .red{color:#c00}
+.market-menu li .green{color:#090}
+.market-menu li a{
+	color:#004174;
+	text-decoration:none;
+}
+.market-menu .end{border:0}
+#market .hover{background:#eee}
+</style>
+
+<!--<script src="//a1.itc.cn/pv/js/pvclick.1206141014.js"></script>-->
+<!--<script src="http://js.sohu.com/library/jquery-1.7.1.min.js"></script>-->
+<!--<script src="http://business.sohu.com/upload/MDC_FocusImage01/MDC_FocusImage.js"></script>
+<script src="http://business.sohu.com/upload/business20150130/dynamic.js"></script>-->
+
+<!--<script>
+function nTabs(thisObj,Num){
+if(thisObj.className == "now")return;
+var tabObj = thisObj.parentNode.id;
+var tabList = document.getElementById(tabObj).getElementsByTagName("span");
+for(i=0; i <tabList.length; i++)
+{
+  if (i == Num)
+  {
+   thisObj.className = "now"; 
+      document.getElementById(tabObj+"_Content"+i).style.display = "block";
+  }else{
+   tabList[i].className = ""; 
+   document.getElementById(tabObj+"_Content"+i).style.display = "none";
+  }
+} 
+}
+</script>-->
+</head>
+
+<body>
+<!--<link rel="stylesheet" href="http://news.sohu.com/upload/itoolbar/cms/itoolbar.201410281438.css" charset="UTF-8" />
+<script src="http://news.sohu.com/upload/itoolbar/itoolbar.cms.loader.2016010513.js" charset="UTF-8"></script>-->
+
+
+      
+<div class="boxRA clear" id="market">
+
+  <div class="pic">
+    <a href="http://q.stock.sohu.com/zs/000001/index.shtml" target="_blank"><img src="http://d1.biz.itc.cn/q/zs/001/000001/index_3.png" alt="上证指数"></a>
+  </div>
+  <div class="market-menu clear">
+    <ul>
+      <li><span class="wa"><a href="http://q.stock.sohu.com/zs/000001/index.shtml" target="_blank">上证指数</a></span><span class="wb">--</span><span class="wb">--</span><span class="wd">--</span></li>
+      <li><span class="wa"><a href="http://q.stock.sohu.com/zs/399001/index.shtml" target="_blank">深证成指</a></span><span class="wb">--</span><span class="wb">--</span><span class="wd green">--</span></li>
+      <li class="end"><span class="wa"><a href="http://q.stock.sohu.com/zs/399300/index.shtml" target="_blank">沪深300</a></span><span class="wb">--</span><span class="wb">--</span><span class="wd">--</span></li>
+    </ul>      
+  </div>
+
+<script>
+(function(e,t){this[e]=t()})("Whiskers",function(){var e="[\\x20\\t\\r\\n\\f]",t="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",n="\\{\\{=(\\$?"+t.replace("w","w\\[\\]\\.\\*'\" \\(\\)>\\+")+")\\}\\}",r=new RegExp(n.replace("?",""),"g"),i=new RegExp(n.replace("\\$?",""),"g"),s=new RegExp("#("+t+"|"+n+")"),o=new RegExp("\\.("+t+"|"+n+")"),u=new RegExp("\\["+e+"*("+t+")"+e+"*="+e+"*(['\"]?)((?:"+n.replace("?","")+"|"+t.replace("w","w\\.\"':\\/@;\\?&#()")+"))\\2"+e+"*\\]"),a=new RegExp("(?:\\["+e+"*"+t+e+"*="+e+"*[^\\]]+|\\{\\{=[^\\}]+)$"),f=new RegExp("^"+e+"*("+t+")|("+n+")"+e+"*"),l=function(e){var t=e.length,n=0,r=[],i=[],s=[],o,u=[];for(var f=0;f<t;f++){var h=e.charAt(f),p=!1;if(/[\(\)>\+]/.test(h)||(p=f==t-1)){var d=r.join("");if(a.test(d))r.push(h);else{h=="("&&n++,h==")"&&n--;if(n)(n==1&&h!="("||n!=1)&&r.push(h);else{if(h==")")i.push(l(d));else if(h==">"||h=="+"||f==t-1)p&&(d+=h),o=c(d),i.push(o[0]),s.unshift(o[1]),h=="+"&&(u.push(i.join("")+s.join("")),i=[],s=[]);r=[]}}}else r.push(h)}return u.push(i.join("")+s.join("")),u.join("")},c=function(e){var t=f.exec(e),n=[],r=[];if(!t)return["",""];var i=t[1],a=t[2];if(i){var l,c=s.exec(e),h,p,d=[];e.replace(/\*(\d+)/,function(e,t){return t&&(l=t),""}),l&&n.push(l+"*("),n.push("<"+i),c&&n.push("id="+c[1]);while(e!="")if(h=u.exec(e)){var v=h[1].toLowerCase(),m=h[3];v=="class"?d.push(m):n.push(v+"="+m),e=e.replace(u,"")}else(p=o.exec(e))?(d.push(p[1]),e=e.replace(o,"")):e="";d.length&&n.push('class="'+d.join(" ")+'"'),n.push(">"),r.unshift("</"+i+">"),l&&r.push(")*"+l)}else a&&(n.push(a),r.unshift(""));return[n.join(" "),r.join("")]},h=function(e,t,n){var s,o=/(\d+)\*\(((?:\\\\.|[^\\\\])+)\)\*\1/g;return t&&n&&n(t),s=l(e),s=s.replace(o,function(e,t,n){var r=t,i=n,s=[];for(var o=0;o<r;o++)s.push(i.replace(/\*/g,o));return s.join("")}),t&&(s=s.replace(r,function(e,n){var r=n.match(/[^\[\]\.]+/g),i;if(r)while(r.length)i=(i||t)[r.shift()];return/(?:undefined|null)/.test(i)?e:i})),s=s.replace(i,function(e,t){return t}),s},p=function(e){this.template=e||"",this.childNodes=[],this.results=[]};p.prototype={append:function(e){this.childNodes.push(e)},prepend:function(e){this.childNodes.unshift(e)},toString:function(){var e=this.template,t=this.childNodes,n=t.length;this.results=[],e&&this.results.push(e);if(t.length){var r=[],i;for(var s=0;s<n;s++){var o=t[s];o.childNodes&&o.childNodes.length?r.push(o.toString()):r.push(o.template||o)}if(i=r.length)r=i>1?"("+r.join("+")+")":r[0],this.results.push(r)}return this.results.join(">")}};var d={render:function(){var e=arguments;return typeof e[0]!="string"&&(e[0]=e[0].toString()),h.apply(this,e)},create:function(e){return new p(e)}};return d});
+
+(function($){
+	var Business = {
+		index:function(o){
+			var str = [],hover = $('#market .hover').attr('code') || 'zs_000001';
+			var cls = '',
+			html = '<ul >';
+			$.each(o,function(key,value){
+				var data = value, amount = parseFloat(data[4]);
+
+				if(amount < 0) cls = 'green';
+				else if(amount > 0) cls = 'red';
+				else data.cls = '';
+				
+				html += '<li code="' + data[0] + '">' +
+						'<span class="wa"><a target="_blank" href=http://q.stock.sohu.com' + data[15] + '>' + data[1] + '</a></span>' +
+						'<span class="wb">' + parseFloat(data[2]).toFixed(2) + '</span>' +
+						'<span class="wb ' + cls + '">' + parseFloat(data[3]) + '%</span>' +
+						'<span class="wd ' + cls + '">' + parseFloat(data[4]) + '</span>' +
+					 '</li>';
+			});
+			html += '</ul>';
+			
+			$('#market .market-menu').html(html);
+			$('#market li[code=' + hover + ']').addClass('hover');
+		},
+		init:function(){
+			$.getScript('http://hqm.stock.sohu.com/getqjson?code=zs_000001,zs_399001,zs_399300&cb=Business.index');
+			setInterval(function(){
+				var url  = $('#market img').attr('src').replace(/\d*$/,'');
+				$.getScript('http://hqm.stock.sohu.com/getqjson?code=zs_000001,zs_399001,zs_399300&cb=Business.index');
+				$('#market img').attr(url + new Date().getTime());
+			},60 * 1000);
+
+			$('#market').delegate('li','mouseover',function(){
+				var hover = $('#market .hover'),code = $(this).attr('code').slice(3);
+				if(this == hover[0]) return;
+
+				var url = 'http://d1.biz.itc.cn/q/zs/' + code.slice(-3) + '/' + code + '/index_3.png?' + new Date().getTime(),link = 'http://q.stock.sohu.com/zs/' + code + '/index.shtml';
+				$('#market .pic').html('<a href="' + link + '" target="_blank"><img src="' + url + '"/></a>');
+				hover.removeClass('hover');
+				$(this).addClass('hover');
+			})
+		}
+	};
+	window.Business = Business;
+
+	Business.init();
+})(jQuery);
+</script>
+    
+</div>
+
+
+</body>
+</html>

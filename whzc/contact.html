@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./img/ico.png" type="image/x-icon">
+  <title>万弘资产</title>
+  <meta name="keywords" content="万弘资产, 深圳市万弘资产管理有限公司, 王涛">
+  <meta name="description" content="万弘资产是国内知名的财富管理机构">
+  <link href="./css/kfct.css" rel="stylesheet">
+  <!--引用百度地图API-->
+  <style type="text/css">
+      .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+      .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+  </style>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+  <script type="text/javascript"> 
+    function showImg(){document.getElementById("wxImg").style.display='block';} 
+    function hideImg(){document.getElementById("wxImg").style.display='none';} 
+  </script>
+</head>
+
+<body style="position:relative;">
+<header>
+  <div class="container">
+  <div class="row">
+    <div class="col xs-6 hd-lt"><a href="index.html" target="_self"><img src="img/home.png" /></a><span>发现价值 创新共赢</span></div>
+    <div class="col xs-6 hd-rt"><a href="#">登陆</a><a href="#">注册</a></div>
+  </div><!--/row-->
+  </div><!--/container-->
+</header>
+
+<nav class="container">
+  <div class="row">
+    <div class="col xs-3"><a href="index.html" target="_self"><img src="./img/logo.png" /></a></div>
+    <div class="col xs-9">
+      <ul>
+        <li><a href="aboutUs.html" target="_self">关于我们</a></li>
+        <li><a href="products.html" target="_self">产品服务</a></li>
+        <li><a href="announcement.html" target="_self">万弘公告</a></li>
+        <li><a href="companyNews.html" target="_self">万弘动态</a></li>
+        <li><a href="wealthInsight.html" target="_self">财富观察</a></li>
+        <li><a href="contact.html" target="_self">联系方式</a></li>
+      </ul>
+    </div>
+    <div class="col xs-12 separator"><div></div></div>
+  </div><!--/row-->
+</nav>
+
+<div class="container main">
+  <div class="row">
+  <div class="col xs-12 md-3 cateHead">
+    <div><span>联系方式</span><img src="img/colBanner/contact.jpg" /></div>
+    <img src="img/bgpic.jpg" />
+  </div><!--/左COL-->
+  
+  <div class="col xs-12 md-9">
+    <div class="bts">
+    <p>办公地址：深圳市南山区大冲商务中心D座2206室</p>
+    <p>公司电话：0755-2660 2493</p>
+    <p>公司传真：0755-3550 6629</p>
+    <p>公司邮箱：service@cwhfund.com</p>
+    </div>
+    
+    <!--百度地图容器-->
+    <div style="width:697px; height:550px; border:#ccc solid 1px;" id="dituContent"></div>
+  </div><!--/右-->
+  </div><!--/row-->
+</div><!--/container-->
+
+<!--页脚-->
+<div id="wxImg"><img src="img/wechat.png" /></div>
+<footer>
+  <div class="container">
+  <div class="row">
+    <div class="col xs-12 md-6 ft-lt">
+      <p>友情链接</p>
+      <p>
+        <a href="https://xin.baidu.com/detail/compinfo?pid=uM*091NGe7kQQY0Qr7ePtjwqTg8UNdP38Qvf&from=ps&tab=basic" target="_blank">中国青旅集团</a>
+        <a href="http://www.suvc.com.cn/" target="_blank">中美投资</a>
+        <a href="http://www.xkund.com/" target="_blank">坤方创投</a>
+        <a href="http://www.amac.org.cn/" target="_blank">中基协</a>
+      </p>    
+    </div>
+    <div class="col xs-12 md-6 ft-rt">
+      <p><a href="jobs.html" target="_blank">加入我们</a><a href="javascript:void(0)" onMouseOut="hideImg()" onmouseover="showImg()">官方微信</a></p>
+      <p><img src="img/beian.png" />&nbsp;粤ICP备18078799号&nbsp;&nbsp;&nbsp;&nbsp;&copy;2014-2018&nbsp;万弘资产 版权所有</p>
+    </div>
+  </div><!--/row-->
+  </div><!--/container-->
+</footer>
+
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(113.958474,22.546693);//定义一个中心点坐标
+        map.centerAndZoom(point,18);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"万弘资产",content:"欢迎光临！",point:"113.960024|22.547144",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+
+</body>
+</html>

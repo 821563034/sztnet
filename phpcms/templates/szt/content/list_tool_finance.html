@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row tool">
+  <div class="col xs-12"><h3 class="line1"><span>监管部门/协会</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.csrc.gov.cn/" target="_blank">中国证监会</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.szse.cn/" target="_blank">深交所</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sse.com.cn/" target="_blank">上交所</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.neeq.com.cn/" target="_blank">全国股转</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.chinaclear.cn/" target="_blank">中国结算</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sac.net.cn/" target="_blank">中证协</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.amac.org.cn/" target="_blank">中基协</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cicpa.org.cn/" target="_blank">中注协</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.capco.org.cn/" target="_blank">中上协</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.acla.org.cn/" target="_blank">中华律协</a></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>综合门户</span></h3></div>
+  <div class="col xs-12 md-2"><a href="https://finance.sina.com.cn/" target="_blank">新浪财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://business.sohu.com/" target="_blank">搜狐财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://money.163.com/" target="_blank">网易财经</a></div>
+  <div class="col xs-12 md-2"><a href="https://new.qq.com/ch/finance/" target="_blank">腾讯财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://finance.ifeng.com/" target="_blank">凤凰财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.xinhuanet.com/fortune/" target="_blank">新华网财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://finance.people.com.cn/GB/index.html" target="_blank">人民网财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://finance.china.com.cn/" target="_blank">中国网财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://jingji.cctv.com/" target="_blank">央视网经济</a></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>财经门户</span></h3></div>    
+  <div class="col xs-12 md-2"><a href="http://www.eastmoney.com/" target="_blank">东方财富网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.hexun.com/" target="_blank">和讯网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.stockstar.com/" target="_blank">证券之星</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.jrj.com.cn/" target="_blank">金融界</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cnfol.com/" target="_blank">中金在线</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cfi.net.cn/" target="_blank">中财网</a></div>
+  <div class="col xs-12 md-2"><a href="https://www.cls.cn/" target="_blank">财联社</a></div>
+  <div class="col xs-12 md-2"><a href="https://xueqiu.com/" target="_blank">雪球</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.10jqka.com.cn/" target="_blank">同花顺财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.sztnet.com/" target="_blank">上证通网</a></div>
+    
+  <div class="col xs-12"><h3 class="line1"><span>报纸旗下</span></h3></div>  
+  <div class="col xs-12 md-2"><a href="http://www.cnstock.com/" target="_blank">中国证券网（上证报）</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cs.com.cn/" target="_blank">中证网（中证报）</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.stcn.com/" target="_blank">证券时报网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.zqrb.cn/" target="_blank">证券日报网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.yicai.com/" target="_blank">第一财经</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.eeo.com.cn/" target="_blank">经济观察报</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.nbd.com.cn/" target="_blank">每日经济新闻</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.cb.com.cn/" target="_blank">中国经营报</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.chinatimes.cc/index.htm" target="_blank">华夏时报</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.jjckb.cn/" target="_blank">经济参考报</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.ce.cn/" target="_blank">中国经济网（经济日报）</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.financialnews.com.cn/" target="_blank">金融新闻网（金融时报）</a></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>杂志旗下</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.caixin.com/" target="_blank">财新网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.caijing.com.cn/" target="_blank">财经网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.hongzhoukan.com/" target="_blank">证券市场红周刊</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.capitalweek.com.cn/" target="_blank">证券市场周刊</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.xcf.cn/s/index.html" target="_blank">新财富</a></div>
+  <div class="col xs-12 md-2"><a href="https://www.cbnweek.com/" target="_blank">第一财经周刊</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.iceo.com.cn/" target="_blank">中国企业家网</a></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>国外电讯</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.ftchinese.com/" target="_blank">FT中文网</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.fortunechina.com/" target="_blank">Fortune/财富</a></div>
+  <div class="col xs-12 md-2"><a href="http://www.forbeschina.com/" target="_blank">福布斯中文网</a></div>
+  <div class="col xs-12 md-2"><a href="https://finance.yahoo.com/" target="_blank">Yahoo!Finance</a></div>
+
+    
+  <div class="col xs-12 advise"><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">热烈欢迎网友提供建议</a></div>
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

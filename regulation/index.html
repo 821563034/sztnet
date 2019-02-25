@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>监管 - 上证通网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/szt.css" rel="stylesheet" /> 
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script src="http://www.sztnet.com/statics/js/search_common.js"></script>
+  <script src="http://www.sztnet.com/statics/js/myjs/slide.js"></script>
+  <script>
+  $(function(){
+      $(".tabBox span").each(function(i){
+          $(this).hover(function(){
+              $(this).addClass("activeTab").siblings().removeClass("activeTab");
+              $(".tabCont:eq("+i+")").show().siblings(".tabCont").hide();
+          })
+      })
+  })
+  </script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script><div class="container">
+<nav class="mainNav cateNum-12 clear">
+<ul>
+  <li><a href="http://www.sztnet.com/news/" target="_self">资讯</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li><a href="http://www.sztnet.com/law/" target="_blank">法规</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=55" target="_self">产业</a></li>
+  <li>
+    <a id="biz" href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=499" target="_self">微群</a></li>
+  <li><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=56" target="_self">商脉</a></li>
+</ul>
+</nav>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#biz").click(function(){$("#biz").siblings().toggle(100);});
+  });
+</script><div class="row mt10">
+
+  <div class="col xs-12 md-7">   
+    <section class="row5px mb10">
+      <div class="col5px xs-12 md-6">
+        <div id="slide"></div>
+        <script>
+          jQuery("#slide").focusImg({"speed":"5000","type":"1","flag":"fi02","hoverStop":true},[
+                                    {    
+              "p":"http://www.sztnet.com/uploadfile/2018/1129/20181129094833439.png",
+              "l":"http://www.sztnet.com/regulation//58.html",
+              "t":"好消息！深交所就回购股份实施细则公开征求意见 积极支持上市公司依法合规回购股份" 
+            },
+                                  ]);
+        </script>
+      </div><!--左-->
+      <div class="col5px xs-12 md-6">
+        <ul class="recommend">
+                                        <li><a href="http://www.sztnet.com/regulation/123.html" target="_blank">上交所召开科创板配套规则征求意见座谈会 3天9场</a></li>
+                                        <li><a href="http://www.sztnet.com/regulation//81.html" target="_blank">上交所修订债券上市挂牌业务规则 速看交易所解读</a></li>
+                                        <li><a href="http://www.sztnet.com/regulation//79.html" target="_blank">深交所又出公司债新规 速看官方对新规的意见</a></li>
+                                      </ul>
+      </div><!--/右-->
+    </section><!--/推荐-->
+
+    <section>
+      <nav class="tabBox tab6 mb10">
+        <span class="activeTab">最新</span><span>证监会</span><span>深交所</span><span>上交所</span><span>股转公司</span><span>其他</span>
+      </nav>
+     
+      <ul class="newest tabCont lts">
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation/137.html" target="_blank">新鲜！全国首单含权地方政府债券在深交所成功发行</a>
+          <span>02-20</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation/123.html" target="_blank">上交所召开科创板配套规则征求意见座谈会 3天9场</a>
+          <span>02-19</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation/126.html" target="_blank">深交所回应支持粤港澳大湾区建设 湾区内深交所上市公司458家</a>
+          <span>02-19</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//102.html" target="_blank">深交所严打操纵业绩行为 自曝“看家本领”</a>
+          <span>02-15</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//108.html" target="_blank">2018年第四季度债券市场【信用评级机构】运行通报</a>
+          <span>02-14</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//101.html" target="_blank">深交所发布《创业板上市公司2017年年报优秀案例汇编》 你家上榜没？</a>
+          <span>02-14</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//100.html" target="_blank">科创板新进展：证监会召开征求意见座谈会</a>
+          <span>02-13</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.chinaclear.cn/zdjs/xmzkb/center_mzkb.shtml" target="_blank">一周投资者情况统计表（2019.01.28-2019.02.01） 中国股民知多少？</a>
+          <span>02-02</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//103.html" target="_blank">QFII、RQFII参与新三板投资政策即将落地</a>
+          <span>02-01</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//104.html" target="_blank">全国股转公司推出60日市盈率 稀奇！</a>
+          <span>01-18</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.neeq.com.cn/important_news/200005004.html" target="_blank">一图读懂系列——主办券商推荐业务优化改革</a>
+          <span>12-19</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.neeq.com.cn/important_news/200004988.html" target="_blank">一图读懂系列——挂牌公司权益变动与收购业务问答</a>
+          <span>12-17</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//78.html" target="_blank">好消息！深沪港交易所就不同投票权架构公司纳入港股通股票范围达成共识</a>
+          <span>12-09</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//79.html" target="_blank">深交所又出公司债新规 速看官方对新规的意见</a>
+          <span>12-07</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//81.html" target="_blank">上交所修订债券上市挂牌业务规则 速看交易所解读</a>
+          <span>12-07</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//80.html" target="_blank">深港通平稳运行两周年 国际投资者怎么看？</a>
+          <span>12-05</span>
+        </li>
+                <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/1129/thumb_90_60_20181129094833439.png" />          <a href="http://www.sztnet.com/regulation//58.html" target="_blank">好消息！深交所就回购股份实施细则公开征求意见 积极支持上市公司依法合规回购股份</a>
+          <span>11-29</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//59.html" target="_blank">速来围观！证监会对第十八届发行审核委员会委员候选人进行公示</a>
+          <span>11-27</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//61.html" target="_blank">想搞小动作的注意了 上交所发布高送转信息披露指引</a>
+          <span>11-23</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//60.html" target="_blank">证监会通报2018年上半年IPO企业现场检查及问题处理情况 这些问题你家有没？</a>
+          <span>11-16</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//39.html" target="_blank">上交所关于发布【沪伦通存托凭证业务】配套业务规则的答记者问</a>
+          <span>11-02</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//38.html" target="_blank">深交所推出首批信用保护工具业务试点 提高民营企业债券融资效率</a>
+          <span>11-02</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//7.html" target="_blank">证监会通报2018年度审计机构基础审计程序（函证）专项检查情况 29名注册会计师将受处理（附名单）</a>
+          <span>10-12</span>
+        </li>
+                <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/0429/thumb_90_60_20180429075503132.jpg" />          <a href="http://news.sina.com.cn/o/2018-04-29/doc-ifzvpatq9259820.shtml" target="_blank">证监会正式发布《外商投资证券公司管理办法》</a>
+          <span>04-29</span>
+        </li>
+                      </ul>
+  
+                  <ul class="newest tabCont lts bbs hide">
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//100.html" target="_blank">科创板新进展：证监会召开征求意见座谈会</a>
+          <span>02-13</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//59.html" target="_blank">速来围观！证监会对第十八届发行审核委员会委员候选人进行公示</a>
+          <span>11-27</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//60.html" target="_blank">证监会通报2018年上半年IPO企业现场检查及问题处理情况 这些问题你家有没？</a>
+          <span>11-16</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//7.html" target="_blank">证监会通报2018年度审计机构基础审计程序（函证）专项检查情况 29名注册会计师将受处理（附名单）</a>
+          <span>10-12</span>
+        </li>
+                <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/0429/thumb_90_60_20180429075503132.jpg" />          <a href="http://news.sina.com.cn/o/2018-04-29/doc-ifzvpatq9259820.shtml" target="_blank">证监会正式发布《外商投资证券公司管理办法》</a>
+          <span>04-29</span>
+        </li>
+                      </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation/137.html" target="_blank">新鲜！全国首单含权地方政府债券在深交所成功发行</a>
+          <span>02-20</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation/126.html" target="_blank">深交所回应支持粤港澳大湾区建设 湾区内深交所上市公司458家</a>
+          <span>02-19</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//102.html" target="_blank">深交所严打操纵业绩行为 自曝“看家本领”</a>
+          <span>02-15</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//101.html" target="_blank">深交所发布《创业板上市公司2017年年报优秀案例汇编》 你家上榜没？</a>
+          <span>02-14</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//78.html" target="_blank">好消息！深沪港交易所就不同投票权架构公司纳入港股通股票范围达成共识</a>
+          <span>12-09</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//79.html" target="_blank">深交所又出公司债新规 速看官方对新规的意见</a>
+          <span>12-07</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//80.html" target="_blank">深港通平稳运行两周年 国际投资者怎么看？</a>
+          <span>12-05</span>
+        </li>
+                <li class="pic">
+          <img src="http://www.sztnet.com/uploadfile/2018/1129/thumb_90_60_20181129094833439.png" />          <a href="http://www.sztnet.com/regulation//58.html" target="_blank">好消息！深交所就回购股份实施细则公开征求意见 积极支持上市公司依法合规回购股份</a>
+          <span>11-29</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//38.html" target="_blank">深交所推出首批信用保护工具业务试点 提高民营企业债券融资效率</a>
+          <span>11-02</span>
+        </li>
+                      </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation/123.html" target="_blank">上交所召开科创板配套规则征求意见座谈会 3天9场</a>
+          <span>02-19</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//81.html" target="_blank">上交所修订债券上市挂牌业务规则 速看交易所解读</a>
+          <span>12-07</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//61.html" target="_blank">想搞小动作的注意了 上交所发布高送转信息披露指引</a>
+          <span>11-23</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//39.html" target="_blank">上交所关于发布【沪伦通存托凭证业务】配套业务规则的答记者问</a>
+          <span>11-02</span>
+        </li>
+                      </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//103.html" target="_blank">QFII、RQFII参与新三板投资政策即将落地</a>
+          <span>02-01</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//104.html" target="_blank">全国股转公司推出60日市盈率 稀奇！</a>
+          <span>01-18</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.neeq.com.cn/important_news/200005004.html" target="_blank">一图读懂系列——主办券商推荐业务优化改革</a>
+          <span>12-19</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.neeq.com.cn/important_news/200004988.html" target="_blank">一图读懂系列——挂牌公司权益变动与收购业务问答</a>
+          <span>12-17</span>
+        </li>
+                      </ul>
+                  <ul class="newest tabCont lts bbs hide">
+                        <li class="noPic">
+                    <a href="http://www.sztnet.com/regulation//108.html" target="_blank">2018年第四季度债券市场【信用评级机构】运行通报</a>
+          <span>02-14</span>
+        </li>
+                <li class="noPic">
+                    <a href="http://www.chinaclear.cn/zdjs/xmzkb/center_mzkb.shtml" target="_blank">一周投资者情况统计表（2019.01.28-2019.02.01） 中国股民知多少？</a>
+          <span>02-02</span>
+        </li>
+                      </ul>
+          </section>
+  </div><!--/左侧-->
+
+  <div class="col xs-12 md-5">
+    <h3 class="h3-1 bts bbs">点击排行&nbsp;<i class="iconfont icon-hot"></i></h3>
+    <ul class="hit small">    
+                        <li><span>1</span><a href="http://www.sztnet.com/regulation//80.html" target="_blank">深港通平稳运行两周年 国际投资者怎么看？</a></li>
+                  <li><span>2</span><a href="http://www.sztnet.com/regulation//38.html" target="_blank">深交所推出首批信用保护工具业务试点 提高民营企业债券融资效率</a></li>
+                  <li><span>3</span><a href="http://www.sztnet.com/regulation//102.html" target="_blank">深交所严打操纵业绩行为 自曝“看家本领”</a></li>
+                  <li><span>4</span><a href="http://www.sztnet.com/regulation//78.html" target="_blank">好消息！深沪港交易所就不同投票权架构公司纳入港股通股票范围达成共识</a></li>
+                  <li><span>5</span><a href="http://www.sztnet.com/regulation/123.html" target="_blank">上交所召开科创板配套规则征求意见座谈会 3天9场</a></li>
+                
+          </ul>
+
+    <script>$(document).ready(function(){$("#csrcInfo caption").click(function(){$("#csrcInfo tr").toggle();});});</script>
+    <div class="tb-offset">
+    <table class="tb-sep-v2 smaller td-high" id="csrcInfo">
+      <caption class="high tbCaption"><i class="iconfont icon-bumen"></i>&nbsp;中国证监会监管信息导航</caption>
+      <tr>
+        <td><a href="http://www.csrc.gov.cn/pub/newsite/zjhxwfb/xwdd/" target="_blank">证监会要闻</a></td>
+        <td><a href="http://www.csrc.gov.cn/pub/newsite/zjhxwfb/xwfbh/" target="_blank">新闻发布会</a></td>
+        <td><a href="http://www.csrc.gov.cn/pub/zjhpublic/index.htm?channel=3300/3311" target="_blank">证监会令</a></td>
+        <td><a href="http://www.csrc.gov.cn/pub/zjhpublic/index.htm?channel=3300/3302" target="_blank">证监会公告</a></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.csrc.gov.cn/pub/zjhpublic/index.htm?channel=3300/3307" target="_blank">行政许可(审批)</a></td>
+        <td><a href="http://www.csrc.gov.cn/pub/zjhpublic/index.htm?channel=3300/3313" target="_blank">行政处罚</a></td>
+        <td><a href="http://www.csrc.gov.cn/pub/zjhpublic/index.htm?channel=3300/3619" target="_blank">市场禁入</a></td>
+        <td><a href="http://www.csrc.gov.cn/pub/zjhpublic/index.htm?channel=3300/3620" target="_blank">行政复议</a></td>
+      </tr>
+      <tr>
+        <td colspan="2"><a href="http://www.csrc.gov.cn/pub/newsite/flb/flfg/" target="_blank">部门规章及规范性文件</a></td>
+        <td colspan="2"><a href="http://shixin.csrc.gov.cn/honestypub/" target="_blank">市场失信记录查询平台</a></td>
+      </tr>
+    </table>
+    </div>
+
+    <script>$(document).ready(function(){$("#szseInfo caption").click(function(){$("#szseInfo tr").toggle();});});</script>
+    <div class="tb-offset">    
+    <table class="tb-sep-v2 smaller td-high" id="szseInfo">
+      <caption class="high tbCaption"><i class="iconfont icon-bumen"></i>&nbsp;深交所监管信息导航</caption>
+      <tr>
+        <td><a href="http://www.szse.cn/row/rule/" target="_blank">法律/规则</a></td>
+        <td><a href="http://www.szse.cn/row/disclosure/jgxxgk/jgcs/" target="_blank">交易所监管信息</a></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.szse.cn/row/disclosure/jgxxgk/xxplkp/" target="_blank">信息披露考评</a></td>
+        <td><a href="http://www.szse.cn/row/disclosure/bulliten/cxda/cfcfjl/" target="_blank">公司/中介诚信档案</a></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.szse.cn/main/aboutus/bsyw/" target="_blank">深交所要闻</a></td>
+        <td><a href="http://www.szse.cn/main/aboutus/bsdt_left/xwfbh/" target="_blank">新闻发布会</a></td>
+      </tr>
+    </table>
+    </div>
+
+    <script>$(document).ready(function(){$("#shseInfo caption").click(function(){$("#shseInfo tr").toggle();});});</script>
+    <div class="tb-offset">
+    <table class="tb-sep-v2 smaller td-high" id="shseInfo">
+      <caption class="high tbCaption"><i class="iconfont icon-bumen"></i>&nbsp;上交所监管信息导航</caption>
+      <tr>
+        <td><a href="http://www.sse.com.cn/lawandrules/overview/" target="_blank">法律/规则</a></td>
+        <td><a href="http://www.sse.com.cn/disclosure/credibility/supervision/measures/" target="_blank">监管信息公开</a></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.sse.com.cn/disclosure/credibility/supervision/secretaries/" target="_blank">董秘考核结果</a></td>
+        <td><a href="http://www.sse.com.cn/disclosure/credibility/supervision/promisho/" target="_blank">承诺履行</a></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.sse.com.cn/aboutus/mediacenter/hotandd/" target="_blank">上交所动态</a></td>
+        <td><a href="http://www.sse.com.cn/aboutus/mediacenter/conference/" target="_blank">新闻发布会</a></td>
+      </tr>
+    </table>
+    </div>    
+  </div><!--/右侧-->
+</div><!--/row-->
+
+<a class="iconfont icon-dingbu" href="javascript:scroll(0, 0)"></a>
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/we-media/" target="_blank">自媒入驻</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2019&nbsp;上证通网&nbsp;版权所有</span>
+  <span style="display:none;"><script type="text/javascript" src="https://s5.cnzz.com/z_stat.php?id=1276112486&web_id=1276112486"></script></span>
+  <script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+</footer></body>
+</html>    

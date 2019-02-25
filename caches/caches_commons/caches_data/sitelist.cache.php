@@ -1,0 +1,68 @@
+<?php
+return array (
+  1 => 
+  array (
+    'siteid' => '1',
+    'name' => '上证通网',
+    'dirname' => '',
+    'domain' => 'http://www.sztnet.com/',
+    'site_title' => '上证通网',
+    'keywords' => '',
+    'description' => '',
+    'release_point' => '',
+    'default_style' => 'szt',
+    'template' => 'szt',
+    'setting' => '{"upload_maxsize":"2048","upload_allowext":"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf","watermark_enable":"1","watermark_minwidth":"300","watermark_minheight":"300","watermark_img":"statics\\/images\\/water\\/\\/mark.png","watermark_pct":"85","watermark_quality":"80","watermark_pos":"9"}',
+    'uuid' => 'f7bc229c-4b70-11e8-892f-1867b0bfdcb0',
+    'url' => 'http://www.sztnet.com/',
+  ),
+  2 => 
+  array (
+    'siteid' => '2',
+    'name' => '法库',
+    'dirname' => 'law',
+    'domain' => 'http://www.sztnet.com/law/',
+    'site_title' => '证券法规库',
+    'keywords' => '',
+    'description' => '',
+    'release_point' => '',
+    'default_style' => 'law',
+    'template' => 'law',
+    'setting' => '{"upload_maxsize":"2000","upload_allowext":"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf","watermark_enable":"0","watermark_minwidth":"300","watermark_minheight":"300","watermark_img":"statics\\/images\\/water\\/http:\\/\\/www.sztnet.com\\/mark.gif","watermark_pct":"100","watermark_quality":"80","watermark_pos":"9"}',
+    'uuid' => '',
+    'url' => 'http://www.sztnet.com/law/',
+  ),
+  3 => 
+  array (
+    'siteid' => '3',
+    'name' => '指南',
+    'dirname' => 'guide',
+    'domain' => 'http://www.sztnet.com/guide/',
+    'site_title' => '',
+    'keywords' => '',
+    'description' => '',
+    'release_point' => '',
+    'default_style' => 'guide',
+    'template' => 'guide',
+    'setting' => '{"upload_maxsize":"2000","upload_allowext":"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf","watermark_enable":"0","watermark_minwidth":"300","watermark_minheight":"300","watermark_img":"http:\\/\\/www.sztnet.com\\/statics\\/images\\/water\\/mark.gif","watermark_pct":"100","watermark_quality":"80","watermark_pos":"9"}',
+    'uuid' => '',
+    'url' => 'http://www.sztnet.com/guide/',
+  ),
+  4 => 
+  array (
+    'siteid' => '4',
+    'name' => '商城',
+    'dirname' => 'mall',
+    'domain' => 'http://www.sztnet.com/mall/',
+    'site_title' => '',
+    'keywords' => '',
+    'description' => '',
+    'release_point' => '',
+    'default_style' => 'szt',
+    'template' => 'szt',
+    'setting' => '{"upload_maxsize":"2000","upload_allowext":"jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf","watermark_enable":"0","watermark_minwidth":"300","watermark_minheight":"300","watermark_img":"statics\\/images\\/water\\/http:\\/\\/www.sztnet.com\\/mark.gif","watermark_pct":"100","watermark_quality":"80","watermark_pos":"9"}',
+    'uuid' => '',
+    'url' => 'http://www.sztnet.com/mall/',
+  ),
+);
+?>

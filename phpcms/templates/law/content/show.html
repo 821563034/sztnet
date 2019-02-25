@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/law.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","position_sp"}
+<div class="row">
+
+<div class="col xs-12 md-9">
+<h1 class="h1-a bts">{$title}</h1>
+
+<div class="headInfo">
+  <div class="headInfoLt">{$copyfrom}&nbsp;&nbsp;{date('Y-m-d',strtotime($inputtime))}</div>
+  <div class="headInfoRt">评论：<a href="#comment_iframe" id="comment" class="blue">0</a>&nbsp;&nbsp;点击：<span id="hits"></span></div>
+</div><!--/headInfo-->
+
+<div class="content">
+  {$content}
+</div>
+
+<div id="pages" class="text-c">{$pages}</div>
+
+<div class="tailInfo">
+  <span class="keyword">关键词：{loop $keywords $keyword}<a href="{APP_PATH}index.php?m=content&c=tag&a=lists&tag={urlencode($keyword)}" class="blue">{$keyword}</a>{/loop}</span>
+  <span class="editor"></span>
+</div>
+
+<div class="shareBar">
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+  </div>
+  <a class="iconfont icon-top" href="javascript:scroll(0,0)">返回顶部</a>
+</div>
+
+</div><!--/左侧栏结束-->
+
+<div class="col xs-12 md-3">
+</div><!--/右侧栏结束--> 
+
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+<script src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>
+        

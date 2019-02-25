@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <style type="text/css">
+  .card{display:block; overflow:hidden;}
+  .card img{float:left; width:15%; border-radius:50%; overflow:hidden;}
+  .card div{float:left; width:85%; padding-left:5%; color:#aaa; overflow:hidden;}
+  .card div span:nth-child(1){float:left; width:40%; color:#000;}
+  .card div span:nth-child(2){float:left; width:60%; height:1.25em; line-height:1.25em; font-size:0.8em; text-align:right;}
+  .card div span:nth-child(3){float:left; width:100%; margin-bottom:10px; font-size:0.8em;}
+  .card div span:nth-child(4){float:left; width:100%; font-size:0.8em;}
+
+  form{margin-bottom:10px; font-size:0.8em;}
+  form span{float:left; width:25%;}
+  form div{float:left; width:75%; color:#ccc;}
+  form button{float:right; width:20%; background-color:#ddd;}
+  </style>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html'; ?>
+
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","position"}
+
+<div class="row">
+  <div class="col xs-12 md-8">
+	<form>
+	  <span>城市</span><span>行业</span><span>家乡</span><span>情感</span>
+      <div><input type="text" class="input-text" name="search" placeholder="姓名/ID/手机号/学校/关键词" /></div><buttom type="button">搜索</buttom>
+	</form>
+    <ul class="bts lbs">
+      {pc:get sql="SELECT A.username,B.* FROM v9_member as A left join v9_member_detail as B on A.userid = B.userid where A.modelid = 10" cache="3600" page="$page" num="10" return="data"}
+      {loop $data $r}
+      <li>
+        <a href="index.php?m=content&c=index&a=member_home&catid={$catid}&id={$r[userid]}" target="_blank" class="card">
+          <img src="{get_memberavatar($r[userid],1,90)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'">
+          <div>
+            <span>{$r[username]}</span><span>{get_linkage($r[area],1,' >> ',1)}</span>
+            <span>{$r[unit_name]}&nbsp;&nbsp;{$r[position]}</span>
+            <span>{$r[self_introduction]}</span>
+          </div>
+        </a>
+      </li>
+      {/loop}
+      {$pages}
+      {/pc}
+    </ul>
+    
+    <div id="pages" class="text-c"></div>
+  </div><!--/左侧栏结束-->
+
+  <div class="col xs-12 md-4">
+  </div><!--/右侧栏结束-->
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

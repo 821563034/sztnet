@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">  
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script>$(document).ready(function(){$(".menu3 h1").click(function(){$(".menu3 > ul").toggle(100);});});</script>
+</head>
+
+<body>
+<?php
+include PHPCMS_PATH.'/phpcms/templates/pub/header.html';
+include PHPCMS_PATH.'mysql.php';
+?>
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row">
+  <div class="col xs-12 md-9">
+    <h3 class="h3-1 bts">最新信息</h3>
+    <ul class="picTxt row5px">
+      {pc:content action="lists" catid="$catid" num="10" order="inputtime DESC"}
+      {loop $data $v}
+      <li class="col5px xs-6 md-3">
+        <img src="{$v[thumb]}" />
+        <div class="txt1"><span>{$v[holdtime]}</span><span>{get_linkage($v['place'], 1, '-',1)}</span></div>
+        <div class="txt2">
+          <a href="{$v[url]}" target="_blank">{$v[title]}</a>
+          <span>费用：{$v[fee]}</span><span>主办：{$v[sponsor]}</span><span>发布：{date('Y.m.d',$v[inputtime])}</span>
+        </div>
+      </li>
+      {/loop}
+      {/pc}  
+    </ul>
+  </div><!--/左-->
+  <div class="col xs-12 md-3">
+    <a class="publishBtn mb10" href="http://www.sztnet.com/thisSite/infoPublish.html" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;免费发布相关培训信息</a> 
+    <form class="infoSearch" action="search.php" method="get" name="myform">
+    <table>
+      <tr>
+       <?php 
+    
+        $label_sql  = "select * from v9_category where parentid = 418";	
+        
+        $label_res = $conn->query($label_sql);
+        
+        $label_arr = [];
+        
+        while($row = $label_res->fetch_assoc()){
+            
+                $label_arr[] = $row;
+        }
+      ?>
+        <th valign="top">课程类型</th>
+        <td>
+          <label><input type="radio" name="classtype" value=""  checked/>不限</label>
+          <? foreach($label_arr as $v){?>	
+          <label><input type="radio" name="classtype" value="<? echo $v['catid']?>"/><? echo $v['catname']?></label>    
+          <? }?>      	
+        </td>
+      </tr>
+      <?php 
+    
+        $sql  = "select * from v9_linkage where parentid = 0 and keyid = 1";	
+        
+        $result = $conn->query($sql);
+        
+        $arr = [];
+        
+        while($res = $result->fetch_assoc()){
+            
+                $arr[] = $res;
+        }
+      ?>
+      <tr>
+        <th>培训地点</th>
+        <td>
+            <select id="sheng" name="sheng">
+            <option value="">请选择</option>
+            <? foreach($arr as $k=>$v){ ?>	
+                <option value="<? echo $v['linkageid']?>"><? echo $v['name']; ?></option>
+            <? }?>	
+            </select>
+            <select id="shi" name="shi">
+            <option	value="">请选择</option>
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit"  id="dosubmit">搜索</button></td>
+      </tr>
+    </table>
+    </form>
+  </div><!--/右-->
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+<script>
+	
+	$("#sheng").change(function(){
+
+		$("#shi").find("option").not(":first").remove();
+
+		sheng = $("#sheng").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
+          
+			for(i=0;i<=data.length;i++){
+			
+				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}			
+		
+		},"json");
+		
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php 
+	include PHPCMS_PATH.'/phpcms/templates/pub/header.html';
+	include PHPCMS_PATH.'mysql.php';
+?>
+
+<div class="container">
+{template "content_inc","nav"}
+
+<div class="row mt10">
+
+<div class="col xs-12 md-10">
+  <h3 class="h3-2 bts">服务商检索&nbsp;<i class="iconfont icon-search"></i></h3>  
+  <form class="servSearch mb20" action="./search.php" method="get">
+     <?
+		$sql = "select  * from v9_linkage where keyid  = 3368 and parentid = 0";
+	
+		$res = $conn->query($sql);
+		
+		$arr = [];
+		
+		while($row = $res->fetch_assoc()){
+				
+			$arr[]  = $row;
+		}
+		
+		$sql  = "select * from v9_linkage where parentid = 0 and keyid = 1";	
+		
+		$result = $conn->query($sql);
+		
+		//$row = $res->fetch_array(); 
+		
+		$arr2 = [];
+		
+		while($res = $result->fetch_assoc()){
+			
+				$arr2[] = $res;
+		}
+	 ?>
+      <table>
+        <tr>
+          <th valign="top">服务项目</th>
+          <td class="servItems">
+<div class="bbs">
+  <label><input type="radio" name="item" value="" checked /><strong>不限</strong></label>
+  <label><input type="radio" name="item" value="1" />投资银行</label>
+  <label><input type="radio" name="item" value="2" />资产评估</label>
+  <label><input type="radio" name="item" value="3" />会计事务所</label>
+  <label><input type="radio" name="item" value="4" />律师事务所</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="11" />IPO咨询</label>
+  <label><input type="radio" name="item" value="12" />IPO财务顾问</label>
+  <label><input type="radio" name="item" value="13" />募投及行业可研</label>
+  <label><input type="radio" name="item" value="14" />IPO财经公关</label>
+  <label><input type="radio" name="item" value="21" />公司债财顾</label>
+  <label><input type="radio" name="item" value="22" />资产证券化财顾</label>
+  <label><input type="radio" name="item" value="23" />短期融资券财顾</label>
+  <label><input type="radio" name="item" value="24" />信用评级</label>
+  <label><input type="radio" name="item" value="31" />股权质押融资</label>
+  <label><input type="radio" name="item" value="32" />大宗交易服务</label>
+  <label><input type="radio" name="item" value="33" />税收筹划</label>
+  <label><input type="radio" name="item" value="34" />并购重组财顾</label>
+  <label><input type="radio" name="item" value="35" />设立并购基金</label>
+  <label><input type="radio" name="item" value="41" />回购代操盘</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="51" />股权激励顾问</label>
+  <label><input type="radio" name="item" value="52" />股权激励行权系统</label>
+  <label><input type="radio" name="item" value="53" />合规与信披咨询</label>
+  <label><input type="radio" name="item" value="54" />内部控制咨询</label>
+  <label><input type="radio" name="item" value="55" />社会责任咨询</label>
+  <label><input type="radio" name="item" value="56" />证券事务软件</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="57" />财经公关</label>
+  <label><input type="radio" name="item" value="58" />危机公关</label>
+  <label><input type="radio" name="item" value="59" />媒体监测</label>
+  <label><input type="radio" name="item" value="60" />新闻传播</label>
+  <label><input type="radio" name="item" value="61" />投资者关系</label>
+  <label><input type="radio" name="item" value="62" />IR平台建设</label>
+  <label><input type="radio" name="item" value="63" />现场路演服务</label>
+  <label><input type="radio" name="item" value="64" />网上路演平台</label>
+  <label><input type="radio" name="item" value="65" />市值管理</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="66" />高管责任险</label>
+  <label><input type="radio" name="item" value="71" />金融信息软件</label>
+  <label><input type="radio" name="item" value="72" />财经印刷</label>
+  <label><input type="radio" name="item" value="73" />公司宣传片</label>
+  <label><input type="radio" name="item" value="74" />大型酒会服务</label>
+  <label><input type="radio" name="item" value="75" />工艺礼品</label>
+</div>
+          </td>
+        </tr>
+        <tr>
+          <th>所在地区</th>
+          <td>
+			<select id="sheng" name="sheng">
+			<option value="">请选择</option>
+			<? foreach($arr2 as $k=>$v){ ?>	
+				<option value="<? echo $v['linkageid']?>"><? echo $v['name']; ?></option>
+			<? }?>	
+			</select>
+			<select id="shi" name="shi">
+			<option	value="">请选择</option>
+			</select>
+			<select id="qu" name="qu">
+			<option value="">请选择</option>	
+			</select>
+            <span class="placeNote">（可只选省或市）</span>
+          </td>
+        </tr>
+        <tr>
+          <th>单位名称</th>
+          <td class="firmName"><input type="text" name="title" /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="submit" id="dosubmit">搜索</button></td>
+        </tr>
+      </table>
+  </form><!--/servSearch-->
+
+  <h3 class="h3-1 bbs">最新加入</h3>
+  <ul class="ul1 row">
+    {pc:content action="lists" catid="120" num="20" order="inputtime DESC"}
+    {loop $data $v}
+    <li class="col xs-12 md-6"><a href="{$v[url]}" target="_blank" {title_style($v[style])}>{$v[title]}</a></li>
+    {/loop}
+    {/pc}
+  </ul>
+</div><!--/左侧栏结束-->
+
+<div class="col xs-12 md-2">
+  <a class="publishBtn mt20" href="http://www.sztnet.com/thisSite/infoPublish.html" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;个人免费入库</a>
+</div><!--/右侧栏结束-->
+
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+<script>
+	$("#xiangmu").change(function(){
+		//alert(111);
+		//$("#shi").find("option").not(":first").remove();
+		//$("#qu").find("option").not(":first").remove();
+		sheng = $("#xiangmu").val();
+		if(sheng != ""){
+		//alert(xiangmu);
+			$.post("./ajax.php",{"sheng":sheng,"type":"xiangmu"},function(data){
+			
+				//console.log(data);
+				if(data.length>1){
+					
+					$("#xiangmu2").css("display","block");
+					
+					for(i=0;i<=data.length;i++){
+				
+						$("#xiangmu2").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+				
+					}
+					
+				}else{
+						
+						$("#xiangmu2").css("display","none");	
+					
+					}			
+			
+			},"json");
+		
+		}else{
+			
+			$("#xiangmu2").css("display","none");
+		}	
+		
+	});
+	
+	$("#sheng").change(function(){
+		//alert(111);
+		$("#shi").find("option").not(":first").remove();
+		//$("#qu").find("option").not(":first").remove();
+		sheng = $("#sheng").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
+		
+			//console.log(data);
+			for(i=0;i<=data.length;i++){
+			
+				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}
+	
+		},"json");
+		
+	});
+	
+	$("#shi").change(function(){
+		//alert(22);
+		$("#qu").find("option").not(":first").remove();
+		
+		sheng = $("#shi").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"shi"},function(data){
+		
+			//console.log(data);
+			for(i=0;i<=data.length;i++){
+			
+				$("#qu").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}
+		},"json");
+	});
+</script>
+</body>
+</html>

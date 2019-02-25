@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" /> 
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script> 
+  <script>
+    $(function(){
+      $(".menu1 ul li").each(function(i){
+        $(this).click(function(){
+          $(this).addClass("active").siblings().removeClass("active");
+          $(".listbox:eq("+i+")").show().siblings(".listbox").hide();
+        })
+      })
+    })
+    $(document).ready(function(){$(".menu1 h1").click(function(){$(".menu1 > ul").toggle(100);});});
+  </script>
+</head>
+
+<body>
+<?php 
+	include PHPCMS_PATH.'/phpcms/templates/pub/header.html';
+	include PHPCMS_PATH.'mysql.php';
+?>
+<div class="container">
+{template "content_inc","nav"}
+<div class="row">
+<nav class="col xs-12 subNav">
+    <ul>
+       <li><a href="http://www.sztnet.com/event/" target="_self"><b>主页</b></a></li>
+       <li><a href="http://www.sztnet.com/event/forum/" target="_self">会议论坛</a></li>
+       <li><a href="http://www.sztnet.com/communication/" target="_self">交流活动</a></li>
+    </ul>
+</nav>
+</div>
+  
+<div class="row mt10">
+  <div class="col xs-12 md-9">
+    <h3 class="h3-1 bts">最新活动</h3>
+    <ul class="picTxt row5px">
+      {pc:content action="lists" catid="128" num="10" order="inputtime DESC"}
+      {loop $data $v}
+      <li class="col5px xs-6 md-3">
+        <img src="{$v[thumb]}" />
+        <div class="txt1"><span>{$v[holdtime]}</span><span>{get_linkage($v['place'], 1, '-',1)}</span></div>
+        <div class="txt2">
+          <a href="{$v[url]}" target="_blank">{$v[title]}</a>        
+          <span>费用：{$v[fee]}</span>
+          <span>主办：{$v[sponsor]}</span>
+          <span>发布：{date('Y.m.d',$v[inputtime])}</span>
+        </div>
+      </li>
+      {/loop}
+      {/pc}  
+    </ul>
+  </div><!--/左-->
+  <div class="col xs-12 md-3">
+    <a class="publishBtn mb10" href="http://www.sztnet.com/thisSite/infoPublish.html" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;免费发布相关活动信息</a>
+
+	<form class="infoSearch" action="search.php" method="get" name="myform">
+	<table>
+	  <tr>
+		<th valign="top">活动类型</th>
+		<td>
+          <label><input type="checkbox" name="eventtype[]" value="1">金融投资</label>
+		  <label><input type="checkbox" name="eventtype[]" value="2">券商策略会</label>
+		  <label><input type="checkbox" name="eventtype[]" value="3">上市公司</label>
+		  <label><input type="checkbox" name="eventtype[]" value="4">股转系统</label>
+		</td>
+	  </tr>
+	  <?php 
+		$sql  = "select * from v9_linkage where parentid = 0 and keyid = 1";	
+		$result = $conn->query($sql);	
+		$arr = [];	
+		while($res = $result->fetch_assoc()){		
+				$arr[] = $res;
+		}	
+		
+			//薪酬范围
+		
+			$sql2  = "select name from v9_linkage where keyid = 3360";
+		
+			$result2 = $conn->query($sql2);
+			
+			$arr2  = [];
+			
+			while($res2 = $result2->fetch_assoc()){
+				
+				$arr2[] = $res2;
+			
+			}
+			unset($arr2[0]);
+	  ?>
+	  <tr>
+		<th>所在城市</th>
+		<td>
+			<select id="sheng" name="sheng">
+			<option value="">请选择</option>
+			<? foreach($arr as $k=>$v){ ?>	
+				<option value="<? echo $v['linkageid']?>"><? echo $v['name']; ?></option>
+			<? }?>	
+			</select>
+			<select id="shi" name="shi">
+			<option	value="">请选择</option>
+			</select>			
+		</td>
+	  </tr>
+	  <tr>
+		<td colspan="2"><button type="submit"  id="dosubmit">搜索</button></td>
+	  </tr>
+	</table>
+	</form>
+  </div><!--/右-->
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+<script>
+	
+	$("#sheng").change(function(){
+      
+		$("#shi").find("option").not(":first").remove();
+      
+		sheng = $("#sheng").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
+
+			for(i=0;i<=data.length;i++){
+			
+				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}			
+		
+		},"json");
+		
+	});
+	
+	$("#shi").change(function(){
+
+		$("#qu").find("option").not(":first").remove();
+		
+		sheng = $("#shi").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"shi"},function(data){
+		
+			console.log(data);
+			for(i=0;i<=data.length;i++){
+			
+				$("#qu").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}
+		
+		},"json");
+		
+	});
+</script>
+</body>
+</html>      

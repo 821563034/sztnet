@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/law.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script>
+  $(document).ready(function(){
+	  $(".leftNav > span").click(function(){$(".leftNav > ul").toggle(100);});
+  });
+  
+  $(function(){
+      var catid = {$catid};
+/*      $(".leftNav .unfold").show();*/
+$(".leftNav .cate2").hide();
+      $(".leftNav .cate1").each(function(){
+          $(this).click(function(){
+              $(".leftNav .fh").html("+");
+              $(".leftNav .cate2").hide(200);
+              if($(this).children(".cate2").is(":visible")) {
+                  $(this).children(".cate2").hide(200);
+              } else {
+                  $(this).children(".cate2-dad").children(".fh").html("-");
+                  $(this).children(".cate2").show(200);
+              }
+          });
+      });
+  });
+  </script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","position"}
+<div class="row">
+
+<div class="col xs-12 md-2">
+  {template "content_inc","leftNav_coverPage"}
+</div><!--/左侧-->
+
+<div class="col xs-12 md-10">
+  <h2 class="listHd">最新法规</h2>
+  {pc:content action="lists" catid="328" order="inputtime DESC" num="10"}
+  <ul class="ul2-l-ymd">
+    {loop $data $v}
+    <li><a href="{$v['url']}">{$v['title']}</a><span>{date('Y-m-d',$v[inputtime])}</span></li>
+    {/loop}
+  </ul>
+  {/pc}
+  
+  <p class="note bts">欢迎指正，或提交法规汇编需求。<a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系我们</a></p>
+</div><!--/右侧-->
+
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

@@ -1,0 +1,35 @@
+@charset "utf-8";/* 页面布局 */
+/*----------------------------------------整体布局*/
+
+.container{padding:15px; margin:0 auto; background-color:#fff;}
+@media (min-width:768px){.container{width:750px;}}
+@media (min-width:992px){.container{width:970px;}}
+@media (min-width:1200px){.container{width:1170px;}}
+/*页眉页脚的外包，仅内补和背景色不同*/
+.contain{padding:0 15px; margin:0 auto; background-color:#eee;}
+@media (min-width:768px){.contain{width:750px;}}
+@media (min-width:992px){.contain{width:970px;}}
+@media (min-width:1200px){.contain{width:1170px;}}
+/*文字颜色*/
+.contain{color:#000;}
+.contain a:link, .contain a:visited{color:#000;}
+
+.row{margin-right:-15px; margin-left:-15px; overflow:hidden;}/*消除container内补*/
+.col{float:left; position:relative; min-height:1px; padding-right:15px; padding-left:15px;}
+/*手机端*/
+.xs-12{width:100%}.xs-11{width:91.66666667%}.xs-10{width:83.33333333%}.xs-9{width:75%}.xs-8{width:66.66666667%}.xs-7{width:58.33333333%}.xs-6{width:50%}.xs-5{width:41.66666667%}.xs-4{width:33.33333333%}.xs-3{width:25%}.xs-2{width:16.66666667%}.xs-1{width:8.33333333%}
+/*平板端*/
+@media (min-width:768px){.sm-12{width:100%}.sm-11{width:91.66666667%}.sm-10{width:83.33333333%}.sm-9{width:75%}.sm-8{width:66.66666667%}.sm-7{width:58.33333333%}.sm-6{width:50%}.sm-5{width:41.66666667%}.sm-4{width:33.33333333%}.sm-3{width:25%}.sm-2{width:16.66666667%}.sm-1{width:8.33333333%}}
+/*中屏端*/
+@media (min-width:992px){.md-12{width:100%}.md-11{width:91.66666667%}.md-10{width:83.33333333%}.md-9{width:75%}.md-8{width:66.66666667%}.md-7{width:58.33333333%}.md-6{width:50%}.md-5{width:41.66666667%}.md-4{width:33.33333333%}.md-3{width:25%}.md-2{width:16.66666667%}.md-1{width:8.33333333%}}
+/*大屏端*/
+@media (min-width:1200px){.lg-12{width:100%}.lg-11{width:91.66666667%}.lg-10{width:83.33333333%}.lg-9{width:75%}.lg-8{width:66.66666667%}.lg-7{width:58.33333333%}.lg-6{width:50%}.lg-5{width:41.66666667%}.lg-4{width:33.33333333%}.lg-3{width:25%}.lg-2{width:16.66666667%}.lg-1{width:8.33333333%}}
+
+.col-mb{margin-bottom:10px;}
+@media (min-width:992px){.col-mb{margin-bottom:0;}}
+
+/*----------------------------栏间距为5PX的行列布局*/
+
+.row5px{margin-right:-5px; margin-left:-5px; overflow:hidden;}
+.col5px{float:left; padding-right:5px; padding-left:5px;}
+

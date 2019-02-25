@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>服务 - 上证通网</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link href="http://www.sztnet.com/statics/css/mycss/common.css" rel="stylesheet" />
+  <link href="http://www.sztnet.com/statics/css/mycss/szt.css" rel="stylesheet" />
+  <script src="http://www.sztnet.com/statics/js/jquery.min.js"></script>
+  <script src="http://www.sztnet.com/statics/js/search_common.js"></script>
+</head>
+
+<body>
+<header class="contain clear">
+    <div class="showBox clear">
+      <div class="sb1">      
+        <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
+      </div>
+      <div class="sb2">
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/szt.png" alt="上证通网" />
+        <img src="http://www.sztnet.com/statics/images/myimg/pub/sztnet.png" alt="上证通网" />
+      </div>
+      <div class="sb3">
+        <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+        <a href="#" class="iconfont icon-search"></a> 
+      </div>
+    </div><!--/showBox-->
+    
+    <div class="shortcut">
+      <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+      <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
+      <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+    </div>
+    <div class="searchBox">
+      <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
+        <input type="text" name="title" />        
+        <button type="submit">提交</button>
+        <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
+      </form>
+    </div>
+</header>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".shortcut").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".shortcut").toggle(); $(".searchBox").hide()});
+  });
+</script>
+<div class="container">
+<nav class="mainNav cateNum-12 clear">
+<ul>
+  <li><a href="http://www.sztnet.com/newsCenter/" target="_self">资讯</a></li>
+  <li><a href="http://www.sztnet.com/regulation/" target="_self">监管</a></li>
+  <li><a href="http://www.sztnet.com/thinkTank/" target="_self">智库</a></li>
+  <li><a href="http://www.sztnet.com/law/" target="_blank">法规</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=55" target="_blank">产业</a></li>
+  <li>
+    <a id="biz" href="javascript:void(0)" target="_self">业务</a>
+    <ul>
+      <li><a href="http://www.sztnet.com/ipo/" target="_self">上市</a></li>
+      <li><a href="http://www.sztnet.com/fin/" target="_self">融资</a></li>
+      <li><a href="http://www.sztnet.com/ma/" target="_self">并购</a></li>
+      <li><a href="http://www.sztnet.com/inv/" target="_self">理财</a></li>
+      <li><a href="http://www.sztnet.com/incentive/" target="_self">激励</a></li>
+      <li><a href="http://www.sztnet.com/lc/" target="_self">公司</a></li>
+      <li><a href="http://www.sztnet.com/neeq/" target="_self">股转</a></li>
+      <li><a href="http://www.sztnet.com/i-bank/" target="_self">投行</a></li>
+      <li><a href="http://www.sztnet.com/auditor/" target="_self">会所</a></li>
+      <li><a href="http://www.sztnet.com/lawyer/" target="_self">律所</a></li>
+      <li><a href="http://www.sztnet.com/tool/" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.sztnet.com/edu/" target="_self">学院</a></li>
+  <li><a href="http://www.sztnet.com/event/" target="_self">活动</a></li>
+  <li><a href="http://www.sztnet.com/hr/" target="_self">招聘</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=499" target="_self">微群</a></li>
+  <li class="cur"><a href="http://www.sztnet.com/service/" target="_self">服务</a></li>
+  <li><a href="http://www.sztnet.com/index.php?m=content&c=index&a=lists&catid=56" target="_self">商脉</a></li>
+</ul>
+</nav>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#biz").click(function(){$("#biz").siblings().toggle(100);});
+  });
+</script>
+<div class="row mt10">
+
+<div class="col xs-12 md-10">
+  <h3 class="h3-2 bts">服务商检索&nbsp;<i class="iconfont icon-search"></i></h3>  
+  <form class="servSearch mb20" action="./search.php" method="get">
+           <table>
+        <tr>
+          <th valign="top">服务项目</th>
+          <td class="servItems">
+<div class="bbs">
+  <label><input type="radio" name="item" value="" checked /><strong>不限</strong></label>
+  <label><input type="radio" name="item" value="1" />投资银行</label>
+  <label><input type="radio" name="item" value="2" />资产评估</label>
+  <label><input type="radio" name="item" value="3" />会计事务所</label>
+  <label><input type="radio" name="item" value="4" />律师事务所</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="11" />IPO咨询</label>
+  <label><input type="radio" name="item" value="12" />IPO财务顾问</label>
+  <label><input type="radio" name="item" value="13" />募投及行业可研</label>
+  <label><input type="radio" name="item" value="14" />IPO财经公关</label>
+  <label><input type="radio" name="item" value="21" />公司债财顾</label>
+  <label><input type="radio" name="item" value="22" />资产证券化财顾</label>
+  <label><input type="radio" name="item" value="23" />短期融资券财顾</label>
+  <label><input type="radio" name="item" value="24" />信用评级</label>
+  <label><input type="radio" name="item" value="31" />股权质押融资</label>
+  <label><input type="radio" name="item" value="32" />大宗交易服务</label>
+  <label><input type="radio" name="item" value="33" />税收筹划</label>
+  <label><input type="radio" name="item" value="34" />并购重组财顾</label>
+  <label><input type="radio" name="item" value="35" />设立并购基金</label>
+  <label><input type="radio" name="item" value="41" />回购代操盘</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="51" />股权激励顾问</label>
+  <label><input type="radio" name="item" value="52" />股权激励行权系统</label>
+  <label><input type="radio" name="item" value="53" />合规与信披咨询</label>
+  <label><input type="radio" name="item" value="54" />内部控制咨询</label>
+  <label><input type="radio" name="item" value="55" />社会责任咨询</label>
+  <label><input type="radio" name="item" value="56" />证券事务软件</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="57" />财经公关</label>
+  <label><input type="radio" name="item" value="58" />危机公关</label>
+  <label><input type="radio" name="item" value="59" />媒体监测</label>
+  <label><input type="radio" name="item" value="60" />新闻传播</label>
+  <label><input type="radio" name="item" value="61" />投资者关系</label>
+  <label><input type="radio" name="item" value="62" />IR平台建设</label>
+  <label><input type="radio" name="item" value="63" />现场路演服务</label>
+  <label><input type="radio" name="item" value="64" />网上路演平台</label>
+  <label><input type="radio" name="item" value="65" />市值管理</label>
+</div>
+<div class="bbs">
+  <label><input type="radio" name="item" value="66" />高管责任险</label>
+  <label><input type="radio" name="item" value="71" />金融信息软件</label>
+  <label><input type="radio" name="item" value="72" />财经印刷</label>
+  <label><input type="radio" name="item" value="73" />公司宣传片</label>
+  <label><input type="radio" name="item" value="74" />大型酒会服务</label>
+  <label><input type="radio" name="item" value="75" />工艺礼品</label>
+</div>
+          </td>
+        </tr>
+        <tr>
+          <th>所在地区</th>
+          <td>
+			<select id="sheng" name="sheng">
+			<option value="">请选择</option>
+				
+				<option value="2">北京市</option>
+				
+				<option value="3">上海市</option>
+				
+				<option value="4">天津市</option>
+				
+				<option value="5">重庆市</option>
+				
+				<option value="6">河北省</option>
+				
+				<option value="7">山西省</option>
+				
+				<option value="8">内蒙古</option>
+				
+				<option value="9">辽宁省</option>
+				
+				<option value="10">吉林省</option>
+				
+				<option value="11">黑龙江</option>
+				
+				<option value="12">江苏省</option>
+				
+				<option value="13">浙江省</option>
+				
+				<option value="14">安徽省</option>
+				
+				<option value="15">福建省</option>
+				
+				<option value="16">江西省</option>
+				
+				<option value="17">山东省</option>
+				
+				<option value="18">河南省</option>
+				
+				<option value="19">湖北省</option>
+				
+				<option value="20">湖南省</option>
+				
+				<option value="21">广东省</option>
+				
+				<option value="22">广西</option>
+				
+				<option value="23">海南省</option>
+				
+				<option value="24">四川省</option>
+				
+				<option value="25">贵州省</option>
+				
+				<option value="26">云南省</option>
+				
+				<option value="27">西藏</option>
+				
+				<option value="28">陕西省</option>
+				
+				<option value="29">甘肃省</option>
+				
+				<option value="30">青海省</option>
+				
+				<option value="31">宁夏</option>
+				
+				<option value="32">新疆</option>
+				
+				<option value="33">台湾省</option>
+				
+				<option value="34">香港</option>
+				
+				<option value="35">澳门</option>
+				
+			</select>
+			<select id="shi" name="shi">
+			<option	value="">请选择</option>
+			</select>
+			<select id="qu" name="qu">
+			<option value="">请选择</option>	
+			</select>
+            <span class="placeNote">（可只选省或市）</span>
+          </td>
+        </tr>
+        <tr>
+          <th>单位名称</th>
+          <td class="firmName"><input type="text" name="title" /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="submit" id="dosubmit">搜索</button></td>
+        </tr>
+      </table>
+  </form><!--/servSearch-->
+
+  <h3 class="h3-1 bbs">最新加入</h3>
+  <ul class="ul1 row">
+            <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/22.html" target="_blank" >深圳市九富投资顾问有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/21.html" target="_blank" >深圳市金麦粒信息科技有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/20.html" target="_blank" >深圳市全景网络有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/19.html" target="_blank" >长城证券股份有限公司北京分公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/18.html" target="_blank" >天健会计师事务所（特殊普通合伙）深圳分所</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/17.html" target="_blank" >东方财富信息股份有限公司深圳分公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/16.html" target="_blank" >深圳第一路演网络科技股份有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/15.html" target="_blank" >中伦律师事务所（特殊普通合伙）深圳分所</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/14.html" target="_blank" >浙江核新同花顺网络信息股份有限公司深圳分公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/13.html" target="_blank" >深圳价值在线信息科技股份有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/12.html" target="_blank" >万得信息技术股份有限公司深圳分公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/11.html" target="_blank" >瑞华会计师事务所（特殊普通合伙）深圳分所</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/10.html" target="_blank" >天职国际会计师事务所（特殊普通合伙）深圳分所</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/9.html" target="_blank" >深圳金证智通投资咨询有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/8.html" target="_blank" >上海信公企业管理咨询有限公司深圳分公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/7.html" target="_blank" >上海少伯资产管理有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/6.html" target="_blank" >长城证券股份有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/5.html" target="_blank" >中证鹏元资信评估股份有限公司</a></li>
+        <li class="col xs-12 md-6"><a href="http://www.sztnet.com/service/directory/4.html" target="_blank" >华泰证券股份有限公司深圳深南大道证券营业部</a></li>
+          </ul>
+</div><!--/左侧栏结束-->
+
+<div class="col xs-12 md-2">
+  <a class="publishBtn mt20" href="http://www.sztnet.com/thisSite/infoPublish.html" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;个人免费入库</a>
+</div><!--/右侧栏结束-->
+
+</div><!--/row-->
+</div><!--/container-->
+<footer class="contain">
+  <ul>
+    <li><a href="http://www.sztnet.com/thisSite/aboutUs/" target="_blank">关于我们</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/mobileApps/" target="_blank">移动应用</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contribution/" target="_blank">欢迎投稿</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/bizService/" target="_blank">业务服务</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/we-media/" target="_blank">自媒入驻</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/feedback/" target="_blank">反馈有礼</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/partnership/" target="_blank">合作共建</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/legalNotice/" target="_blank">法律声明</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/contact/" target="_blank">联系方式</a></li>
+    <li><a href="http://www.sztnet.com/thisSite/donate/" target="_blank">捐助本站</a></li>
+  </ul>
+  <span>© 2010&ndash;2019&nbsp;上证通网&nbsp;版权所有</span>
+</footer>
+<script>(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=11033271430119132646' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script><script>
+	$("#xiangmu").change(function(){
+		//alert(111);
+		//$("#shi").find("option").not(":first").remove();
+		//$("#qu").find("option").not(":first").remove();
+		sheng = $("#xiangmu").val();
+		if(sheng != ""){
+		//alert(xiangmu);
+			$.post("./ajax.php",{"sheng":sheng,"type":"xiangmu"},function(data){
+			
+				//console.log(data);
+				if(data.length>1){
+					
+					$("#xiangmu2").css("display","block");
+					
+					for(i=0;i<=data.length;i++){
+				
+						$("#xiangmu2").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+				
+					}
+					
+				}else{
+						
+						$("#xiangmu2").css("display","none");	
+					
+					}			
+			
+			},"json");
+		
+		}else{
+			
+			$("#xiangmu2").css("display","none");
+		}	
+		
+	});
+	
+	$("#sheng").change(function(){
+		//alert(111);
+		$("#shi").find("option").not(":first").remove();
+		//$("#qu").find("option").not(":first").remove();
+		sheng = $("#sheng").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
+		
+			//console.log(data);
+			for(i=0;i<=data.length;i++){
+			
+				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}
+	
+		},"json");
+		
+	});
+	
+	$("#shi").change(function(){
+		//alert(22);
+		$("#qu").find("option").not(":first").remove();
+		
+		sheng = $("#shi").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"shi"},function(data){
+		
+			//console.log(data);
+			for(i=0;i<=data.length;i++){
+			
+				$("#qu").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			
+			}
+		},"json");
+	});
+</script>
+</body>
+</html>

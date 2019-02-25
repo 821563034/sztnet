@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row tool">
+  <div class="col xs-12"><h3 class="line1"><span>工商/信用类</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.gsxt.gov.cn/index.html" target="_blank">国家企业信用信息公示</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="https://www.icris.cr.gov.hk/csci/" target="_blank">香港-公司注册处</a><span>因繁简体易错，建议使用公司编号查询</span></div>
+  <div class="col xs-12 md-2"><a href="https://app02.szmqs.gov.cn/outer/entSelect/gs.html" target="_blank">深圳市市场监督管理局</a><span>更详细的企业登记信息查询</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.cods.org.cn/portal/publish/index.html" target="_blank">全国组织机构代码数据</a><span>查询时间早上8:00-下午5:00</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.pbccrc.org.cn/" target="_blank">中国人民银行征信中心</a><span>可申请个人/企业信用报告</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.creditchina.gov.cn/" target="_blank">国家信息中心-信用中国</a><span>可查询到失信被执行人信息、企业经营异常信息等</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.11315.com/" target="_blank">绿盾企业征信系统</a><span>第三方信用平台，可以作为辅助尽调材料</span></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>知识产权类</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.sipo.gov.cn/" target="_blank">国家知识产权局</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.ccopyright.com.cn/" target="_blank">中国版权保护中心</a><span>计算机软件著作权查询</span></div>
+  <div class="col xs-12 md-2"><a href="http://txjy.syggs.mofcom.gov.cn/index.do?method=entps" target="_blank">商务部商业特许经营信息</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://sbj.saic.gov.cn/" target="_blank">国家商标局-中国商标网</a><span>建议使用商标综合查询</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.quandashi.com/" target="_blank">权大师</a><span>知识产权第三方查询平台</span></div>
+  <div class="col xs-12 md-2"><a href="http://www2.soopat.com/Home/IIndex" target="_blank">SooPAT</a><span>专利第三方查询平台</span></div>  
+  <div class="col xs-12 md-2"><a href="http://so.baiten.cn/" target="_blank">佰腾</a><span>专利第三方查询平台</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.tmkoo.com/" target="_blank">标库网</a><span>商标第三方查询平台</span></div>  
+
+  <div class="col xs-12"><h3 class="line1"><span>行政处罚情况</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://samr.cfda.gov.cn/WS01/CL1766/" target="_blank">国家食药监督管理总局</a><span>药品、医疗器械、保健食品、化妆品等相关资质查询</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.chinapesticide.gov.cn/" target="_blank">中国农药信息网</a><span>农药产品登记等查询</span></div>  
+  <div class="col xs-12 md-2"><a href="http://media.chinasafety.gov.cn:8090/zhengfu3/aqxkzcx.jsp" target="_blank">国家安全管理总局</a><span>安全生产许可证查询</span></div>  
+  <div class="col xs-12 md-2"><a href="http://www.mlr.gov.cn/kqsc/tkq/tkqspdj/" target="_blank">中国自然资源部</a><span>探矿权、采矿权信息查询</span></div>  
+  <div class="col xs-12 md-2"><a href="http://www.mlr.gov.cn/kqsc/tkq/tkqspdj/" target="_blank">中国工信部-信息查询</a><span>电信类企业资格证书、ICP证、进网许可证等查询</span></div>  
+
+  <div class="col xs-12"><h3 class="line1"><span>行业分类</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.stats.gov.cn/tjsj/tjbz/hyflbz/201710/t20171012_1541679.html" target="_blank">国统局国民经济行业分类</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="" target="_blank">证监会行业分类</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.swsindex.com/idx0530.aspx" target="_blank">申银万国行业分类</a><span>&nbsp;</span></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>法律类</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://wenshu.court.gov.cn/" target="_blank">中国裁判文书网</a><span>查询企业、自然人诉讼情况</span></div>
+  <div class="col xs-12 md-2"><a href="http://zhixing.court.gov.cn/search/" target="_blank">全国法院被执行人信息</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://shixin.court.gov.cn/" target="_blank">中国执行信息公开网</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://shixin.court.gov.cn/" target="_blank">中国执行信息公开网</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.live.chinacourt.org/fygg/ggsdsearch.shtml" target="_blank">中国法院网-人民法院公告</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.rmfysszc.gov.cn/" target="_blank">人民法院诉讼资产网</a><span>拍卖公告查询</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.rmfysszc.gov.cn/" target="_blank">Openlaw</a><span>第三方诉讼查询平台</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.legalminer.com/" target="_blank">理脉</a><span>第三方诉讼查询平台</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.sztnet.com/law/" target="_blank">上证通网-法库</a><span>最好用的泛证券业务类法规库</span></div>
+
+  <div class="col xs-12"><h3 class="line1"><span>财税类</span></h3></div>
+  <div class="col xs-12 md-2"><a href="http://www.yibannashuiren.com/" target="_blank">全国企业一般纳税人查询</a><span>查询一般纳税人资格</span></div>
+  <div class="col xs-12 md-2"><a href="http://xwqy.gsxt.gov.cn/" target="_blank">工商总局小微企业名录</a><span>&nbsp;</span></div>
+  <div class="col xs-12 md-2"><a href="http://www.innocom.gov.cn/" target="_blank">高新技术企业认定网</a><span>&nbsp;</span></div>
+  
+  <div class="col xs-12 advise"><a href="http://www.sztnet.com/thisSite/contact/" target="_blank" class="iconfont icon-notice">&nbsp;欢迎提供建议</a></div>
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script src="{JS_PATH}myjs/slide.js"></script>
+  <script>
+  $(function(){
+      $(".tabBox span").each(function(i){
+          $(this).hover(function(){
+              $(this).addClass("activeTab").siblings().removeClass("activeTab");
+              $(".tabCont:eq("+i+")").show().siblings(".tabCont").hide();
+          })
+      })
+  })
+  </script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container">
+
+{template "content_inc","nav"}
+{template "content_inc","broNav"}
+
+<div class="row mb10">
+  <div class="col xs-12 md-7 mb10">
+    <section class="row5px mb10">
+      <div class="col5px xs-12 md-6">
+        <div id="slide"></div>
+        <script>
+          jQuery("#slide").focusImg({"speed":"5000","type":"1","flag":"fi02","hoverStop":true},[
+            {pc:content action="position" posid="1" catid="25" thumb="1" num="3" order="listorder DESC"}
+            {loop $data $v}
+            {    
+              "p":"{$v['thumb']}",
+              "l":"{$v[url]}",
+              "t":"{$v[title]}" 
+            },
+            {/loop}
+            {/pc}
+          ]);
+        </script>
+      </div><!--左-->
+      <div class="col5px xs-12 md-6">
+        <ul class="recommend">
+          {pc:content action="position" posid="1" catid="25" thumb="0" num="3" order="listorder DESC"}
+          {loop $data $key $val}
+          <li><a href="{$val['url']}" target="_blank">{$val['title']}</a></li>
+          {/loop}
+          {/pc}
+        </ul>
+      </div><!--/右-->
+    </section><!--/推荐-->
+   
+    <section>
+      <nav class="tabBox tab6 mb10">
+        <span class="activeTab">最新</span><span>公司投资</span><span>个人理财</span>
+      </nav>
+     
+      <ul class="newest tabCont lts bbs">
+        {pc:content action="lists" catid="$catid" num="25" order="inputtime DESC"}
+        {loop $data $k $v}
+        <li {if $v[thumb]!=""}class="pic"{else}class="noPic"{/if}>
+          {if $v[thumb]!=""}<img src="{thumb($v[thumb],90,60)}" />{/if}
+          <a href="{$v[url]}" target="_blank">{$v[title]}</a>
+          <span>{date('m-d',$v[inputtime])}</span>
+        </li>
+        {/loop}
+        {/pc}
+      </ul>
+  
+      {loop subcat($catid) $v}
+      {php if($v['type']!=0) continue;}
+      <ul class="newest tabCont lts bbs hide">
+        {pc:content action="lists" catid="$v[catid]" num="25" order="inputtime DESC"}
+        {loop $data $v}
+        <li {if $v[thumb]!=""}class="pic"{else}class="noPic"{/if}>
+          {if $v[thumb]!=""}<img src="{thumb($v[thumb],90,60)}" />{/if}
+          <a href="{$v[url]}" target="_blank">{$v[title]}</a>
+          <span>{date('m-d',$v[inputtime])}</span>
+        </li>
+        {/loop}
+        {/pc}
+      </ul>
+      {/loop}
+    </section>
+  </div><!--/左侧-->
+  
+  <div class="col xs-12 md-5">
+    <h3 class="h3-1 bts bbs">新闻点击排行&nbsp;<i class="iconfont icon-hot"></i></h3>
+    <ul class="hit small">    
+      {pc:content action="hits" catid="$catid" num="5" order="weekviews DESC"}
+      {php $i=1;}
+      {loop $data $v}
+      <li><span>{$i}</span><a href="{$v[url]}" target="_blank">{$v[title]}</a></li>
+      {php $i++}
+      {/loop}    
+      {/pc}
+    </ul>
+  </div><!--/右侧-->
+</div><!--/row-->
+
+<a class="iconfont icon-dingbu" href="javascript:scroll(0, 0)"></a>
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>
+
+        
+        
+        
+        
+        
+        
+        

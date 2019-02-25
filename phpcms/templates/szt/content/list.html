@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html'; ?>
+
+<div class="container">
+{template "content_inc","nav"}
+{template "content_inc","position"}
+
+<div class="row">
+  <div class="col xs-12 md-8">
+    {pc:content action="lists" catid="$catid" num="25" moreinfo="1" order="inputtime DESC" page="$page"}
+    <ul class="ul2-ymd bts">
+      {loop $data $r}
+      <li>
+        <a href="{$r[url]}" target="_blank"{title_style($r[style])}>{$r[title]}</a>
+        <span>{$r[copyright]}{date('Y-m-d',$r[inputtime])}</span>
+      </li>
+      {/loop}
+    </ul>
+    <div id="pages" class="text-c">{$pages}</div>
+    {/pc}
+  </div><!--/左侧栏结束-->
+
+  <div class="col xs-12 md-4">
+    <img src="http://www.sztnet.com/uploadfile/poster/zx-zw-1.png" alt="微信群" width="100%" />
+  </div><!--/右侧栏结束-->
+</div><!--/row-->
+
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

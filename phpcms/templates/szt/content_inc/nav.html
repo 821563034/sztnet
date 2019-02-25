@@ -1,0 +1,37 @@
+{php $t=$CATEGORYS[$top_parentid][catid]}
+<nav class="mainNav cateNum-12 clear">
+<ul>
+  <li{if $t==12} class="cur"{/if}><a href="{$CATEGORYS[12]['url']}" target="_self">资讯</a></li>
+  <li{if $t==13} class="cur"{/if}><a href="{$CATEGORYS[13]['url']}" target="_self">监管</a></li>
+  <li{if $t==14} class="cur"{/if}><a href="{$CATEGORYS[14]['url']}" target="_self">智库</a></li>
+  <li><a href="http://www.sztnet.com/law/" target="_blank">法规</a></li>
+  <li{if $t==55} class="cur"{/if}><a href="{$CATEGORYS[55]['url']}" target="_self">产业</a></li>
+  <li{if $t==21} class="cur"{/if}>
+    <a id="biz" href="javascript:void(0)" target="_self">{if $t==15}上市{elseif $t==16}融资{elseif $t==18}并购{elseif $t==17}理财{elseif $t==436}激励{elseif $t==19}公司{elseif $t==20}股转{elseif $t==122}投行{elseif $t==123}会所{elseif $t==124}律所{elseif $t==21}工具{else}业务{/if}</a>
+    <ul>
+      <li{if $t==15} class="cur"{/if}><a href="{$CATEGORYS[15]['url']}" target="_self">上市</a></li>
+      <li{if $t==16} class="cur"{/if}><a href="{$CATEGORYS[16]['url']}" target="_self">融资</a></li>
+      <li{if $t==18} class="cur"{/if}><a href="{$CATEGORYS[18]['url']}" target="_self">并购</a></li>
+      <li{if $t==17} class="cur"{/if}><a href="{$CATEGORYS[17]['url']}" target="_self">理财</a></li>
+      <li{if $t==436} class="cur"{/if}><a href="{$CATEGORYS[436]['url']}" target="_self">激励</a></li>
+      <li{if $t==19} class="cur"{/if}><a href="{$CATEGORYS[19]['url']}" target="_self">公司</a></li>
+      <li{if $t==20} class="cur"{/if}><a href="{$CATEGORYS[20]['url']}" target="_self">股转</a></li>
+      <li{if $t==122} class="cur"{/if}><a href="{$CATEGORYS[122]['url']}" target="_self">投行</a></li>
+      <li{if $t==123} class="cur"{/if}><a href="{$CATEGORYS[123]['url']}" target="_self">会所</a></li>
+      <li{if $t==124} class="cur"{/if}><a href="{$CATEGORYS[124]['url']}" target="_self">律所</a></li>
+      <li{if $t==21} class="cur"{/if}><a href="{$CATEGORYS[21]['url']}" target="_self">工具</a></li>
+    </ul>
+  </li>
+  <li{if $t==417} class="cur"{/if}><a href="{$CATEGORYS[417]['url']}" target="_self">学院</a></li>
+  <li{if $t==125} class="cur"{/if}><a href="{$CATEGORYS[125]['url']}" target="_self">活动</a></li>
+  <li{if $t==126} class="cur"{/if}><a href="{$CATEGORYS[126]['url']}" target="_self">招聘</a></li>
+  <li{if $t==499} class="cur"{/if}><a href="{$CATEGORYS[499]['url']}" target="_self">微群</a></li>
+  <li{if $t==117} class="cur"{/if}><a href="{$CATEGORYS[117]['url']}" target="_self">服务</a></li>
+  <li{if $t==56} class="cur"{/if}><a href="{$CATEGORYS[56]['url']}" target="_self">商脉</a></li>
+</ul>
+</nav>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#biz").click(function(){$("#biz").siblings().toggle(100);});
+  });
+</script>

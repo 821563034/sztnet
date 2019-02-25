@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/law.css" rel="stylesheet" />  
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <script>
+  $(document).ready(function(){
+	  $(".leftNav > div").click(function(){$(".leftNav > ul").toggle(100);});
+  });
+  
+  $(function(){
+      var catid = {$catid};
+      $(".leftNav h2").each(function(){
+          $(this).click(function(){
+              $(".leftNav .fh").html("+");
+              $(".leftNav .san").hide(200);
+              
+			  if($(this).next(".san").is(":visible")) {
+                  $(this).next(".san").hide(200);
+              } else {
+                  $(this).children(".fh").html("-");
+                  $(this).next(".san").show(200);
+              }			  
+          });
+      });
+  });
+  </script>
+</head>
+
+<body>
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+<div class="container clear">
+  {template "content_inc","nav"}
+  {template "content_inc","position"}
+  <div class="row clear">
+    <div class="col xs-12 md-2">
+      {template "content_inc","leftNav_coverPage"}
+    </div><!--/左侧栏结束-->
+    
+    <div class="col xs-12 md-10">
+      <h2 class="listHd">最新发布</h2>
+      {pc:content action="lists" catid="$catid" order="inputtime DESC" num="10"}
+      <ul class="ul2-l-ymd">
+        {loop $data $v}
+        <li><a href="{$v['url']}">{$v['title']}</a><span>{date('Y-m-d',$v[inputtime])}</span></li>
+        {/loop}
+      </ul>
+      {/pc}
+      
+      <h2 class="listHd">查阅最多</h2>
+      {php $where = "state!=3"}
+      {pc:content action="hits" catid="$catid" where="$where" order="weekviews DESC" num="10"}
+      <ul class="ul2-l-ymd mb20">
+        {loop $data $v}
+        <li><a href="{$v['url']}">{$v['title']}</a><span>{date('Y-m-d',$v[inputtime])}</span></li>
+        {/loop}
+      </ul>
+      {/pc}
+    </div><!--/右侧栏结束-->
+  </div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+</body>
+</html>

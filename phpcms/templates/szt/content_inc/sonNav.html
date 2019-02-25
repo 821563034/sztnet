@@ -1,0 +1,11 @@
+<div class="row">
+  <nav class="col xs-12 subNav">
+    <ul>
+      {pc:content action="category" catid="$catid" num="5" siteid="$siteid" order="listorder ASC"}
+      {loop $data $r}
+      <li {if $catid==$r[catid]}class="current"{/if}><a href="{$r[url]}/">{$r[catname]}</a></li>
+      {/loop}
+      {/pc}
+    </ul>
+  </nav>
+</div>

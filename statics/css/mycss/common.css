@@ -1,0 +1,58 @@
+@charset "utf-8";/* 通用样式,可跨元素使用 */
+@import url("common/element.css");
+@import url("common/layout.css");
+@import url("common/guider.css");
+@import url("common/lists.css");
+@import url("common/module.css");
+@import url("iconfont/iconfont.css");
+
+.hide{display:none;}
+.clear:before, .clear:after{clear:both; content:''; display:block; visibility:hidden;}
+
+/*字体大小*/
+.small{font-size:0.9em;}
+.smaller{font-size:0.8em;}
+.big{font-size:1.2em;}
+.bigger{font-size:1.5em;}
+
+/*居中*/
+.center{text-align:center;}
+.centered{margin:0 auto;}
+
+/*高度,行高*/
+.high{height:2em; line-height:2em;}
+.higher{height:2.5em; line-height:2.5em;}
+
+/*表格行高*/
+table.td-high td{height:2em;}
+table.td-higher td{height:2.5em;}
+
+/*外边距*/
+.mr10{margin-right:10px;} .mr20{margin-right:20px;}
+.mb1{margin-bottom:1px;} .mb5{margin-bottom:5px;} .mb10{margin-bottom:10px;} .mb20{margin-bottom:20px;} .mb50{margin-bottom:50px;}
+.mt0{margin-top:0px;} .mt10{margin-top:10px;}
+
+/*内边距*/
+.pl5{padding-left:5px;} .pl15{padding-left:15px;} 
+.pr5{padding-right:5px;} .pr15{padding-right:15px;}
+.pt5{padding-top:5px;} .pt15{padding-top:15px;}
+.pb5{padding-bottom:5px;} .pb15{padding-bottom:15px;}
+
+/*边线*/
+.bts{border-top:1px solid #ddd;} .btd{border-top:1px dotted #ddd;}
+.bbs{border-bottom:1px solid #ddd;} .bbd{border-bottom:1px dotted #ddd;}
+
+.lts li{border-top:1px solid #E0E0E0;} .ltd li{border-top:1px dotted #E0E0E0;}
+.lbs li{border-bottom:1px solid #E0E0E0;} .lbd li{border-bottom:1px dotted #E0E0E0;}
+
+/*颜色*/
+.bgc-eee{background-color:#eee;}/*浅*/
+.bgc-ddd{background-color:#ddd;}
+.redtext{color:crimson;}
+.icon-hot{color:red;}/*专用*/
+
+
+/*其它*/
+.label{line-height:2em; font-size:0.8em; font-weight:bold; color:#AAA;}
+.note{font-size:0.8em; color:grey;}
+.tbCaption{background-color:#80B3CD; color:#fff; border-radius:5px;}

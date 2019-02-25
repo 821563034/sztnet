@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<?php 
+include PHPCMS_PATH.'/phpcms/templates/pub/header.html';
+include PHPCMS_PATH.'mysql.php';
+?>
+
+<div class="container">
+{template "content_inc","nav"}
+
+<div class="row mt10">
+<div class="col xs-12 md-7">
+  <h3 class="h3-2 bts"><span>最新职位</span><a href="{$CATEGORYS[127][url]}" target="_blank">更多+</a></h3>
+  <ul class="jobList lbd mb10">
+    {pc:content action="lists" catid="127" num="10" order="inputtime DESC"}
+    {loop $data $v}
+    <li>
+      <div class="job1"><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{$v[salary]}</span></div>
+      <span class="job2">{get_linkage($v['place'], 1, '-',1)}<span>|</span>{$v[exp]}<span>|</span>{box('education',$v[education],15)}</span>
+      <span class="job3">{$v[coname]}/{date('Y.m.d',$v[inputtime])}</span>
+    </li>
+    {/loop}
+    {/pc} 
+  </ul>
+
+  <h3 class="h3-1 bts">热门职位&nbsp;<i class="iconfont icon-hot"></i></h3>
+  <ul class="jobList lbd">            
+    {pc:content action="lists" catid="127" num="10" order="inputtime DESC"}
+    {loop $data $v}
+    <li>
+      <div class="job1"><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{$v[salary]}</span></div>
+      <span class="job2">{get_linkage($v['place'], 1, '-',1)}<span>|</span>{$v[exp]}<span>|</span>{box('education',$v[education],15)}</span>
+      <span class="job3">{$v[coname]}/{date('Y.m.d',$v[inputtime])}</span>
+    </li>
+    {/loop}
+    {/pc} 
+  </ul>
+
+  <h3 class="h3-2 bts"><span>人才推荐</span><a href="{$CATEGORYS[458][url]}" target="_blank">更多+</a></h3>
+  <ul class="ul2 mb10">
+    {pc:content action="lists" catid="458" num="10" order="inputtime DESC"}
+    {loop $data $v}
+    <li><a href="{$v[url]}" target="_blank">{$v[title]}</a><span>{$v[salary]}</span></li>
+    {/loop}
+    {/pc} 
+  </ul>
+</div><!--/左侧栏结束-->
+	
+<div class="col xs-12 md-5">
+<a class="publishBtn mb10" href="http://www.sztnet.com/thisSite/infoPublish.html" target="_blank"><i class="iconfont icon-notices"></i>&nbsp;免费发布招聘及人才信息</a>
+<p class="note">注：仅限发布本站覆盖业务范围内的专业人才招聘信息。</p>
+  
+<form class="jobSearch" action="search.php" method="get" name="myform">
+<table class="tb-col-v1">
+  <tr>
+    <th>工作性质</th>
+    <td>
+      <input type="radio" name="nature" value="1" checked="checked">全职
+      <input type="radio" name="nature" value="2">实习
+      <input type="radio" name="nature" value="3">兼职
+      <input type="radio" name="nature" value="4">合伙
+    </td>
+  </tr>
+  <?php
+	$sql  = "select * from v9_linkage where parentid = 0 and keyid = 1";	
+	$result = $conn->query($sql);	
+	$arr = [];	
+	while($res = $result->fetch_assoc()){	
+			$arr[] = $res;
+	} 
+  ?>
+  <tr>
+    <th>工作地点</th>
+    <td>
+		<select id="sheng" name="sheng">
+		<option value="">请选择</option>
+		<? foreach($arr as $k=>$v){ ?>	
+			<option value="<? echo $v['linkageid']?>"><? echo $v['name']; ?></option>
+		<? }?>	
+		</select>
+		<select id="shi" name="shi">
+		<option	value="">请选择</option>
+		</select>
+		<select id="qu" name="qu">
+		<option value="">请选择</option>	
+		</select>
+	</td>
+  </tr>
+  <tr>
+    <th>搜职位名</th>
+    <td><input type="text" name="title" id="q" placeholder="搜索关键字"></td>
+  </tr>
+  <tr>
+    <th>月薪范围</th>
+	<td>	
+      <? foreach($payrange_arr as $k=>$v){?>
+		<input type="checkbox" name="payrange[]" value="<? echo $v[1]?>"/><? echo $v[0]?>
+      <? }?>
+	</td>
+  </tr>
+  <tr>
+    <td colspan="2"><button type="submit"  id="dosubmit">搜索</button></td>
+  </tr>
+</table>
+</form>
+</div><!--/右侧栏结束-->
+	
+</div><!--/row-->
+</div><!--/container-->
+<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+<script>	
+	$("#sheng").change(function(){
+		$("#shi").find("option").not(":first").remove();
+		sheng = $("#sheng").val();	
+		
+		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
+			for(i=0;i<=data.length;i++){		
+				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			}		
+		},"json");		
+	});
+	
+	$("#shi").change(function(){
+		$("#qu").find("option").not(":first").remove();		
+		sheng = $("#shi").val();		
+		$.post("./ajax.php",{"sheng":sheng,"type":"shi"},function(data){		
+			console.log(data);
+			for(i=0;i<=data.length;i++){
+				$("#qu").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
+			}	
+		},"json");
+	});
+</script>
+</body>
+</html>

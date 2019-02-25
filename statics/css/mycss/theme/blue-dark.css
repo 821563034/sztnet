@@ -1,0 +1,45 @@
+@charset "utf-8";/* 深蓝色 */
+/*深到浅
+003366
+40668D
+809AB3
+BFCCD9
+E6EBF0
+浅到深
+002B57
+00264D
+001A33
+000D1A
+00050A*/
+
+/*头部*/
+.head{background:#E6EBF0;}
+
+/*主导航*/
+.mainNav > ul > li{background-color:#003366;}
+.mainNav > ul > li > ul > li a{background-color:#40668D;}
+
+.mainNav > ul > li.cur{background-color:#000D1A;}
+.mainNav > ul > li > a:hover{background-color:#40668D;}
+.mainNav > ul > li > ul > li a:hover{background-color:#003366;}
+
+.mainNav > ul > li:hover ul li a{border-top:1px solid #809AB3;}
+
+@media (min-width:992px){
+	.mainNav > ul > li{border-right:1px solid #000D1A;}
+	.cateNum-12 > ul > li:nth-child(6){border-right:1px solid #000D1A;}
+}
+
+/*二级导航*/
+.mainNav > ul > li > ul{background-color:#40668D;}
+
+/*推荐区背景*/
+.recommend{background-color:#eee;}
+
+/*标题*/
+.h2-a{border-top:2px solid #80B3CD;}
+.h2-a span{background-color:#80B3CD; color:#FFF;}
+.h2-b{border-top:2px solid #80B3CD;}
+.h2-b span{border-left:10px solid #80B3CD; color:#0099CC;}
+
+.h3-1, .h3-2 span{color:#003366;}
