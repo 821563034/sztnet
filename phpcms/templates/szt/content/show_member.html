@@ -70,9 +70,10 @@
     
     <ul class="row5px info2">
       <li class="col5px xs-4 md-3"><a href="tel://13760322795" target="_blank">一键拨号</a></li>
-      <li class="col5px xs-4 md-3"><a href="{$memberinfo[0][wechat_img]}" target="_blank">加我微信</a></li>
+      <li class="col5px xs-4 md-3"><a href="#" onclick="open_img('{$memberinfo[0][wechat_img]}')">加我微信</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">导入通讯录</a></li>
-      <li class="col5px xs-4 md-3"><a href="geopoint:116.281469,39.866035" target="_blank">一键导航</a></li>
+      {php $location = explode('|',$memberinfo[0][my_adress]);}
+      <li class="col5px xs-4 md-3"><a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=我的位置&content=我的位置&output=html&src=webapp.baidu.openAPIdemo" target="_blank">一键导航</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">个人资料</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">加入名片夹</a></li>
       <li class="col5px xs-4 md-3"><a href="#" target="_blank">一键加我</a></li>
@@ -128,3 +129,17 @@
 <script src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
 </body>
 </html>
+<script src="statics/js/layer/layer.js"></script>
+<script>
+    function open_img(url){
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            area: ['310px', '310px'],
+            skin: 'layui-layer-nobg', //没有背景色
+            shadeClose: true,
+            content: '<img src="'+url+'" style="height: 300px;width: 300px;"/>'
+        });
+    }
+</script>
