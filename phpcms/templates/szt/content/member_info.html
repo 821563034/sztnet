@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<title>个人信息</title>
+	<link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
+	<link href="{CSS_PATH}member.css" rel="stylesheet" type="text/css" />
+	<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+	<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+	{if isset($show_validator)}
+	<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+	{/if}
+</head>
+<body>
+<div id="memberArea">
+	<div class="col-auto">
+		<div class="bk10"></div>
+		<div class="col-1 ">
+			<h5 class="title">{L('more_configuration')}：</h5>
+			<div class="content">
+				<table width="100%" cellspacing="0" class="table_form">
+					<tr>
+						<th width="120">{L('username')}</th>
+						<td>{$memberinfo['username']}</td>
+					</tr>
+					<tr>
+						<th width="120">{L('mp')}：</th>
+						<td style="color:#ff6600;"><strong>{if $memberinfo['mobile']}{substr($memberinfo['mobile'],0,3)}****{substr($memberinfo['mobile'],-4)}{/if}</strong></td>
+					</tr>
+					{loop $member_modelinfo $k $v}
+					<tr>
+						<th width="120">{$k}：</th>
+						<td>{$v}</td>
+					</tr>
+					{/loop}
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>

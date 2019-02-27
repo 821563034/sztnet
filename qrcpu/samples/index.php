@@ -11,6 +11,10 @@ include_once '../qrcpuCOM.php';
 
 use qrcpu\qrcpuCOM;
 
+if (empty($_POST['name']) || empty($_POST['tel']) || empty($_POST['remark'])) {
+    echo 'false';
+    exit();
+}
 
 /*
 	配置
@@ -45,19 +49,26 @@ $result = $qrcpu->template_view($template_id);
 var_dump($result);*/
 
 //使用模板 生成二维码
+//NOTE 备注
 $template_id = 3691;//模板ID
-$qrdata = '{"text_cdn":"刘德华","text_cdtel":"13600136000","text_cdnote":"汇盟保险"}';
+$qrdata = 'BEGIN:VCARD
+VERSION:3.0
+N:'.$_POST['name'].'
+TEL:'.$_POST['tel'].'
+URL:'.$_POST['remark'].'
+END:VCARD';
+//echo $qrdata; exit();
 $result = $qrcpu->qrencode($template_id,$qrdata);
-var_dump($result);
-echo '<img src="'.$result['data'].'"/>';
+//var_dump($result);
+echo json_encode($result['data']);
 exit();
 
 
 
 
 //解码
-$imgurl = 'http://www.wwei.cn/static/images/ad/tzm.jpg';//远程图片
+/*$imgurl = 'http://www.wwei.cn/static/images/ad/tzm.jpg';//远程图片
 $imgpath = '';//'./qrcode.jpg';//本地图片
 $qrdata = $qrcpu->qrdecode($imgurl,$imgpath);
-var_dump($qrdata);
+var_dump($qrdata);*/
 
