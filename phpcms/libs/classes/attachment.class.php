@@ -20,7 +20,8 @@ class attachment {
 		pc_base::load_sys_func('dir');		
 		pc_base::load_sys_class('image','','0');
 		$this->upload_root = pc_base::load_config('system','upload_path');
-		$this->upload_func = 'copy';
+		//$this->upload_func = 'copy';  copy是无法将外部上传的“临时文件”拷贝到新的位置
+		$this->upload_func = 'move_uploaded_file';
 		$this->upload_dir = $upload_dir;
 	}
 	/**
