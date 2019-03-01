@@ -8,7 +8,8 @@
   <meta name="keywords" content="{$SEO['keyword']}">
   <meta name="description" content="{$SEO['description']}">
   <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
-  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" /> 
+  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
+  <link href="statics/css/main.css" rel="stylesheet"/>
   <script src="{JS_PATH}jquery.min.js"></script>
   <script src="{JS_PATH}search_common.js"></script>
   
@@ -47,6 +48,7 @@
 
 <body>
 <div class="contain hd_member">
+  {php $username = get_memberinfo($userid,'username');}
   <span>欢迎光临{get_nickname($userid,'username')}的微网！</span><a href="index.php?m=member">我的控制台</a>
   <a href="index.php?m=content&c=index&a=lists&catid={$catid}" target="_self">返回[商脉]</a>
 </div>
@@ -54,7 +56,19 @@
 
 <div class="row mb10">
   <div class="col xs-12 md-6 mySlide">
-    <img src="http://www.sztnet.com/uploadfile/poster/dbzq/slide.jpg" />
+    <div class="banner" id="b04">
+      <ul>
+        {php $sql = "SELECT * FROM v9_picture where username='".$username."' and catid=505"}
+        {pc:get sql="$sql" cache="60" num="3" return="data"}
+        {loop $data $r}
+        <li class="slider-item"><a href="#"><img src="{$r[thumb]}" alt="{$r[title]}" width="585" height="374" /><span class="slider-title"><em>{$r[title]}</em></span></a></li>
+        {/loop}
+        {/pc}
+      </ul>
+      <div class="progress"></div>
+      <a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="statics/images/arrowl.png" alt="prev" width="20" height="35"></a>
+      <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar" src="statics/images/arrowr.png" alt="next" width="20" height="37"></a>
+    </div>
   </div><!--/mySlide-->
   {php $main_memberinfo = get_memberinfo($userid);}
   <div class="col xs-12 md-6 myInfo">
@@ -69,14 +83,14 @@
     </div>
     
     <ul class="row5px info2">
-      <li class="col5px xs-4 md-3"><a href="tel://13760322795" target="_blank">一键拨号</a></li>
+      <li class="col5px xs-4 md-3"><a href="tel://13760322795">一键拨号</a></li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="open_img('{$memberinfo[0][wechat_img]}')">加我微信</a></li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="qrcpu('{$main_memberinfo[username]}','{$main_memberinfo[mobile]}')">导入通讯录</a></li>
       {php $location = explode('|',$memberinfo[0][my_adress]);}
-      <li class="col5px xs-4 md-3"><a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=我的位置&content=我的位置&output=html&src=webapp.baidu.openAPIdemo" target="_blank">一键导航</a></li>
-      <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=member_info&userid={$userid}" target="_blank">个人资料</a></li>
+      <li class="col5px xs-4 md-3"><a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=我的位置&content=我的位置&output=html&src=webapp.baidu.openAPIdemo">一键导航</a></li>
+      <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=member_info&userid={$userid}">个人资料</a></li>
       {if $_userid}
-        {pc:get sql="SELECT * FROM v9_concern where userid=$userid and cc_userid=$_userid" cache="6" num="1" return="concern"}
+        {pc:get sql="SELECT * FROM v9_concern where userid=$userid and cc_userid=$_userid" cache="3600" num="1" return="concern"}
           {if empty($concern[0])}
           <li class="col5px xs-4 md-3"><a href="#" onclick="add_this('{$userid}')">加入名片夹</a></li>
           {else}
@@ -86,12 +100,12 @@
       {else}
       <li class="col5px xs-4 md-3"><a href="#" onclick="add_this('{$userid}')">加入名片夹</a></li>
       {/if}
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">一键加我</a></li>
-      <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=send&userid={$userid}" target="_blank">给我留言</a></li>
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">关注我</a></li>
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">待定待定</a></li>
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">关注我</a></li>
-      <li class="col5px xs-4 md-3"><a href="#" target="_blank">待定待定</a></li>
+      <li class="col5px xs-4 md-3"><a href="#">一键加我</a></li>
+      <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=send&userid={$userid}">给我留言</a></li>
+      <li class="col5px xs-4 md-3"><a href="#">关注我</a></li>
+      <li class="col5px xs-4 md-3"><a href="#">待定待定</a></li>
+      <li class="col5px xs-4 md-3"><a href="#">关注我</a></li>
+      <li class="col5px xs-4 md-3"><a href="#">待定待定</a></li>
     </ul>
     {/pc}
   </div><!--/myInfo-->
@@ -102,34 +116,36 @@
 <div class="col xs-12 myCont">
   <h3>我的链接</h3>
   <ul class="row5px">
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db1.jpg" /><a href="#" target="_blank">东北证券公司官网</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db2.jpg" /><a href="#" target="_blank">东北证券荣获2018年最佳投行将</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db3.jpg" /><a href="#" target="_blank">2018年债券业务排名</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db4.jpg" /><a href="#" target="_blank">长风破浪会有时 直挂云帆济沧海——记东北证券上市10周年</a></li>
+    {php $sql = "SELECT * FROM v9_news where username='".$username."' and catid=502"}
+    {pc:get sql="$sql" cache="60" num="4" return="data"}
+    {loop $data $r}
+    <li class="col5px xs-6 md-3"><img src="{$r[thumb]}" onerror="this.src='/uploadfile/poster/dbzq/db4.jpg'"/><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+    {/loop}
+    {/pc}
   </ul>
 </div><!--/模块-->
 
 <div class="col xs-12 myCont">
   <h3>业务中心</h3>
   <ul class="row5px">
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db5.jpg" /><a href="#" target="_blank">股权质押业务</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db6.jpg" /><a href="#" target="_blank">大宗交易业务</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db7.jpg" /><a href="#" target="_blank">私募股权投资业务</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db8.jpg" /><a href="#" target="_blank">股权激励顾问业务</a></li>
+    {php $sql = "SELECT * FROM v9_news where username='".$username."' and catid=503"}
+    {pc:get sql="$sql" cache="60" num="4" return="data"}
+    {loop $data $r}
+    <li class="col5px xs-6 md-3"><img src="{$r[thumb]}" onerror="this.src='/uploadfile/poster/dbzq/db5.jpg'"/><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+    {/loop}
+    {/pc}
   </ul>
 </div><!--/模块-->
 
 <div class="col xs-12 myCont">
   <h3>我的展示</h3>
   <ul class="row5px">
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db9.jpg" /><a href="#" target="_blank">参加东北证券2019年投资策略会</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db10.jpg" /><a href="#" target="_blank">与成龙大哥在香港合影</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db11.jpg" /><a href="#" target="_blank">公司2018年年会</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db12.jpg" /><a href="#" target="_blank">用公司销售业绩第一名奖章</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db13.jpg" /><a href="#" target="_blank">参加东北证券2019年投资策略会</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db14.jpg" /><a href="#" target="_blank">与成龙大哥在香港合影</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db15.jpg" /><a href="#" target="_blank">公司2018年年会</a></li>
-    <li class="col5px xs-6 md-3"><img src="http://www.sztnet.com/uploadfile/poster/dbzq/db16.jpg" /><a href="#" target="_blank">用公司销售业绩第一名奖章</a></li>
+    {php $sql = "SELECT * FROM v9_news where username='".$username."' and catid=504"}
+    {pc:get sql="$sql" cache="60" num="8" return="data"}
+    {loop $data $r}
+    <li class="col5px xs-6 md-3"><img src="{$r[thumb]}" onerror="this.src='/uploadfile/poster/dbzq/db9.jpg'"/><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+    {/loop}
+    {/pc}
   </ul>
 </div><!--/模块-->
 </div><!--/row-->
@@ -140,8 +156,29 @@
 </body>
 </html>
 <script src="statics/js/layer/layer.js"></script>
+<script src="statics/js/jquery-1.11.1.min.js"></script>
+<script src="statics/js/unslider.min.js"></script>
 <script>
+    $(document).ready(function(e) {
+        var progress = $(".progress"),li_width = $("#b04 li").length;
+        var unslider04 = $('#b04').unslider({
+                dots: true,
+                complete:function(index){//自己添加的，官方没有
+                    progress.animate({"width":(100/li_width)*(index+1)+"%"});
+                }
+            }),
+
+            data04 = unslider04.data('unslider');
+        $('.unslider-arrow04').click(function() {
+            var fn = this.className.split(' ')[1];
+            data04[fn]();
+        });
+    });
     function open_img(url){
+        if (url == ''){
+            layer.alert('暂无微信', {icon: 2});
+            return;
+        }
         layer.open({
             type: 1,
             title: false,
@@ -154,8 +191,8 @@
     }
 
     function qrcpu(name, tel) {
-        if (name == undefined || tel == undefined){
-            alert('暂无联系方式');
+        if (name == '' || tel == ''){
+            layer.alert('暂无联系方式', {icon: 2});
             return;
         }
         $.post('qrcpu/samples/index.php',{name:name,tel:tel,remark:window.location.href},function (result) {

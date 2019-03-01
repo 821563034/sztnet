@@ -9,10 +9,10 @@
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
 <div id="memberArea">
-	{template 'member', 'left'}
+	{template 'member', 'account_manage_left'}
 	<div class="col-auto">
 		<div class="col-1 ">
-			<h5 class="title">{L('online_publish')}</h5>
+			<h5 class="title">{L('edit')}</h5>
 			<div class="content">
 
 			<form method="post" action="" id="myform" name="myform">
@@ -28,12 +28,11 @@
 					<tr>
 						<th>栏目：</th>
 						<td><input type="text" style="width:400px;" value="{$CATEGORYS[$catid][catname]}" class="measure-input" readonly></td>
-						<input type="hidden" name="info[catid]" id="catid" value="{$catid}">
-						<input type="hidden" name="info[title]" id="title" value="默认">
 					</tr>
 				{/if}
+					<input type="hidden" name="info[catid]" id="catid" value="{$catid}">
 					{loop $forminfos $k $v}
-					{if $k == 'pictureurls'}
+					{if $k == 'thumb' || $k == 'title'}
 					<tr>
 						<th width="100">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
 						<td>{$v['form']}{if $v['tips']}{$v['tips']}{/if}</td>
@@ -56,6 +55,8 @@
 	</div>
 </div>
 <div class="clear"></div>
+<script type="text/javascript" src="/statics/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/statics/js/swfupload/swf2ckeditor.js"></script>
 <script type="text/javascript">
 <!--
 //只能放到最下面

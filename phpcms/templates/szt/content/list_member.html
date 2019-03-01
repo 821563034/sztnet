@@ -39,7 +39,7 @@
         <span>城市</span><span>行业</span><span>家乡</span><span>情感</span>
         <div><input type="text" class="input-text" name="search" placeholder="姓名/ID/手机号/学校/关键词" /></div><buttom type="button">搜索</buttom>
       </form>
-      {pc:get sql="SELECT A.username,B.* FROM v9_member as A left join v9_member_detail as B on A.userid = B.userid where A.modelid = 10" cache="3600" page="$page" num="2" return="data"}
+      {pc:get sql="SELECT A.username,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10" cache="3600" page="$page" num="2" return="data"}
       <ul class="bts lbs">
         {loop $data $r}
         <li>
