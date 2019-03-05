@@ -6,6 +6,7 @@ class MY_index extends index
     {
         parent::__construct();
         $this->concern_db = pc_base::load_model('concern_model');
+        $this->interview_db = pc_base::load_model('interview_statistics_model');
     }
 
     public function init()
@@ -56,6 +57,16 @@ class MY_index extends index
      */
     public function interview_count()
     {
+        $memberinfo = $this->memberinfo;
+        $phpsso_api_url = $this->_init_phpsso();
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $friendids = $this->interview_db->listinfo(array('userid'=>$memberinfo['userid']), '', $page, 10);
+        $pages = $this->interview_db->pages;
+        foreach($friendids as $k=>$v) {
+            $friendlist[$k]['friendid'] = $v['interview_userid'];
+            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['interview_userid']);
+            $friendlist[$k]['create_time'] = $v['create_time'];
+        }
         include template('member', 'interview_count');
     }
 

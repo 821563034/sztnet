@@ -9,7 +9,11 @@ class MY_index extends index
         parent::__construct();
         $this->message_db = pc_base::load_model('message_model');
         $this->member_db = pc_base::load_model('member_model');
+        $this->member_detail_db = pc_base::load_model('member_detail_model');
         $this->concern_db = pc_base::load_model('concern_model');
+        $this->concern_db = pc_base::load_model('concern_model');
+        $this->linkage_db = pc_base::load_model('linkage_model');
+        $this->interview_db = pc_base::load_model('interview_statistics_model');
     }
 
     /**
@@ -143,6 +147,72 @@ class MY_index extends index
         $res['code'] = 1;
         $res['msg'] = '关注成功';
         echo json_encode($res);exit();
+    }
+
+    /**
+     * 访客
+     */
+    public function interview(){
+        $userid = intval($_POST['userid']);
+        $interview_userid = $this->_userid;
+        $this->interview_db->add($userid,$interview_userid);
+        $res['code'] = 1;
+        $res['msg'] = '添加成功';
+        echo json_encode($res);exit();
+    }
+
+    /**
+     * 获取城市联动
+     */
+    public function get_city()
+    {
+        $id = intval($_POST['id']);
+        $list = $this->linkage_db->select("parentid = $id",'linkageid,name');
+        echo json_encode($list);exit();
+    }
+
+    //人员列表页分页
+    public function member_lists() {
+        $page = isset($_GET['page']) && trim($_GET['page']) ? intval($_GET['page']) : 1;
+        $catid = intval($_GET['catid']);
+        $province = intval($_POST['province']);
+        $city = intval($_POST['city']);
+        $home_province = intval($_POST['home_province']);
+        $home_city = intval($_POST['home_city']);
+        $unit_industry = trim($_POST['unit_industry']);
+        $emotional_state = intval($_POST['emotional_state']);
+        $search = trim($_POST['search']);
+        $type = trim($_POST['type']);
+        $where = '1 = 1';
+        if(!empty($city)) $where .= ' AND area='.$city;
+        if(!empty($home_city)) $where .= ' AND home_area = '.$home_city;
+        //if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
+        if(!empty($emotional_state)) $where .= ' AND emotional_state = '.$emotional_state;
+        if(!empty($search)) {
+            if ($type == 'username'){
+                $userid_arr = $this->member_db->select("username like '%".$search."%'",'userid');
+                $userids = array_column($userid_arr, 'userid');
+                $userid_string = implode(',',$userids);
+                $where.= " AND userid in ('".$userid_string."')";
+            }elseif ($type == 'mobile'){
+                $userid_arr = $this->member_db->select("mobile = '%".$search."%'",'userid');
+                $userids = array_column($userid_arr, 'userid');
+                $userid_string = implode(',',$userids);
+                $where.= " AND userid in ('".$userid_string."')";
+            }else{
+                $where.= " AND (university = '%".$search."%' OR senior_middle_school = '%".$search."%' OR junior_high_school = '%".$search."%')";
+            }
+        }
+        $userid_arr = $this->member_detail_db->select($where,'userid');
+        $userids = array_column($userid_arr, 'userid');
+        $userid_string = implode(',',$userids);
+        if(!empty($province)){
+            $cityList = $this->linkage_db->select("parentid = $province",'linkageid,name');
+        }
+        if(!empty($home_province)){
+            $homecityList = $this->linkage_db->select("parentid = $home_province",'linkageid,name');
+        }
+        include template('content','list_member');
     }
 
     /*

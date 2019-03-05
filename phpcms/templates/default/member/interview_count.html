@@ -22,7 +22,8 @@
 					{loop $friendlist $info}
 					<tr>
 						<td align="center">{$info['friendid']}</td>
-						<td align="center">{get_memberinfo($info['friendid'],'username')}</td>
+						{php $username = get_memberinfo($info['friendid'],'username');}
+						<td align="center">{php echo $username ? $username : '匿名'}</td>
 						<td align="center"><img src="{$info['avatar'][30]}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'" width="30" height="30"></td>
 						<td align="center">{date('Y-m-d',$info['create_time'])}</td>
 						<td align="center">

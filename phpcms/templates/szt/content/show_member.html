@@ -173,6 +173,11 @@
             var fn = this.className.split(' ')[1];
             data04[fn]();
         });
+
+        var userid = "{$userid}";
+        $.post('index.php?m=content&c=index&a=interview',{userid:userid},function (result) {
+            console.log(result.msg);
+        },'json');
     });
     function open_img(url){
         if (url == ''){
