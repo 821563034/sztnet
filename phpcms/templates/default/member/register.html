@@ -9,6 +9,7 @@
 <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script src="statics/js/layer/layer.js"></script>
 <link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
 <link href="{CSS_PATH}dialog_simp.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
@@ -107,6 +108,36 @@ function show_protocol() {
 	art.dialog({lock:false,title:'{L('register_protocol')}',id:'protocoliframe', iframe:'?m=member&c=index&a=register&protocol=1',width:'500',height:'310',yesText:'{L('agree')}'}, function(){
 		$("#protocol").attr("checked",true);
 	});
+}
+
+function layer_open() {
+    $.post('index.php?m=content&c=index&a=getCompany',{catid:120},function (result) {
+        if (result){
+            var html = '<select name="company" id="company" class="pc-select-area"><option value="">请选择</option>';
+            $.each(result,function (k,v) {
+                html+= '<option value="'+v.title+'">'+v.title+'</option>';
+            });
+            html+='</select>';
+            layer.open({
+                content: html
+                ,btn: ['确定']
+                ,yes: function(index, layero){
+                    //按钮【按钮一】的回调
+                    var company = $("#company").val();
+                    $("input[name='info[unit_name]']").val(company);
+                    layer.close(index);
+                }
+                ,cancel: function(){
+                    //右上角关闭回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+            });
+        }else {
+            layer.alert('获取公司列表出错', {icon: 2});
+        }
+
+    },'json');
 }
 
 //-->

@@ -7,6 +7,7 @@ class MY_index extends index
     function __construct()
     {
         parent::__construct();
+        $this->db = pc_base::load_model('content_model');
         $this->message_db = pc_base::load_model('message_model');
         $this->member_db = pc_base::load_model('member_model');
         $this->member_detail_db = pc_base::load_model('member_detail_model');
@@ -213,6 +214,14 @@ class MY_index extends index
             $homecityList = $this->linkage_db->select("parentid = $home_province",'linkageid,name');
         }
         include template('content','list_member');
+    }
+
+    public function getCompany()
+    {
+        $catid = intval($_POST['catid']) ? intval($_POST['catid']) : 120;
+        $this->db->set_catid($catid);
+        $list = $this->db->select('catid=120','id,title');
+        echo json_encode($list);exit();
     }
 
     /*

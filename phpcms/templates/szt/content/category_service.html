@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<?php 
+<?php
 	include PHPCMS_PATH.'/phpcms/templates/pub/header.html';
 	include PHPCMS_PATH.'mysql.php';
 ?>
@@ -25,33 +25,8 @@
 <div class="row mt10">
 
 <div class="col xs-12 md-10">
-  <h3 class="h3-2 bts">服务商检索&nbsp;<i class="iconfont icon-search"></i></h3>  
+  <h3 class="h3-2 bts">服务商检索&nbsp;<i class="iconfont icon-search"></i></h3>
   <form class="servSearch mb20" action="./search.php" method="get">
-     <?
-		$sql = "select  * from v9_linkage where keyid  = 3368 and parentid = 0";
-	
-		$res = $conn->query($sql);
-		
-		$arr = [];
-		
-		while($row = $res->fetch_assoc()){
-				
-			$arr[]  = $row;
-		}
-		
-		$sql  = "select * from v9_linkage where parentid = 0 and keyid = 1";	
-		
-		$result = $conn->query($sql);
-		
-		//$row = $res->fetch_array(); 
-		
-		$arr2 = [];
-		
-		while($res = $result->fetch_assoc()){
-			
-				$arr2[] = $res;
-		}
-	 ?>
       <table>
         <tr>
           <th valign="top">服务项目</th>
@@ -113,15 +88,15 @@
           <td>
 			<select id="sheng" name="sheng">
 			<option value="">请选择</option>
-			<? foreach($arr2 as $k=>$v){ ?>	
+			<? foreach($arr2 as $k=>$v){ ?>
 				<option value="<? echo $v['linkageid']?>"><? echo $v['name']; ?></option>
-			<? }?>	
+			<? }?>
 			</select>
 			<select id="shi" name="shi">
 			<option	value="">请选择</option>
 			</select>
 			<select id="qu" name="qu">
-			<option value="">请选择</option>	
+			<option value="">请选择</option>
 			</select>
             <span class="placeNote">（可只选省或市）</span>
           </td>
@@ -162,65 +137,65 @@
 		if(sheng != ""){
 		//alert(xiangmu);
 			$.post("./ajax.php",{"sheng":sheng,"type":"xiangmu"},function(data){
-			
+
 				//console.log(data);
 				if(data.length>1){
-					
+
 					$("#xiangmu2").css("display","block");
-					
+
 					for(i=0;i<=data.length;i++){
-				
+
 						$("#xiangmu2").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
-				
+
 					}
-					
+
 				}else{
-						
-						$("#xiangmu2").css("display","none");	
-					
-					}			
-			
+
+						$("#xiangmu2").css("display","none");
+
+					}
+
 			},"json");
-		
+
 		}else{
-			
+
 			$("#xiangmu2").css("display","none");
-		}	
-		
+		}
+
 	});
-	
+
 	$("#sheng").change(function(){
 		//alert(111);
 		$("#shi").find("option").not(":first").remove();
 		//$("#qu").find("option").not(":first").remove();
-		sheng = $("#sheng").val();	
-		
+		sheng = $("#sheng").val();
+
 		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
-		
+
 			//console.log(data);
 			for(i=0;i<=data.length;i++){
-			
+
 				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
-			
+
 			}
-	
+
 		},"json");
-		
+
 	});
-	
+
 	$("#shi").change(function(){
 		//alert(22);
 		$("#qu").find("option").not(":first").remove();
-		
-		sheng = $("#shi").val();	
-		
+
+		sheng = $("#shi").val();
+
 		$.post("./ajax.php",{"sheng":sheng,"type":"shi"},function(data){
-		
+
 			//console.log(data);
 			for(i=0;i<=data.length;i++){
-			
+
 				$("#qu").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
-			
+
 			}
 		},"json");
 	});

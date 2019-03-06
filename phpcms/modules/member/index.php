@@ -508,21 +508,21 @@ class index extends foreground {
 			if($this->memberinfo['password'] != password($_POST['password'], $this->memberinfo['encrypt'])) {
 				showmessage(L('old_password_incorrect'));
 			}
-			$sms_report_db = pc_base::load_model('sms_report_model');
-			$mobile_verify = $_POST['mobile_verify'];
+			//$sms_report_db = pc_base::load_model('sms_report_model');
+			//$mobile_verify = $_POST['mobile_verify'];
 			$mobile = $_POST['mobile'];
 			if($mobile){
 				if(!preg_match('/^1([0-9]{10})$/',$mobile)) exit('check phone error');
 				$posttime = SYS_TIME-600;
 				$where = "`mobile`='$mobile' AND `send_userid`='".$memberinfo['userid']."' AND `posttime`>'$posttime'";
-				$r = $sms_report_db->get_one($where,'id,id_code','id DESC');
-				if($r && $r['id_code']==$mobile_verify) {
-					$sms_report_db->update(array('id_code'=>''),$where);
+				//$r = $sms_report_db->get_one($where,'id,id_code','id DESC');
+				//if($r && $r['id_code']==$mobile_verify) {
+					//$sms_report_db->update(array('id_code'=>''),$where);
 					$this->db->update(array('mobile'=>$mobile),array('userid'=>$memberinfo['userid']));
 					showmessage("手机号码更新成功！",'?m=member&c=index&a=account_change_mobile&t=1');
-				} else {
-					showmessage("短信验证码错误！请重新获取！");
-				}
+//				} else {
+//					showmessage("短信验证码错误！请重新获取！");
+//				}
 			}else{
 				showmessage("短信验证码已过期！请重新获取！");
 			}
@@ -623,7 +623,7 @@ class index extends foreground {
 				$this->_init_phpsso();
 				$status = $this->client->ps_member_login($username, $password);
 				$memberinfo = unserialize($status);
-				
+
 				if(isset($memberinfo['uid'])) {
 					//查询帐号
 					$r = $this->db->get_one(array('phpssouid'=>$memberinfo['uid']));

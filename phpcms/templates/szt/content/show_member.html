@@ -9,7 +9,7 @@
   <meta name="description" content="{$SEO['description']}">
   <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
   <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" />
-  <link href="statics/css/main.css" rel="stylesheet"/>
+  <link href="{CSS_PATH}main.css" rel="stylesheet"/>
   <script src="{JS_PATH}jquery.min.js"></script>
   <script src="{JS_PATH}search_common.js"></script>
   
@@ -83,11 +83,11 @@
     </div>
     
     <ul class="row5px info2">
-      <li class="col5px xs-4 md-3"><a href="tel://13760322795">一键拨号</a></li>
+      <li class="col5px xs-4 md-3">{if empty($main_memberinfo[mobile])}<a href="#">暂无号码</a>{else}{if isMobile()}<a href="tel://{$main_memberinfo[mobile]}">一键拨号</a>{else}<a href="#" onclick="alert('{$main_memberinfo[mobile]}')">一键拨号</a>{/if}{/if}</li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="open_img('{$memberinfo[0][wechat_img]}')">加我微信</a></li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="qrcpu('{$main_memberinfo[username]}','{$main_memberinfo[mobile]}')">导入通讯录</a></li>
       {php $location = explode('|',$memberinfo[0][my_adress]);}
-      <li class="col5px xs-4 md-3"><a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=我的位置&content=我的位置&output=html&src=webapp.baidu.openAPIdemo">一键导航</a></li>
+      <li class="col5px xs-4 md-3">{if empty($memberinfo[0][my_adress])}<a href="#">暂无地址</a>{else}<a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=目的地&content=目的地&output=html&src=webapp.baidu.openAPIdemo">一键导航</a>{/if}</li>
       <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=member_info&userid={$userid}">个人资料</a></li>
       {if $_userid}
         {pc:get sql="SELECT * FROM v9_concern where userid=$userid and cc_userid=$_userid" cache="3600" num="1" return="concern"}
