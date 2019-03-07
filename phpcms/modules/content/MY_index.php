@@ -174,8 +174,12 @@ class MY_index extends index
 
     //人员列表页分页
     public function member_lists() {
-        $page = isset($_GET['page']) && trim($_GET['page']) ? intval($_GET['page']) : 1;
         $catid = intval($_GET['catid']);
+        if(!$catid) showmessage(L('category_not_exists'),'blank');
+        $siteids = getcache('category_content','commons');
+        $siteid = $siteids[$catid];
+        $CATEGORYS = getcache('category_content_'.$siteid,'commons');
+        $page = isset($_GET['page']) && trim($_GET['page']) ? intval($_GET['page']) : 1;
         $province = intval($_POST['province']);
         $city = intval($_POST['city']);
         $home_province = intval($_POST['home_province']);

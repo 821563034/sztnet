@@ -31,10 +31,10 @@
 <div class="content">
   {$content}
   <p>联系人信息：</p>
-  {php $sql = "SELECT A.username,A.mobile,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.unit_name = '".$title."'";}
-  {pc:get sql="$sql" cache="3600" page="$page" num="2" return="data"}
+  {php $sql = "SELECT * FROM v9_member where modelid = 10";}
+  {pc:get sql="$sql" cache="3600" page="$page" num="20" return="data"}
     {loop $data $v}
-    <p style="color:red">{$v[username]}，{$v[position]}，手机：{$v[mobile]}，邮箱：{$v[email]}</p>
+  <p style="color:red"><img src="{get_memberavatar($v[userid],1,30)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'" width="30" height="30"><a href="index.php?m=content&c=index&a=member_home&catid=56&userid={$v[userid]}" target="_blank" class="card">{$v[username]}</a></p>
     {/loop}
   {/pc}
   <p style="color:red">{if $contact=='' AND empty($data)}晕，该公司的销售还没睡醒。去别家看看吧！{else}{$contact}{/if}</p>

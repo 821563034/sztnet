@@ -16,7 +16,7 @@
 <body>
 <header class="contain clear">
     <div class="showBox clear">
-      <div class="sb1">      
+      <div class="sb1">
         <i class="iconfont icon-guanlianfang" title="泛证券业务平台"></i>&nbsp;<span>泛证券业务平台</span>
       </div>
       <div class="sb2">
@@ -25,10 +25,10 @@
       </div>
       <div class="sb3">
         <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
-        <a href="#" class="iconfont icon-search"></a> 
+        <a href="#" class="iconfont icon-search"></a>
       </div>
     </div><!--/showBox-->
-    
+
     <div class="shortcut">
       <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
       <a href="http://www.sztnet.com/thisSite/deskShortcut.html" target="_blank">放到桌面</a>
@@ -36,7 +36,7 @@
     </div>
     <div class="searchBox">
       <form class="searchForm" action="http://www.sztnet.com/index_search.php" method="get" role="search">
-        <input type="text" name="title" />        
+        <input type="text" name="title" />
         <button type="submit">提交</button>
         <label><input type="radio" name="type" value="title" checked />搜标题</label>&nbsp;&nbsp;<label><input type="radio" name="type" value="content" />搜内容</label>
       </form>
@@ -91,7 +91,7 @@
 <div class="row mt10">
 
 <div class="col xs-12 md-10">
-  <h3 class="h3-2 bts">服务商检索&nbsp;<i class="iconfont icon-search"></i></h3>  
+  <h3 class="h3-2 bts">服务商检索&nbsp;<i class="iconfont icon-search"></i></h3>
   <form class="servSearch mb20" action="./search.php" method="get">
            <table>
         <tr>
@@ -154,81 +154,81 @@
           <td>
 			<select id="sheng" name="sheng">
 			<option value="">请选择</option>
-				
+
 				<option value="2">北京市</option>
-				
+
 				<option value="3">上海市</option>
-				
+
 				<option value="4">天津市</option>
-				
+
 				<option value="5">重庆市</option>
-				
+
 				<option value="6">河北省</option>
-				
+
 				<option value="7">山西省</option>
-				
+
 				<option value="8">内蒙古</option>
-				
+
 				<option value="9">辽宁省</option>
-				
+
 				<option value="10">吉林省</option>
-				
+
 				<option value="11">黑龙江</option>
-				
+
 				<option value="12">江苏省</option>
-				
+
 				<option value="13">浙江省</option>
-				
+
 				<option value="14">安徽省</option>
-				
+
 				<option value="15">福建省</option>
-				
+
 				<option value="16">江西省</option>
-				
+
 				<option value="17">山东省</option>
-				
+
 				<option value="18">河南省</option>
-				
+
 				<option value="19">湖北省</option>
-				
+
 				<option value="20">湖南省</option>
-				
+
 				<option value="21">广东省</option>
-				
+
 				<option value="22">广西</option>
-				
+
 				<option value="23">海南省</option>
-				
+
 				<option value="24">四川省</option>
-				
+
 				<option value="25">贵州省</option>
-				
+
 				<option value="26">云南省</option>
-				
+
 				<option value="27">西藏</option>
-				
+
 				<option value="28">陕西省</option>
-				
+
 				<option value="29">甘肃省</option>
-				
+
 				<option value="30">青海省</option>
-				
+
 				<option value="31">宁夏</option>
-				
+
 				<option value="32">新疆</option>
-				
+
 				<option value="33">台湾省</option>
-				
+
 				<option value="34">香港</option>
-				
+
 				<option value="35">澳门</option>
-				
+
 			</select>
 			<select id="shi" name="shi">
 			<option	value="">请选择</option>
 			</select>
 			<select id="qu" name="qu">
-			<option value="">请选择</option>	
+			<option value="">请选择</option>
 			</select>
             <span class="placeNote">（可只选省或市）</span>
           </td>
@@ -298,65 +298,65 @@
 		if(sheng != ""){
 		//alert(xiangmu);
 			$.post("./ajax.php",{"sheng":sheng,"type":"xiangmu"},function(data){
-			
+
 				//console.log(data);
 				if(data.length>1){
-					
+
 					$("#xiangmu2").css("display","block");
-					
+
 					for(i=0;i<=data.length;i++){
-				
+
 						$("#xiangmu2").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
-				
+
 					}
-					
+
 				}else{
-						
-						$("#xiangmu2").css("display","none");	
-					
-					}			
-			
+
+						$("#xiangmu2").css("display","none");
+
+					}
+
 			},"json");
-		
+
 		}else{
-			
+
 			$("#xiangmu2").css("display","none");
-		}	
-		
+		}
+
 	});
-	
+
 	$("#sheng").change(function(){
 		//alert(111);
 		$("#shi").find("option").not(":first").remove();
 		//$("#qu").find("option").not(":first").remove();
-		sheng = $("#sheng").val();	
-		
+		sheng = $("#sheng").val();
+
 		$.post("./ajax.php",{"sheng":sheng,"type":"sheng"},function(data){
-		
+
 			//console.log(data);
 			for(i=0;i<=data.length;i++){
-			
+
 				$("#shi").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
-			
+
 			}
-	
+
 		},"json");
-		
+
 	});
-	
+
 	$("#shi").change(function(){
 		//alert(22);
 		$("#qu").find("option").not(":first").remove();
-		
-		sheng = $("#shi").val();	
-		
+
+		sheng = $("#shi").val();
+
 		$.post("./ajax.php",{"sheng":sheng,"type":"shi"},function(data){
-		
+
 			//console.log(data);
 			for(i=0;i<=data.length;i++){
-			
+
 				$("#qu").append("<option value='"+data[i].linkageid+"'>"+data[i].name+"</option>");
-			
+
 			}
 		},"json");
 	});
