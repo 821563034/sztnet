@@ -12,6 +12,9 @@
 <script src="statics/js/layer/layer.js"></script>
 <link href="{CSS_PATH}reset.css" rel="stylesheet" type="text/css" />
 <link href="{CSS_PATH}dialog_simp.css" rel="stylesheet" type="text/css" />
+<link href="{PLUGIN_STATICS_PATH}select2/select2.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{PLUGIN_STATICS_PATH}select2/select2.full.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
 <script language="JavaScript">
 <!--
 $(function(){
@@ -299,6 +302,29 @@ function layer_open() {
 			</script>
 
 			{loop $forminfos $k $v}
+				{if $k == 'unit_name'}
+				<div class="input">
+					<label>单位名称：</label>
+					<div class="form">
+						<input id="company_name" name="info[unit_name]" value="{$memberinfo['unit_name']}" type="text" class="input-text" size="30" list="companyList">
+						<datalist id="companyList">
+
+						</datalist>
+					</div>
+				</div>
+				{php continue;}
+				{elseif $k == 'wechat_img'}
+				<div class="input">
+					<label>微信二维码：</label>
+					<div class="form">
+						<div class="upload-pic img-wrap">
+							<input type="hidden" name="info[wechat_img]" id="wechat_img" value="">
+							<a><img src="/statics/images/icon/upload-pic.png" id="wechat_img_preview" style="cursor:hand" width="135" height="113"></a>
+						</div>
+					</div>
+				</div>
+				{php continue;}
+				{/if}
 				<div class="input"><label>{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</label><div class="form">{$v['form']}</div></div>
 			{/loop}
 		{/if}
@@ -390,6 +416,9 @@ function layer_open() {
             </div>
         </div>
 </form>
+<form id="fileForm" enctype="multipart/form-data" action="index.php?m=content&c=index&a=upload" method="post">
+	<input type="file" id="file" name="upload" style="display: none;" multiple="multiple">
+</form>
 {elseif isset($_GET['t']) && $_GET['t']==2}
 <div class="col-left form-login form-reg">
 {php $emailurl = param::get_cookie('email') ? str_replace('@', '',strstr(param::get_cookie('email'), '@')) : '';}
@@ -430,3 +459,37 @@ function send_newmail() {
 </div>
 
 {template 'member', 'footer'}
+<script>
+    $("#company_name").on('input',function(e){
+        $.post('index.php?m=content&c=index&a=getCompany',{q:$(this).val()},function (result) {
+            if (result){
+                var html = '';
+                $.each(result.items,function (k,v) {
+                    html+= '<option value="'+v.text+'" />';
+                });
+                $('#companyList').html(html);
+            }else {
+                layer.alert('获取公司列表出错', {icon: 2});
+            }
+
+        },'json');
+
+        //$("input[name='info[unit_name]']").val($(this).val());
+    });
+
+    $("#wechat_img_preview").click(function () {
+        $('#file').trigger('click');
+    });
+
+    $('#file').on('change',function () {
+        $('#fileForm').ajaxSubmit(function (result) {
+            if(result){
+				$('#wechat_img').val(result);
+				$('#wechat_img_preview').attr('src',result);
+            }else {
+                layer.alert('上传失败', {icon: 2});
+            }
+            $("#file").val('');
+        });
+    });
+</script>

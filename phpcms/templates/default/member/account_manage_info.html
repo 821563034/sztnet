@@ -3,7 +3,13 @@
 <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
 <link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
-<script src="statics/js/layer/layer.js"></script>
+<script src="{JS_PATH}layer/layer.js"></script>
+<link href="{PLUGIN_STATICS_PATH}select2/select2.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{PLUGIN_STATICS_PATH}select2/select2.full.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
+<style type="text/css">
+	.select2-hidden-accessible{border:0 !important;clip:rect(0 0 0 0) !important;height:1px !important;margin:-1px !important;overflow:hidden !important;padding:0 !important;position:absolute !important;width:1px !important}
+</style>
 <script language="JavaScript">
 <!--
 $(function(){
@@ -38,7 +44,7 @@ function layer_open() {
 			});
 			html+='</select>';
 			layer.open({
-				content: html
+				 content: html
 				,btn: ['确定']
 				,yes: function(index, layero){
 					//按钮【按钮一】的回调
@@ -81,8 +87,30 @@ function layer_open() {
 						<th width="100">{L('nickname')}</th> 
 						<td><input id="nickname" name="nickname" value="{$memberinfo['nickname']}" type="text" class="input-text" size="30"></td>
 					</tr>
-
 					{loop $forminfos $k $v}
+					{if $k == 'unit_name'}
+					<tr>
+						<th width="100">单位名称：</th>
+						<td>
+							<input id="company_name" name="info[unit_name]" value="{$memberinfo['unit_name']}" type="text" class="input-text" size="30" list="companyList">
+							<datalist id="companyList">
+
+							</datalist>
+						</td>
+					</tr>
+					{php continue;}
+					{elseif $k == 'wechat_img'}
+					<tr>
+						<th width="100">微信二维码：</th>
+						<td>
+							<div class="upload-pic img-wrap">
+								<input type="hidden" name="info[wechat_img]" id="wechat_img" value="{$memberinfo['wechat_img']}">
+								<a><img src="{$memberinfo['wechat_img']}" onerror="this.src='/statics/images/icon/upload-pic.png'" id="wechat_img_preview" style="cursor:hand" width="135" height="113"></a>
+							</div>
+						<td>
+					</tr>
+					{php continue;}
+					{/if}
 					<tr>
 						<th width="100">{if $v['isbase']}<font color=red>*</font>{/if} {$v['name']}：{if $v['tips']}<br />({$v['tips']}){/if}</th> 
 						<td>{$v['form']}</td>
@@ -94,7 +122,9 @@ function layer_open() {
 					</tr>
 				</table>
 			</form>
-
+			<form id="fileForm" enctype="multipart/form-data" action="index.php?m=content&c=index&a=upload" method="post">
+				<input type="file" id="file" name="upload" style="display: none;" multiple="multiple">
+			</form>
 			</div>
 			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
 		</div>
@@ -102,3 +132,72 @@ function layer_open() {
 </div>
 <div class="clear"></div>
 {template 'member', 'footer'}
+<script>
+    /*$(document).ready(function(){
+        $('#company').select2(
+            {
+                ajax: {
+                    url: 'index.php?m=content&c=index&a=getCompany',
+                    dataType: 'json',
+                    delay: 1000,
+                    data: function (params) {
+                        return {
+                            q: params.term, // search term
+                            page: params.page,
+                            row: 10
+                        };
+                    },
+                    processResults: function (data, params) {
+                        params.page = params.page || 1;
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 10) < data.total
+                            }
+                        };
+                    },
+                    cache: true
+                }
+            }
+		);
+	});*/
+
+    /*$("#company").change(function(){
+        var company = $("#company option:selected").text();
+        $("input[name='info[unit_name]']").val(company);
+        $('#company_name').val(company);
+    });*/
+
+    $("#company_name").on('input',function(e){
+        $.post('index.php?m=content&c=index&a=getCompany',{q:$(this).val()},function (result) {
+            if (result){
+                var html = '';
+                $.each(result.items,function (k,v) {
+                    html+= '<option value="'+v.text+'" />';
+                });
+                $('#companyList').html(html);
+            }else {
+                layer.alert('获取公司列表出错', {icon: 2});
+            }
+
+        },'json');
+
+        //$("input[name='info[unit_name]']").val($(this).val());
+    });
+
+    $("#wechat_img_preview").click(function () {
+        $('#file').trigger('click');
+    });
+
+    $('#file').on('change',function () {
+        $('#fileForm').ajaxSubmit(function (result) {
+            if(result){
+                $('#wechat_img').val(result);
+                $('#wechat_img_preview').attr('src',result);
+            }else {
+                layer.alert('上传失败', {icon: 2});
+            }
+            $("#file").val('');
+        });
+    });
+</script>
