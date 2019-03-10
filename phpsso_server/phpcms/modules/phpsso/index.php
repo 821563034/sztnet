@@ -51,7 +51,8 @@ class index extends phpsso {
 			exit('-4');
 		}
 		
-		$checkemail = $this->checkemail(1);
+		//$checkemail = $this->checkemail(1);
+		$checkemail = 1;
 		if($checkemail == -1) {
 			exit('-2');
 		} elseif ($checkemail == -5) {
