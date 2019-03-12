@@ -83,16 +83,17 @@
               <option value="5">证券公司</option>
               <option value="6">会计师事务所</option>
               <option value="7">资产评估机构</option>
-              <option value="8">律师事务所</option>
-              <option value="9">财务顾问公司</option>
-              <option value="10">财经公关公司</option>
-              <option value="11">董办服务公司</option>
-              <option value="12">产业咨询公司</option>
-              <option value="13">管理咨询公司</option>
-              <option value="14">金融软件公司</option>
-              <option value="15">财经印刷公司</option>
-              <option value="16">媒体中介公司</option>
-              <option value="17">媒体</option>
+              <option value="8">信用评级机构</option>
+              <option value="9">律师事务所</option>
+              <option value="10">财务顾问公司</option>
+              <option value="11">财经公关公司</option>
+              <option value="12">董办服务公司</option>
+              <option value="13">产业咨询公司</option>
+              <option value="14">管理咨询公司</option>
+              <option value="15">金融软件公司</option>
+              <option value="16">财经印刷公司</option>
+              <option value="17">媒体中介公司</option>
+              <option value="18">媒体</option>
             </select>
           </div>
           <div class="col xs-6 md-6">
@@ -107,7 +108,7 @@
           </div>
           <div class="col xs-6 md-6">
             <select name="type" class="pc-select-area">
-              <option value="username" {if $type == "username"}selected{/if}>姓名</option>
+              <option value="nickname" {if $type == "nickname"}selected{/if}>姓名</option>
               <option value="mobile" {if $type == "mobile"}selected{/if}>手机号</option>
               <option value="school" {if $type == "school"}selected{/if}>学校</option>
               <option value="keyword" {if $type == "keyword"}selected{/if}>关键词</option>
@@ -120,9 +121,9 @@
         </form>
       </div>
       {if empty($userid_string)}
-      {pc:get sql="SELECT A.username,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ('')" cache="3600" page="$page" num="2" return="data"}
+      {pc:get sql="SELECT A.nickname,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ('')" cache="3600" page="$page" num="2" return="data"}
       {else}
-      {pc:get sql="SELECT A.username,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ($userid_string)" cache="3600" page="$page" num="2" return="data"}
+      {pc:get sql="SELECT A.nickname,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ($userid_string)" cache="3600" page="$page" num="2" return="data"}
       {/if}
       <div class="col xs-12 md-12">
       <ul class="bts lbs">
@@ -131,7 +132,7 @@
           <a href="index.php?m=content&c=index&a=member_home&catid={$catid}&userid={$r[userid]}" target="_blank" class="card">
             <img src="{get_memberavatar($r[userid],1,90)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'">
             <div>
-              <span>{$r[username]}</span><span>{get_linkage($r[area],1,' >> ',1)}</span>
+              <span>{$r[nickname]}</span><span>{get_linkage($r[area],1,' >> ',1)}</span>
               <span>{$r[unit_name]}&nbsp;&nbsp;{$r[position]}</span>
               <span>{$r[self_introduction]}</span>
             </div>

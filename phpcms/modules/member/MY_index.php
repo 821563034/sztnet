@@ -338,6 +338,49 @@ class MY_index extends index
     }
 
     /**
+     * 不验证用户昵称
+     */
+    public function public_checknickname_ajax()
+    {
+        exit('1');
+    }
+
+    public function account_change_email() {
+        if(isset($_POST['dosubmit'])) {
+            $updateinfo = array();
+            if(!is_password($_POST['info']['password'])) {
+                showmessage(L('password_format_incorrect'), HTTP_REFERER);
+            }
+            if($this->memberinfo['password'] != password($_POST['info']['password'], $this->memberinfo['encrypt'])) {
+                showmessage(L('password_error'), HTTP_REFERER);
+            }
+
+            //修改会员邮箱
+            if($this->memberinfo['email'] != $_POST['info']['email'] && is_email($_POST['info']['email'])) {
+                $email = $_POST['info']['email'];
+                $updateinfo['email'] = $_POST['info']['email'];
+            } else {
+                $email = '';
+            }
+            $this->db->update($updateinfo, array('userid'=>$this->memberinfo['userid']));
+            if(pc_base::load_config('system', 'phpsso')) {
+                //初始化phpsso
+                $this->_init_phpsso();
+                $res = $this->client->ps_member_edit('', $email, $_POST['info']['password'], '', $this->memberinfo['phpssouid'], '');
+                $message_error = array('-1'=>L('user_not_exist'), '-2'=>L('old_password_incorrect'), '-3'=>L('email_already_exist'), '-4'=>L('email_error'), '-5'=>L('param_error'));
+                if ($res < 0) showmessage($message_error[$res]);
+            }
+
+            showmessage(L('operation_success'), HTTP_REFERER);
+        } else {
+            $show_validator = true;
+            $memberinfo = $this->memberinfo;
+
+            include template('member', 'account_manage_email');
+        }
+    }
+
+    /**
      * 初始化phpsso
      * about phpsso, include client and client configure
      * @return string phpsso_api_url phpsso地址

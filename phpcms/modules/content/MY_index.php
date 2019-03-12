@@ -203,8 +203,8 @@ class MY_index extends index
         if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
         if(!empty($emotional_state)) $where .= ' AND emotional_state = '.$emotional_state;
         if(!empty($search)) {
-            if ($type == 'username'){
-                $userid_arr = $this->member_db->select("username like '%".$search."%'",'userid');
+            if ($type == 'nickname'){
+                $userid_arr = $this->member_db->select("nickname like '%".$search."%'",'userid');
                 $userids = array_column($userid_arr, 'userid');
                 $userid_string = implode(',',$userids);
                 $where.= " AND userid in ('".$userid_string."')";
