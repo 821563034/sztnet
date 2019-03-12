@@ -9,8 +9,9 @@
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
 <script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}layer/layer.js" charset="UTF-8"></script>
 <div id="memberArea">
-	{template 'member', 'account_manage_left'}
+	{template 'member', 'card_left'}
 	<div class="col-auto">
 		<div class="col-1 ">
 			<h5 class="title">{L('edit')}</h5>
@@ -91,15 +92,28 @@ $(function(){
         $('#file').trigger('click');
     });
 
-    $('#file').on('change',function () {
-        $('#fileForm').ajaxSubmit(function (result) {
-            if(result){
-                $('#thumb').val(result);
-                $('#wechat_img_preview').attr('src',result);
+    var options = {
+        //target: '#output',          //把服务器返回的内容放入id为output的元素中
+        //beforeSubmit: showRequest,  //提交前的回调函数
+        success: function (result) {  //提交后的回调函数
+            console.log(result.code);
+            if(result.code){
+                $('#thumb').val(result.data);
+                $('#wechat_img_preview').attr('src',result.data);
             }else {
-                layer.alert('上传失败', {icon: 2});
+                layer.alert(result.msg, {icon: 2});
             }
             $("#file").val('');
-        });
+        },
+        //url: url,                 //默认是form的action， 如果申明，则会覆盖
+        //type: type,               //默认是form的method（get or post），如果申明，则会覆盖
+        dataType: "json",           //html(默认), xml, script, json...接受服务端返回的类型
+        //clearForm: true,          //成功提交后，清除所有表单元素的值
+        //resetForm: true,          //成功提交后，重置所有表单元素的值
+        timeout: 3000               //限制请求的时间，当请求大于3秒后，跳出请求
+    };
+    $('#file').on('change',function () {
+        $('#fileForm').ajaxSubmit(options);
+        return false;
     });
 </script>

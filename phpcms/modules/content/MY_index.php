@@ -200,7 +200,7 @@ class MY_index extends index
         $where = '1 = 1';
         if(!empty($city)) $where .= ' AND area='.$city;
         if(!empty($home_city)) $where .= ' AND home_area = '.$home_city;
-        //if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
+        if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
         if(!empty($emotional_state)) $where .= ' AND emotional_state = '.$emotional_state;
         if(!empty($search)) {
             if ($type == 'username'){
@@ -274,14 +274,16 @@ class MY_index extends index
         $site_allowext = $site_setting['upload_allowext'];
         $attachment = new attachment($module,$catid,$siteid);
         $attachment->set_userid($this->userid);
-        $a = $attachment->upload('upload',$site_allowext);
+        $a = $attachment->upload('upload',$site_allowext,500*1024,'','',0);
         if($a){
             $filepath = $attachment->uploadedfiles[0]['filepath'];
-            $url = $this->upload_url.$filepath;
+            $res['data'] = $this->upload_url.$filepath;
+            $res['code'] = 1;
         }else{
-            $url = 0;
+            $res['code'] = 0;
+            $res['msg'] = $attachment->error();
         }
-        echo $url;exit();
+        echo json_encode($res);exit();
     }
 
     /**

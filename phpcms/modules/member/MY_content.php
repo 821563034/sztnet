@@ -161,7 +161,7 @@ class MY_content extends content
         }
     }
 
-    public function published() {
+    public function card_published() {
         $memberinfo = $this->memberinfo;
         $sitelist = getcache('sitelist','commons');
         if(!isset($_GET['siteid']) && count($sitelist)>1) {

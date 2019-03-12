@@ -70,6 +70,10 @@ class MY_index extends index
         include template('member', 'interview_count');
     }
 
+    /**
+     * 注册
+     * @return int|void
+     */
     public function register() {
         $this->_session_start();
         //获取用户siteid
@@ -298,6 +302,39 @@ class MY_index extends index
                 include template('member', 'register');
             }
         }
+    }
+
+    /**
+     * 我的名片
+     */
+    public function card()
+    {
+        include template('member', 'card');
+    }
+
+    /**
+     * 发布内容
+     */
+    public function publish()
+    {
+        include template('member', 'publish');
+    }
+
+    /**
+     * 站内信
+     */
+    public function message()
+    {
+        header("location: index.php?m=message&c=index&a=inbox&t=5");
+        exit;
+    }
+
+    /**
+     * 财务管理
+     */
+    public function finance()
+    {
+        include template('member', 'finance');
     }
 
     /**

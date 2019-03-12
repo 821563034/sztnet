@@ -3,10 +3,18 @@
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
 <div id="memberArea">
-	{template 'member', 'account_manage_left'}
+	{template 'member','card_left'}
 	<div class="col-auto">
 		<div class="col-1 ">
-			<h5 class="title">{$CATEGORYS[$catid][catname]}<a href="index.php?m=member&c=content&a=publish&siteid=1&catid={$catid}" style="float: right;color: red">添加</a></h5>
+			<h5 class="title">{$CATEGORYS[$catid][catname]}
+				{if $catid == 505 AND count($datas) >= 3}
+				<span style="float: right;color: red">{$CATEGORYS[$catid][catname]}最多添加3条数据</span>
+				{elseif count($datas) >= 8}
+				<span style="float: right;color: red">{$CATEGORYS[$catid][catname]}最多添加8条数据</span>
+				{else}
+				<a href="index.php?m=member&c=content&a=publish&siteid=1&catid={$catid}" style="float: right;color: red">添加</a>
+				{/if}
+			</h5>
 
 			<div class="content">
 		

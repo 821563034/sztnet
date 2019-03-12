@@ -50,14 +50,13 @@ class index extends phpsso {
 		} elseif ($checkname == -4) {
 			exit('-4');
 		}
-		
-		//$checkemail = $this->checkemail(1);
-		$checkemail = 1;
+
+		/*$checkemail = $this->checkemail(1);
 		if($checkemail == -1) {
 			exit('-2');
 		} elseif ($checkemail == -5) {
 			exit('-5');
-		}
+		}*/
 		
 		//UCenter会员注册
 		$ucuserid = 0;

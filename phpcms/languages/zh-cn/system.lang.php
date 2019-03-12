@@ -72,7 +72,7 @@ $LANG['icon_unlock'] = '<font color="red">√</font>';
 $LANG['icon_locked'] = '<font color="blue">×</font>';
 $LANG['type'] = '类型';
 $LANG['search'] = '搜索';
-$LANG['username'] = '账号';
+$LANG['username'] = '用户名';
 $LANG['user_already_exist'] = '用户已存在。';
 $LANG['poster']	= '广告';
 $LANG['announce'] = '公告';
