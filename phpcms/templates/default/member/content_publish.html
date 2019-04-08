@@ -31,10 +31,17 @@
 				//-->
 				</script>
 					<tr>
+					{if in_array($catid,[502,503,504,505])}
 						<th>栏目：</th>
-						<td><input type="text" style="width:400px;" value="{$CATEGORYS[$catid][catname]}" class="measure-input" readonly></td>
+						<td>
+							<input type="text" style="width:400px;" value="{$CATEGORYS[$catid][catname]}" class="measure-input" readonly>
+							<input type="hidden" name="info[catid]" id="catid" value="{$catid}"/>
+						</td>
+					{else}
+						<th>{L('please_select_cat')}：</th>
+						<td>{form::select_category('', $catid, 'name="info[catid]" onchange="javascript:c_c(this.value);"','','',0,1,$siteid,'1')}</td>
+					{/if}
 					</tr>
-					<input type="hidden" name="info[catid]" id="catid" value="{$catid}">
 				{/if}
 					{loop $forminfos $k $v}
 					{if $k == 'thumb'}

@@ -24,6 +24,7 @@ class MY_index extends index
         $this->interview_db = pc_base::load_model('interview_statistics_model');
         $this->userid = $_SESSION['userid'] ? $_SESSION['userid'] : 0;
         $this->upload_url = pc_base::load_config('system','upload_url');
+        $this->company_db = pc_base::load_model('company_model');
     }
 
     /**
@@ -250,6 +251,25 @@ class MY_index extends index
         echo json_encode(['total'=>$total,'items'=>$list]);exit();
     }
 
+    public function getIntCompany()
+    {
+        $page = intval($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+        $row = intval($_REQUEST['row']) ? intval($_REQUEST['row']) : 10;
+        $q = trim($_REQUEST['q']);
+        $where = '1 = 1';
+        if (!empty($q)){
+            $where .= ' AND title LIKE "%'.$q.'%"';
+        }
+        $list = $this->company_db->listinfo($where, 'id', $page, $row);
+        foreach ($list as $k => $v){
+            $list[$k]['text'] = $v['shortname'];
+            unset($list[$k]['title']);
+        }
+        //得到总记录数
+        $total = $this->company_db->count();
+        echo json_encode(['total'=>$total,'items'=>$list]);exit();
+    }
+
     public function insertAdmin()
     {
         $this->admin_db = pc_base::load_model('admin_model');
@@ -284,6 +304,60 @@ class MY_index extends index
             $res['msg'] = $attachment->error();
         }
         echo json_encode($res);exit();
+    }
+
+    public function lists_company()
+    {
+        $catid = intval($_GET['catid']);
+        if(!$catid) showmessage(L('category_not_exists'),'blank');
+        $siteids = getcache('category_content','commons');
+        $siteid = $siteids[$catid];
+        $CATEGORYS = getcache('category_content_'.$siteid,'commons');
+        $template = [1 => 'list_subscribe_industry', 2 => 'list_subscribe_area', 3 => 'list_subscribe_company'];
+        $type = intval($_POST['type']);
+        $q = intval($_POST['q']);
+        switch ($type)
+        {
+            case 1:
+                $company_arr = $this->company_db->select("ind_2nd = '".$q."'",'title');
+                $companys = array_column($company_arr, 'title');
+                $company_string = implode(',',$companys);
+                $where = "object in ('".$company_string."')";
+                break;
+            case 2:
+                $company_arr = $this->company_db->select("city = '".$q."'",'title');
+                $companys = array_column($company_arr, 'title');
+                $company_string = implode(',',$companys);
+                $where = "object in ('".$company_string."')";
+                break;
+            case 3:
+                $where = "object = ('".$q."')";
+                break;
+            default:
+                showmessage('系统错误','blank');
+                break;
+        }
+        include template('content',$template[$type]);
+    }
+
+    public function add_subscribe()
+    {
+        $this->subscribe_db = pc_base::load_model('subscribe_model');
+        $data['userid'] = $this->_userid;
+        $data['name'] = trim($_POST['name']);
+        $data['type'] = intval($_POST['type']);
+        $find = $this->subscribe_db->get_one($data);
+        if ($find){
+            echo json_encode(['code'=>0, 'msg'=>'请勿重复添加']);
+            exit();
+        }
+        $status = $this->subscribe_db->insert($data);
+        if ($status){
+            echo json_encode(['code'=>1]);
+        }else {
+            echo json_encode(['code'=>0, 'msg'=>'系统错误请稍后重试']);
+        }
+        exit();
     }
 
     /**

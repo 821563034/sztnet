@@ -2,11 +2,15 @@
 pc_base::load_sys_class('form', '', 0);
 class MY_index extends index
 {
+    private $userid;
+
     function __construct()
     {
         parent::__construct();
         $this->concern_db = pc_base::load_model('concern_model');
         $this->interview_db = pc_base::load_model('interview_statistics_model');
+        $this->linkage_db = pc_base::load_model('linkage_model');
+        $this->_userid = param::get_cookie('_userid');
     }
 
     public function init()
@@ -325,7 +329,8 @@ class MY_index extends index
      */
     public function message()
     {
-        header("location: index.php?m=message&c=index&a=inbox&t=5");
+        $t = intval($_GET['t']);
+        header("location: index.php?m=message&c=index&a=inbox&t=".$t);
         exit;
     }
 
@@ -335,6 +340,23 @@ class MY_index extends index
     public function finance()
     {
         include template('member', 'finance');
+    }
+
+    public function public_get_select()
+    {
+        $cc_userid = $this->_userid;
+        if(!$cc_userid) {
+            $res['code'] = 0;
+            $res['msg'] = '请先登录';
+            echo json_encode($res);exit();
+        }
+        $where = 'parentid = 0 and style = 0 and keyid = 1';
+        $province = $this->linkage_db->select($where);
+        $where = 'parentid = 0 and style = 0 and keyid = 3412';
+        $int = $this->linkage_db->select($where);
+        $this->subscribe_db = pc_base::load_model('subscribe_model');
+        $subscribe_list = $this->subscribe_db->select('userid='.$this->_userid);
+        echo json_encode(['code'=>1,'province'=>$province,'int'=>$int,'subscribe_list'=>$subscribe_list]);
     }
 
     /**

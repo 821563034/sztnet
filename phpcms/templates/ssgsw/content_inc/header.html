@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/ssgsw.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
+<header>
+  {php $t=$CATEGORYS[$top_parentid][catid]}
+  <div class="contain clear">
+    <div class="logo"></div>           
+    <div class="func">
+      <a href="#" target="_self"><i class="iconfont icon-search"></i></a> 
+      <a href="#" target="_self"><i class="iconfont icon-xihuan"></i></a>
+      <script type="text/javascript">
+         document.write('<iframe class="logIframe" src="../index.php?m=member&c=index&a=mini&forward='+encodeURIComponent(location.href)+'&siteid=1" allowTransparency="true" frameborder="0" scrolling="no"></iframe>')
+      </script>
+      <div class="searchBox hide">
+        <form  name="formsearch" action="/plus/search.php">
+          <div class="form">
+             <input type="hidden" name="kwtype" value="0" />
+             <input name="q" type="text" class="search-keyword" id="search-keyword" value="在这里搜索..." onfocus="if(this.value=='在这里搜索...'){this.value='';}"  onblur="if(this.value==''){this.value='在这里搜索...';}" />
+             <select name="searchtype" class="search-option" id="search-option">
+                 <option value="title" selected='1'>标题</option>
+                 <option value="titlekeyword">模糊</option>
+             </select>
+            <button type="submit" class="search-submit">搜索</button>
+          </div>
+        </form>
+      </div><!--/searchBox-->
+      <div class="favor hide">
+        <a href="http://www.sztnet.com/thisSite/setHomepage.html" target="_blank">设为首页</a>
+        <a href="http://www.sztnet.com/thisSite/deskfavor.html" target="_blank">放到桌面</a>
+        <a href="http://www.sztnet.com/thisSite/addBookmark.html" target="_blank">加收藏/书签</a>
+      </div>
+    </div><!--/func-->
+    <ul class="navi">
+      <li {if $t==9}class="cur"{/if}><a href="{$CATEGORYS[9]['url']}" target="_self"><span>上市公司</span></a></li>
+      <li {if $t==14}class="cur"{/if}><a href="{$CATEGORYS[14]['url']}" target="_self"><span>IPO公司</span></a></li>
+      <li {if $t==10}class="cur"{/if}><a href="{$CATEGORYS[10]['url']}" target="_self"><span>股票市场</span></a></li>
+      <li {if $t==11}class="cur"{/if}><a href="{$CATEGORYS[11]['url']}" target="_self"><span>迈瑞医疗</span></a></li>
+      <li {if $t==12}class="cur"{/if}><a href="{$CATEGORYS[12]['url']}" target="_self"><span>生物医疗行业</span></a></li>
+      <li {if $t==13}class="cur"{/if}><a href="{$CATEGORYS[13]['url']}" target="_self"><span>深圳辖区</span></a></li>
+      <li><a href="#" target="_self"><span id="subscribe">+</span></a></li>
+    </ul>
+  </div><!--/container-->
+</header>
+
+<script src="{JS_PATH}layer/layer.js"></script>
+<script>
+  $(document).ready(function(){
+	$(".icon-search").click(function(){$(".searchBox").toggle(); $(".favor").hide()});
+  });
+  $(document).ready(function(){
+	$(".icon-xihuan").click(function(){$(".favor").toggle(); $(".searchBox").hide()});
+  });
+
+  $('#subscribe').click(function () {
+    $.post('index.php?m=member&c=index&a=public_get_select',{catid:120},function (result) {
+      if (result.code){
+        var provinceHtml = '<option value="">请选择</option>';
+        $.each(result.province,function (k,v) {
+          provinceHtml+= '<option value="'+v.linkageid+'">'+v.name+'</option>';
+        });
+        var intHtml = '<option value="">请选择</option>';
+        $.each(result.int,function (k,v) {
+          intHtml+= '<option value="'+v.linkageid+'">'+v.name+'</option>';
+        });
+        var subscribe_list = '';
+        $.each(result.subscribe_list,function (k,v) {
+          subscribe_list += '<li><a>'+v.name+'<i class="iconfont icon-dengluren"></i></a></li>';
+        });
+        layer.open({
+          title:'订阅',
+          area: ['50%'],
+          content: '<table width="100%" cellpadding="0" class="table_form"><tbody><tr><th width="20%">订阅本地区</th><td style="width: 60%"><select class="pc-select-area" id="province" onchange="get_city()" style="width: 40%">'+provinceHtml+'</select><select class="pc-select-area" id="area" style="width: 40%"><option>请选择</option></select></td><td style="20%"><button type="button" onclick="add_city()">订阅</button></td></tr><tr><th width="20%">订阅本行业</th><td style="60%"><select class="pc-select-area" id="int_fir" onchange="get_int()" style="width: 40%">'+intHtml+'</select><select class="pc-select-area" id="int_two" style="width: 40%"><option>请选择</option></select></td><td style="20%"><button type="button" onclick="add_int()">订阅</button></td></tr><tr style="width: 60%"><th width="20%">订阅本公司</th><td><input id="stock_code" type="text" class="input-text" list="companyList" style="width: 80%" oninput="get_company()"><datalist id="companyList"></datalist></td><td style="20%"><button type="button" onclick="add_company()">订阅</button></td></tr></tbody></table><ul id="lastLine">'+subscribe_list+'</ul>'
+          ,btn: ['确定']
+          ,yes: function(index, layero){
+            //按钮【按钮一】的回调
+            layer.close(index);
+          }
+          ,cancel: function(){
+            //右上角关闭回调
+
+            //return false 开启该代码可禁止点击该按钮关闭
+          }
+        });
+      } else {
+          layer.alert(result.msg, {icon: 2});
+      }
+    },'json');
+
+  });
+  function get_city() {
+    var provinceid  = $('#province').val();
+    $.post('index.php?m=content&c=index&a=get_city',{id:provinceid},function (result) {
+      var html = '<option value="">请选择</option>';
+      $.each(result,function (k,v) {
+        html+= '<option value="'+v.linkageid+'">'+v.name+'</option>';
+      });
+      $("#area").html(html);
+    },'json');
+  }
+
+  function get_int() {
+    var int_fir  = $('#int_fir').val();
+    $.post('index.php?m=content&c=index&a=get_city',{id:int_fir},function (result) {
+      var html = '<option value="">请选择</option>';
+      $.each(result,function (k,v) {
+        html+= '<option value="'+v.linkageid+'">'+v.name+'</option>';
+      });
+      $("#int_two").html(html);
+    },'json');
+  }
+
+  function get_company(){
+    $.post('index.php?m=content&c=index&a=getIntCompany',{q:$('#stock_code').val()},function (result) {
+      if (result){
+        var html = '';
+        $.each(result.items,function (k,v) {
+          html+= '<option value="'+v.text+'" />';
+        });
+        $('#companyList').html(html);
+      }else {
+        layer.alert('获取公司列表出错', {icon: 2});
+      }
+    },'json');
+  }
+
+  function add_company() {
+    var text = $('#stock_code').val();
+    $.post('index.php?m=content&c=index&a=add_subscribe',{name:text,type:3},function (result) {
+      if (result.code){
+        var html = '<td style="width: 10%"><a>'+text+'<i class="iconfont icon-dengluren"></i></a></td>';
+        $('#lastLine').append(html);
+      }
+    },'json');
+  }
+
+  function add_int() {
+
+  }
+
+  function add_city() {
+
+  }
+
+  function includeCss() {
+    $("head").append("<link>");
+    var css = $("head").children(":last");
+    css.attr({
+      rel:  "stylesheet",
+      type: "text/css",
+      href: "/statics/css/mycss/iconfont/iconfont.css"
+    });
+  }
+</script>

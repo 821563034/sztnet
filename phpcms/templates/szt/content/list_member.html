@@ -121,9 +121,9 @@
         </form>
       </div>
       {if empty($userid_string)}
-      {pc:get sql="SELECT A.nickname,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ('')" cache="3600" page="$page" num="2" return="data"}
+      {pc:get sql="SELECT A.nickname,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ('')" cache="3600" page="$page" num="10" return="data"}
       {else}
-      {pc:get sql="SELECT A.nickname,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ($userid_string)" cache="3600" page="$page" num="2" return="data"}
+      {pc:get sql="SELECT A.nickname,B.* FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.userid in ($userid_string)" cache="3600" page="$page" num="10" return="data"}
       {/if}
       <div class="col xs-12 md-12">
       <ul class="bts lbs">

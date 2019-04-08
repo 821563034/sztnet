@@ -1,8 +1,8 @@
 <div class="col-left col-1 left-memu">
     <h5 class="title">发布内容</h5>
     <ul>
-        <li {if ROUTE_A=="publish"} class="on"{/if}><a href="index.php?m=member&c=content&a=publish&t=4"><img src="{IMG_PATH}icon/m_2.png" width="14" height="15" /> 发表文章</a></li>
-        <li {if ROUTE_A=="published"} class="on"{/if}><a href="index.php?m=member&c=content&a=published&t=4"><img src="{IMG_PATH}icon/m_3.png" width="14" height="16" /> 我的文章</a></li>
+        <li {if ROUTE_A=="publish"} class="on"{/if}><a href="index.php?m=member&c=content&a=publish&t={$_GET['t']}"><img src="{IMG_PATH}icon/m_2.png" width="14" height="15" /> 发表文章</a></li>
+        <li {if ROUTE_A=="published"} class="on"{/if}><a href="index.php?m=member&c=content&a=published&t={$_GET['t']}"><img src="{IMG_PATH}icon/m_3.png" width="14" height="16" /> 我的文章</a></li>
     </ul>
     <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
 </div>

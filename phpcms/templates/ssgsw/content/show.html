@@ -1,22 +1,5 @@
-<!doctype html>
-<html lang="cmn-Hans">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
-  <meta name="keywords" content="{$SEO['keyword']}">
-  <meta name="description" content="{$SEO['description']}">
-  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
-  <link href="{CSS_PATH}mycss/szt.css" rel="stylesheet" /> 
-  <script src="{JS_PATH}jquery.min.js"></script>
-  <script src="{JS_PATH}search_common.js"></script>
-</head>
-
-<body>
-<?php include PHPCMS_PATH.'/phpcms/templates/pub/header.html';?>
+{template "content_inc","header"}
 <div class="container">
-{template "content_inc","nav"}
 {template "content_inc","position_sp"}
 <div class="row">
 
@@ -24,20 +7,12 @@
 <h1 class="h1-a bts">{$title}</h1>
 
 <div class="headInfo">
-  <div class="headInfoLt">{date('Y-m-d',strtotime($inputtime))}&nbsp;&nbsp;上证通网</div>
+  <div class="headInfoLt">{date('Y-m-d',strtotime($inputtime))}&nbsp;&nbsp;{$copyfrom}</div>
   <div class="headInfoRt">评论：<a href="#comment_iframe" id="comment" class="blue">0</a>&nbsp;&nbsp;点击：<span id="hits"></span></div>
 </div><!--/headInfo-->
 
 <div class="content">
   {$content}
-  <p>联系人信息：</p>
-  {php $sql = "SELECT A.nickname,A.userid FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.unit_name = '".$title."'";}
-  {pc:get sql="$sql" cache="3600" page="$page" num="10" return="data"}
-  {loop $data $v}
-  <p style="color:red"><img src="{get_memberavatar($v[userid],1,30)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'" width="30" height="30"><a href="index.php?m=content&c=index&a=member_home&catid=56&userid={$v[userid]}" target="_blank" class="card">{$v[nickname]}</a></p>
-  {/loop}
-  {/pc}
-  <p style="color:red">{if $contact=='' AND empty($data)}晕，该公司的销售还没睡醒。去别家看看吧！{else}{$contact}{/if}</p>
 </div>
 
 <div id="pages" class="text-c">{$pages}</div>
@@ -63,7 +38,7 @@
 
 </div><!--/row-->
 </div><!--/container-->
-<?php include PHPCMS_PATH.'/phpcms/templates/pub/footer.html';?>
+{template "content_inc","footer"}
 <script src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 </body>
