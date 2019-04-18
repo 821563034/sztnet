@@ -8,6 +8,8 @@
     <li{if ROUTE_A=="concern_me"} class="on"{/if}><a href="index.php?m=member&c=index&a=concern_me&t={$_GET['t']}">我的粉丝</a></li>
     <li{if ROUTE_A=="my_tweets"} class="on"{/if}><a href="index.php?m=member&c=index&a=my_tweets&t={$_GET['t']}">我的推文</a></li>
     <li{if ROUTE_A=="account_manage_info" && $_GET["type"]=="card_status"} class="on"{/if}><a href="index.php?m=member&c=index&a=account_manage_info&t={$_GET['t']}&type=card_status">名片状态</a></li>
+    {php $_userid = param::get_cookie('_userid');}
+    <li><a href="index.php?m=content&c=index&a=member_home&catid=536&userid={$_userid}">预览名片</a></li>
   </ul>
   <span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
 </div>

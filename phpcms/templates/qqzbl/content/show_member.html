@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{get_memberinfo($userid, 'nickname')}的名片</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/qqzbl.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+
+  <script src="statics/js/layer/layer.js"></script>
+  <script src="statics/js/jquery-1.11.1.min.js"></script>
+  <script src="statics/js/unslider.min.js"></script>
+  <script>
+      $(document).ready(function(e) {
+          var progress = $(".progress"),li_width = $("#b04 li").length;
+          var unslider04 = $('#b04').unslider({
+                  dots: true,
+                  complete:function(index){//自己添加的，官方没有
+                      progress.animate({"width":(100/li_width)*(index+1)+"%"});
+                  }
+              }),
+  
+              data04 = unslider04.data('unslider');
+          $('.unslider-arrow04').click(function() {
+              var fn = this.className.split(' ')[1];
+              data04[fn]();
+          });
+  
+          var userid = "{$userid}";
+          $.post('index.php?m=content&c=index&a=interview',{userid:userid},function (result) {
+              console.log(result.msg);
+          },'json');
+      });
+      function open_img(url, wx_num){
+          if (url == ''){
+              layer.alert('暂无微信', {icon: 2});
+              return;
+          }
+          layer.open({
+              type: 1,
+              title: false,
+              closeBtn: 0,
+              //area: ['310px', '310px'],
+              skin: 'layui-layer-rim', //没有背景色
+              shadeClose: true,
+              content: '<img src="'+url+'" style="height: 300px;width: 300px;"/><p style="text-align: center">长按二维码关注微信</p><p style="text-align: center">微信号：'+wx_num+'</p>'
+          });
+      }
+  
+      function qrcpu(name, tel) {
+          if (name == '' || tel == ''){
+              layer.alert('暂无联系方式', {icon: 2});
+              return;
+          }
+          $.post('qrcpu/samples/index.php',{name:name,tel:tel,remark:window.location.href},function (result) {
+              layer.open({
+                  type: 1,
+                  title: false,
+                  closeBtn: 0,
+                  //area: ['310px', '310px'],
+                  skin: 'layui-layer-rim', //没有背景色
+                  shadeClose: true,
+                  content: '<img src="'+result+'" style="height:300px; width:300px;"/><p style="text-align: center">长按二维码 > 添加到通讯录</p>'
+              });
+          },'json');
+      }
+  
+      function add_this(userid) {
+          $.post('index.php?m=content&c=index&a=concern',{userid:userid},function (result) {
+              if (result.code){
+                  layer.alert(result.msg, {icon: 1});
+              }else {
+                  layer.alert(result.msg, {icon: 2});
+              }
+          },'json');
+      }
+  </script>
+  
+  <style type="text/css">
+/*专用样式*/
+.container5{padding:0; margin:0 auto; background-color:#eee; overflow:hidden;}
+.column{float:left; position:relative; min-height:1px; padding:5px; background-color:#eee;}
+.column > section{padding:15px; background-color:#fff; overflow:hidden;}
+@media (min-width:768px){.container5{width:380px;}}
+@media (min-width:992px){.container5{width:490px;}}
+@media (min-width:1200px){.container5{width:590px;}}
+
+  .cardHead{margin-bottom:-5px; position:relative; z-index:2;}
+  .cardHead div{margin:0 5px; padding:0 15px; background-color:#EEE8AA; height:2em; line-height:2em; font-size:0.9em; overflow:hidden;}
+  .cardHead div span{float:left; text-align:right; color:#fff;}
+  .cardHead div a{float:right; margin-left:1em;}
+
+  .mySlide{margin-bottom:20px;}
+  .mySlide img{width:100%; display:block;}
+  .slider-title{display:block; padding:5px 0; position:relative; bottom:0; background-color:#f5f5f5; white-space:nowrap; overflow:hidden;}
+
+  .myInfo{position:relative;}
+  .info1{overflow:hidden; height:60%;}
+  .info1 img{float:left; width:15%; max-height:380px; border-radius:50%; overflow:hidden;}
+  .info1 div{float:right; width:82%;}
+  .info1 div span{float:left; white-space:nowrap; overflow:hidden;}
+  .info1 div span:nth-child(1){width:30%; margin-bottom:10px; font-weight:bold; font-size:1.2em; color:#DAA520;}
+  .info1 div span:nth-child(2){width:70%; margin-bottom:10px; text-align:right; color:#DAA520;}
+  .info1 div span:nth-child(3), .info1 div span:nth-child(4){width:100%; border-left:3px solid #EEE8AA; padding-left:5px;}
+  .info1 div p{float:left; width:100%; color:#aaa;}
+
+  .info2{height:40%; position:relative; bottom:0; padding-bottom:-0.5em;}
+  .info2 li a{display:block; padding:5px 0; margin:0.5em 0; background-color:#FFA500; border:none; border-radius:0.5em; text-align:center;}
+  
+  h3{color:#DAA520; margin-bottom:10px;}
+  
+  .myCont ul{overflow:hidden;}
+  .myCont ul li{margin-bottom:10px;}
+  .myCont ul li img{display:block; width:100%; border-radius:5px 5px 0 0;}
+  .myCont ul li a{display:block; width:100%; padding:3px; background-color:#f0f0f0; height:3em; line-height:1.5em; border-radius:0 0 5px 5px; overflow:hidden;}
+  .myCont ul li a:link, .myCont ul li a:visited{color:#333333;}
+
+  .cardFoot{display:none; height:3em; line-height:3em; text-align:center; font-size:0.9em;}
+  .cardFoot a:link, .cardFoot a:visited{color:#DAA520;}
+
+  @media (min-width:768px){
+    .mySlide{margin-bottom:0;}
+    .hide-PC{display:none;}}
+  </style>
+</head>
+
+<body>
+<div class="container5 cardHead white">
+  <div>
+    {php $username = get_memberinfo($userid,'username');}
+    <span>{get_memberinfo($userid, 'nickname')}的E名片</span>
+    <a href="index.php?m=member">我的控制台</a>
+    <a href="index.php?m=content&c=index&a=lists&catid={$catid}" target="_self">返回[资本人脉]</a>
+  </div>
+</div><!--/cardHead-->
+
+<div class="container5">
+<div class="column xs-12">
+<section>
+
+<div class="row">
+
+  <div class="col xs-12 mySlide">
+    <div class="banner" id="b04">
+      <ul>
+        {php $sql = "SELECT * FROM v9_cardpic where username='".$username."' and catid=545"}
+        {pc:get sql="$sql" cache="60" num="3" return="data"}
+        {loop $data $r}
+        <li class="slider-item"><a href="#"><img src="{$r[thumb]}" alt="{$r[title]}" /><span class="slider-title"><em>{$r[title]}</em></span></a></li>
+        {/loop}
+        {/pc}
+      </ul>
+      <div class="progress"></div>
+      <a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="statics/images/arrowl.png" alt="prev" width="20" height="35"></a>
+      <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar" src="statics/images/arrowr.png" alt="next" width="20" height="37"></a>
+    </div>
+  </div><!--/mySlide-->
+
+  {php $main_memberinfo = get_memberinfo($userid);}
+  <div class="col xs-12 myInfo">
+    
+    {pc:get sql="SELECT * FROM v9_member_detail where userid=$userid" cache="6" num="1" return="memberinfo"}
+    <div class="info1">
+      <img src="{get_memberavatar($userid,1,90)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'">
+      <div>
+        <span>{$main_memberinfo[nickname]}</span><span>{get_linkage($memberinfo[0][area],1,'-',1)}</span>
+        <span>{$memberinfo[0][position]}</span>
+        <span>{$memberinfo[0][unit_name]}</span>
+        <p>{$memberinfo[0][self_introduction]}</p>
+      </div>
+    </div><!--/info1-->
+
+    <ul class="row5px info2 white">
+      <li class="col5px xs-4 md-3">{if empty($main_memberinfo[mobile])}<a href="#" style="color:grey;">一键拨号</a>{else}{if isMobile()}<a href="tel://{$main_memberinfo[mobile]}">一键拨号</a>{else}<a href="#" onclick="alert('{$main_memberinfo[mobile]}')">一键拨号</a>{/if}{/if}</li>
+      <li class="col5px xs-4 md-3 hide-PC"><a href="#" onclick="qrcpu('{$main_memberinfo[username]}','{$main_memberinfo[mobile]}')">存入手机</a></li>
+      <li class="col5px xs-4 md-3"><a href="#" onclick="open_img('{$memberinfo[0][wechat_img]}','{$memberinfo[0][wechat]}')">加我微信</a></li>
+      {php $location = explode('|',$memberinfo[0][my_adress]);}
+      <li class="col5px xs-4 md-3">{if empty($memberinfo[0][my_adress])}<a href="#" style="color:grey;">位置导航</a>{else}<a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=目的地&content=目的地&output=html&src=webapp.baidu.openAPIdemo">一键导航</a>{/if}</li>
+      <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=send&userid={$userid}">在线留言</a></li>
+      <li class="col5px xs-4 md-3"><a href="#" onclick="layer.alert('邮箱:{$main_memberinfo[email]}<br>QQ:{$memberinfo[0][QQ]}', {icon: 1})">邮箱/QQ</a></li>
+      {if !empty($memberinfo[0][unit_name])}
+      {php $title = $memberinfo[0][unit_name];}
+      {pc:get sql="SELECT * FROM v9_firm where title=\'$title\'" cache="3600" num="1" return="companyInfo"}
+      <li class="col5px xs-4 md-3"><a href="{$companyInfo[0][url]}">公司网站</a></li>
+      {/pc}
+      {else}
+      <li class="col5px xs-4 md-3"><a href="#">公司网站</a></li>
+      {/if}
+      <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=member_info&userid={$userid}">个人资料</a></li>
+      {if $_userid}
+        {pc:get sql="SELECT * FROM v9_concern where userid=$userid and cc_userid=$_userid" cache="3600" num="1" return="concern"}
+          {if empty($concern[0])}
+          <li class="col5px xs-4 md-3"><a href="#" onclick="add_this('{$userid}')">交换名片</a></li>
+          {else}
+          <li class="col5px xs-4 md-3"><a style="color:grey;" href="#">已换名片</a></li>
+          {/if}
+        {/pc}
+      {else}
+      <li class="col5px xs-4 md-3"><a href="#" onclick="add_this('{$userid}')">交换名片</a></li>
+      {/if}
+    </ul><!--/info2-->
+    {/pc}
+  </div><!--/myInfo-->
+
+</div><!--/row-->
+
+</section>
+</div><!--/column-->
+</div><!--/container5-->
+
+<div class="container5">
+<div class="column xs-12 myCont">
+
+{php $sql = "SELECT * FROM v9_cardarti where username='".$username."' and catid=547"}
+{pc:get sql="$sql" cache="60" num="4" return="data"}
+{if !empty($data)}
+<section class="mb10">
+  <h3>业务中心</h3>
+  <ul class="row5px">
+    {loop $data $r}
+    <li class="col5px xs-6 md-3"><img src="{$r[thumb]}" onerror="this.src='/uploadfile/poster/dbzq/db5.jpg'"/><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+    {/loop}
+  </ul>
+</section>
+{/if}
+{/pc}
+
+{php $sql = "SELECT * FROM v9_cardarti where username='".$username."' and catid=548"}
+{pc:get sql="$sql" cache="60" num="8" return="data"}
+{if !empty($data)}
+<section class="mb5">
+  <h3>我的展示</h3>
+  <ul class="row5px">
+    {loop $data $r}
+    <li class="col5px xs-6 md-3"><img src="{$r[thumb]}" onerror="this.src='/uploadfile/poster/dbzq/db9.jpg'"/><a href="{$r[url]}" target="_blank">{$r[title]}</a></li>
+    {/loop}
+  </ul>
+</section>
+{/if}
+{/pc}
+
+</div><!--/myCont-->
+</div><!--/container5-->
+
+<div class="container5 cardFoot"><a href="http://www.sztnet.com/index.php?m=member&c=index&a=login" target="_self">我也要制作E名片</a></div>
+<script src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+</body>
+</html>

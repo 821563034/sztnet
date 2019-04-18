@@ -69,6 +69,9 @@ $(function(){
             <td><input id="nickname" name="nickname" value="{$memberinfo['nickname']}" type="text" class="input-text" size="30"><br/>个人填：姓名或*先生/女士；单位填：简称</td>
         </tr>
         {loop $forminfos $k $v}
+        {if $k == 'ifshow'}
+            {php continue;}
+        {/if}
         <tr>
             <th>
                 {if $v['isbase']}<font color=red>*</font>{/if}
