@@ -218,12 +218,19 @@ class form {
 		if (is_array($result)) {
 			foreach($result as $r) {
  				//检查当前会员组，在该栏目处是否允许投稿？
-				if($is_push=='1' and $r['child']=='0'){
-					$sql = array('catid'=>$r['catid'],'roleid'=>$user_groupid,'action'=>'add');
-					$array = $priv->get_one($sql);
-					if(!$array){
-						continue;	
-					}
+				if($is_push=='1'){
+				    if($r['child']=='0'){
+                        $sql = array('catid'=>$r['catid'],'roleid'=>$user_groupid,'action'=>'add');
+                        $array = $priv->get_one($sql);
+                        if(!$array){
+                            continue;
+                        }
+                    }else{
+                        $flag = form::remove_deny_publish($r['arrchildid'],$user_groupid);
+                        if($flag){
+                            continue;
+                        }
+                    }
 				}
 				if($siteid != $r['siteid'] || ($type >= 0 && $r['type'] != $type)) continue;
 				$r['selected'] = '';
@@ -402,6 +409,30 @@ class form {
 		
 		return form::select($array, $id,$str,$default_option);
 	}
+
+	private static function remove_deny_publish($arrchildid,$user_groupid,&$removeFlag = true)
+    {
+        $cate = pc_base::load_model('category_model');
+        $priv = pc_base::load_model('category_priv_model');
+        $childArr = explode(',',$arrchildid);
+        unset($childArr[0]);
+        foreach ($childArr as $k => $v){
+            $childInfo = $cate->get_one(['catid'=>$v]);
+            if($childInfo['child']=='0'){
+                $sql = array('catid'=>$childInfo['catid'],'roleid'=>$user_groupid,'action'=>'add');
+                $array = $priv->get_one($sql);
+                if(!$array){
+                    continue;
+                }else{
+                    $removeFlag = false;
+                    break;
+                }
+            }else{
+                form::remove_deny_publish($childInfo['arrchildid'],$user_groupid);
+            }
+        }
+        return $removeFlag;
+    }
 }
 
 ?>

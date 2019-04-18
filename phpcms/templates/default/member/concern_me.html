@@ -2,41 +2,38 @@
 <link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<style type="text/css">
+table{border-collapse:collapse; width:100%;}
+table th, table td{border:1px solid #eee;}
+</style>
+
 <div id="memberArea">
-	{template 'member','card_left'}
-	<div class="col-auto">
-		<div class="col-1 ">
-			<h5 class="title">我的粉丝</h5>
-			<div class="content">
-				<table width="100%" cellspacing="0"  class="table-list">
-					<thead>
-					<tr>
-						<th width="30">ID</th>
-						<th>用户名</th>
-						<th>头像</th>
-						<th width="80">关注时间</th>
-						<th width="90">{L('operation')}</th>
-					</tr>
-					</thead>
-					<tbody>
-					{loop $friendlist $info}
-					<tr>
-						<td align="center">{$info['friendid']}</td>
-						<td align="center">{get_memberinfo($info['friendid'],'username')}</td>
-						<td align="center"><img src="{$info['avatar'][30]}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'" width="30" height="30"></td>
-						<td align="center">{date('Y-m-d',$info['create_time'])}</td>
-						<td align="center">
-							<a href="#">删除</a>
-						</td>
-					</tr>
-					{/loop}
-					</tbody>
-				</table>
-				<div id="pages"> {$pages}</div>
-			</div>
-			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
-		</div>
-	</div>
+{template 'member','card_left'}
+<table class="table-list">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>头像</th>
+        <th>关注时间</th>
+        <th>{L('operation')}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {loop $friendlist $info}
+    <tr>
+        <td align="center">{$info['friendid']}</td>
+        <td align="center">{get_memberinfo($info['friendid'],'nickname')}</td>
+        <td align="center"><img src="{$info['avatar'][30]}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'" width="30" height="30"></td>
+        <td align="center">{date('Y-m-d',$info['create_time'])}</td>
+        <td align="center">
+            <a href="index.php?m=member&c=index&a=concern_delete&id={$info['id']}">删除</a>
+        </td>
+    </tr>
+    {/loop}
+    </tbody>
+</table>
+<div id="pages">{$pages}</div>
+
+<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
 </div>
-<div class="clear"></div>
-{template 'member', 'footer'}

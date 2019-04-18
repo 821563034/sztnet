@@ -415,7 +415,6 @@ class index extends foreground {
 			require_once CACHE_MODEL_PATH.'member_update.class.php';
 			$member_input = new member_input($this->memberinfo['modelid']);
 			$modelinfo = $member_input->get($_POST['info']);
-
 			$this->db->set_model($this->memberinfo['modelid']);
 			$membermodelinfo = $this->db->get_one(array('userid'=>$this->memberinfo['userid']));
 			if(!empty($membermodelinfo)) {
@@ -454,7 +453,15 @@ class index extends foreground {
 						
 			$formValidator = $member_form->formValidator;
 
-			include template('member', 'account_manage_info');
+			$type = $_GET['type'];
+
+			if ($type == 'enable_card' || $type == 'publish'){
+                include template('member', 'enable_card_info');
+            } elseif ($type == 'card_status'){
+                include template('member', 'card_status');
+            }else{
+                include template('member', 'account_manage_info');
+            }
 		}
 	}
 	
@@ -512,7 +519,7 @@ class index extends foreground {
 			//$mobile_verify = $_POST['mobile_verify'];
 			$mobile = $_POST['mobile'];
 			if($mobile){
-				if(!preg_match('/^1([0-9]{10})$/',$mobile)) exit('check phone error');
+				if(!preg_match('/^1([0-9]{10})$/',$mobile)) exit('手机号码不合法');
 				$posttime = SYS_TIME-600;
 				$where = "`mobile`='$mobile' AND `send_userid`='".$memberinfo['userid']."' AND `posttime`>'$posttime'";
 				//$r = $sms_report_db->get_one($where,'id,id_code','id DESC');
@@ -786,7 +793,7 @@ class index extends foreground {
 			param::set_cookie('_nickname', '');
 			param::set_cookie('cookietime', '');
 			$forward = isset($_GET['forward']) && trim($_GET['forward']) ? $_GET['forward'] : 'index.php?m=member&c=index&a=login';
-			showmessage(L('logout_success').$synlogoutstr, $forward);
+			showmessage(L('logout_success'), $forward);
 		}
 	}
 
@@ -911,9 +918,9 @@ class index extends foreground {
 		$_userid = param::get_cookie('_userid');
 		$siteid = isset($_GET['siteid']) ? intval($_GET['siteid']) : '';
 		//定义站点id常量
-		if (!defined('SITEID')) {
+		//if (!defined('SITEID')) {
 		   define('SITEID', $siteid);
-		}
+		//}
 		
 		$snda_enable = pc_base::load_config('system', 'snda_enable');
 		include template('member', 'mini');

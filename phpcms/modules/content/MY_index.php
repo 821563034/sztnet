@@ -11,6 +11,7 @@ class MY_index extends index
     private $interview_db;
     private $userid;
     private $upload_url;
+    private $company_db;
 
     function __construct()
     {
@@ -41,6 +42,7 @@ class MY_index extends index
 
         $siteids = getcache('category_content','commons');
         $siteid = $siteids[$catid];
+        define('SITEID',$siteid);
         $CATEGORYS = getcache('category_content_'.$siteid,'commons');
         if(!isset($CATEGORYS[$catid]) || $CATEGORYS[$catid]['type']!=0) showmessage(L('information_does_not_exist'),'blank');
         $this->category = $CAT = $CATEGORYS[$catid];
@@ -50,9 +52,7 @@ class MY_index extends index
         $MODEL = getcache('model','commons');
         $modelid = $CAT['modelid'];
 
-        $template = $template ? $template : $CAT['setting']['show_template'];
-        if(!$template) $template = 'show';
-        include template('content',$template);
+        include template('content','show_member');
     }
 
     /**
@@ -115,7 +115,7 @@ class MY_index extends index
                 $member_modelinfo[$v['name']] = $member_modelinfo_arr[$k];
             }
         }
-
+        define('SITEID',1);
         include template('content', 'member_info');
     }
 
@@ -139,6 +139,7 @@ class MY_index extends index
             showmessage(L('operation_success'),HTTP_REFERER);
         } else {
             $show_validator = $show_scroll = $show_header = true;
+            define('SITEID',1);
             include template('content', 'message_send');
         }
     }
@@ -184,10 +185,11 @@ class MY_index extends index
 
     //人员列表页分页
     public function member_lists() {
-        $catid = intval($_GET['catid']);
+        $t = $catid = intval($_GET['catid']);
         if(!$catid) showmessage(L('category_not_exists'),'blank');
         $siteids = getcache('category_content','commons');
         $siteid = $siteids[$catid];
+        define('SITEID',$siteid);
         $CATEGORYS = getcache('category_content_'.$siteid,'commons');
         $page = isset($_GET['page']) && trim($_GET['page']) ? intval($_GET['page']) : 1;
         $province = intval($_POST['province']);
@@ -197,28 +199,36 @@ class MY_index extends index
         $unit_industry = trim($_POST['unit_industry']);
         $emotional_state = intval($_POST['emotional_state']);
         $search = trim($_POST['search']);
+        $school = trim($_POST['school']);
         $type = trim($_POST['type']);
         $where = '1 = 1';
-        if(!empty($city)) $where .= ' AND area='.$city;
-        if(!empty($home_city)) $where .= ' AND home_area = '.$home_city;
-        if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
-        if(!empty($emotional_state)) $where .= ' AND emotional_state = '.$emotional_state;
-        if(!empty($search)) {
-            if ($type == 'nickname'){
-                $userid_arr = $this->member_db->select("nickname like '%".$search."%'",'userid');
-                $userids = array_column($userid_arr, 'userid');
-                $userid_string = implode(',',$userids);
-                $where.= " AND userid in ('".$userid_string."')";
-            }elseif ($type == 'mobile'){
-                $userid_arr = $this->member_db->select("mobile = '%".$search."%'",'userid');
-                $userids = array_column($userid_arr, 'userid');
-                $userid_string = implode(',',$userids);
-                $where.= " AND userid in ('".$userid_string."')";
-            }else{
-                $where.= " AND (university = '%".$search."%' OR senior_middle_school = '%".$search."%' OR junior_high_school = '%".$search."%')";
+        if(!empty($city)) {
+            $where .= ' AND area='.$city;
+        }else {
+            if (!empty($province)){
+                $cityList = $this->linkage_db->select("parentid = $province",'linkageid');
+                $cityIds = array_column($cityList, 'linkageid');
+                $cityId_string = implode(',',$cityIds);
+                $where .= ' AND area in ('.$cityId_string.')';
             }
         }
-        $userid_arr = $this->member_detail_db->select($where,'userid');
+        if(!empty($home_city)) {
+            $where .= ' AND home_area = '.$home_city;
+        }else {
+            if (!empty($home_province)){
+                $cityList = $this->linkage_db->select("parentid = $home_province",'linkageid');
+                $cityIds = array_column($cityList, 'linkageid');
+                $cityId_string = implode(',',$cityIds);
+                $where .= ' AND home_area in ('.$cityId_string.')';
+            }
+        }
+        if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
+        if(!empty($emotional_state)) $where .= ' AND emotional_state = '.$emotional_state;
+        if(!empty($search)) $where.= " AND (mobile LIKE '%".$search."%' OR nickname LIKE '%".$search."%' OR self_introduction LIKE '%".$search."%' OR unit_name LIKE '%".$search."%')";
+        if(!empty($school)) $where .= " AND school LIKE '%".$school."%'";
+        $sql = 'SELECT M.userid FROM v9_member AS M JOIN v9_member_detail AS D ON M.userid = D.userid WHERE '.$where;
+        $query = $this->member_db->query($sql);
+        $userid_arr = $this->member_db->fetch_array($query);
         $userids = array_column($userid_arr, 'userid');
         $userid_string = implode(',',$userids);
         if(!empty($province)){
@@ -230,9 +240,48 @@ class MY_index extends index
         include template('content','list_member');
     }
 
+    public function firm_list()
+    {
+        $t = $catid = intval($_GET['catid']);
+        if(!$catid) showmessage(L('category_not_exists'),'blank');
+        $siteids = getcache('category_content','commons');
+        $siteid = $siteids[$catid];
+        define('SITEID',$siteid);
+        $CATEGORYS = getcache('category_content_'.$siteid,'commons');
+        $page = isset($_GET['page']) && trim($_GET['page']) ? intval($_GET['page']) : 1;
+        $province = intval($_POST['province']);
+        $city = intval($_POST['city']);
+        $industry = trim($_POST['industry']);
+        $service = trim($_POST['service']);
+        $company_name = trim($_POST['company_name']);
+        $where = '1 = 1';
+        if(!empty($city)) {
+            $where .= ' AND place='.$city;
+        }else {
+            if (!empty($province)){
+                $cityList = $this->linkage_db->select("parentid = $province",'linkageid');
+                $cityIds = array_column($cityList, 'linkageid');
+                $cityId_string = implode(',',$cityIds);
+                $where .= ' AND place in ('.$cityId_string.')';
+            }
+        }
+        //if(!empty($industry)) $where .= ' AND industry = '.$industry;
+        if(!empty($service)) $where .= ' AND service = '.$service;
+        if(!empty($company_name)) $where .= " AND title LIKE '%".$company_name."%'";
+        $sql = 'SELECT id FROM v9_firm WHERE '.$where;
+        $query = $this->db->query($sql);
+        $id_arr = $this->db->fetch_array($query);
+        $ids = array_column($id_arr, 'userid');
+        $id_string = implode(',',$ids);
+        if(!empty($province)){
+            $cityList = $this->linkage_db->select("parentid = $province",'linkageid,name');
+        }
+        include template('content','category_firm');
+    }
+
     public function getCompany()
     {
-        $catid = intval($_POST['catid']) ? intval($_POST['catid']) : 120;
+        $catid = intval($_POST['catid']) ? intval($_POST['catid']) : 522;
         $page = intval($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
         $row = intval($_REQUEST['row']) ? intval($_REQUEST['row']) : 10;
         $q = trim($_REQUEST['q']);
@@ -247,7 +296,7 @@ class MY_index extends index
             unset($list[$k]['title']);
         }
         //得到总记录数
-        $total = $this->db->count();
+        $total = $this->db->count($where);
         echo json_encode(['total'=>$total,'items'=>$list]);exit();
     }
 
@@ -256,13 +305,13 @@ class MY_index extends index
         $page = intval($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
         $row = intval($_REQUEST['row']) ? intval($_REQUEST['row']) : 10;
         $q = trim($_REQUEST['q']);
-        $where = '1 = 1';
+        //$where = '1 = 1';
         if (!empty($q)){
-            $where .= ' AND title LIKE "%'.$q.'%"';
+            $where = 'title LIKE "%'.$q.'%" OR stockcode LIKE "%'.$q.'%" OR alphabetic LIKE "%'.$q.'%"';
         }
         $list = $this->company_db->listinfo($where, 'id', $page, $row);
         foreach ($list as $k => $v){
-            $list[$k]['text'] = $v['shortname'];
+            $list[$k]['text'] = $v['shortname'].'('.$v['stockcode'].')('.$v['alphabetic'].')';
             unset($list[$k]['title']);
         }
         //得到总记录数
@@ -308,30 +357,39 @@ class MY_index extends index
 
     public function lists_company()
     {
+        $_userid = $this->_userid;
+        $_username = $this->_username;
         $catid = intval($_GET['catid']);
         if(!$catid) showmessage(L('category_not_exists'),'blank');
         $siteids = getcache('category_content','commons');
         $siteid = $siteids[$catid];
+        define('SITEID',$siteid);
         $CATEGORYS = getcache('category_content_'.$siteid,'commons');
         $template = [1 => 'list_subscribe_industry', 2 => 'list_subscribe_area', 3 => 'list_subscribe_company'];
-        $type = intval($_POST['type']);
-        $q = intval($_POST['q']);
+        $type = intval($_GET['type']);
+        $q = trim($_GET['q']);
+        $company_string = '';
         switch ($type)
         {
             case 1:
-                $company_arr = $this->company_db->select("ind_2nd = '".$q."'",'title');
-                $companys = array_column($company_arr, 'title');
+                $company_arr = $this->company_db->select("ind_2nd = '".$q."'",'id');
+                $companys = array_column($company_arr, 'id');
                 $company_string = implode(',',$companys);
-                $where = "object in ('".$company_string."')";
+                if (empty($company_string))
+                    $company_string = "''";
+                $where = "company_id in (".$company_string.")";
                 break;
             case 2:
-                $company_arr = $this->company_db->select("city = '".$q."'",'title');
-                $companys = array_column($company_arr, 'title');
+                $company_arr = $this->company_db->select("city = '".$q."' OR province = '".$q."'",'id');
+                $companys = array_column($company_arr, 'id');
                 $company_string = implode(',',$companys);
-                $where = "object in ('".$company_string."')";
+                if (empty($company_string))
+                    $company_string = "''";
+                $where = "company_id in (".$company_string.")";
                 break;
             case 3:
-                $where = "object = ('".$q."')";
+                $company_id = get_company_id($q);
+                $where = "company_id = (".$company_id.")";
                 break;
             default:
                 showmessage('系统错误','blank');
@@ -346,18 +404,78 @@ class MY_index extends index
         $data['userid'] = $this->_userid;
         $data['name'] = trim($_POST['name']);
         $data['type'] = intval($_POST['type']);
+        if ($data['type'] == '3'){
+            $nameArr = explode('(',$data['name']);
+            $stock_code = rtrim($nameArr[1],')');
+            $data['name'] = get_company_id($stock_code);
+        }
         $find = $this->subscribe_db->get_one($data);
         if ($find){
             echo json_encode(['code'=>0, 'msg'=>'请勿重复添加']);
             exit();
         }
-        $status = $this->subscribe_db->insert($data);
+        $status = $this->subscribe_db->insert($data, true);
         if ($status){
-            echo json_encode(['code'=>1]);
+            echo json_encode(['code'=>1, 'data'=>$status]);
         }else {
             echo json_encode(['code'=>0, 'msg'=>'系统错误请稍后重试']);
         }
         exit();
+    }
+
+    public function del_subscribe()
+    {
+        $this->subscribe_db = pc_base::load_model('subscribe_model');
+        $id = intval($_POST['id']);
+        $status = $this->subscribe_db->delete(['id'=>$id]);
+        if ($status){
+            echo json_encode(['code'=>1, 'data'=>$status]);
+        }else {
+            echo json_encode(['code'=>0, 'msg'=>'系统错误请稍后重试']);
+        }
+        exit();
+    }
+
+    public function get_address_book()
+    {
+        $address_book_db = pc_base::load_model('address_book');
+        $name = $_POST['name'];
+        $tel = $_POST['tel'];
+        $url = $_POST['remark'];
+
+    }
+
+    public function get_title()
+    {
+        $html = file_get_contents($_POST['url']);
+        $encode = mb_detect_encoding($html, array("ASCII","UTF-8","GB2312","GBK","BIG5"));
+        if($encode != 'UTF-8') $html = iconv($encode,'UTF-8',$html);
+        preg_match('/<title>[^<>]*<\/title>/Ui', $html, $title);
+        if (empty($title[0])){
+            echo json_encode(['code'=>0,'data'=>'']);
+        }else{
+            $title = substr($title[0],7,-8);
+            echo json_encode(['code'=>1,'data'=>$title]);
+        }
+    }
+
+    public function get_html()
+    {
+        $url = 'https://news.163.com/19/0417/02/ECUA7PVA0001875O.html';
+        $html = file_get_contents($url);
+        $encode = mb_detect_encoding($html, array("ASCII","UTF-8","GB2312","GBK","BIG5"));
+        if($encode != 'UTF-8') $html = iconv($encode,'UTF-8' , $html);
+        preg_match('/<title>[^<>]*<\/title>/Ui', $html, $title);
+        $title = substr($title[0],7,-8);
+        print_r($title);
+    }
+
+    public function show_tweets()
+    {
+        $id = intval($_GET['id']);
+        $model = pc_base::load_model('tweets_model');
+        $info = $model->get_one(array('id'=>$id));
+        include template('member', 'show_tweets');
     }
 
     /**

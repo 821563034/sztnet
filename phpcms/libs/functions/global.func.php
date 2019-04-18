@@ -966,6 +966,27 @@ function get_memberinfo_buyusername($username, $field='') {
 	}
 }
 
+function getCompanyStockCode($name, $field = 'stockcode')
+{
+    $company_db = pc_base::load_model('company_model');
+    $company_info = $company_db->get_one(['shortname'=>$name]);
+    return $company_info[$field];
+}
+
+function get_company_id($stockcode, $field = 'id')
+{
+    $company_db = pc_base::load_model('company_model');
+    $company_info = $company_db->get_one(['stockcode'=>$stockcode]);
+    return $company_info[$field];
+}
+
+function get_company_field($id, $field = 'stockcode')
+{
+    $company_db = pc_base::load_model('company_model');
+    $company_info = $company_db->get_one(['id'=>$id]);
+    return $company_info[$field];
+}
+
 /**
  * 获取用户头像，建议传入phpssouid
  * @param $uid 默认为phpssouid
@@ -994,6 +1015,30 @@ function get_memberavatar($uid, $is_userid='', $size='30') {
 	} else {
 		return false;
 	}
+}
+
+/**
+ *
+ * @param string $table 表名
+ * @param string $key 查询条件字段
+ * @param string $value 查询条件值
+ * @param string $field 查询字段
+ * @return bool
+ */
+function get_table_field($table, $key, $value, $field = '')
+{
+    if(empty($table) || empty($key))
+        return false;
+    static $tableInfo;
+    if (empty($tableInfo[$table])) {
+        $db = pc_base::load_model($table.'_model');
+        $tableInfo[$table] = $db->get_one(array($key=>$value));
+    }
+    if(!empty($field) && !empty($tableInfo[$table][$field])) {
+        return $tableInfo[$table][$field];
+    } else {
+        return $tableInfo[$table];
+    }
 }
 
 /**

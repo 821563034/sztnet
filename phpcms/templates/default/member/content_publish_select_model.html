@@ -2,15 +2,21 @@
 <link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
+<style type="text/css">
+.list{border-collapse:collapse; width:100%; border:1px solid #e5e5e5;}
+.list th, .list td{padding:5px; border:1px solid #e5e5e5;}
+.list th{background-color:#eee;}
+.list td{overflow:hidden;}
+#pages{margin-top:20px; text-align:center;}
+</style>
+
 <div id="memberArea">
 	{template 'member', 'publish_left'}
-	<div class="col-auto">
-		<div class="col-1 ">
+
 			<h5 class="title">{L('select_site')}</h5>
 			<div class="content">
-			<BR>
 			<form method="post" action="" id="myform" name="myform">
-				<table width="100%" cellspacing="0" class="table-list">
+				<table class="list">
 				<script language="JavaScript">
 				<!--
 					function c_c(siteid) {
@@ -20,17 +26,19 @@
 				</script>
 				<thead>
 				<tr>
-				<th >{L('site_name')}</th>
+				<th width="15%">{L('site_name')}</th>
 				<th>{L('site_info')}</th>
-				<th>{L('select')}</th>
+				<th width="5%">{L('select')}</th>
 				</thead>
 				<tbody>
 					{loop $sitelist $k $v}
+					{if $v['siteid'] != 2 && $v['siteid'] != 3}
 					<tr>
-						<td width="200" align="right">{$v['name']}：</td> 
+						<td align="center">{$v['name']}</td>
 						<td>{$v['description']}</td>
 						<td align="center"><input type="radio" value="{$v[siteid]}" onclick="c_c(this.value)"></td>
 					</tr>
+					{/if}
 					{/loop}
 				</tbody>
 				</table>
@@ -38,8 +46,5 @@
 
 			</div>
 			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
-		</div>
-	</div>
 </div>
 <div class="clear"></div>
-{template 'member', 'footer'}

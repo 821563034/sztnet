@@ -2,7 +2,12 @@
 pc_base::load_sys_class('form', '', 0);
 class MY_index extends index
 {
-    private $userid;
+    private $_userid;
+    private $_username;
+    private $concern_db;
+    private $interview_db;
+    private $linkage_db;
+    private $times_db;
 
     function __construct()
     {
@@ -11,6 +16,7 @@ class MY_index extends index
         $this->interview_db = pc_base::load_model('interview_statistics_model');
         $this->linkage_db = pc_base::load_model('linkage_model');
         $this->_userid = param::get_cookie('_userid');
+        $this->_username = param::get_cookie('_username');
     }
 
     public function init()
@@ -18,6 +24,176 @@ class MY_index extends index
         //初始化phpsso
         $phpsso_api_url = $this->_init_phpsso();
         $this->account_manage();
+    }
+
+    public function login() {
+        $this->_session_start();
+        //获取用户siteid
+        $siteid = isset($_REQUEST['siteid']) && trim($_REQUEST['siteid']) ? intval($_REQUEST['siteid']) : 1;
+        //定义站点id常量
+        if (!defined('SITEID')) {
+            define('SITEID', $siteid);
+        }
+
+        if(isset($_POST['dosubmit'])) {
+            if(empty($_SESSION['connectid'])) {
+                //判断验证码
+                $code = isset($_POST['code']) && trim($_POST['code']) ? trim($_POST['code']) : showmessage(L('input_code'), HTTP_REFERER);
+                if ($_SESSION['code'] != strtolower($code)) {
+                    $_SESSION['code'] = '';
+                    showmessage(L('code_error'), HTTP_REFERER);
+                }
+                $_SESSION['code'] = '';
+            }
+
+            $username = isset($_POST['username']) && (is_username($_POST['username']) || is_email($_POST['username']) || preg_match('/^1([0-9]{10})$/',$_POST['username'])) ? trim($_POST['username']) : showmessage('请输入用户名/手机号/邮箱', HTTP_REFERER);
+            $password = isset($_POST['password']) && trim($_POST['password']) ? trim($_POST['password']) : showmessage(L('password_empty'), HTTP_REFERER);
+            is_password($_POST['password']) && is_badword($_POST['password'])==false ? trim($_POST['password']) : showmessage(L('password_format_incorrect'), HTTP_REFERER);
+            $cookietime = intval($_POST['cookietime']);
+            $synloginstr = ''; //同步登陆js代码
+
+            if(pc_base::load_config('system', 'phpsso')) {
+                $this->_init_phpsso();
+                $status = $this->client->ps_member_login($username, $password);
+                $memberinfo = unserialize($status);
+                if(isset($memberinfo['uid'])) {
+                    //查询帐号
+                    $r = $this->db->get_one(array('phpssouid'=>$memberinfo['uid']));
+                    if(!$r) {
+                        //插入会员详细信息，会员不存在 插入会员
+                        $info = array(
+                            'phpssouid'=>$memberinfo['uid'],
+                            'username'=>$memberinfo['username'],
+                            'password'=>$memberinfo['password'],
+                            'encrypt'=>$memberinfo['random'],
+                            'email'=>$memberinfo['email'],
+                            'regip'=>$memberinfo['regip'],
+                            'regdate'=>$memberinfo['regdate'],
+                            'lastip'=>$memberinfo['lastip'],
+                            'lastdate'=>$memberinfo['lastdate'],
+                            'groupid'=>$this->_get_usergroup_bypoint(),	//会员默认组
+                            'modelid'=>10,	//普通会员
+                        );
+
+                        //如果是connect用户
+                        if(!empty($_SESSION['connectid'])) {
+                            $userinfo['connectid'] = $_SESSION['connectid'];
+                        }
+                        if(!empty($_SESSION['from'])) {
+                            $userinfo['from'] = $_SESSION['from'];
+                        }
+                        unset($_SESSION['connectid'], $_SESSION['from']);
+
+                        $this->db->insert($info);
+                        unset($info);
+                        $r = $this->db->get_one(array('phpssouid'=>$memberinfo['uid']));
+                    }
+                    $password = $r['password'];
+                    $synloginstr = $this->client->ps_member_synlogin($r['phpssouid']);
+                } else {
+                    if($status == -1) {	//用户不存在
+                        showmessage(L('user_not_exist'), 'index.php?m=member&c=index&a=login');
+                    } elseif($status == -2) { //密码错误
+                        showmessage(L('password_error'), 'index.php?m=member&c=index&a=login');
+                    } else {
+                        showmessage(L('login_failure'), 'index.php?m=member&c=index&a=login');
+                    }
+                }
+
+            } else {
+                //密码错误剩余重试次数
+                $this->times_db = pc_base::load_model('times_model');
+                $rtime = $this->times_db->get_one(array('username'=>$username));
+                if($rtime['times'] > 4) {
+                    $minute = 60 - floor((SYS_TIME - $rtime['logintime']) / 60);
+                    showmessage(L('wait_1_hour', array('minute'=>$minute)));
+                }
+
+                //查询帐号
+                $r = $this->db->get_one(array('username'=>$username));
+
+                if(!$r) showmessage(L('user_not_exist'),'index.php?m=member&c=index&a=login');
+
+                //验证用户密码
+                $password = md5(md5(trim($password)).$r['encrypt']);
+                if($r['password'] != $password) {
+                    $ip = ip();
+                    if($rtime && $rtime['times'] < 5) {
+                        $times = 5 - intval($rtime['times']);
+                        $this->times_db->update(array('ip'=>$ip, 'times'=>'+=1'), array('username'=>$username));
+                    } else {
+                        $this->times_db->insert(array('username'=>$username, 'ip'=>$ip, 'logintime'=>SYS_TIME, 'times'=>1));
+                        $times = 5;
+                    }
+                    showmessage(L('password_error', array('times'=>$times)), 'index.php?m=member&c=index&a=login', 3000);
+                }
+                $this->times_db->delete(array('username'=>$username));
+            }
+
+            //如果用户被锁定
+            if($r['islock']) {
+                showmessage(L('user_is_lock'));
+            }
+
+            $userid = $r['userid'];
+            $groupid = $r['groupid'];
+            $username = $r['username'];
+            $nickname = empty($r['nickname']) ? $username : $r['nickname'];
+
+            $updatearr = array('lastip'=>ip(), 'lastdate'=>SYS_TIME);
+            //vip过期，更新vip和会员组
+            if($r['overduedate'] < SYS_TIME) {
+                $updatearr['vip'] = 0;
+            }
+
+            //检查用户积分，更新新用户组，除去邮箱认证、禁止访问、游客组用户、vip用户，如果该用户组不允许自助升级则不进行该操作
+            if($r['point'] >= 0 && !in_array($r['groupid'], array('1', '7', '8')) && empty($r[vip])) {
+                $grouplist = getcache('grouplist');
+                if(!empty($grouplist[$r['groupid']]['allowupgrade'])) {
+                    $check_groupid = $this->_get_usergroup_bypoint($r['point']);
+
+                    if($check_groupid != $r['groupid']) {
+                        $updatearr['groupid'] = $groupid = $check_groupid;
+                    }
+                }
+            }
+
+            //如果是connect用户
+            if(!empty($_SESSION['connectid'])) {
+                $updatearr['connectid'] = $_SESSION['connectid'];
+            }
+            if(!empty($_SESSION['from'])) {
+                $updatearr['from'] = $_SESSION['from'];
+            }
+            unset($_SESSION['connectid'], $_SESSION['from']);
+
+            $this->db->update($updatearr, array('userid'=>$userid));
+
+            if(!isset($cookietime)) {
+                $get_cookietime = param::get_cookie('cookietime');
+            }
+            $_cookietime = $cookietime ? intval($cookietime) : ($get_cookietime ? $get_cookietime : 0);
+            $cookietime = $_cookietime ? SYS_TIME + $_cookietime : 0;
+
+            $phpcms_auth = sys_auth($userid."\t".$password, 'ENCODE', get_auth_key('login'));
+
+            param::set_cookie('auth', $phpcms_auth, $cookietime);
+            param::set_cookie('_userid', $userid, $cookietime);
+            param::set_cookie('_username', $username, $cookietime);
+            param::set_cookie('_groupid', $groupid, $cookietime);
+            param::set_cookie('_nickname', $nickname, $cookietime);
+            //param::set_cookie('cookietime', $_cookietime, $cookietime);
+            $forward = isset($_POST['forward']) && !empty($_POST['forward']) ? urldecode($_POST['forward']) : 'index.php?m=member&c=index';
+            showmessage(L('login_success').$synloginstr, $forward);
+        } else {
+            $setting = pc_base::load_config('system');
+            $forward = isset($_GET['forward']) && trim($_GET['forward']) ? urlencode($_GET['forward']) : '';
+
+            $siteid = isset($_REQUEST['siteid']) && trim($_REQUEST['siteid']) ? intval($_REQUEST['siteid']) : 1;
+            $siteinfo = siteinfo($siteid);
+
+            include template('member', 'login');
+        }
     }
 
     /**
@@ -32,7 +208,7 @@ class MY_index extends index
         $pages = $this->concern_db->pages;
         foreach($friendids as $k=>$v) {
             $friendlist[$k]['friendid'] = $v['userid'];
-            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['userid']);
+            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['userid'], 1);
             $friendlist[$k]['create_time'] = $v['create_time'];
         }
         include template('member', 'my_concern');
@@ -50,10 +226,16 @@ class MY_index extends index
         $pages = $this->concern_db->pages;
         foreach($friendids as $k=>$v) {
             $friendlist[$k]['friendid'] = $v['cc_userid'];
-            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['cc_userid']);
+            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['cc_userid'], 1);
             $friendlist[$k]['create_time'] = $v['create_time'];
         }
         include template('member', 'concern_me');
+    }
+
+    public function concern_delete()
+    {
+        $this->concern_db->delete(array('id'=>$_GET['id']));
+        showmessage('删除成功');
     }
 
     /**
@@ -68,244 +250,16 @@ class MY_index extends index
         $pages = $this->interview_db->pages;
         foreach($friendids as $k=>$v) {
             $friendlist[$k]['friendid'] = $v['interview_userid'];
-            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['interview_userid']);
+            $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['interview_userid'], 1);
             $friendlist[$k]['create_time'] = $v['create_time'];
         }
         include template('member', 'interview_count');
     }
 
-    /**
-     * 注册
-     * @return int|void
-     */
-    public function register() {
-        $this->_session_start();
-        //获取用户siteid
-        $siteid = isset($_REQUEST['siteid']) && trim($_REQUEST['siteid']) ? intval($_REQUEST['siteid']) : 1;
-        //定义站点id常量
-        if (!defined('SITEID')) {
-            define('SITEID', $siteid);
-        }
-
-        //加载用户模块配置
-        $member_setting = getcache('member_setting');
-        if(!$member_setting['allowregister']) {
-            showmessage(L('deny_register'), 'index.php?m=member&c=index&a=login');
-        }
-        //加载短信模块配置
-        $sms_setting_arr = getcache('sms','sms');
-        $sms_setting = $sms_setting_arr[$siteid];
-
-        header("Cache-control: private");
-        if(isset($_POST['dosubmit'])) {
-            if($member_setting['enablcodecheck']=='1'){//开启验证码
-                if ((empty($_SESSION['connectid']) && $_SESSION['code'] != strtolower($_POST['code']) && $_POST['code']!==NULL) || empty($_SESSION['code'])) {
-                    showmessage(L('code_error'));
-                } else {
-                    $_SESSION['code'] = '';
-                }
-            }
-
-            $userinfo = array();
-            $userinfo['encrypt'] = create_randomstr(6);
-
-            $userinfo['username'] = (isset($_POST['username']) && is_username($_POST['username'])) ? $_POST['username'] : exit('0');
-            $userinfo['nickname'] = (isset($_POST['nickname']) && is_username($_POST['nickname'])) ? $_POST['nickname'] : '';
-
-            $userinfo['email'] = (isset($_POST['email']) && is_email($_POST['email'])) ? $_POST['email'] : '';
-            $userinfo['password'] = (isset($_POST['password']) && is_badword($_POST['password'])==false) ? $_POST['password'] : exit('0');
-
-            $userinfo['email'] = (isset($_POST['email']) && is_email($_POST['email'])) ? $_POST['email'] : '';
-
-            $userinfo['modelid'] = isset($_POST['modelid']) ? intval($_POST['modelid']) : 10;
-            $userinfo['regip'] = ip();
-            $userinfo['point'] = $member_setting['defualtpoint'] ? $member_setting['defualtpoint'] : 0;
-            $userinfo['amount'] = $member_setting['defualtamount'] ? $member_setting['defualtamount'] : 0;
-            $userinfo['regdate'] = $userinfo['lastdate'] = SYS_TIME;
-            $userinfo['siteid'] = $siteid;
-            $userinfo['connectid'] = isset($_SESSION['connectid']) ? $_SESSION['connectid'] : '';
-            $userinfo['from'] = isset($_SESSION['from']) ? $_SESSION['from'] : '';
-            //手机强制验证
-
-            if($member_setting[mobile_checktype]=='1'){
-                //取用户手机号
-                $mobile_verify = $_POST['mobile_verify'] ? intval($_POST['mobile_verify']) : '';
-                if($mobile_verify=='') showmessage('请提供正确的手机验证码！', HTTP_REFERER);
-                $sms_report_db = pc_base::load_model('sms_report_model');
-                $posttime = SYS_TIME-360;
-                $where = "`id_code`='$mobile_verify' AND `posttime`>'$posttime'";
-                $r = $sms_report_db->get_one($where,'*','id DESC');
-                if(!empty($r)){
-                    $userinfo['mobile'] = $r['mobile'];
-                }else{
-                    showmessage('未检测到正确的手机号码！', HTTP_REFERER);
-                }
-            }elseif($member_setting[mobile_checktype]=='2'){
-                //获取验证码，直接通过POST，取mobile值
-                $userinfo['mobile'] = isset($_POST['mobile']) ? $_POST['mobile'] : '';
-            }
-            if($userinfo['mobile']!=""){
-                if(!preg_match('/^1([0-9]{10})$/',$userinfo['mobile'])) {
-                    showmessage('请提供正确的手机号码！', HTTP_REFERER);
-                }
-            }
-            unset($_SESSION['connectid'], $_SESSION['from']);
-
-            if($member_setting['enablemailcheck']) {	//是否需要邮件验证
-                $userinfo['groupid'] = 7;
-            } elseif($member_setting['registerverify']) {	//是否需要管理员审核
-                $modelinfo_str = $userinfo['modelinfo'] = isset($_POST['info']) ? array2string(array_map("safe_replace", new_html_special_chars($_POST['info']))) : '';
-                $this->verify_db = pc_base::load_model('member_verify_model');
-                unset($userinfo['lastdate'],$userinfo['connectid'],$userinfo['from']);
-                $userinfo['modelinfo'] = $modelinfo_str;
-                $this->verify_db->insert($userinfo);
-                showmessage(L('operation_success'), 'index.php?m=member&c=index&a=register&t=3');
-            } else {
-                //查看当前模型是否开启了短信验证功能
-                $model_field_cache = getcache('model_field_'.$userinfo['modelid'],'model');
-                if(isset($model_field_cache['mobile']) && $model_field_cache['mobile']['disabled']==0) {
-                    $mobile = $_POST['info']['mobile'];
-                    if(!preg_match('/^1([0-9]{10})$/',$mobile)) showmessage(L('input_right_mobile'));
-                    $sms_report_db = pc_base::load_model('sms_report_model');
-                    $posttime = SYS_TIME-300;
-                    $where = "`mobile`='$mobile' AND `posttime`>'$posttime'";
-                    $r = $sms_report_db->get_one($where);
-                    if(!$r || $r['id_code']!=$_POST['mobile_verify']) showmessage(L('error_sms_code'));
-                }
-                $userinfo['groupid'] = $this->_get_usergroup_bypoint($userinfo['point']);
-            }
-            //附表信息验证 通过模型获取会员信息
-            if($member_setting['choosemodel']) {
-                require_once CACHE_MODEL_PATH.'member_input.class.php';
-                require_once CACHE_MODEL_PATH.'member_update.class.php';
-                $member_input = new member_input($userinfo['modelid']);
-                $_POST['info'] = array_map('new_html_special_chars',$_POST['info']);
-                $user_model_info = $member_input->get($_POST['info']);
-            }
-            if(pc_base::load_config('system', 'phpsso')) {
-                $this->_init_phpsso();
-                $status = $this->client->ps_member_register($userinfo['username'], $userinfo['password'], $userinfo['email'], $userinfo['regip'], $userinfo['encrypt']);
-                if($status > 0) {
-                    $userinfo['phpssouid'] = $status;
-                    //传入phpsso为明文密码，加密后存入phpcms_v9
-                    $password = $userinfo['password'];
-                    $userinfo['password'] = password($userinfo['password'], $userinfo['encrypt']);
-                    $userid = $this->db->insert($userinfo, 1);
-                    if($member_setting['choosemodel']) {	//如果开启选择模型
-                        $user_model_info['userid'] = $userid;
-                        //插入会员模型数据
-                        $this->db->set_model($userinfo['modelid']);
-                        $this->db->insert($user_model_info);
-                    }
-
-                    if($userid > 0) {
-                        //执行登陆操作
-                        if(!$cookietime) $get_cookietime = param::get_cookie('cookietime');
-                        $_cookietime = $cookietime ? intval($cookietime) : ($get_cookietime ? $get_cookietime : 0);
-                        $cookietime = $_cookietime ? TIME + $_cookietime : 0;
-
-                        if($userinfo['groupid'] == 7) {
-                            param::set_cookie('_username', $userinfo['username'], $cookietime);
-                            param::set_cookie('email', $userinfo['email'], $cookietime);
-                        } else {
-                            $phpcms_auth = sys_auth($userid."\t".$userinfo['password'], 'ENCODE', get_auth_key('login'));
-
-                            param::set_cookie('auth', $phpcms_auth, $cookietime);
-                            param::set_cookie('_userid', $userid, $cookietime);
-                            param::set_cookie('_username', $userinfo['username'], $cookietime);
-                            param::set_cookie('_nickname', $userinfo['nickname'], $cookietime);
-                            param::set_cookie('_groupid', $userinfo['groupid'], $cookietime);
-                            param::set_cookie('cookietime', $_cookietime, $cookietime);
-                        }
-                    }
-                    //如果需要邮箱认证
-                    if($member_setting['enablemailcheck']) {
-                        pc_base::load_sys_func('mail');
-                        $code = sys_auth($userid.'|'.microtime(true), 'ENCODE', get_auth_key('email'));
-                        $url = APP_PATH."index.php?m=member&c=index&a=register&code=$code&verify=1";
-                        $message = $member_setting['registerverifymessage'];
-                        $message = str_replace(array('{click}','{url}','{username}','{email}','{password}'), array('<a href="'.$url.'">'.L('please_click').'</a>',$url,$userinfo['username'],$userinfo['email'],$password), $message);
-                        sendmail($userinfo['email'], L('reg_verify_email'), $message);
-                        //设置当前注册账号COOKIE，为第二步重发邮件所用
-                        $_SESSION['_regusername'] = $userinfo['username'];
-                        $_SESSION['_reguserid'] = $userid;
-                        $_SESSION['_reguseruid'] = $userinfo['phpssouid'];
-                        showmessage(L('operation_success'), 'index.php?m=member&c=index&a=register&t=2');
-                    } else {
-                        //如果不需要邮箱认证、直接登录其他应用
-                        $synloginstr = $this->client->ps_member_synlogin($userinfo['phpssouid']);
-                        showmessage(L('operation_success').$synloginstr, 'index.php?m=member&c=index&a=init');
-                    }
-
-                }
-            } else {
-                showmessage(L('enable_register').L('enable_phpsso'), 'index.php?m=member&c=index&a=login');
-            }
-            showmessage(L('operation_failure'), HTTP_REFERER);
-        } else {
-            if(!pc_base::load_config('system', 'phpsso')) {
-                showmessage(L('enable_register').L('enable_phpsso'), 'index.php?m=member&c=index&a=login');
-            }
-
-            if(!empty($_GET['verify'])) {
-                $code = isset($_GET['code']) ? trim($_GET['code']) : showmessage(L('operation_failure'), 'index.php?m=member&c=index');
-                $code_res = sys_auth($code, 'DECODE', get_auth_key('email'));
-                $code_arr = explode('|', $code_res);
-                $userid = isset($code_arr[0]) ? $code_arr[0] : '';
-                $userid = is_numeric($userid) ? $userid : showmessage(L('operation_failure'), 'index.php?m=member&c=index');
-
-                $this->db->update(array('groupid'=>$this->_get_usergroup_bypoint()), array('userid'=>$userid));
-                showmessage(L('operation_success'), 'index.php?m=member&c=index');
-            } elseif(!empty($_GET['protocol'])) {
-
-                include template('member', 'protocol');
-            } else {
-                //过滤非当前站点会员模型
-                $modellist = getcache('member_model', 'commons');
-                foreach($modellist as $k=>$v) {
-                    if($v['siteid']!=$siteid || $v['disabled']) {
-                        unset($modellist[$k]);
-                    }
-                }
-                if(empty($modellist)) {
-                    showmessage(L('site_have_no_model').L('deny_register'), HTTP_REFERER);
-                }
-                //是否开启选择会员模型选项
-                if($member_setting['choosemodel']) {
-                    $first_model = array_pop(array_reverse($modellist));
-                    $modelid = isset($_GET['modelid']) && in_array($_GET['modelid'], array_keys($modellist)) ? intval($_GET['modelid']) : $first_model['modelid'];
-
-                    if(array_key_exists($modelid, $modellist)) {
-                        //获取会员模型表单
-                        require CACHE_MODEL_PATH.'member_form.class.php';
-                        $member_form = new member_form($modelid);
-                        $this->db->set_model($modelid);
-                        $forminfos = $forminfos_arr = $member_form->get();
-
-                        //万能字段过滤
-                        foreach($forminfos as $field=>$info) {
-                            if($info['isomnipotent']) {
-                                unset($forminfos[$field]);
-                            } else {
-                                if($info['formtype']=='omnipotent') {
-                                    foreach($forminfos_arr as $_fm=>$_fm_value) {
-                                        if($_fm_value['isomnipotent']) {
-                                            $info['form'] = str_replace('{'.$_fm.'}',$_fm_value['form'], $info['form']);
-                                        }
-                                    }
-                                    $forminfos[$field]['form'] = $info['form'];
-                                }
-                            }
-                        }
-
-                        $formValidator = $member_form->formValidator;
-                    }
-                }
-                $description = $modellist[$modelid]['description'];
-
-                include template('member', 'register');
-            }
-        }
+    public function interview_delete()
+    {
+        $this->interview_db->delete(array('id'=>$_GET['id']));
+        showmessage('删除成功');
     }
 
     /**
@@ -313,7 +267,20 @@ class MY_index extends index
      */
     public function card()
     {
-        include template('member', 'card');
+        $sql = 'SELECT M.userid,M.email,M.nickname,D.unit_name,D.unit_industry,D.area,D.media_name FROM v9_member AS M JOIN v9_member_detail AS D ON M.userid = D.userid WHERE M.userid = '.$this->_userid.'
+                UNION
+                SELECT M.userid,M.email,M.nickname,I.unit_name,I.unit_industry,I.area,I.media_name FROM v9_member AS M JOIN v9_member_inst AS I ON M.userid = I.userid WHERE M.userid = '.$this->_userid;
+        $query = $this->db->query($sql);
+        $userInfo = $this->db->fetch_array($query);
+        $avatar = get_memberavatar($userInfo[0]['userid'],1);
+        if (!$avatar)
+            showmessage('请先上传头像', 'index.php?m=member&c=index&a=account_manage_avatar&t=1');
+        elseif (empty($userInfo[0]['email']))
+            showmessage('请先填写邮箱', 'index.php?m=member&c=index&a=account_change_email&t=1');
+        elseif (empty($userInfo[0]['nickname']) || empty($userInfo[0]['unit_industry']) || empty($userInfo[0]['unit_name']) || empty($userInfo[0]['area']))
+            showmessage('请先完善资料', 'index.php?m=member&c=index&a=account_manage_info&t=1&type=enable_card');
+        else
+            include template('member', 'card');
     }
 
     /**
@@ -321,7 +288,27 @@ class MY_index extends index
      */
     public function publish()
     {
-        include template('member', 'publish');
+        $sql = 'SELECT M.userid,M.email,M.nickname,D.unit_name,D.unit_industry,D.area,D.media_name FROM v9_member AS M JOIN v9_member_detail AS D ON M.userid = D.userid WHERE M.userid = '.$this->_userid.'
+                UNION
+                SELECT M.userid,M.email,M.nickname,I.unit_name,I.unit_industry,I.area,I.media_name FROM v9_member AS M JOIN v9_member_inst AS I ON M.userid = I.userid WHERE M.userid = '.$this->_userid;
+        $query = $this->db->query($sql);
+        $userInfo = $this->db->fetch_array($query);
+        //$avatar = get_memberavatar($userInfo[0]['userid'], 1);
+        /*if (!$avatar)
+            showmessage('请先上传头像', 'index.php?m=member&c=index&a=account_manage_avatar&t=1');
+        elseif (empty($userInfo[0]['email']))
+            showmessage('请先填写邮箱', 'index.php?m=member&c=index&a=account_change_email&t=1');
+        elseif (empty($userInfo[0]['mobile']))
+            showmessage('请先填写手机', 'index.php?m=member&c=index&a=account_change_mobile&t=1');
+        elseif (empty($userInfo[0]['nickname']) || empty($userInfo[0]['unit_industry']) || empty($userInfo[0]['unit_name']) || empty($userInfo[0]['position']) || empty($userInfo[0]['area']) || empty($userInfo[0]['wechat']) || empty($userInfo[0]['wechat_img']) || empty($userInfo[0]['media_name']))
+            showmessage('请先完善资料', 'index.php?m=member&c=index&a=account_manage_info&t=1&type=publish');
+        else
+            include template('member', 'publish');*/
+        if (empty($userInfo[0]['nickname']) || empty($userInfo[0]['unit_industry']) || empty($userInfo[0]['unit_name']) || empty($userInfo[0]['area']) || empty($userInfo[0]['media_name'])){
+            echo json_encode(['code'=>0]);
+        }else{
+            echo json_encode(['code'=>1]);
+        }
     }
 
     /**
@@ -356,6 +343,11 @@ class MY_index extends index
         $int = $this->linkage_db->select($where);
         $this->subscribe_db = pc_base::load_model('subscribe_model');
         $subscribe_list = $this->subscribe_db->select('userid='.$this->_userid);
+        foreach ($subscribe_list as $k => $v){
+            if ($v['type'] == 3){
+                $subscribe_list[$k]['name'] = get_company_field($v['name'], $field = 'shortname');
+            }
+        }
         echo json_encode(['code'=>1,'province'=>$province,'int'=>$int,'subscribe_list'=>$subscribe_list]);
     }
 
@@ -400,6 +392,42 @@ class MY_index extends index
 
             include template('member', 'account_manage_email');
         }
+    }
+
+    public function save_tweets()
+    {
+        $model = pc_base::load_model('tweets_model');
+        //$html = file_get_contents($_POST['url']);
+        //preg_match('/<title>(.*)<\/title>/Ui', $html, $title);
+        if (empty($_POST['title']) || empty($_POST['url'])){
+            showmessage('请输入正确文章地址与标题');
+        }
+        $data['url'] = trim($_POST['url']);
+        $data['title'] = trim($_POST['title']);
+        $data['username'] = $this->_username;
+        $data['catid'] = 546;
+        $id = $model->insert($data,true);
+        $info = $model->get_one(array('id'=>$id));
+        showmessage('制作成功','index.php?m=member&c=content&a=show_tweets');
+    }
+
+    public function my_tweets()
+    {
+        $model = pc_base::load_model('tweets_model');
+        $memberinfo = $this->memberinfo;
+        $phpsso_api_url = $this->_init_phpsso();
+        $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+        $lists = $model->listinfo(array('username'=>$this->_username), '', $page, 10);
+        $pages = $model->pages;
+        include template('member', 'my_tweets');
+    }
+
+    public function delete_tweets()
+    {
+        $id = intval($_GET['id']);
+        $model = pc_base::load_model('tweets_model');
+        $info = $model->delete(array('id'=>$id));
+        showmessage('删除成功','index.php?m=member&c=index&a=my_tweets&t=2');
     }
 
     /**

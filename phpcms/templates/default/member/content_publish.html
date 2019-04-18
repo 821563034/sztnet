@@ -10,18 +10,25 @@
 <script language="javascript" type="text/javascript" src="{JS_PATH}content_addtop.js"></script>
 <script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}layer/layer.js" charset="UTF-8"></script>
+<style type="text/css">
+.tb_form{border-collapse:collapse; width:100%; background-color:#F5F5DC;}
+.tb_form th, .tb_form td{padding:5px;}
+.tb_form th{text-align:right;}
+.tb_form td{overflow:hidden;}
+#dosubmit{width:5em; height:2.5em; background-color:green; border:none; border-radius:3px; color:#fff;}
+</style>
+
 <div id="memberArea">
-	{if in_array($catid,[502,503,504,505])}
+	{if in_array($catid,[545,547,548])}
 	{template 'member', 'card_left'}
 	{else}
 	{template 'member', 'publish_left'}
 	{/if}
-	<div class="col-auto">
-		<div class="col-1 ">
+
 			<h5 class="title">{L('online_publish')}</h5>
 			<div class="content">
 			<form method="post" action="" id="myform" name="myform">
-				<table width="100%" cellspacing="0" class="table_form">
+				<table class="tb_form">
 				{if ROUTE_A=='publish'}
 				<script language="JavaScript">
 				<!--
@@ -31,7 +38,7 @@
 				//-->
 				</script>
 					<tr>
-					{if in_array($catid,[502,503,504,505])}
+					{if in_array($catid,[545,547,548])}
 						<th>栏目：</th>
 						<td>
 							<input type="text" style="width:400px;" value="{$CATEGORYS[$catid][catname]}" class="measure-input" readonly>
@@ -42,28 +49,27 @@
 						<td>{form::select_category('', $catid, 'name="info[catid]" onchange="javascript:c_c(this.value);"','','',0,1,$siteid,'1')}</td>
 					{/if}
 					</tr>
-				{/if}
+					{/if}
 					{loop $forminfos $k $v}
-					{if $k == 'thumb'}
-					<tr>
-						<th width="100">缩略图：</th>
-						<td>
-							<div class="upload-pic img-wrap">
-								<input type="hidden" name="info[thumb]" id="thumb" value="{$r['thumb']}">
-								<a><img src="{$r['thumb']}" onerror="this.src='/statics/images/icon/upload-pic.png'" id="wechat_img_preview" style="cursor:hand" width="135" height="113"></a>
-							</div>
-						<td>
-					</tr>
-					{else}
 					<tr>
 						<th width="100">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
-						<td>{$v['form']}{if $v['tips']}{$v['tips']}{/if}</td>
+						<td>
+							{if $k == 'thumb'}
+								<div class="upload-pic img-wrap">
+									<input type="hidden" name="info[thumb]" id="thumb" value="{$r['thumb']}">
+									<a><img src="{$r['thumb']}" onerror="this.src='/statics/images/icon/upload-pic.png'" id="wechat_img_preview" style="cursor:hand" width="135" height="113"></a>
+								</div>
+							{elseif $catid == 519 AND $k == 'object'}
+								<input type="text" name="info[object]" id="object" size="50" value="" class="input-text"  list="companyList" oninput="get_company()"><datalist id="companyList"></datalist>
+							{else}
+								{$v['form']}
+							{/if}
+							{if $v['tips']}{$v['tips']}{/if}
+						<td>
 					</tr>
-					{/if}
 					{/loop}
 					<tr>
-						<th></th>
-						<td>
+						<td colspan="2" style="text-align:center;">
 						<input name="forward" type="hidden" value="{HTTP_REFERER}">
 						<input name="id" type="hidden" value="{$id}">
 						<input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button"></td>
@@ -71,14 +77,14 @@
 				</table>
 			</form>
 			</div>
-			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
-		</div>
-	</div>
-</div>
+
+
+</div><!--/memberArea-->
+
 <form id="fileForm" enctype="multipart/form-data" action="index.php?m=content&c=index&a=upload" method="post">
 	<input type="file" id="file" name="upload" style="display: none;" multiple="multiple">
 </form>
-<div class="clear"></div>
+
 <script type="text/javascript"> 
 <!--
 //只能放到最下面
@@ -93,8 +99,40 @@ $(function(){
 })
 //-->
 </script>
-{template 'member', 'footer'}
+
 <script>
+	var copyfrom = "{$memberinfo['media_name']}";
+	$(document).ready(function () {
+		$('#myform').find("input[name='info[copyfrom]']").val(copyfrom);
+		$.post('index.php?m=member&c=index&a=publish',{},function (result) {
+			console.log(result);
+			if (!result.code){
+				layer.alert('请在【账号 > 修改信息】中完善您的账户信息', {
+					title:'提示'
+					,btn: ['确定']
+					,yes: function(index){
+						layer.close(index);
+						window.location.href = 'index.php?m=member&c=index&a=account_manage_info&t=1';
+					}
+				});
+			}
+		},'json');
+	});
+
+	function get_company(){
+		$.post('index.php?m=content&c=index&a=getIntCompany',{q:$('#object').val()},function (result) {
+			if (result){
+				var html = '';
+				$.each(result.items,function (k,v) {
+					html+= '<option value="'+v.text+'" />';
+				});
+				$('#companyList').html(html);
+			}else {
+				layer.alert('获取公司列表出错', {icon: 2});
+			}
+		},'json');
+	}
+
     $("#wechat_img_preview").click(function () {
         $('#file').trigger('click');
     });
