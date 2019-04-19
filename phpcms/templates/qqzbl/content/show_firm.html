@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/qqzbl.css" rel="stylesheet" /> 
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <style type="text/css">
+    @media (min-width:768px){.main{min-height:400px;}}
+    .firmCont{background-color:#FFFFE0; border-top:1px solid #FAFAD2; border-bottom:1px solid #FAFAD2; padding-top:10px; padding-bottom:10px;}
+    .firmCont h1{color:#996600; height:40px; line-height:40px; white-space:nowrap; overflow:hidden;}
+    .firmContLt span{color:#996600; font-size:0.9em;}
+    .firmContRt *{display:block; height:30px; line-height:30px; white-space:nowrap; overflow:hidden;}
+
+  .lxr{width:40%; margin:20px auto; height:1px; border-top:1px solid #eee; text-align:center;color:#ddd; font-size:0.8em;}
+  .lxr span{position:relative; top:-8px; background:#fff; padding:0 20px;}
+
+  .staff{text-align:center;}
+  .staff a{display:block; border:1px solid #eee;}
+    .staff a img{width:100%;}
+  .staff a span{display:block; padding:5px;}
+  </style>
+</head>
+
+<body>
+{template "content_inc","header"}
+<div class="container4">
+
+<div class="column xs-12 md-9">
+<section class="main">
+  {template "content_inc","position_sp"}
+
+  <div class="row firmCont">
+    <div class="col xs-12 md-6 firmContLt">
+      <h1>{$title}</h1>
+      <span>[简称] {$sname}</span>
+    </div>
+    <div class="col xs-12 md-6 firmContRt black">
+      <span>{$address}</span>
+     <a href="{$website}" target="_blank">{php $pos = strpos($website,':');echo substr($website,$pos+3)}</a>
+    </div>
+  </div><!--/row-->
+
+  <p class="lxr"><span>联系人</span></p>
+  <div class="row staffs black">
+    {php $sql = "SELECT A.nickname, A.userid FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.unit_name = '".$title."'";}
+    {pc:get sql="$sql" cache="3600" page="$page" num="10" return="data"}
+    {loop $data $v}
+    <div class="col xs-4 md-2 staff">
+      <a href="index.php?m=content&c=index&a=member_home&catid=536&userid={$v[userid]}" target="_blank" class="card">
+        <img src="{get_memberavatar($v[userid],1,90)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'">
+        <span>{$v[nickname]}</span>
+      </a>
+    </div>
+    {/loop}
+    {/pc}
+  </div><!--/staffs-->
+  <p style="color:#ff9900;">{if $contact=='' AND empty($data)}哎呀，公司的小伙伴走丢了？{else}{$contact}{/if}</p>
+</section>
+
+<section>
+  <div class="shareBar">
+    <div class="bdsharebuttonbox">
+      <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+      <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+      <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    </div>
+    <a class="iconfont icon-top" href="javascript:scroll(0,0)">返回顶部</a>
+  </div><!--/shareBar-->
+</section>
+</div><!--/左侧-->
+
+<div class="column xs-12 md-3">
+  <section style="height:50px;">
+  </section>
+</div><!--/右侧-->
+
+</div><!--/container4-->
+{template "content_inc","footer"}
+<script src="{APP_PATH}api.php?op=count&id={$id}&modelid={$modelid}"></script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["weixin","tsina","renren","mshare","qzone","bdysc","tqq","bdxc","kaixin001","tqf","tieba","douban","bdhome","sqq","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","fbook","twi","linkedin","h163","evernotecn","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</body>
+</html>

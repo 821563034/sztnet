@@ -24,61 +24,58 @@
 	{else}
 	{template 'member', 'publish_left'}
 	{/if}
-
-			<h5 class="title">{L('online_publish')}</h5>
-			<div class="content">
-			<form method="post" action="" id="myform" name="myform">
-				<table class="tb_form">
-				{if ROUTE_A=='publish'}
-				<script language="JavaScript">
-				<!--
-					function c_c(catid) {
-						location.href='index.php?m=member&c=content&a=publish&siteid={$siteid}&catid='+catid;
-					}
-				//-->
-				</script>
-					<tr>
-					{if in_array($catid,[545,547,548])}
-						<th>栏目：</th>
-						<td>
-							<input type="text" style="width:400px;" value="{$CATEGORYS[$catid][catname]}" class="measure-input" readonly>
-							<input type="hidden" name="info[catid]" id="catid" value="{$catid}"/>
-						</td>
+	<h5 class="title">{L('online_publish')}</h5>
+	<div class="content">
+	<form method="post" action="" id="myform" name="myform">
+		<table class="tb_form">
+		{if ROUTE_A=='publish'}
+		<script language="JavaScript">
+		<!--
+			function c_c(catid) {
+				location.href='index.php?m=member&c=content&a=publish&siteid={$siteid}&catid='+catid;
+			}
+		//-->
+		</script>
+			<tr>
+			{if in_array($catid,[545,547,548])}
+				<th>栏目：</th>
+				<td>
+					<input type="text" style="width:400px;" value="{$CATEGORYS[$catid][catname]}" class="measure-input" readonly>
+					<input type="hidden" name="info[catid]" id="catid" value="{$catid}"/>
+				</td>
+			{else}
+				<th>{L('please_select_cat')}：</th>
+				<td>{form::select_category('', $catid, 'name="info[catid]" onchange="javascript:c_c(this.value);"','','',0,1,$siteid,'1')}</td>
+			{/if}
+			</tr>
+		{/if}
+			{loop $forminfos $k $v}
+			<tr>
+				<th width="100">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
+				<td>
+					{if $k == 'thumb'}
+						<div class="upload-pic img-wrap">
+							<input type="hidden" name="info[thumb]" id="thumb" value="{$r['thumb']}">
+							<a><img src="{$r['thumb']}" onerror="this.src='/statics/images/icon/upload-pic.png'" id="wechat_img_preview" style="cursor:hand" width="135" height="113"></a>
+						</div>
+					{elseif $catid == 519 AND $k == 'object'}
+						<input type="text" name="info[object]" id="object" size="50" value="{get_table_field('arti_data', 'id', $r['id'], 'object')}" class="input-text"  list="companyList" oninput="get_company()"><datalist id="companyList"></datalist>
 					{else}
-						<th>{L('please_select_cat')}：</th>
-						<td>{form::select_category('', $catid, 'name="info[catid]" onchange="javascript:c_c(this.value);"','','',0,1,$siteid,'1')}</td>
+						{$v['form']}
 					{/if}
-					</tr>
-					{/if}
-					{loop $forminfos $k $v}
-					<tr>
-						<th width="100">{if $v['star']} <font color="red">*</font>{/if} {$v['name']}：</th>
-						<td>
-							{if $k == 'thumb'}
-								<div class="upload-pic img-wrap">
-									<input type="hidden" name="info[thumb]" id="thumb" value="{$r['thumb']}">
-									<a><img src="{$r['thumb']}" onerror="this.src='/statics/images/icon/upload-pic.png'" id="wechat_img_preview" style="cursor:hand" width="135" height="113"></a>
-								</div>
-							{elseif $catid == 519 AND $k == 'object'}
-								<input type="text" name="info[object]" id="object" size="50" value="" class="input-text"  list="companyList" oninput="get_company()"><datalist id="companyList"></datalist>
-							{else}
-								{$v['form']}
-							{/if}
-							{if $v['tips']}{$v['tips']}{/if}
-						<td>
-					</tr>
-					{/loop}
-					<tr>
-						<td colspan="2" style="text-align:center;">
-						<input name="forward" type="hidden" value="{HTTP_REFERER}">
-						<input name="id" type="hidden" value="{$id}">
-						<input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button"></td>
-					</tr>
-				</table>
-			</form>
-			</div>
-
-
+					{if $v['tips']}{$v['tips']}{/if}
+				<td>
+			</tr>
+			{/loop}
+			<tr>
+				<td colspan="2" style="text-align:center;">
+				<input name="forward" type="hidden" value="{HTTP_REFERER}">
+				<input name="id" type="hidden" value="{$id}">
+				<input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button"></td>
+			</tr>
+		</table>
+	</form>
+	</div>
 </div><!--/memberArea-->
 
 <form id="fileForm" enctype="multipart/form-data" action="index.php?m=content&c=index&a=upload" method="post">
@@ -103,9 +100,10 @@ $(function(){
 <script>
 	var copyfrom = "{$memberinfo['media_name']}";
 	$(document).ready(function () {
+		{if ROUTE_A=='publish'}
 		$('#myform').find("input[name='info[copyfrom]']").val(copyfrom);
+		{/if}
 		$.post('index.php?m=member&c=index&a=publish',{},function (result) {
-			console.log(result);
 			if (!result.code){
 				layer.alert('请在【账号 > 修改信息】中完善您的账户信息', {
 					title:'提示'
@@ -113,7 +111,10 @@ $(function(){
 					,yes: function(index){
 						layer.close(index);
 						window.location.href = 'index.php?m=member&c=index&a=account_manage_info&t=1';
-					}
+					},cancel: function (index) {
+                        layer.close(index);
+                        window.location.href = 'index.php?m=member&c=index&a=account_manage_info&t=1';
+                    }
 				});
 			}
 		},'json');

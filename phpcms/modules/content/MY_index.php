@@ -271,7 +271,7 @@ class MY_index extends index
         $sql = 'SELECT id FROM v9_firm WHERE '.$where;
         $query = $this->db->query($sql);
         $id_arr = $this->db->fetch_array($query);
-        $ids = array_column($id_arr, 'userid');
+        $ids = array_column($id_arr, 'id');
         $id_string = implode(',',$ids);
         if(!empty($province)){
             $cityList = $this->linkage_db->select("parentid = $province",'linkageid,name');
@@ -475,6 +475,19 @@ class MY_index extends index
         $id = intval($_GET['id']);
         $model = pc_base::load_model('tweets_model');
         $info = $model->get_one(array('id'=>$id));
+        if (strstr($info['weburl'],'mp.weixin.qq.com')){
+            /*$pos = strpos($info['weburl'],':');
+            $http = (substr($info['weburl'],0,$pos) === 'http:' ? 'http:' : 'https:');
+            $real_url = $http . '//cors-anywhere.herokuapp.com/' . $info['weburl'];*/
+            $html = file_get_contents($info['weburl']);
+            $html = str_replace('data-src','src',$html);
+            $html = str_replace('<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>', '', $html);
+            $html = str_replace('https', 'http', $html);
+            $html = str_replace('body', 'body onload="window.scrollTo(0,document.body.scrollHeight);"', $html);
+            //$html_src = 'data:text/html;charset=utf-8,' . $html;
+            file_put_contents('iframe.html',$html);
+            $info['weburl'] = 'iframe.html';//file_get_contents($info['weburl']);
+        }
         include template('member', 'show_tweets');
     }
 

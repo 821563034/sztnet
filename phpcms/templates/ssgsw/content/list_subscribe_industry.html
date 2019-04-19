@@ -1,14 +1,42 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/ssgsw.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+</head>
+
+<body>
 {template "content_inc","header"}
 <div class="container">
 <div class="row mb10">
   <div class="col xs-12">{template "content_inc","position"}</div>
-  <div class="col xs-12 md-7 mb10">     
+  <div class="col xs-12 md-7 mb10">
+    {pc:get sql="SELECT A.title,A.url,A.inputtime,A.thumb,A.company_id,B.copyfrom,B.object FROM v9_arti as A right join v9_arti_data as B on A.id = B.id where $where order by updatetime desc" cache="3600" page="$page" num="10" return="data"}
     <ul class="thumbNews lts bbs">
-      {pc:content action="lists" catid="$catid" num="25" order="inputtime DESC" page="$page" moreinfo="1"}
-      {loop $data $k $v}
+      {loop $data $v}
       {php list($copyfrom) = explode('|', $v['copyfrom'])}
-      <li>
-        <a href="#" target="_blank">{if $v[thumb]!=""}<img src="{$v[thumb]}" />{/if}</a>
+      <li style="width:100%">
+        <a href="#" target="_blank">
+          {if $v[company_id]!=0}
+            {php $code = get_company_field($v[company_id]);$pathArr = explode('.',$code);$path = $pathArr[0];}
+            {php $flag = file_exists(PHPCMS_PATH.'/uploadfile/companyLogo/'.$path.'.jpg'); }
+            <a href="index.php?m=content&c=index&a=lists_company&catid=519&type=3&q={$code}" target="_blank">
+              {if $flag}
+              <img src="/uploadfile/companyLogo/{$path}.jpg"/>
+              {else}
+              <span>{get_company_field($v[company_id],'shortname')}{$path}</span>
+              {/if}
+            </a>
+          {/if}
+        </a>
         <div>
           <a href="{$v[url]}" target="_blank">{$v[title]}</a>
           <span>{date('m-d',$v[inputtime])}</span><a href="#" target="_blank">{$copyfrom}</a>

@@ -1,82 +1,104 @@
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+  <meta name="keywords" content="{$SEO['keyword']}">
+  <meta name="description" content="{$SEO['description']}">
+  <link href="{CSS_PATH}mycss/common.css" rel="stylesheet" />
+  <link href="{CSS_PATH}mycss/ssgsw.css" rel="stylesheet" />
+  <script src="{JS_PATH}jquery.min.js"></script>
+  <script src="{JS_PATH}search_common.js"></script>
+  <style>
+    table{font-size:0.9em;}
+    table th{background-color:#F5F5F5;}
+    .info1, .info2, .info3{padding:5px; border:1px solid #eee;}
+    .info1 th{width:4.5em;}
+    .info2 th{width:6.5em;}
+    .info1 td, .info2 td, .info3 td{padding:3px;}
+    .info3 td{text-align:center;}
+    .info3 tr:nth-child(odd) td{font-weight:bold;}
+  </style>
+</head>
+
+<body>
 {template "content_inc","header"}
 <div class="container">
 <div class="row mb10">
-  <div class="col xs-12"><h1 class="coPageHead">迈瑞医疗（300760）公司主页</h1></div>
-  
   <div class="col xs-12 md-7 mb10">
-    <h2>公司新闻</h2> 
+    <div class="companyHead">
+      {php $shortname = get_company_id($q, 'shortname');}
+      <h1>{$shortname}（{$q}）公司主页</h1>
+      <p>{get_company_id($q, 'sentence')}</p>
+    </div>
+
+    {pc:get sql="SELECT A.title,A.url,A.inputtime,B.copyfrom,B.object FROM v9_arti as A right join v9_arti_data as B on A.id = B.id where $where order by updatetime desc" cache="3600" page="$page" num="10" return="data"}
     <ul class="news lts bbs">
+      {loop $data $r}
       <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>03-03</span><a href="#" target="_blank">证券日报</a>
+        <a href="{$r['url']}" target="_blank">{$r['title']}</a>
+        <span>{date('m-d',$r['inputtime'])}</span><a href="#" target="_blank">{$r['copyfrom']}</a>
       </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>03-01</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-23</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-17</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-15</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-10</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-12</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-14</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-10</span><a href="#" target="_blank">证券日报</a>
-      </li>
-      <li>
-        <a href="#" target="_blank">子公司业绩下滑商誉爆雷 迈瑞医疗2018年或亏超3.5亿</a>
-        <span>02-06</span><a href="#" target="_blank">证券日报</a>
-      </li>
+      {/loop}
     </ul>
-    <div id="pages" class="text-c">1  2  3  4</div>
+    <div id="pages" class="text-c">{$pages}</div>
+    {/pc}
   </div><!--/左侧-->
   
   <div class="col xs-12 md-5">
     <div class="tb-offset">
-    <table class="tb-sep-v2">
+    <table class="tb-sep-v2 td-higher">
       <tr>
-        <td><a href="#" target="_blank">公司公告</a></td>
-        <td><a href="#" target="_blank">投关电话</a></td>       
-        <td><a href="#" target="_blank">IR互动平台</a></td>
-        <td><a href="#" target="_blank">公司官网</a></td>        
+        {php $codeArr = explode('.',$q);$code = $codeArr[0];}
+        <td><a href="http://{get_company_id($q, 'website')}" target="_blank">公司官网</a></td>
+        <td><a href="http://www.cninfo.com.cn/new/fulltextSearch?keyWord={$code}&noreferrer" rel="noreferrer" target="_blank">巨潮网公告</a></td>
+        <td>
+          {php $fir_code = substr($code,0,1);}
+          {if $fir_code == '6'}
+          {php $uid = file_get_contents("http://sns.sseinfo.com/ajax/getCompany.do?data=".$shortname);}
+          <a href="http://sns.sseinfo.com/company.do?uid={$uid}" target="_blank">互动平台</a>
+          {else}
+          <a href="http://irm.cninfo.com.cn/ircs/company/companyDetail?stockcode={$code}" target="_blank">互动平台</a>
+          {/if}
+        </td>
       </tr>
       <tr>
-        <td><a href="#" target="_blank">公司F10</a></td>
-        <td><a href="#" target="_blank">同行公司</a></td>       
-        <td><a href="#" target="_blank">股票行情</a></td>
-        <td><a href="#" target="_blank">公司官网</a></td>        
-      </tr>    
+        <td><a href="#" onclick="layer.alert('{get_company_id($q, 'tel')}',{'title':'电话'});">投服电话</a></td>
+        <td><a href="#" onclick="layer.alert('{get_company_id($q, 'email')}',{'title':'邮箱'});">投服邮箱</a></td>
+        <td><a href="index.php?m=content&c=index&a=lists_company&catid=519&type=1&q={get_company_id($q, 'ind_2nd')}" target="_blank">同行公司</a></td>
+      </tr>
     </table>
     </div>
-    <h3 class="h3-1 bgc-eee mt10">点击排行&nbsp;<i class="iconfont icon-hot"></i></h3>
-    <ul class="hit small">    
-      {pc:content action="hits" catid="$catid" num="5" order="weekviews DESC"}
-      {php $i=1;}
-      {loop $data $v}
-      <li><span>{$i}</span><a href="{$v[url]}" target="_blank">{$v[title]}</a></li>
-      {php $i++}
-      {/loop}
-      {/pc}
-    </ul>
+
+    <table class="info1 tb-col-v1 mb10">
+      <tr><th>公司全称</th><td colspan="3">{get_company_id($q, 'title')}</td></tr>
+      <tr><th>办公地址</th><td colspan="3">{get_company_id($q, 'address')}（邮编：256356）</td></tr>
+      <tr><th>成立日期</th><td>2010-10-07</td><th>员工数量</th><td>总数1024，母公司900</td></tr>
+      <tr><th>上市日期</th><td>2017-03-24</td><th>借壳上市</th><td>否</td></tr>
+      <tr><th>行业分类</th><td colspan="3">申万：{get_company_id($q, 'ind_2nd')}<br/>证监会：机械制造 - 大型机械 - 特种设备</td></tr>
+      <tr><th>主营产品</th><td colspan="3">红塔证券、七花气血康口服液、七花血塞通胶囊、天紫红女金胶囊、兴中制药鞘蕊苏口服液、云丰宫血宁胶囊、云丰热毒清片、云健制药风寒感冒颗粒、云健制药风热感冒颗粒、云南白气雾剂、云南白药、云南白药创可贴、云南白药大药房、云南白药脑心舒口服液、云南白药青阳参片、云南白药牙膏、云南白药岩白菜素片、云南青阳参片、云南省医药有限公司、云南田七花叶颗粒。</td></tr>
+      <tr><th>管理人员</th><td colspan="3">董事长周悦刚；总经理王晓成；董秘张坤杰；证代伊成儒,徐瑞。</td></tr>
+      <tr><th>股本情况</th><td colspan="3">总股本12904亿元，A股占比100%，流通A股占总股本90%，流通股合计占总股本90%。</td></tr>
+      <tr><th>大股东一</th><td colspan="3">瑞华会计师事务所(特殊普通合伙)，占78%</td></tr>
+      <tr><th>大股东二</th><td colspan="3">天津长丰律师事务所，占20%</td></tr>
+      <tr><th>大股东三</th><td colspan="3">深圳中华会计师事务所，占3%</td></tr>
+      <tr><th>实际控制</th><td colspan="3">瑞华会计师事务所(特殊普通合伙)</td></tr>
+    </table>
+
+    <table class="info2 tb-col-v1">
+      <tr><th>总市值</th><td>10000亿元</td><th>市净率(LF)</th><td>1024</td></tr>
+      <tr><th>市盈率(TTM)</th><td>1000</td><th>市盈率(LYR)</th><td>97</td></tr>
+    </table>
+    <p class="note">注：上表为截至2019年4月1日收盘的数据。</p>
+
+    <table class="info3 tb-col-v1">
+      <tr><th rowspan="2" style="width:6.5em;">总营收(亿)</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th></tr>
+      <tr><td>2015</td><td>2016</td><td>2017</td><td>2018</td></tr>
+      <tr><th rowspan="2">归母净利(亿)</th><th>2015</th><th>2016</th><th>2017</th><th>2018</th></tr>
+      <tr><td>2015</td><td>2016</td><td>2017</td><td>2018</td></tr>
+    </table>
   </div><!--/右侧-->
 </div><!--/row-->
 

@@ -60,7 +60,7 @@
 </div>
   
 <script>
-    var w = $(window).width(), iframe = $("#myiframe");
+    /*var w = $(window).width(), iframe = $("#myiframe");
     var cssText = "width:" + w + "px !important;";
     iframe.css("cssText", cssText);
     if (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
@@ -68,6 +68,22 @@
     } else {
         iframe.attr("scrolling", "yes");
     }
+
+    var url = "{$info['weburl']}";
+    if (url == ''){
+        var share_link = "https://mp.weixin.qq.com/s/9PpHq_MsbUe9JXK3WMdQoA"; //微信文章地址
+        var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+        var realurl = http + '//cors-anywhere.herokuapp.com/' + share_link;
+        $.get(realurl, {}, function (response) {
+                var html = response;
+                html = html.replace(/data-src/g, "src")
+                    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/g, '')
+                    .replace(/https/g,'http');
+                var html_src = 'data:text/html;charset=utf-8,' + html;
+                $("#myiframe").attr("src", html_src);
+            }
+        );
+    }*/
 </script>
 
 </body>

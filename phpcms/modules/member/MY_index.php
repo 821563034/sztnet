@@ -252,6 +252,7 @@ class MY_index extends index
             $friendlist[$k]['friendid'] = $v['interview_userid'];
             $friendlist[$k]['avatar'] = $this->client->ps_getavatar($v['interview_userid'], 1);
             $friendlist[$k]['create_time'] = $v['create_time'];
+            $friendlist[$k]['id'] = $v['id'];
         }
         include template('member', 'interview_count');
     }
@@ -267,12 +268,22 @@ class MY_index extends index
      */
     public function card()
     {
-        $sql = 'SELECT M.userid,M.email,M.nickname,D.unit_name,D.unit_industry,D.area,D.media_name FROM v9_member AS M JOIN v9_member_detail AS D ON M.userid = D.userid WHERE M.userid = '.$this->_userid.'
-                UNION
-                SELECT M.userid,M.email,M.nickname,I.unit_name,I.unit_industry,I.area,I.media_name FROM v9_member AS M JOIN v9_member_inst AS I ON M.userid = I.userid WHERE M.userid = '.$this->_userid;
-        $query = $this->db->query($sql);
+        $sql = 'SELECT M.nickname,D.* FROM v9_member AS M LEFT JOIN v9_member_detail AS D ON M.userid = D.userid WHERE M.userid = '.$this->_userid;        $query = $this->db->query($sql);
         $userInfo = $this->db->fetch_array($query);
-        $avatar = get_memberavatar($userInfo[0]['userid'],1);
+        $flag= true;
+        foreach ($userInfo[0] as $k => $v){
+            if ($k == 'media_name' || $k == 'ifshow') continue;
+            if (empty($v)) {
+                $flag = false;
+                break;
+            }
+        }
+        if (!$flag){
+            echo json_encode(['code'=>0]);
+        }else{
+            echo json_encode(['code'=>1]);
+        }
+        /*$avatar = get_memberavatar($userInfo[0]['userid'],1);
         if (!$avatar)
             showmessage('请先上传头像', 'index.php?m=member&c=index&a=account_manage_avatar&t=1');
         elseif (empty($userInfo[0]['email']))
@@ -280,7 +291,7 @@ class MY_index extends index
         elseif (empty($userInfo[0]['nickname']) || empty($userInfo[0]['unit_industry']) || empty($userInfo[0]['unit_name']) || empty($userInfo[0]['area']))
             showmessage('请先完善资料', 'index.php?m=member&c=index&a=account_manage_info&t=1&type=enable_card');
         else
-            include template('member', 'card');
+            include template('member', 'card');*/
     }
 
     /**
@@ -408,7 +419,7 @@ class MY_index extends index
         $data['catid'] = 546;
         $id = $model->insert($data,true);
         $info = $model->get_one(array('id'=>$id));
-        showmessage('制作成功','index.php?m=member&c=content&a=show_tweets');
+        showmessage('制作成功','index.php?m=content&c=index&a=show_tweets');
     }
 
     public function my_tweets()

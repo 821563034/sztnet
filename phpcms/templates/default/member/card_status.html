@@ -48,6 +48,24 @@
 <div class="clear"></div>
 {template 'member', 'footer'}
 <script>
+	$("#ifshow_1").click(function () {
+        $.post('index.php?m=member&c=index&a=card',{},function (result) {
+            if (!result.code){
+                layer.alert('请在【账号 > 修改信息】中完善您的账户信息', {
+                    title:'提示'
+                    ,btn: ['确定']
+                    ,yes: function(index){
+                        layer.close(index);
+                        window.location.href = 'index.php?m=member&c=index&a=account_manage_info&t=1';
+                    },cancel: function (index) {
+                        layer.close(index);
+                        $("#ifshow_0").prop('checked',true);
+                    }
+                });
+            }
+        },'json');
+    });
+
     $("#company_name").on('input',function(e){
         $.post('index.php?m=content&c=index&a=getCompany',{q:$(this).val()},function (result) {
             if (result){
