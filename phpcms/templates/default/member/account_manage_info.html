@@ -1,6 +1,8 @@
 {template 'member', 'header'}
-<link href="{CSS_PATH}dialog111.css" rel="stylesheet" type="text/css" />
-<link href="{PLUGIN_STATICS_PATH}select2/select2.min111.css" rel="stylesheet" type="text/css" />
+<!--
+<link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
+
+<link href="{PLUGIN_STATICS_PATH}select2/select2.min.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
@@ -8,6 +10,8 @@
 <script src="{JS_PATH}layer/layer.js"></script>
 <script type="text/javascript" src="{PLUGIN_STATICS_PATH}select2/select2.full.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
+-->
+
 <style type="text/css">
 	.select2-hidden-accessible{border:0 !important;clip:rect(0 0 0 0) !important;height:1px !important;margin:-1px !important;overflow:hidden !important;padding:0 !important;position:absolute !important;width:1px !important}
 </style>
@@ -39,13 +43,34 @@ $(function(){
 //-->
 </script>
 <style type="text/css">
-.infoTb{border-collapse:collapse; width:100%; background-color:#F5F5F5;}
-.infoTb th, .infoTb td{padding:5px;}
-.infoTb th{width:15%; text-align:right;}
-.infoTb td{width:85%; overflow:hidden;}
+.tb_form{border-collapse:collapse; width:100%; background-color:#F5F5F5;}
+.tb_form th, .tb_form td{padding:5px;}
+.tb_form th{width:25%; line-height:30px; text-align:right; vertical-align:top;}
+.tb_form td{width:75%; overflow:hidden;}
+.tb_form font{display:block;}
 
-#dosubmit{width:5em; height:2.5em; background-color:green; border:none; border-radius:3px; color:#fff;}
-.hide{display:none;}
+  /*行高*/
+  .tb_form input, #unit_industry, #area-1, #area-2, #home_area-1, #home_area-2, ib, .ib input{height:30px;}
+  .ib input{float:left; margin-top:0px;}
+  .ib{display:inline-block; line-height:30px; text-align:left;}
+
+  /*宽度*/
+  #nickname, #unit_industry, #position{width:50%;}
+  #company_name, #website{width:100%;}
+  #area-1, #area-2, #home_area-1, #home_area-2{width:50%; margin:0; float:left;}
+  #area-2, #home_area-2{border-left:none;}
+  #school, #self_introduction{width:100%;}
+  #QQ, #wechat, #media_name{width:50%;}
+  #dosubmit{width:6em; height:3em; background-color:green; border:none; border-radius:3px; color:#fff;}
+  .hide{display:none;}
+
+@media (min-width:768px){
+  #nickname, #unit_industry, #position{width:20%;}
+  #company_name, #website{width:50%;}
+  #area-1, #area-2, #home_area-1, #home_area-2{width:25%;}
+  #QQ, #wechat, #media_name{width:20%;}
+  .ib{margin-right:10px;}
+  }
 </style>
 
 <div id="memberArea">
@@ -61,9 +86,8 @@ $(function(){
 </div>
 -->
 
-<h5>{L('modify').L('memberinfo')}</h5>
 <form method="post" action="" id="myform" name="myform">
-    <table class="infoTb">
+    <table class="tb_form">
         <tr>
             <th>{L('nickname')}：</th>
             <td><input id="nickname" name="nickname" value="{$memberinfo['nickname']}" type="text" class="input-text" size="30"><br/>个人填：姓名或*先生/女士；单位填：简称</td>
@@ -99,12 +123,12 @@ $(function(){
             {else}
                 {$v['form']}
             {/if}
-                {if $v['tips']}<font color=red>&nbsp;&nbsp;({$v['tips']})</font>{/if}
+                {if $v['tips']}<font color="red">&nbsp;&nbsp;({$v['tips']})</font>{/if}
             </td>
         </tr>
         {/loop}
         <tr>
-            <td colspan="2" style="text-align:center;"><input name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button"></td>
+            <td colspan="2" style="text-align:center;"><button name="dosubmit" type="submit" id="dosubmit" value="{L('submit')}" class="button">提交</button></td>
         </tr>
     </table>
 </form>
@@ -112,8 +136,6 @@ $(function(){
 <form id="fileForm" enctype="multipart/form-data" action="index.php?m=content&c=index&a=upload" method="post">
     <input type="file" id="file" name="upload" style="display:none;" multiple="multiple">
 </form>
-
-<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
 
 </div><!--/memberArea-->
 

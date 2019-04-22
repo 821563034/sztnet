@@ -38,7 +38,7 @@ class phpsso {
 			if(!get_magic_quotes_gpc()) {
 				$this->data= new_addslashes($this->data);
 			}
-			if(isset($this->data['username']) && $this->data['username']!='' && is_username($this->data['username'])==false){
+			if(isset($this->data['username']) && $this->data['username']!='' && is_username($this->data['username'])==false && is_email($this->data['username'])==false && preg_match('/^1([0-9]{10})$/',$this->data['username'])==false){
 				exit('-5');
 			}
 			if(isset($this->data['email']) && $this->data['email']!='' && is_email($this->data['email'])==false){

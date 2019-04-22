@@ -29,6 +29,12 @@ class MY_content extends content
         if(isset($_POST['dosubmit'])) {
 
             $catid = intval($_POST['info']['catid']);
+            //根据证券代码获取公司id
+            if (!empty($_POST['info']['object']) && $catid == '519'){
+                $objectArr = explode('(',$_POST['info']['object']);
+                $stock_code = rtrim($objectArr[1],')');
+                $_POST['info']['company_id'] = get_company_id($stock_code);
+            }
             //判断此类型用户是否有权限在此栏目下提交投稿
             if (!$priv_db->get_one(array('catid'=>$catid, 'roleid'=>$memberinfo['groupid'], 'is_admin'=>0, 'action'=>'add'))) showmessage(L('category').L('publish_deny'), APP_PATH.'index.php?m=member');
 
@@ -98,7 +104,11 @@ class MY_content extends content
             setcache('member_'.$memberinfo['userid'].'_'.$siteid, $infos,'content');
             //缓存结果 END
             if($info['status']==99) {
-                showmessage(L('contributors_success'), APP_PATH.'index.php?m=member&c=content&a=published&siteid='.$siteid.'&catid='.$catid);
+                if ($info['catid'] == 546)
+                    //print_r($info);exit();
+                    showmessage('制作成功','index.php?m=content&c=index&a=show_tweets&id='.$id);
+                else
+                    showmessage(L('contributors_success'), APP_PATH.'index.php?m=member&c=content&a=published&siteid='.$siteid.'&catid='.$catid);
             } else {
                 showmessage(L('contributors_checked'), APP_PATH.'index.php?m=member&c=content&a=published&siteid='.$siteid.'&catid='.$catid);
             }
@@ -205,6 +215,12 @@ class MY_content extends content
         $_username = $this->memberinfo['username'];
         if(isset($_POST['dosubmit'])) {
             $catid = $_POST['info']['catid'] = intval($_POST['info']['catid']);
+            //根据证券代码获取公司id
+            if (!empty($_POST['info']['object']) && $catid == '519'){
+                $objectArr = explode('(',$_POST['info']['object']);
+                $stock_code = rtrim($objectArr[1],')');
+                $_POST['info']['company_id'] = get_company_id($stock_code);
+            }
             $siteids = getcache('category_content', 'commons');
             $siteid = $siteids[$catid];
             $CATEGORYS = getcache('category_content_'.$siteid, 'commons');

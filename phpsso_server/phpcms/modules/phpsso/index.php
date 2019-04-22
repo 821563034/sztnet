@@ -51,12 +51,12 @@ class index extends phpsso {
 			exit('-4');
 		}
 
-		/*$checkemail = $this->checkemail(1);
+		$checkemail = $this->checkemail(1);
 		if($checkemail == -1) {
 			exit('-2');
 		} elseif ($checkemail == -5) {
 			exit('-5');
-		}*/
+		}
 		
 		//UCenter会员注册
 		$ucuserid = 0;
@@ -125,6 +125,7 @@ class index extends phpsso {
 	 */
 	public function edit() {
 		$this->email = isset($this->data['email']) ? $this->data['email'] : '';
+		$this->mobile = isset($this->data['mobile']) ? $this->data['mobile'] : '';
 		$this->uid = isset($this->data['uid']) ? $this->data['uid'] : '';
 
 		$userinfo = $this->getuserinfo(1);
@@ -156,6 +157,10 @@ class index extends phpsso {
 		if (!empty($this->email) && $userinfo['email'] != $this->email) {
 			$data['email'] = $this->email;
 		}
+
+        if (!empty($this->mobile) && $userinfo['mobile'] != $this->mobile) {
+            $data['mobile'] = $this->mobile;
+        }
 
 		if (isset($this->newpassword) && $userinfo['password'] != $this->newpassword) {
 			$data['password'] = $this->newpassword;
@@ -289,11 +294,16 @@ class index extends phpsso {
 	public function login() {
 		$this->password = isset($this->data['password']) ? $this->data['password'] : '';
 		$this->email = isset($this->data['email']) ? $this->data['email'] : '';
-		if($this->email) {
+		/*if($this->email) {
 			$userinfo = $this->db->get_one(array('email'=>$this->email));
 		} else {
 			$userinfo = $this->db->get_one(array('username'=>$this->username));
-		}
+		}*/
+        $userinfo = $this->db->get_one(array('email'=>$this->username));
+        if (empty($userinfo))
+            $userinfo = $this->db->get_one(array('mobile'=>$this->username));
+        if (empty($userinfo))
+            $userinfo = $this->db->get_one(array('username'=>$this->username));
 		
 		if ($this->config['ucuse']) {
 			pc_base::load_config('uc_config');

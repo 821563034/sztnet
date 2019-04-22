@@ -387,6 +387,18 @@ class MY_index extends index
             } else {
                 $email = '';
             }
+            //验证邮箱验证码
+            $code = isset($_POST['info']['code']) && trim($_POST['info']['code']) ? trim($_POST['info']['code']) : showmessage(L('input_code'), HTTP_REFERER);
+            $email = $email ? $email : showmessage(L('请输入邮箱'), HTTP_REFERER);
+            $this->_session_start();
+            if ($_SESSION['code'] != $code || $_SESSION['email'] != $email) {
+                //$_SESSION['code'] = '';
+                //$_SESSION['email'] = '';
+                showmessage(L('code_error'), HTTP_REFERER);
+            }
+            //$_SESSION['code'] = '';
+            //$_SESSION['email'] = '';
+
             $this->db->update($updateinfo, array('userid'=>$this->memberinfo['userid']));
             if(pc_base::load_config('system', 'phpsso')) {
                 //初始化phpsso
@@ -403,6 +415,60 @@ class MY_index extends index
 
             include template('member', 'account_manage_email');
         }
+    }
+
+    //更换手机号码
+    public function account_change_mobile() {
+        $memberinfo = $this->memberinfo;
+        if(isset($_POST['dosubmit'])) {
+            if(!is_password($_POST['password'])) {
+                showmessage(L('password_format_incorrect'), HTTP_REFERER);
+            }
+            if($this->memberinfo['password'] != password($_POST['password'], $this->memberinfo['encrypt'])) {
+                showmessage(L('old_password_incorrect'));
+            }
+            //$sms_report_db = pc_base::load_model('sms_report_model');
+            //$mobile_verify = $_POST['mobile_verify'];
+            $mobile = $_POST['mobile'];
+            if($mobile){
+                if(!preg_match('/^1([0-9]{10})$/',$mobile)) exit('手机号码不合法');
+                $posttime = SYS_TIME-600;
+                $where = "`mobile`='$mobile' AND `send_userid`='".$memberinfo['userid']."' AND `posttime`>'$posttime'";
+                //$r = $sms_report_db->get_one($where,'id,id_code','id DESC');
+                //if($r && $r['id_code']==$mobile_verify) {
+                //$sms_report_db->update(array('id_code'=>''),$where);
+                $this->db->update(array('mobile'=>$mobile),array('userid'=>$memberinfo['userid']));
+                if(pc_base::load_config('system', 'phpsso')) {
+                    //初始化phpsso
+                    $this->_init_phpsso();
+                    $res = $this->client->ps_member_edit($memberinfo['username'], '', '', '', '', '', $mobile);
+                    $message_error = array('-1'=>L('user_not_exist'), '-2'=>L('old_password_incorrect'), '-3'=>L('email_already_exist'), '-4'=>L('email_error'), '-5'=>L('param_error'));
+                    if ($res < 0) showmessage($message_error[$res]);
+                }
+                showmessage("手机号码更新成功！",'?m=member&c=index&a=account_change_mobile&t=1');
+//				} else {
+//					showmessage("短信验证码错误！请重新获取！");
+//				}
+            }else{
+                showmessage("短信验证码已过期！请重新获取！");
+            }
+        } else {
+            include template('member', 'account_change_mobile');
+        }
+    }
+
+    public function send_email()
+    {
+        $email = trim($_POST['email']);
+        $code = rand(100000, 999999);
+        $this->_session_start();
+        $_SESSION['code'] = $code;
+        $_SESSION['email'] = $email;
+        pc_base::load_sys_func('mail');
+        if (sendmail($email, '修改邮箱验证', '验证码'.$code.'，您正在进行邮箱修改身份验证'))
+            echo json_encode(['code' => 1, 'msg' => '发送成功']);
+        else
+            echo json_encode(['code' => 0, 'msg' => '发送失败请重试']);
     }
 
     public function save_tweets()

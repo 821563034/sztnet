@@ -1,58 +1,103 @@
 {template 'member', 'header'}
+<style type="text/css">
+#myContent{margin-bottom:10px;float: left}
+#avatarlist{width:100%;}
+#avatarlist li{float:left; background-color:#f5f5f5; text-align:center;}
+</style>
 <div id="memberArea">
-	{template 'member', 'account_manage_left'}
-	<div class="col-auto">
-		<div class="col-1 ">
-			<h5 class="title">{L('modify').L('avatar')}</h5>
-			<div class="content">
-				
-				<script language="javascript" type="text/javascript" src="{$phpsso_api_url}/statics/js/swfobject.js"></script>
-				<script type="text/javascript">
-					var flashvars = {
-						'upurl':"{$upurl}&callback=return_avatar&"
-					}; 
-					var params = {
-						'align':'middle',
-						'play':'true',
-						'loop':'false',
-						'scale':'showall',
-						'wmode':'window',
-						'devicefont':'true',
-						'id':'Main',
-						'bgcolor':'#ffffff',
-						'name':'Main',
-						'allowscriptaccess':'always'
-					}; 
-					var attributes = {
-						
-					}; 
-					swfobject.embedSWF("{$phpsso_api_url}/statics/images/main.swf", "myContent", "490", "434", "9.0.0","{$phpsso_api_url}/statics/images/expressInstall.swf", flashvars, params, attributes);
-
-					function return_avatar(data) {
-						if(data == 1) {
-							window.location.reload();
-						} else {
-							alert('failure');
-						}
-					}
-				</script> 
-				<ul class="col-right col-avatar" id="avatarlist">
-				  {loop $avatar $k $v}
-					<li>
-						<img src="{$v}" height="{$k}" width="{$k}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'"><br />
-						{L('avatar')}{$k} x {$k}
-					</li>
-				  {/loop}
-				</ul>
-				<div class="col-auto">
-					<div id="myContent"> 
-					  <p>Alternative content</p> 
-					</div>
-				</div>
-			</div>
-			<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+{template 'member', 'account_manage_left'}
+<div id="myContent" class="col-left">
+	<div style="width: 100%">
+		<div style="float: left;">
+			<video id="video" width="300px" height="300px" autoplay="autoplay" style="border:1px solid red;"></video>
+			<button type="button" onclick="getMedia()">摄像头拍照</button>
+			<button id="snap" onclick="takePhoto()">拍照</button>
+		</div>
+		<div style="border:1px solid red;float: left;">
+			<canvas id="canvas" width="300px" height="300px"></canvas>
 		</div>
 	</div>
+	<div class="upload-pic img-wrap" id="preview">
+		<a><img src="" onerror="this.src='/statics/images/icon/upload-pic.png'" id="img_preview" style="cursor:hand" width="135" height="113"></a>
+	</div>
+	<button type="button" onclick="submit_form()">保存</button>
 </div>
-<div class="clear"></div>
-{template 'member', 'footer'}
+	<input type="hidden" id="img" value="">
+	{php $user_id = param::get_cookie('_userid');}
+	<input type="hidden" id="uid" value="{get_memberinfo($user_id, 'phpssouid')}">
+	<input type="file" id="file" name="upload" style="display: none;" multiple="multiple">
+<ul id="avatarlist">
+  {loop $avatar $k $v}
+	<li>
+		<img src="{$v}" height="{$k}" width="{$k}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'"><br />
+		{L('avatar')}{$k} x {$k}
+	</li>
+  {/loop}
+</ul>
+
+<span class="o1"></span><span class="o2"></span><span class="o3"></span><span class="o4"></span>
+</div>
+<script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	function getMedia() {
+		let constraints = {
+			video: {width: 300, height: 300},
+			audio: true
+		};
+		//获得video摄像头区域
+		let video = document.getElementById("video");
+		//这里介绍新的方法，返回一个 Promise对象
+		// 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+		// then()是Promise对象里的方法
+		// then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+		// 避免数据没有获取到
+		let promise = navigator.mediaDevices.getUserMedia(constraints);
+		promise.then(function (MediaStream) {
+			video.srcObject = MediaStream;
+			video.play();
+		});
+	}
+
+	function takePhoto() {
+		//获得Canvas对象
+		let video = document.getElementById("video");
+		let canvas = document.getElementById("canvas");
+		let ctx = canvas.getContext('2d');
+		ctx.drawImage(video, 0, 0, 300, 300);
+		//console.log(ctx.sourceFile);
+		/*let fileType = ctx.files[0].type;
+        console.log(fileType);*/
+		let newImage = canvas.toDataURL('jpg',1);
+		//console.log(newImage);
+		$('#img').val(newImage);
+	}
+
+	$("#img_preview").click(function () {
+		$('#file').trigger('click');
+	});
+
+	$('#file').on('change',function () {
+		if (file.files && file.files[0]){
+			let reader = new FileReader();
+			reader.onload = function(evt){
+				$("#img_preview").attr('src',evt.target.result);
+				$('#img').val(evt.target.result);
+			};
+			reader.readAsDataURL(file.files[0]);
+		}else{
+			$("#preview").html('<div style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>');
+		}
+		/*$('#fileForm').ajaxSubmit(options);
+		return false;*/
+	});
+
+	function submit_form(){
+		$.post('{$phpsso_api_url}/index.php?m=phpsso&c=upload&a=upload_avatar',{avatar_data:$("#img").val(),uid:$("#uid").val()},function (result) {
+			if(result == 1) {
+				window.location.reload();
+			} else {
+				alert('failure');
+			}
+		},'json');
+	}
+</script>

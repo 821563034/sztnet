@@ -24,9 +24,9 @@ class client {
 	 * @return int {-1:用户名已经存在 ;-2:email已存在;-3:email格式错误;-4:用户名禁止注册;-5:邮箱禁止注册；int(uid):成功}
 	 */
 	public function ps_member_register($username, $password, $email, $regip='', $random='') {
-		/*if(!$this->_is_email($email)) {
+		if(!$this->_is_email($email)) {
 			return -3;
-		}*/
+		}
 		 
 		return $this->_ps_send('register', array('username'=>$username, 'password'=>$password, 'email'=>$email, 'regip'=>$regip, 'random'=>$random));
 	}
@@ -76,16 +76,17 @@ class client {
 	 * @param string $newpassword	新密码
 	 * @param int $uid				phpsso用户uid
 	 * @param string $random	 	密码随机数
+	 * @param string $mobile	 	手机号码
 	 * @return int {-1:用户不存在;-2:旧密码错误;-3:email已经存在 ;-4:email格式错误;1:成功;0:未作修改,-5:参数格式错误}
 	 */
-	public function ps_member_edit($username, $email, $password='', $newpassword='', $uid='', $random='') {
-		if($email && !$this->_is_email($email)) {
+	public function ps_member_edit($username, $email, $password='', $newpassword='', $uid='', $random='', $mobile='') {
+		if(!empty($email) && !$this->_is_email($email)) {
 			return -4;
 		}
-		if ((!empty($username) && !is_string($username)) || (!empty($email) && !is_string($email)) || (!empty($password) && !is_string($password)) || (!empty($newpassword) && !is_string($newpassword))) {
+		if ((!empty($username) && !is_string($username)) || (!empty($email) && !is_string($email)) || (!empty($password) && !is_string($password)) || (!empty($newpassword) && !is_string($newpassword)) || (!empty($mobile) && !is_string($mobile))) {
 			return -5;
 		}
-		return $this->_ps_send('edit', array('username'=>$username, 'password'=>$password, 'newpassword'=>$newpassword, 'email'=>$email, 'uid'=>$uid, 'random'=>$random));
+		return $this->_ps_send('edit', array('username'=>$username, 'password'=>$password, 'newpassword'=>$newpassword, 'email'=>$email, 'uid'=>$uid, 'random'=>$random, 'mobile'=>$mobile));
 	}
 
 	/**
@@ -358,7 +359,7 @@ EOF;
 		$matches = parse_url($url);
 		$host = $matches['host'];
 		$path = $matches['path'] ? $matches['path'].($matches['query'] ? '?'.$matches['query'] : '') : '/';
-		$port = !empty($matches['port']) ? $matches['port'] : 80;
+		$port = !empty($matches['port']) ? $matches['port'] : ( strtolower($matches['scheme'])=='https' ? 443 : 80 );
 		$siteurl = $this->_get_url();
 		if($post) {
 			$out = "POST $path HTTP/1.1\r\n";
@@ -383,7 +384,26 @@ EOF;
 			$out .= "Connection: Close\r\n";
 			$out .= "Cookie: $cookie\r\n\r\n";
 		}
-		$fp = @fsockopen(($ip ? $ip : $host), $port, $errno, $errstr, $timeout);
+		$contextOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false
+    )
+);
+
+//如果有签名的证书
+//$contextOptions = array(
+//    'ssl' => array(
+//        'verify_peer' => true,
+//        'cafile' => '/path/to/cacert.pem',
+//        //'CN_match' => 'indexroot.net', // 匹配域名
+//        'ciphers' => 'HIGH:!SSLv2:!SSLv3',
+//        'disable_compression' => true,
+//    )
+//);
+
+$context = stream_context_create($contextOptions);
+$fp = stream_socket_client("ssl://{$host}:{$port}", $errno, $errstr, $timeout, STREAM_CLIENT_CONNECT, $context);
 		if(!$fp) return '';
 	
 		stream_set_blocking($fp, $block);
