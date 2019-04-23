@@ -384,12 +384,12 @@ EOF;
 			$out .= "Connection: Close\r\n";
 			$out .= "Cookie: $cookie\r\n\r\n";
 		}
-		$contextOptions = array(
-    'ssl' => array(
-        'verify_peer' => false,
-        'verify_peer_name' => false
-    )
-);
+		/*$contextOptions = array(
+            'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false
+            )
+        );*/
 
 //如果有签名的证书
 //$contextOptions = array(
@@ -402,8 +402,9 @@ EOF;
 //    )
 //);
 
-$context = stream_context_create($contextOptions);
-$fp = stream_socket_client("ssl://{$host}:{$port}", $errno, $errstr, $timeout, STREAM_CLIENT_CONNECT, $context);
+        /*$context = stream_context_create($contextOptions);
+        $fp = stream_socket_client("ssl://{$host}:{$port}", $errno, $errstr, $timeout, STREAM_CLIENT_CONNECT, $context);*/
+        $fp = @fsockopen(($ip ? $ip : $host), $port, $errno, $errstr, $timeout);
 		if(!$fp) return '';
 	
 		stream_set_blocking($fp, $block);
