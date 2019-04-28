@@ -49,7 +49,7 @@
 
   <p class="lxr"><span>联系人</span></p>
   <div class="row staffs black">
-    {php $sql = "SELECT A.nickname, A.userid FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.unit_name = '".$title."'";}
+    {php $sql = "SELECT A.nickname, A.userid, B.service FROM v9_member as A right join v9_member_detail as B on A.userid = B.userid where A.modelid = 10 AND B.unit_name = '".$title."'";}
     {pc:get sql="$sql" cache="3600" page="$page" num="10" return="data"}
     {loop $data $v}
     <div class="col xs-4 md-2 staff">
@@ -57,6 +57,7 @@
         <img src="{get_memberavatar($v[userid],1,90)}" onerror="this.src='{$phpsso_api_url}/statics/images/member/nophoto.gif'">
         <span>{$v[nickname]}</span>
       </a>
+      <span style="color: red">{php echo str_replace("\r\n",",",$v['service'])}</span>
     </div>
     {/loop}
     {/pc}

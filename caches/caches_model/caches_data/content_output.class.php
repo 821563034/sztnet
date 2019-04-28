@@ -233,7 +233,7 @@ class content_output {
 		if($setting['maptype']==1) {
 			$str = "<script src='http://app.mapabc.com/apis?&t=flashmap&v=2.4&key=$setting[api_key]&hl=zh-CN' type='text/javascript'></script>";
 		} elseif($setting['maptype']==2) {
-			$str = "<script type='text/javascript' src='http://api.map.baidu.com/api?v=1.2&key=$setting[api_key]'></script>";
+			$str = "<script type='text/javascript' src='https://api.map.baidu.com/api?v=2.0&ak=$setting[api_key]&s=1'></script>";
 		}
 		$str .= '<div id="mapObj" class="view" style="width: '.$setting[width].'px; height:'.$setting[height].'px"></div>';
 		$str .='<script type="text/javascript">';

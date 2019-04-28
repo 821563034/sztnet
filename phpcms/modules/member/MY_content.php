@@ -247,6 +247,7 @@ class MY_content extends content
                     }
                 }
                 $_POST['linkurl'] = str_replace(array('"','(',')',",",' ','%'),'',new_html_special_chars(strip_tags($_POST['linkurl'])));
+                $this->content_db->siteid = $siteid;
                 $this->content_db->edit_content($_POST['info'],$id);
                 $forward = $_POST['forward'];
                 showmessage(L('update_success'),$forward);

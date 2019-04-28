@@ -87,7 +87,7 @@
       <li class="col5px xs-4 md-3"><a href="#" onclick="open_img('{$memberinfo[0][wechat_img]}')">加我微信</a></li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="qrcpu('{$main_memberinfo[username]}','{$main_memberinfo[mobile]}')">导入通讯录</a></li>
       {php $location = explode('|',$memberinfo[0][my_adress]);}
-      <li class="col5px xs-4 md-3">{if empty($memberinfo[0][my_adress])}<a href="#">暂无地址</a>{else}<a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=目的地&content=目的地&output=html&src=webapp.baidu.openAPIdemo">一键导航</a>{/if}</li>
+      <li class="col5px xs-4 md-3">{if empty($memberinfo[0][my_adress])}<a href="#">暂无地址</a>{else}<a href="https://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=目的地&content=目的地&output=html&src=webapp.baidu.openAPIdemo">一键导航</a>{/if}</li>
       <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=member_info&userid={$userid}">个人资料</a></li>
       {if $_userid}
         {pc:get sql="SELECT * FROM v9_concern where userid=$userid and cc_userid=$_userid" cache="3600" num="1" return="concern"}

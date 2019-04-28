@@ -3,14 +3,14 @@
 <link href="{CSS_PATH}dialog.css" rel="stylesheet" type="text/css" />
 
 <link href="{PLUGIN_STATICS_PATH}select2/select2.min.css" rel="stylesheet" type="text/css" />
-
+-->
 <script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
 <script language="javascript" type="text/javascript" src="{JS_PATH}dialog.js"></script>
 <script src="{JS_PATH}layer/layer.js"></script>
 <script type="text/javascript" src="{PLUGIN_STATICS_PATH}select2/select2.full.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="{JS_PATH}jquery.form.min.js" charset="UTF-8"></script>
--->
+
 
 <style type="text/css">
 	.select2-hidden-accessible{border:0 !important;clip:rect(0 0 0 0) !important;height:1px !important;margin:-1px !important;overflow:hidden !important;padding:0 !important;position:absolute !important;width:1px !important}
@@ -43,7 +43,9 @@ $(function(){
 //-->
 </script>
 <style type="text/css">
-.tb_form{border-collapse:collapse; width:100%; background-color:#F5F5F5;}
+  .fillingTips{color:grey; margin:10px 0 0; padding:5px; background-color:#FAFAD2;}
+
+.tb_form{border-collapse:collapse; width:100%; background-color:#F5F5DC;}
 .tb_form th, .tb_form td{padding:5px;}
 .tb_form th{width:25%; line-height:30px; text-align:right; vertical-align:top;}
 .tb_form td{width:75%; overflow:hidden;}
@@ -55,8 +57,8 @@ $(function(){
   .ib{display:inline-block; line-height:30px; text-align:left;}
 
   /*宽度*/
-  #nickname, #unit_industry, #position{width:50%;}
-  #company_name, #website{width:100%;}
+  #nickname, #service, #unit_industry, #position{width:50%;}
+  #company_name, #website, #media_url{width:100%;}
   #area-1, #area-2, #home_area-1, #home_area-2{width:50%; margin:0; float:left;}
   #area-2, #home_area-2{border-left:none;}
   #school, #self_introduction{width:100%;}
@@ -65,7 +67,7 @@ $(function(){
   .hide{display:none;}
 
 @media (min-width:768px){
-  #nickname, #unit_industry, #position{width:20%;}
+  #nickname, #service, #unit_industry, #position{width:20%;}
   #company_name, #website{width:50%;}
   #area-1, #area-2, #home_area-1, #home_area-2{width:25%;}
   #QQ, #wechat, #media_name{width:20%;}
@@ -85,12 +87,12 @@ $(function(){
     </div>
 </div>
 -->
-
+<p class="fillingTips">温馨提示：使用【E名片】时，除最后的“我的媒体、媒体网址”字段外，其它字段均需要填写；仅使用【发布】时，需至少填写前6个字段及“我的媒体、媒体网址”字段。</p>
 <form method="post" action="" id="myform" name="myform">
     <table class="tb_form">
         <tr>
             <th>{L('nickname')}：</th>
-            <td><input id="nickname" name="nickname" value="{$memberinfo['nickname']}" type="text" class="input-text" size="30"><br/>个人填：姓名或*先生/女士；单位填：简称</td>
+            <td><input id="nickname" name="nickname" value="{$memberinfo['nickname']}" type="text" class="input-text" size="30"><br/>个人账户填：姓名或*先生/女士；机构账户填：公司简称</td>
         </tr>
         {loop $forminfos $k $v}
         {if $k == 'ifshow'}

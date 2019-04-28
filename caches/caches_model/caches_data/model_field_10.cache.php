@@ -190,7 +190,7 @@ return array (
     'pattern' => '',
     'errortips' => '',
     'formtype' => 'image',
-    'setting' => '{"size":"","defaultvalue":"","show_type":"1","upload_maxsize":"","upload_allowext":"gif|jpg|jpeg|png|bmp","isselectimage":"0","images_width":"100","images_height":"100"}',
+    'setting' => '{"size":"","defaultvalue":"","show_type":"1","upload_maxsize":"","upload_allowext":"gif|jpg|jpeg|png|bmp","isselectimage":"0","images_width":"300","images_height":"300"}',
     'formattribute' => '',
     'unsetgroupids' => '',
     'unsetroleids' => '',
@@ -211,8 +211,8 @@ return array (
     'upload_maxsize' => '',
     'upload_allowext' => 'gif|jpg|jpeg|png|bmp',
     'isselectimage' => '0',
-    'images_width' => '100',
-    'images_height' => '100',
+    'images_width' => '300',
+    'images_height' => '300',
   ),
   'unit_industry' => 
   array (
@@ -262,7 +262,7 @@ return array (
     'errortips' => '',
     'formtype' => 'text',
     'setting' => '{"size":"50","defaultvalue":"","ispassword":"0"}',
-    'formattribute' => '',
+    'formattribute' => 'onFocus = layer_open();',
     'unsetgroupids' => '',
     'unsetroleids' => '',
     'iscore' => '0',

@@ -135,7 +135,7 @@
     {php $username = get_memberinfo($userid,'username');}
     <span>{get_memberinfo($userid, 'nickname')}的E名片</span>
     <a href="index.php?m=member">我的控制台</a>
-    <a href="index.php?m=content&c=index&a=lists&catid={$catid}" target="_self">返回[资本人脉]</a>
+    <a href="https://www.sztnet.com/index.php?m=content&c=index&a=member_lists&catid=536" target="_self">返回[资本人脉]</a>
   </div>
 </div><!--/cardHead-->
 
@@ -180,7 +180,7 @@
       <li class="col5px xs-4 md-3 hide-PC"><a href="#" onclick="qrcpu('{$main_memberinfo[username]}','{$main_memberinfo[mobile]}')">存入手机</a></li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="open_img('{$memberinfo[0][wechat_img]}','{$memberinfo[0][wechat]}')">加我微信</a></li>
       {php $location = explode('|',$memberinfo[0][my_adress]);}
-      <li class="col5px xs-4 md-3">{if empty($memberinfo[0][my_adress])}<a href="#" style="color:grey;">位置导航</a>{else}<a href="http://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=目的地&content=目的地&output=html&src=webapp.baidu.openAPIdemo">一键导航</a>{/if}</li>
+      <li class="col5px xs-4 md-3">{if empty($memberinfo[0][my_adress])}<a href="#" style="color:grey;">位置导航</a>{else}<a href="https://api.map.baidu.com/marker?location={$location[1]},{$location[0]}&title=目的地&content=目的地&output=html&src=webapp.baidu.openAPIdemo">一键导航</a>{/if}</li>
       <li class="col5px xs-4 md-3"><a href="index.php?m=content&c=index&a=send&userid={$userid}">在线留言</a></li>
       <li class="col5px xs-4 md-3"><a href="#" onclick="layer.alert('邮箱:{$main_memberinfo[email]}<br>QQ:{$memberinfo[0][QQ]}', {icon: 1})">邮箱/QQ</a></li>
       {if !empty($memberinfo[0][unit_name])}

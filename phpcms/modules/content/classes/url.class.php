@@ -94,7 +94,11 @@ class url{
 				$url_arr[0] = $url_arr[1] = $siteinfo['domain'].$urls;
 				$url_arr[1] = $html_root.'/'.$urls;
 			} else {
-				$url_arr[0] = $url_arr[1] = APP_PATH.$urls;
+                $this->sitedb = pc_base::load_model('site_model');
+                $siteid=param::get_cookie('siteid');
+                $siteinfo=$this->sitedb->get_one(array('siteid'=>$siteid));
+                $url_arr[0] = $url_arr[1] = $siteinfo['domain'].$urls;
+				//$url_arr[0] = $url_arr[1] = APP_PATH.$urls;
 			}
 		}
 		//生成静态 ,在添加文章的时候，同时生成静态，不在批量更新URL处调用

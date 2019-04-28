@@ -16,7 +16,7 @@ class cache_all extends admin {
 				array('name' => L('badword_name'), 'function' => 'badword'),
 				array('name' => L('ipbanned'), 'function' => 'ipbanned'),
 				array('name' => L('keylink'), 'function' => 'keylink'),
-				array('name' => L('linkage'), 'function' => 'linkage'),
+				//array('name' => L('linkage'), 'function' => 'linkage'),
 				array('name' => L('position'), 'function' => 'position'),
 				array('name' => L('admin_role'), 'function' => 'admin_role'),
 				array('name' => L('urlrule'), 'function' => 'urlrule'),

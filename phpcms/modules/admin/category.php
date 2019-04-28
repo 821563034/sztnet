@@ -460,7 +460,11 @@ class category extends admin {
 				} else {
 				//不生成静态时
 					$url = $this->update_url($catid);
-					$url = APP_PATH.$url;
+					//$url = APP_PATH.$url;
+                    $this->sitedb = pc_base::load_model('site_model');
+                    $siteid=param::get_cookie('siteid');
+                    $siteinfo=$this->sitedb->get_one(array('siteid'=>$siteid));
+                    $url = $siteinfo['domain'].$url;
 				}
 				if($cat['url']!=$url) $this->db->update(array('url'=>$url), array('catid'=>$catid));
 				

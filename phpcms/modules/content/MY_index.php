@@ -209,7 +209,7 @@ class MY_index extends index
                 $cityList = $this->linkage_db->select("parentid = $province",'linkageid');
                 $cityIds = array_column($cityList, 'linkageid');
                 $cityId_string = implode(',',$cityIds);
-                $where .= ' AND area in ('.$cityId_string.')';
+                $where .= ' AND area IN ('.$cityId_string.')';
             }
         }
         if(!empty($home_city)) {
@@ -219,7 +219,7 @@ class MY_index extends index
                 $cityList = $this->linkage_db->select("parentid = $home_province",'linkageid');
                 $cityIds = array_column($cityList, 'linkageid');
                 $cityId_string = implode(',',$cityIds);
-                $where .= ' AND home_area in ('.$cityId_string.')';
+                $where .= ' AND home_area IN ('.$cityId_string.')';
             }
         }
         if(!empty($unit_industry)) $where .= ' AND unit_industry = '.$unit_industry;
@@ -262,11 +262,26 @@ class MY_index extends index
                 $cityList = $this->linkage_db->select("parentid = $province",'linkageid');
                 $cityIds = array_column($cityList, 'linkageid');
                 $cityId_string = implode(',',$cityIds);
-                $where .= ' AND place in ('.$cityId_string.')';
+                $where .= ' AND place IN ('.$cityId_string.')';
             }
         }
         //if(!empty($industry)) $where .= ' AND industry = '.$industry;
-        if(!empty($service)) $where .= ' AND service = '.$service;
+        if(!empty($service)) {
+            $unitNameList = $this->member_detail_db->select("service LIKE '%".$service."%' AND unit_name <> ' '",'unit_name');
+            if (!empty($unitNameList)){
+                $names = array_column($unitNameList, 'unit_name');
+                $names_string = '';
+                foreach ($names as $v){
+                    $names_string .= "'".$v."',";
+                }
+                $names_string = rtrim($names_string,',');
+                if (count($names) > 1){
+                    $where .= ' AND title IN ('.$names_string.')';
+                }else{
+                    $where .= ' AND title = '.$names_string;
+                }
+            }
+        }
         if(!empty($company_name)) $where .= " AND title LIKE '%".$company_name."%'";
         $sql = 'SELECT id FROM v9_firm WHERE '.$where;
         $query = $this->db->query($sql);
@@ -285,19 +300,46 @@ class MY_index extends index
         $page = intval($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
         $row = intval($_REQUEST['row']) ? intval($_REQUEST['row']) : 10;
         $q = trim($_REQUEST['q']);
-        $where = 'catid=120';
+        $where = '1=1';
         if (!empty($q)){
             $where .= ' AND title LIKE "%'.$q.'%"';
         }
-        $this->db->set_catid($catid);
-        $list = $this->db->listinfo($where, 'id', $page, $row);
+        $firm_db = pc_base::load_model('firm_model');
+        $list = $firm_db->listinfo($where, 'id', $page, $row);
         foreach ($list as $k => $v){
             $list[$k]['text'] = $v['title'];
             unset($list[$k]['title']);
         }
         //得到总记录数
-        $total = $this->db->count($where);
+        $total = $firm_db->count($where);
         echo json_encode(['total'=>$total,'items'=>$list]);exit();
+    }
+
+    /**
+     * 获取机构名录服务选项
+     */
+    public function getService()
+    {
+        $page = intval($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+        $row = intval($_REQUEST['row']) ? intval($_REQUEST['row']) : 10;
+        $q = trim($_REQUEST['search']);
+        $where = '1=1';
+        if (!empty($q)){
+            $where .= ' AND service LIKE "%'.$q.'%"';
+        }
+        $list = $this->member_detail_db->listinfo($where, 'service', $page, $row);
+        $option_arr = [];
+        foreach ($list as $v){
+            $v_arr = explode(',',str_replace("\r\n",",",$v['service']));
+            $option_arr = array_unique(array_merge($option_arr,$v_arr));
+        }
+        echo json_encode($option_arr);exit();
+        /*{php $option_arr = [];}
+        {pc:get sql="SELECT service FROM v9_member_detail where service <> ''" cache="3600" return="data"}
+        {loop $data $v}
+        {php $v_arr = explode(',',str_replace("\r\n",",",$v['service']));$option_arr = array_unique(array_merge($option_arr,$v_arr));}
+        {/loop}
+        {/pc}*/
     }
 
     public function getIntCompany()
@@ -315,7 +357,7 @@ class MY_index extends index
             unset($list[$k]['title']);
         }
         //得到总记录数
-        $total = $this->company_db->count();
+        $total = $this->company_db->count($where);
         echo json_encode(['total'=>$total,'items'=>$list]);exit();
     }
 
@@ -368,6 +410,7 @@ class MY_index extends index
         $template = [1 => 'list_subscribe_industry', 2 => 'list_subscribe_area', 3 => 'list_subscribe_company'];
         $type = intval($_GET['type']);
         $q = trim($_GET['q']);
+        $page = intval($_GET['page']);
         $company_string = '';
         switch ($type)
         {
@@ -377,7 +420,7 @@ class MY_index extends index
                 $company_string = implode(',',$companys);
                 if (empty($company_string))
                     $company_string = "''";
-                $where = "company_id in (".$company_string.")";
+                $where = "company_id IN (".$company_string.")";
                 break;
             case 2:
                 $company_arr = $this->company_db->select("city = '".$q."' OR province = '".$q."'",'id');
@@ -385,7 +428,7 @@ class MY_index extends index
                 $company_string = implode(',',$companys);
                 if (empty($company_string))
                     $company_string = "''";
-                $where = "company_id in (".$company_string.")";
+                $where = "company_id IN (".$company_string.")";
                 break;
             case 3:
                 $company_id = get_company_id($q);
@@ -393,6 +436,41 @@ class MY_index extends index
                 break;
             default:
                 showmessage('系统错误','blank');
+                break;
+        }
+
+        $search_type = trim($_POST['searchtype']);
+        $search = trim($_POST['search']);
+        switch ($search_type) {
+            case 'company':
+                $sql = "SELECT id FROM v9_arti_data WHERE object = '".$search."' AND ".$where;
+                $query = $this->db->query($sql);
+                $list = $this->db->fetch_array($query);
+                $id_arr = array_column($list, 'id');
+                $id_string = implode(',',$id_arr);
+                if (empty($id_string))
+                    $id_string = "''";
+                $where = "id IN (".$id_string.") AND catid = ".$catid;
+                break;
+            case 'title':
+                $sql = 'SELECT id FROM v9_arti WHERE title LIKE %'.$search.'% AND '.$where;
+                $query = $this->db->query($sql);
+                $list = $this->db->fetch_array($query);
+                $id_arr = array_column($list, 'id');
+                $id_string = implode(',',$id_arr);
+                if (empty($id_string))
+                    $id_string = "''";
+                $where = "id IN (".$id_string.") AND catid = ".$catid;
+                break;
+            case 'keyword':
+                $sql = 'SELECT id FROM v9_arti_data WHERE content LIKE %'.$search.'% AND '.$where;
+                $query = $this->db->query($sql);
+                $list = $this->db->fetch_array($query);
+                $id_arr = array_column($list, 'id');
+                $id_string = implode(',',$id_arr);
+                if (empty($id_string))
+                    $id_string = "''";
+                $where = "id IN (".$id_string.") AND catid = ".$catid;
                 break;
         }
         include template('content',$template[$type]);
@@ -489,6 +567,150 @@ class MY_index extends index
             $info['weburl'] = 'iframe.html';//file_get_contents($info['weburl']);
         }
         include template('member', 'show_tweets');
+    }
+
+    public function my_publish()
+    {
+        $_userid = $this->_userid;
+        $_username = $this->_username;
+        $catid = intval($_GET['catid']);
+        if(!$catid) showmessage(L('category_not_exists'),'blank');
+        $siteids = getcache('category_content','commons');
+        $siteid = $siteids[$catid];
+        define('SITEID',$siteid);
+        $CATEGORYS = getcache('category_content_'.$siteid,'commons');
+        $q = trim($_GET['q']);
+        $page = intval($_GET['page']);
+        $where = "copyfrom = '".$q."'";
+        $model = pc_base::load_model('arti_data_model');
+        $count = $model->count($where);
+        include template('content', 'list_memberBlog');
+    }
+
+    public function get_subscribe()
+    {
+        $model = pc_base::load_model('subscribe_model');
+        $list = $model->listinfo(array('userid'=>$this->_userid));
+        foreach ($list as $k => $v){
+            if($v['type'] == 3){
+                $list[$k]['company_name'] = get_company_field($v['name'], $field = 'shortname');
+                $list[$k]['stock_code'] = get_company_field($v['name'], $field = 'stockcode');
+            }
+        }
+        echo $_GET['callback'].'('.json_encode(['code'=>1,'data'=>$list]).')';
+    }
+
+    //列表页
+    public function lists() {
+        $catid = intval($_GET['catid']);
+        if (in_array($catid,[519,520,521])){
+            $search_type = trim($_POST['searchtype']);
+            $search = trim($_POST['search']);
+            switch ($search_type) {
+                case 'company':
+                    $sql = "SELECT id FROM v9_arti_data WHERE object = '".$search."'";
+                    $query = $this->db->query($sql);
+                    $list = $this->db->fetch_array($query);
+                    $id_arr = array_column($list, 'id');
+                    $id_string = implode(',',$id_arr);
+                    if (empty($id_string))
+                        $id_string = "''";
+                    $where = "id IN (".$id_string.") AND catid = ".$catid;
+                    break;
+                case 'title':
+                    $sql = 'SELECT id FROM v9_arti WHERE title LIKE %'.$search.'%';
+                    $query = $this->db->query($sql);
+                    $list = $this->db->fetch_array($query);
+                    $id_arr = array_column($list, 'id');
+                    $id_string = implode(',',$id_arr);
+                    if (empty($id_string))
+                        $id_string = "''";
+                    $where = "id IN (".$id_string.") AND catid = ".$catid;
+                    break;
+                case 'keyword':
+                    $sql = 'SELECT id FROM v9_arti_data WHERE content LIKE %'.$search.'%';
+                    $query = $this->db->query($sql);
+                    $list = $this->db->fetch_array($query);
+                    $id_arr = array_column($list, 'id');
+                    $id_string = implode(',',$id_arr);
+                    if (empty($id_string))
+                        $id_string = "''";
+                    $where = "id IN (".$id_string.") AND catid = ".$catid;
+                    break;
+            }
+        }
+        $_priv_data = $this->_category_priv($catid);
+        if($_priv_data=='-1') {
+            $forward = urlencode(get_url());
+            showmessage(L('login_website'),APP_PATH.'index.php?m=member&c=index&a=login&forward='.$forward);
+        } elseif($_priv_data=='-2') {
+            showmessage(L('no_priv'));
+        }
+        $_userid = $this->_userid;
+        $_username = $this->_username;
+        $_groupid = $this->_groupid;
+
+        if(!$catid) showmessage(L('category_not_exists'),'blank');
+        $siteids = getcache('category_content','commons');
+        $siteid = $siteids[$catid];
+        $CATEGORYS = getcache('category_content_'.$siteid,'commons');
+        if(!isset($CATEGORYS[$catid])) showmessage(L('category_not_exists'),'blank');
+        $CAT = $CATEGORYS[$catid];
+        $siteid = $GLOBALS['siteid'] = $CAT['siteid'];
+        extract($CAT);
+        $setting = string2array($setting);
+        //SEO
+        if(!$setting['meta_title']) $setting['meta_title'] = $catname;
+        $SEO = seo($siteid, '',$setting['meta_title'],$setting['meta_description'],$setting['meta_keywords']);
+        define('STYLE',$setting['template_list']);
+        $page = intval($_GET['page']);
+
+        $template = $setting['category_template'] ? $setting['category_template'] : 'category';
+        $template_list = $setting['list_template'] ? $setting['list_template'] : 'list';
+
+        if($type==0) {
+            $template = $child ? $template : $template_list;
+            $arrparentid = explode(',', $arrparentid);
+            $top_parentid = $arrparentid[1] ? $arrparentid[1] : $catid;
+            $array_child = array();
+            $self_array = explode(',', $arrchildid);
+            //获取一级栏目ids
+            foreach ($self_array as $arr) {
+                if($arr!=$catid && $CATEGORYS[$arr][parentid]==$catid) {
+                    $array_child[] = $arr;
+                }
+            }
+            $arrchildid = implode(',', $array_child);
+            //URL规则
+            $urlrules = getcache('urlrules','commons');
+            $urlrules = str_replace('|', '~',$urlrules[$category_ruleid]);
+            $tmp_urls = explode('~',$urlrules);
+            $tmp_urls = isset($tmp_urls[1]) ?  $tmp_urls[1] : $tmp_urls[0];
+            preg_match_all('/{\$([a-z0-9_]+)}/i',$tmp_urls,$_urls);
+            if(!empty($_urls[1])) {
+                foreach($_urls[1] as $_v) {
+                    $GLOBALS['URL_ARRAY'][$_v] = $_GET[$_v];
+                }
+            }
+            define('URLRULE', $urlrules);
+            $GLOBALS['URL_ARRAY']['categorydir'] = $categorydir;
+            $GLOBALS['URL_ARRAY']['catdir'] = $catdir;
+            $GLOBALS['URL_ARRAY']['catid'] = $catid;
+            include template('content',$template);
+        } else {
+            //单网页
+            $this->page_db = pc_base::load_model('page_model');
+            $r = $this->page_db->get_one(array('catid'=>$catid));
+            if($r) extract($r);
+            $template = $setting['page_template'] ? $setting['page_template'] : 'page';
+            $arrchild_arr = $CATEGORYS[$parentid]['arrchildid'];
+            if($arrchild_arr=='') $arrchild_arr = $CATEGORYS[$catid]['arrchildid'];
+            $arrchild_arr = explode(',',$arrchild_arr);
+            array_shift($arrchild_arr);
+            $keywords = $keywords ? $keywords : $setting['meta_keywords'];
+            $SEO = seo($siteid, 0, $title,$setting['meta_description'],$keywords);
+            include template('content',$template);
+        }
     }
 
     /**

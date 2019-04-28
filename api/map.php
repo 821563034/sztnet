@@ -19,10 +19,11 @@ if(!isset($_GET['city'])) {
 <html xmlns="http://www.w3.org/1999/xhtml"<?php if(isset($addbg)) { ?> class="addbg"<?php } ?>>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET ?>">
-<?php if($maptype == 1) {?>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <?php if($maptype == 1) {?>
 <script src="http://app.mapabc.com/apis?&t=flashmap&v=2.4&key=<?php echo $key?>&hl=zh-CN" type="text/javascript"></script>
 <?php } elseif($maptype == 2) {?>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&key=<?php echo $key?>"></script></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<?php echo $key?>&s=1"></script></script>
 <?php }?>
 <script type="text/javascript" src="<?php echo JS_PATH ?>jquery.min.js"></script>
 
