@@ -4,7 +4,7 @@ return array (
 	'default' => array (
 		'hostname' => 'localhost',
 		'port' => 3306,
-		'database' => 'sztnet',
+		'database' => 'phpcms',
 		'username' => 'root',
 		'password' => '',
 		'tablepre' => 'v9_sso_',
