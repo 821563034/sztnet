@@ -3,7 +3,7 @@
 	  
 	header ( "Content-type:text/html;charset=utf-8" );
 	
-	$conn  = new mysqli("106.13.15.99","root","MyNewECS35!","sztnet");
+	$conn  = new mysqli("127.0.0.1","root","","phpcms");
 		
 	$conn->query("SET NAMES 'UTF8'");
 	
