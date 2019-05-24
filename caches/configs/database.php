@@ -2,11 +2,11 @@
 
 return array (
 	'default' => array (
-		'hostname' => '106.13.15.99',
+		'hostname' => '127.0.0.1',
 		'port' => 3306,
-		'database' => 'sztnet',
+		'database' => 'phpcms',
 		'username' => 'root',
-		'password' => 'MyNewECS35!',
+		'password' => '',
 		'tablepre' => 'v9_',
 		'charset' => 'utf8',
 		'type' => 'mysqli',
